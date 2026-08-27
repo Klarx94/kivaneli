@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIVANELI — Ritual Piel de Seda & Mirada Radiante</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom Color System & Premium Styles -->
+  <style>
+    :root {
+      --color-ivory: #FAF7F2;
+      --color-obsidian: #181514;
+      --color-rose-silk: #D48B80;
+      --color-rose-light: #F6EAE7;
+      --color-champagne-gold: #D97706;
+      --color-lavender-amethyst: #8B5CF6;
+      --color-sage-botanic: #059669;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--color-ivory);
+      color: var(--color-obsidian);
+    }
+    .font-serif-luxury {
+      font-family: 'Cinzel', serif;
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #b45309 0%, #d97706 50%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-rose-gradient {
+      background: linear-gradient(135deg, #b86b60 0%, #d48b80 50%, #e8a598 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bg-rose-silk {
+      background-color: var(--color-rose-silk);
+    }
+    .bg-rose-gradient {
+      background: linear-gradient(135deg, #d48b80 0%, #c2766b 100%);
+    }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 139, 128, 0.15);
+    }
+    .glass-card-dark {
+      background: rgba(24, 21, 20, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .badge-sage {
+      background: rgba(5, 150, 105, 0.1);
+      color: #047857;
+      border: 1px solid rgba(5, 150, 105, 0.2);
+    }
+  </style>
+</head>
+<body class="selection:bg-[#D48B80] selection:text-white">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-[#181514] text-[#FAF7F2] text-xs py-2.5 px-4 font-medium tracking-wider text-center flex items-center justify-center gap-3 border-b border-[#D48B80]/20">
+    <span class="inline-flex items-center gap-1.5 text-amber-300">
+      <i data-lucide="sparkles" class="w-3.5 h-3.5 animate-pulse"></i>
+      ENVÍO EXPRÉS 24/48H EN ESPAÑA
+    </span>
+    <span class="hidden md:inline text-stone-500">•</span>
+    <span class="inline-flex items-center gap-1.5 text-rose-200">
+      <i data-lucide="truck" class="w-3.5 h-3.5"></i>
+      PAGO CONTRA-REEMBOLSO EN PUERTA
+    </span>
+    <span class="hidden md:inline text-stone-500">•</span>
+    <span class="hidden sm:inline-flex items-center gap-1 text-emerald-400 font-semibold">
+      <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+      GARANTÍA 30 DÍAS
+    </span>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#D48B80]/15 transition-all">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <span class="w-8 h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-sm shadow-md group-hover:scale-105 transition">K</span>
+        <span class="font-serif-luxury text-2xl md:text-3xl font-bold tracking-[0.25em] text-[#181514]">
+          KIVANELI<span class="text-[#D48B80]">.</span>
+        </span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold tracking-[0.15em] text-stone-600 uppercase">
+        <a href="#beneficios" class="hover:text-[#D48B80] transition">BENEFICIOS</a>
+        <a href="#comparativa" class="hover:text-[#D48B80] transition">ANTES / DESPUÉS</a>
+        <a href="#videos-ugc" class="hover:text-[#D48B80] transition">EN ACCIÓN</a>
+        <a href="#packs" class="hover:text-[#D48B80] transition text-rose-700 font-bold">OFERTAS & PACKS</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="#packs" class="bg-[#181514] text-[#FAF7F2] px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider hover:bg-[#D48B80] hover:text-white transition shadow-sm flex items-center gap-2">
+          <i data-lucide="package-check" class="w-3.5 h-3.5 text-amber-400"></i>
+          <span>PEDIR SIN PAGAR AHORA</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section (Video First & Luxury Narrative) -->
+  <section class="relative overflow-hidden pt-8 pb-16 md:pt-16 md:pb-24">
+    <!-- Ambient Background Blobs -->
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-[#F6EAE7] rounded-full filter blur-3xl opacity-70 -z-10 pointer-events-none"></div>
+    <div class="absolute bottom-10 left-10 w-80 h-80 bg-amber-100/60 rounded-full filter blur-3xl opacity-60 -z-10 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Copy & High-Converting Hooks -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#F6EAE7] border border-[#D48B80]/30 text-[#B86B60] text-xs font-bold uppercase tracking-widest">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D48B80]"></i>
+          Fórmula Boticaria Viral · Cuidado Intensivo
+        </div>
+
+        <h1 class="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#181514] leading-[1.12] tracking-tight">
+          Despídete de la <br/>
+          <span class="text-rose-gradient">"Piel de Fresa"</span> y Poros.<br/>
+          <span class="text-gold-gradient italic font-serif">Piel de Porcelana Real.</span>
+        </h1>
+
+        <p class="text-stone-600 text-base md:text-lg font-normal leading-relaxed max-w-xl">
+          El tratamiento intensivo boticario <strong>ADEUS™ 300g</strong> formulado con <em>Centella Asiática, Jengibre Puro y Sales Minerales</em>. Diseñado para alisar asperezas, foliculitis y queratosis pilaris en piernas y brazos desde la primera semana.
+        </p>
+
+        <!-- Social Proof Metric -->
+        <div class="flex items-center gap-4 pt-1">
+          <div class="flex -space-x-2">
+            <img class="w-9 h-9 rounded-full border-2 border-white object-cover" src="assets/images/adeus_ugc_phone.jpg" alt="User 1">
+            <img class="w-9 h-9 rounded-full border-2 border-white object-cover" src="assets/images/kormesic_patch_face.jpg" alt="User 2">
+            <img class="w-9 h-9 rounded-full border-2 border-white object-cover" src="assets/images/adeus_spa_massage.jpg" alt="User 3">
+          </div>
+          <div>
+            <div class="flex items-center text-amber-500 text-xs">
+              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+              <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+              <span class="ml-1.5 font-bold text-stone-900 text-sm">4.9/5</span>
+            </div>
+            <p class="text-xs text-stone-500 font-medium">+4,850 mujeres en España han transformado su piel</p>
+          </div>
+        </div>
+
+        <!-- CTA Action Area -->
+        <div class="pt-3 space-y-3 max-w-md">
+          <a href="#packs" class="w-full bg-rose-gradient text-white py-4 px-8 rounded-2xl font-bold text-sm tracking-wider uppercase shadow-xl shadow-[#D48B80]/30 hover:scale-[1.02] hover:shadow-2xl transition duration-300 flex items-center justify-center gap-3">
+            <i data-lucide="truck" class="w-5 h-5"></i>
+            <span>PEDIR CONTRA-REEMBOLSO (0€ AHORA)</span>
+          </a>
+          <div class="flex items-center justify-center gap-6 text-xs text-stone-500 font-medium">
+            <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Sin tarjeta previa</span>
+            <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Pagas al repartidor</span>
+            <span class="flex items-center gap-1"><i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i> Envío 24/48h</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Hero Video Stream & Interactive Media -->
+      <div class="lg:col-span-5 relative">
+        
+        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[9/16] max-w-[360px] mx-auto bg-stone-950">
+          
+          <!-- Video Element (Looping Demonstration) -->
+          <video id="heroVideo" class="w-full h-full object-cover" autoplay muted loop playsinline poster="assets/images/adeus_jar_botanicals.jpg">
+            <source src="assets/videos/adeus_tratamiento.mp4" type="video/mp4">
+            Tu navegador no soporta video HTML5.
+          </video>
+
+          <!-- Top Overlay Badge -->
+          <div class="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
+            <div class="bg-[#181514]/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/20 text-white text-[10px] font-bold tracking-wider flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
+              DEMOSTRACIÓN REAL
+            </div>
+            <button id="soundToggle" onclick="toggleAudio()" class="pointer-events-auto w-8 h-8 rounded-full bg-[#181514]/80 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-[#D48B80] transition">
+              <i id="soundIcon" data-lucide="volume-x" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Bottom Video Card -->
+          <div class="absolute bottom-4 left-4 right-4 z-20 glass-card-dark p-4 rounded-2xl text-white space-y-1">
+            <div class="flex items-center justify-between">
+              <span class="font-serif-luxury font-bold text-sm tracking-wider text-amber-200">ADEUS™ 300g</span>
+              <span class="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">STOCK DISPONIBLE</span>
+            </div>
+            <p class="text-[11px] text-stone-300 font-light">Textura sedosa boticaria con sales exfoliantes puras</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3-Pillars Scientific & Botanical Breakdown -->
+  <section id="beneficios" class="py-16 bg-white border-y border-[#D48B80]/15">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+        <h2 class="font-serif-luxury text-3xl md:text-4xl font-extrabold text-[#181514]">
+          La Alquimia del Cuidado Corporal
+        </h2>
+        <p class="text-stone-600 text-sm md:text-base">
+          Ingredientes boticarios de pureza médica combinados para una renovación celular profunda y sin irritaciones.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Card 1: Centella & Jengibre -->
+        <div class="glass-panel p-8 rounded-3xl space-y-4 hover:shadow-xl transition duration-300 border border-[#D48B80]/20">
+          <div class="w-12 h-12 rounded-2xl bg-[#F6EAE7] flex items-center justify-center text-[#B86B60]">
+            <i data-lucide="leaf" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-serif-luxury text-xl font-bold text-[#181514]">Centella Asiática & Jengibre</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">
+            Estimula el drenaje micro-circulatorio, reduce la inflamación de los poros y elimina rojeces en muslos, glúteos y brazos.
+          </p>
+          <div class="badge-sage px-3 py-1 rounded-full text-xs font-semibold inline-block">100% Extracto Botánico</div>
+        </div>
+
+        <!-- Card 2: Micro-Sales de Porcelana -->
+        <div class="glass-panel p-8 rounded-3xl space-y-4 hover:shadow-xl transition duration-300 border border-[#D48B80]/20">
+          <div class="w-12 h-12 rounded-2xl bg-[#F6EAE7] flex items-center justify-center text-[#B86B60]">
+            <i data-lucide="gem" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-serif-luxury text-xl font-bold text-[#181514]">Sales Minerales Pulidoras</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">
+            Exfoliación suave sin microplásticos que destapa los folículos pilosos obstruidos por queratina acumulada (piel de fresa).
+          </p>
+          <div class="badge-sage px-3 py-1 rounded-full text-xs font-semibold inline-block">Cero Abrasión</div>
+        </div>
+
+        <!-- Card 3: Aceite de Espino Amarillo -->
+        <div class="glass-panel p-8 rounded-3xl space-y-4 hover:shadow-xl transition duration-300 border border-[#D48B80]/20">
+          <div class="w-12 h-12 rounded-2xl bg-[#F6EAE7] flex items-center justify-center text-[#B86B60]">
+            <i data-lucide="droplet" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-serif-luxury text-xl font-bold text-[#181514]">Sea Buckthorn & Colágeno</h3>
+          <p class="text-stone-600 text-sm leading-relaxed">
+            Nutrición lipídica profunda con Omega 7 y colágeno soluble que sella la humedad y aporta un brillo satinado inigualable.
+          </p>
+          <div class="badge-sage px-3 py-1 rounded-full text-xs font-semibold inline-block">Efecto Glow Inmediato</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Before & After Section -->
+  <section id="comparativa" class="py-16 bg-[#FAF7F2]">
+    <div class="max-w-5xl mx-auto px-6">
+      
+      <div class="text-center space-y-3 mb-10">
+        <div class="badge-sage px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest inline-block">
+          Resultados Clínicamente Visibles
+        </div>
+        <h2 class="font-serif-luxury text-3xl md:text-4xl font-extrabold text-[#181514]">
+          La Transformación en tu Piel
+        </h2>
+        <p class="text-stone-600 text-sm max-w-lg mx-auto">
+          Comprueba cómo ADEUS™ alisa la textura folicular dejando las piernas uniformes, suaves y radiantes.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        
+        <!-- Image Card 1: Aplicación y Textura -->
+        <div class="rounded-3xl overflow-hidden shadow-xl border-2 border-white aspect-[4/5] relative">
+          <img src="assets/images/adeus_application_legs.jpg" alt="Aplicación de Crema ADEUS" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#181514]/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 text-white space-y-1">
+            <span class="text-xs font-bold text-amber-300 uppercase tracking-widest">PASO 1: MASAJE CIRCULAR</span>
+            <h4 class="font-serif-luxury font-bold text-lg">Absorción Boticaria Inmediata</h4>
+            <p class="text-xs text-stone-300">Actúa disolviendo los tapones de queratina sin dejar sensación grasa.</p>
+          </div>
+        </div>
+
+        <!-- Image Card 2: Piel de Porcelana Final -->
+        <div class="rounded-3xl overflow-hidden shadow-xl border-2 border-white aspect-[4/5] relative">
+          <img src="assets/images/adeus_spa_massage.jpg" alt="Piel Lisa y Suave" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#181514]/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 text-white space-y-1">
+            <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest">PASO 2: RESULTADO SATINADO</span>
+            <h4 class="font-serif-luxury font-bold text-lg">Piel 100% Lisa y Sin Puntos Rojos</h4>
+            <p class="text-xs text-stone-300">Tono homogéneo, suavidad extrema y confort duradero.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Video Gallery / UGC in Action (3 Products) -->
+  <section id="videos-ugc" class="py-16 bg-white border-t border-[#D48B80]/15">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+        <h2 class="font-serif-luxury text-3xl md:text-4xl font-extrabold text-[#181514]">
+          El Ritual Completo en Video
+        </h2>
+        <p class="text-stone-600 text-sm">
+          Descubre la potencia de los 3 productos virales seleccionados para tu cuidado personal integral.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Video 1: ADEUS Tratamiento -->
+        <div class="glass-panel p-4 rounded-3xl space-y-3">
+          <div class="relative rounded-2xl overflow-hidden aspect-[9/16] bg-stone-900">
+            <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+              <source src="assets/videos/adeus_tratamiento.mp4" type="video/mp4">
+            </video>
+            <div class="absolute top-3 left-3 bg-[#181514]/80 text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
+              ⭐ PRODUCTO 1: ADEUS™
+            </div>
+          </div>
+          <div class="px-2 space-y-1">
+            <h4 class="font-serif-luxury font-bold text-base text-[#181514]">Tratamiento Piel de Seda (300g)</h4>
+            <p class="text-xs text-stone-500">Eliminación de piel de fresa y foliculitis corporal.</p>
+          </div>
+        </div>
+
+        <!-- Video 2: KÖRMESIC Patches -->
+        <div class="glass-panel p-4 rounded-3xl space-y-3 border-2 border-purple-200">
+          <div class="relative rounded-2xl overflow-hidden aspect-[9/16] bg-stone-900">
+            <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+              <source src="assets/videos/kormesic_patches.mp4" type="video/mp4">
+            </video>
+            <div class="absolute top-3 left-3 bg-purple-900/90 text-purple-200 text-[10px] font-bold px-2.5 py-1 rounded-full">
+              💜 UPSELL 1: KÖRMESIC™
+            </div>
+          </div>
+          <div class="px-2 space-y-1">
+            <h4 class="font-serif-luxury font-bold text-base text-[#181514]">Parches Hidrogel Colágeno</h4>
+            <p class="text-xs text-stone-500">Descongestión de bolsas, antiojeras y lifting de mirada.</p>
+          </div>
+        </div>
+
+        <!-- Video 3: Kojic Acid Soap -->
+        <div class="glass-panel p-4 rounded-3xl space-y-3 border-2 border-amber-200">
+          <div class="relative rounded-2xl overflow-hidden aspect-[9/16] bg-stone-900">
+            <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+              <source src="assets/videos/kojic_soap.mp4" type="video/mp4">
+            </video>
+            <div class="absolute top-3 left-3 bg-amber-900/90 text-amber-200 text-[10px] font-bold px-2.5 py-1 rounded-full">
+              🧡 UPSELL 2: ÁCIDO KÓJICO
+            </div>
+          </div>
+          <div class="px-2 space-y-1">
+            <h4 class="font-serif-luxury font-bold text-base text-[#181514]">Jabón Aclarante & Antimanchas</h4>
+            <p class="text-xs text-stone-500">Unifica el tono y elimina marcas de acné e hiperpigmentación.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- High-Conversion Packs & Checkout Area -->
+  <section id="packs" class="py-20 bg-[#FAF7F2]">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-100 text-[#B86B60] text-xs font-bold uppercase tracking-widest">
+          <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+          OFERTA POR TIEMPO LIMITADO · STOCK EN ALMACÉN ESPAÑA
+        </div>
+        <h2 class="font-serif-luxury text-3xl md:text-5xl font-extrabold text-[#181514]">
+          Selecciona tu Pack y Paga al Recibir
+        </h2>
+        <p class="text-stone-600 text-sm">
+          Aprovecha los descuentos escalonados con regalos exclusivos de autocuidado.
+        </p>
+      </div>
+
+      <!-- 3 Offer Tiers -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        
+        <!-- Pack 1: Básico (1 Unidad) -->
+        <div class="glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border border-stone-200 hover:border-[#D48B80] transition">
+          <div class="space-y-4">
+            <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">PACK PRUEBA</span>
+            <h3 class="font-serif-luxury text-2xl font-bold text-[#181514]">1x ADEUS™ (300g)</h3>
+            <p class="text-xs text-stone-500">Tratamiento intensivo para 1 mes de renovación.</p>
+            
+            <div class="flex items-baseline gap-2 pt-2">
+              <span class="font-serif-luxury text-4xl font-extrabold text-[#181514]">29,95 €</span>
+              <span class="text-sm text-stone-400 line-through">45,00 €</span>
+            </div>
+            
+            <ul class="text-xs text-stone-600 space-y-2.5 pt-2">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 1x Tarro ADEUS 300g</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Pago Contra-reembolso</li>
+              <li class="flex items-center gap-2 text-stone-400"><i data-lucide="x" class="w-4 h-4 text-stone-300"></i> Sin regalos adicionales</li>
+            </ul>
+          </div>
+
+          <button onclick="selectPack('Pack Prueba 1x ADEUS', 29.95)" class="w-full bg-[#181514] text-white py-3.5 rounded-xl font-bold text-xs tracking-wider uppercase hover:bg-[#D48B80] transition">
+            SELECCIONAR PACK
+          </button>
+        </div>
+
+        <!-- Pack 2: Más Popular (2x ADEUS + Parches KÖRMESIC GRATIS) -->
+        <div class="relative glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border-2 border-[#D48B80] shadow-2xl bg-white scale-105 z-10">
+          
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-rose-gradient text-white text-[11px] font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider shadow-md">
+            🔥 MÁS VENDIDO · AHORRAS 45€
+          </div>
+
+          <div class="space-y-4 pt-2">
+            <span class="text-xs font-bold text-[#B86B60] uppercase tracking-wider">TRATAMIENTO COMPLETO + REGALO</span>
+            <h3 class="font-serif-luxury text-2xl font-bold text-[#181514]">2x ADEUS™ + Parches Gratis</h3>
+            <p class="text-xs text-stone-500">2 botes ADEUS + 1 Bote Parches Colágeno Körmesic.</p>
+            
+            <div class="flex items-baseline gap-2 pt-2">
+              <span class="font-serif-luxury text-4xl font-extrabold text-[#D48B80]">49,95 €</span>
+              <span class="text-sm text-stone-400 line-through">95,00 €</span>
+            </div>
+            
+            <ul class="text-xs text-stone-600 space-y-2.5 pt-2">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> <strong>2x Tarros ADEUS 300g</strong> (2 meses)</li>
+              <li class="flex items-center gap-2 text-purple-700 font-bold"><i data-lucide="gift" class="w-4 h-4 text-purple-600"></i> REGALO: Parches Hidrogel Körmesic (60u)</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Envío Exprés 24h Prioritario</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Pago Contra-reembolso</li>
+            </ul>
+          </div>
+
+          <button onclick="selectPack('Pack Dúo + Parches Körmesic Gratis', 49.95)" class="w-full bg-rose-gradient text-white py-4 rounded-xl font-bold text-xs tracking-wider uppercase shadow-lg shadow-[#D48B80]/40 hover:scale-[1.02] transition">
+            SELECCIONAR OFERTA ESTRELLA
+          </button>
+        </div>
+
+        <!-- Pack 3: Ritual Total 3-en-1 (ADEUS + Körmesic + Jabón Kójico) -->
+        <div class="glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border border-amber-300 hover:border-amber-500 transition">
+          <div class="space-y-4">
+            <span class="text-xs font-bold text-amber-600 uppercase tracking-wider">RITUAL SUPREMO</span>
+            <h3 class="font-serif-luxury text-2xl font-bold text-[#181514]">Ritual Total 3-en-1</h3>
+            <p class="text-xs text-stone-500">Tratamiento corporal, mirada descansada y piel sin manchas.</p>
+            
+            <div class="flex items-baseline gap-2 pt-2">
+              <span class="font-serif-luxury text-4xl font-extrabold text-[#181514]">59,95 €</span>
+              <span class="text-sm text-stone-400 line-through">125,00 €</span>
+            </div>
+            
+            <ul class="text-xs text-stone-600 space-y-2.5 pt-2">
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> 2x Tarros ADEUS 300g</li>
+              <li class="flex items-center gap-2 text-purple-700 font-bold"><i data-lucide="gift" class="w-4 h-4 text-purple-600"></i> REGALO: Parches Hidrogel Körmesic</li>
+              <li class="flex items-center gap-2 text-amber-700 font-bold"><i data-lucide="gift" class="w-4 h-4 text-amber-600"></i> REGALO: Jabón Aclarante Ácido Kójico</li>
+              <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Envío Asegurado Gratis</li>
+            </ul>
+          </div>
+
+          <button onclick="selectPack('Ritual Total 3-en-1 (Adeus + Körmesic + Kójico)', 59.95)" class="w-full bg-[#181514] text-amber-300 py-3.5 rounded-xl font-bold text-xs tracking-wider uppercase hover:bg-[#D48B80] hover:text-white transition">
+            SELECCIONAR RITUAL TOTAL
+          </button>
+        </div>
+
+      </div>
+
+      <!-- 1-Click Cash on Delivery Order Form Container -->
+      <div id="checkoutContainer" class="mt-16 glass-panel rounded-3xl p-8 md:p-12 border-2 border-[#D48B80]/30 shadow-2xl max-w-3xl mx-auto">
+        
+        <div class="text-center space-y-2 mb-8">
+          <span class="badge-sage px-3 py-1 rounded-full text-xs font-bold">COMPRA SEGURA & VERIFICADA</span>
+          <h3 class="font-serif-luxury text-2xl md:text-3xl font-bold text-[#181514]">
+            Completa tus Datos para el Envío
+          </h3>
+          <p class="text-xs text-stone-500">
+            No necesitas tarjeta de crédito. Paga cómodamente en efectivo cuando el mensajero llegue a tu puerta.
+          </p>
+        </div>
+
+        <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-5">
+          
+          <!-- Selected Pack Summary Display -->
+          <div class="bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200 flex items-center justify-between">
+            <div>
+              <div class="text-xs text-stone-500 font-medium">Pack Seleccionado:</div>
+              <div id="selectedPackText" class="font-serif-luxury font-bold text-[#181514] text-base">2x ADEUS™ + Parches Gratis (49,95 €)</div>
+            </div>
+            <div id="selectedPackPrice" class="text-xl font-extrabold text-[#D48B80]">49,95 €</div>
+          </div>
+
+          <!-- Input Fields -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-stone-700">Nombre y Apellidos *</label>
+              <input type="text" id="custName" required placeholder="Ej. Carmen García López" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white">
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-stone-700">Teléfono Móvil (Para el repartidor) *</label>
+              <input type="tel" id="custPhone" required placeholder="Ej. 612 345 678" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white">
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-stone-700">Dirección Completa (Calle, Número, Piso/Puerta) *</label>
+            <input type="text" id="custAddress" required placeholder="Ej. Calle Gran Vía 28, 4º B" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-stone-700">Código Postal *</label>
+              <input type="text" id="custZip" required placeholder="Ej. 28013" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white">
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-stone-700">Ciudad / Provincia *</label>
+              <input type="text" id="custCity" required placeholder="Ej. Madrid" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white">
+            </div>
+          </div>
+
+          <!-- Payment Mode Toggle -->
+          <div class="pt-2 space-y-2">
+            <label class="text-xs font-bold text-stone-700">Método de Pago:</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label class="flex items-center gap-3 p-3.5 rounded-xl border-2 border-[#D48B80] bg-[#F6EAE7]/50 cursor-pointer">
+                <input type="radio" name="paymentMethod" value="COD" checked class="text-[#D48B80] focus:ring-[#D48B80]">
+                <div>
+                  <div class="text-xs font-bold text-[#181514]">Pago Contra-reembolso</div>
+                  <div class="text-[11px] text-stone-500">Pagas en efectivo al recibir</div>
+                </div>
+              </label>
+              <label class="flex items-center gap-3 p-3.5 rounded-xl border border-stone-300 bg-white hover:border-emerald-500 cursor-pointer">
+                <input type="radio" name="paymentMethod" value="REVOLUT" class="text-emerald-600 focus:ring-emerald-500">
+                <div>
+                  <div class="text-xs font-bold text-emerald-700">Tarjeta / Revolut Pay</div>
+                  <div class="text-[11px] text-stone-500">5% dto. extra inmediato</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Submit Order Button -->
+          <div class="pt-4">
+            <button type="submit" class="w-full bg-rose-gradient text-white py-4.5 px-8 rounded-2xl font-extrabold text-sm tracking-wider uppercase shadow-xl shadow-[#D48B80]/40 hover:scale-[1.01] hover:shadow-2xl transition duration-300 flex items-center justify-center gap-2">
+              <i data-lucide="check-circle" class="w-5 h-5"></i>
+              <span>CONFIRMAR PEDIDO CONTRA-REEMBOLSO</span>
+            </button>
+            <p class="text-center text-[11px] text-stone-400 mt-2">
+              Al confirmar, tu pedido se envía a preparación en nuestro almacén logístico de España.
+            </p>
+          </div>
+
+        </form>
+
+        <!-- Order Success State (Hidden by default) -->
+        <div id="orderSuccess" class="hidden text-center py-8 space-y-4">
+          <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+            <i data-lucide="check" class="w-8 h-8"></i>
+          </div>
+          <h4 class="font-serif-luxury text-2xl font-bold text-[#181514]">¡Pedido Confirmado con Éxito!</h4>
+          <p class="text-sm text-stone-600 max-w-md mx-auto">
+            Muchas gracias. Hemos registrado tu pedido y el repartidor te contactará en 24/48h antes de la entrega.
+          </p>
+          <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-emerald-800 text-xs font-semibold max-w-sm mx-auto">
+            🚚 Número de Seguimiento generado para Dropea Logistics.
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[#181514] text-stone-400 py-12 text-xs border-t border-[#D48B80]/20">
+    <div class="max-w-7xl mx-auto px-6 text-center space-y-4">
+      <div class="font-serif-luxury text-xl font-bold tracking-[0.2em] text-[#FAF7F2]">
+        KIVANELI<span class="text-[#D48B80]">.</span>
+      </div>
+      <p class="max-w-md mx-auto text-stone-500">
+        Ecosistema de Cuidado Personal & Belleza de Alta Gama. Desarrollado con tecnología de autor y despacho logístico directo.
+      </p>
+      <div class="text-stone-600 pt-4 border-t border-stone-800">
+        © 2026 Kivaneli. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript Logic -->
+  <script>
+    lucide.createIcons();
+
+    let currentPackName = "Pack Dúo + Parches Körmesic Gratis";
+    let currentPackPrice = 49.95;
+
+    function selectPack(name, price) {
+      currentPackName = name;
+      currentPackPrice = price;
+      document.getElementById('selectedPackText').innerText = name + ' (' + price.toFixed(2).replace('.', ',') + ' €)';
+      document.getElementById('selectedPackPrice').innerText = price.toFixed(2).replace('.', ',') + ' €';
+      document.getElementById('checkoutContainer').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function toggleAudio() {
+      const v = document.getElementById('heroVideo');
+      const icon = document.getElementById('soundIcon');
+      if (v.muted) {
+        v.muted = false;
+        icon.setAttribute('data-lucide', 'volume-2');
+      } else {
+        v.muted = true;
+        icon.setAttribute('data-lucide', 'volume-x');
+      }
+      lucide.createIcons();
+    }
+
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      document.getElementById('orderForm').classList.add('hidden');
+      document.getElementById('orderSuccess').classList.remove('hidden');
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
