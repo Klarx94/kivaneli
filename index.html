@@ -6,11 +6,19 @@
   <title>KIVANELI — Ritual Magistral Piel de Seda & Mirada Radiante</title>
   <meta name="description" content="Tratamiento boticario intensivo para eliminar la piel de fresa, queratosis pilaris y asperezas. Pago seguro contra-reembolso en 24/48h.">
   
-  <!-- OpenGraph / Social Meta -->
+  <!-- Canonical & Social Meta -->
+  <link rel="canonical" href="https://kivaneli.es/">
   <meta property="og:title" content="KIVANELI — Ritual Piel de Seda">
   <meta property="og:description" content="Dile adiós a la piel de fresa y luce una textura de seda con nuestra fórmula boticaria.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kivaneli.es/">
+  <meta property="og:image" content="https://kivaneli.es/assets/images/ugc_after_texture.jpg">
+
+  <!-- Preload Critical Hero Assets for Sub-Second LCP -->
+  <link rel="preload" as="image" href="assets/images/adeus_jar_botanicals.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Structured Data JSON-LD for Google SEO -->
   <script type="application/ld+json">
@@ -41,34 +49,8 @@
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Supabase JS Client CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  
-  <!-- AOS (Animate on Scroll) -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-  
-  <!-- Google Fonts: Cinzel, Plus Jakarta Sans & Playfair Display -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <!-- Canvas Confetti -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
-  <!-- Meta & TikTok Pixel Placeholders & Tracker Engine -->
-  <script>
-    function trackCustomPixel(eventName, params = {}) {
-      console.log('⚡ [Pixel Tracker]: ' + eventName, params);
-      if (window.fbq) fbq('track', eventName, params);
-      if (window.ttq) ttq.track(eventName, params);
-    }
-  </script>
-
-  <!-- Luxury Styles, Fluid Motion & Keyframes -->
+  <!-- Critical Inline CSS: 0ms First Paint, Zero Blocking Opacity -->
   <style>
     :root {
       --color-ivory: #FAF7F2;
@@ -77,18 +59,18 @@
       --color-rose-deep: #B86B60;
       --color-rose-light: #F6EAE7;
       --color-champagne-gold: #D97706;
-      --color-gold-light: #FDE68A;
-      --color-lavender-amethyst: #8B5CF6;
-      --color-sage-botanic: #059669;
     }
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--color-ivory);
       color: var(--color-obsidian);
       overflow-x: hidden;
+      margin: 0;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
-    .font-serif-luxury { font-family: 'Cinzel', serif; }
-    .font-serif-editorial { font-family: 'Playfair Display', serif; }
+    .font-serif-luxury { font-family: 'Cinzel', Georgia, serif; }
+    .font-serif-editorial { font-family: 'Playfair Display', Georgia, serif; }
     
     .text-gold-gradient {
       background: linear-gradient(135deg, #b45309 0%, #d97706 40%, #f59e0b 80%, #fbbf24 100%);
@@ -102,30 +84,29 @@
     }
     .bg-rose-gradient { background: linear-gradient(135deg, #d48b80 0%, #b86b60 100%); }
     .bg-gold-gradient { background: linear-gradient(135deg, #d97706 0%, #b45309 100%); }
-    .bg-dark-gradient { background: linear-gradient(180deg, #1c1917 0%, #12100e 100%); }
 
     .glass-panel {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(212, 139, 128, 0.2);
     }
     .glass-floating-nav {
-      background: rgba(250, 247, 242, 0.92);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
+      background: rgba(250, 247, 242, 0.94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(212, 139, 128, 0.25);
-      box-shadow: 0 20px 40px -15px rgba(24, 21, 20, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.8);
+      box-shadow: 0 20px 40px -15px rgba(24, 21, 20, 0.08);
     }
     .glass-ticker-pill {
-      background: rgba(246, 234, 231, 0.94);
-      backdrop-filter: blur(20px);
+      background: rgba(246, 234, 231, 0.95);
+      backdrop-filter: blur(16px);
       border: 1px solid rgba(212, 139, 128, 0.25);
     }
     .glass-card-dark {
       background: rgba(24, 21, 20, 0.88);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
@@ -159,7 +140,7 @@
       display: flex;
       flex-shrink: 0;
       min-width: 100%;
-      animation: marquee-scroll 38s linear infinite;
+      animation: marquee-scroll 35s linear infinite;
     }
     .marquee-wrapper:hover .marquee-content {
       animation-play-state: paused;
@@ -169,16 +150,34 @@
       to { transform: translateX(-50%); }
     }
 
-    @keyframes float-slow {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(-22px) scale(1.04); }
+    /* Video Preloader Spinner */
+    .video-preloader {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #181514;
+      z-index: 10;
+      transition: opacity 0.4s ease-out;
     }
-    @keyframes float-reverse {
-      0%, 100% { transform: translateY(0px) scale(1); }
-      50% { transform: translateY(22px) scale(0.96); }
+    .video-preloader.loaded {
+      opacity: 0;
+      pointer-events: none;
     }
-    .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
-    .animate-float-reverse { animation: float-reverse 9s ease-in-out infinite; }
+
+    /* Native Smooth Scroll Reveal (No Blocking Opacity) */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .modal-backdrop {
       background: rgba(18, 16, 14, 0.75);
@@ -188,7 +187,7 @@
 </head>
 <body class="selection:bg-[#D48B80] selection:text-white">
 
-  <!-- 🌟 FLOATING ISLAND HEADER & SUBTLE MARQUEE COMPONENT -->
+  <!-- 🌟 FLOATING ISLAND HEADER & SUBTLE MARQUEE -->
   <div class="fixed top-3 inset-x-0 z-50 px-4 pointer-events-none">
     <div class="max-w-6xl mx-auto space-y-2 pointer-events-auto">
       
@@ -214,7 +213,7 @@
             <i data-lucide="gift" class="w-3.5 h-3.5 text-purple-600"></i>
             Club Amigas
           </button>
-          <a href="blog.html" class="hover:text-[#D48B80] transition">Blog</a>
+          <a href="blog" class="hover:text-[#D48B80] transition">Blog</a>
           <a href="#packs" class="hover:text-[#D48B80] transition text-rose-700 font-extrabold">Ofertas</a>
         </nav>
 
@@ -241,7 +240,7 @@
             <span class="text-stone-400">•</span>
             <span class="flex items-center gap-2"><i data-lucide="award" class="w-3.5 h-3.5 text-amber-600"></i> Garantía Kivaneli de Piel de Seda 30 Días</span>
             <span class="text-stone-400">•</span>
-            <!-- Duplicate for Continuous Loop -->
+            <!-- Continuous Duplication -->
             <span class="flex items-center gap-2"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D48B80]"></i> Elaboración Botánica en Lotes Reducidos</span>
             <span class="text-stone-400">•</span>
             <span class="flex items-center gap-2"><i data-lucide="truck" class="w-3.5 h-3.5 text-emerald-600"></i> Envío Asegurado 24/48h directo a tu puerta</span>
@@ -259,15 +258,12 @@
     </div>
   </div>
 
-  <!-- 🌸 1. HERO SECTION -->
+  <!-- 🌸 1. HERO SECTION (INSTANT 0ms RENDER, ZERO BLOCKING LAG) -->
   <section class="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
-    <div class="absolute -top-10 right-1/4 w-[500px] h-[500px] bg-[#F6EAE7] rounded-full filter blur-[100px] opacity-80 animate-float-slow -z-10 pointer-events-none"></div>
-    <div class="absolute bottom-0 left-10 w-[420px] h-[420px] bg-amber-100/60 rounded-full filter blur-[90px] opacity-70 animate-float-reverse -z-10 pointer-events-none"></div>
-    <div class="absolute top-1/2 right-10 w-[350px] h-[350px] bg-purple-100/50 rounded-full filter blur-[80px] opacity-60 -z-10 pointer-events-none"></div>
-
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
       
-      <div class="lg:col-span-7 space-y-7" data-aos="fade-right" data-aos-duration="800">
+      <!-- Text Column (Immediate Paint) -->
+      <div class="lg:col-span-7 space-y-7">
         <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#F6EAE7] border border-[#D48B80]/40 text-[#B86B60] text-xs font-extrabold uppercase tracking-widest shadow-sm">
           <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D48B80]"></i>
           Fórmula Magistral Boticaria · Sin Riesgo
@@ -285,10 +281,10 @@
 
         <div class="flex flex-wrap items-center gap-4 pt-1">
           <div class="flex -space-x-2.5">
-            <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="assets/images/ugc_reviewer_carmen.jpg" alt="Carmen R.">
-            <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="assets/images/ugc_reviewer_lucia.jpg" alt="Lucía M.">
-            <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="assets/images/ugc_reviewer_elena.jpg" alt="Elena S.">
-            <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="assets/images/ugc_reviewer_sofia.jpg" alt="Sofía P.">
+            <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="assets/images/ugc_reviewer_carmen.jpg" alt="Carmen R." width="40" height="40">
+            <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="assets/images/ugc_reviewer_lucia.jpg" alt="Lucía M." width="40" height="40">
+            <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="assets/images/ugc_reviewer_elena.jpg" alt="Elena S." width="40" height="40">
+            <img class="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm" src="assets/images/ugc_reviewer_sofia.jpg" alt="Sofía P." width="40" height="40">
           </div>
           <div>
             <div class="flex items-center text-amber-500 text-xs">
@@ -330,14 +326,26 @@
         </div>
       </div>
 
-      <!-- Video Hero -->
-      <div class="lg:col-span-5 relative" data-aos="zoom-in" data-aos-duration="1000">
+      <!-- Video Hero Container with Instant Poster & Seamless Preloader -->
+      <div class="lg:col-span-5 relative">
         <div class="absolute -inset-4 bg-gradient-to-tr from-[#D48B80]/30 to-amber-300/30 rounded-[2.5rem] filter blur-2xl -z-10 opacity-70"></div>
         <div class="relative rounded-[2.2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[9/16] max-w-[350px] mx-auto bg-stone-950">
-          <video id="heroVideo" class="w-full h-full object-cover" autoplay muted loop playsinline poster="assets/images/adeus_jar_botanicals.jpg">
+          
+          <!-- Background Poster Image (Renders Instantly at 0ms) -->
+          <img id="heroVideoPoster" src="assets/images/adeus_jar_botanicals.jpg" alt="ADEUS Tratamiento Piel de Seda" class="absolute inset-0 w-full h-full object-cover z-0" fetchpriority="high">
+
+          <!-- HTML5 Video Loaded Async without Blocking UI -->
+          <video id="heroVideo" class="relative z-10 w-full h-full object-cover transition-opacity duration-700 opacity-0" muted loop playsinline preload="metadata" oncanplay="this.classList.remove('opacity-0'); document.getElementById('heroPreloader').classList.add('loaded');">
             <source src="assets/videos/adeus_tratamiento.mp4" type="video/mp4">
           </video>
-          <div class="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
+
+          <!-- Luxury Preloader Spinner -->
+          <div id="heroPreloader" class="video-preloader z-20">
+            <div class="w-10 h-10 rounded-full border-2 border-[#D48B80]/30 border-t-[#D48B80] animate-spin mb-3"></div>
+            <span class="font-serif-luxury text-[10px] tracking-[0.2em] text-[#D48B80] uppercase">Cargando Ritual...</span>
+          </div>
+
+          <div class="absolute top-4 left-4 right-4 z-30 flex items-center justify-between pointer-events-none">
             <div class="bg-[#181514]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-white text-[10px] font-extrabold tracking-wider flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
               APLICACIÓN REAL EN PIEL
@@ -346,7 +354,8 @@
               <i id="soundIcon" data-lucide="volume-x" class="w-4 h-4"></i>
             </button>
           </div>
-          <div class="absolute bottom-4 left-4 right-4 z-20 glass-card-dark p-4 rounded-2xl text-white space-y-1">
+          
+          <div class="absolute bottom-4 left-4 right-4 z-30 glass-card-dark p-4 rounded-2xl text-white space-y-1">
             <div class="flex items-center justify-between">
               <span class="font-serif-luxury font-bold text-sm tracking-wider text-amber-200">ADEUS™ 300g</span>
               <span class="text-[10px] font-extrabold text-emerald-400 bg-emerald-950/70 px-2 py-0.5 rounded border border-emerald-500/30">LABORATORIO CERTIFICADO</span>
@@ -360,9 +369,9 @@
   </section>
 
   <!-- 🌿 2. BOTANICAL SCIENCE & 3 ACTIVE PILLARS -->
-  <section id="formula" class="py-20 bg-white border-y border-[#D48B80]/15 relative">
+  <section id="formula" class="py-20 bg-white border-y border-[#D48B80]/15 relative reveal-on-scroll">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center max-w-2xl mx-auto space-y-3 mb-16" data-aos="fade-up">
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6EAE7] text-[#B86B60] text-xs font-bold uppercase tracking-widest">
           Fórmula Boticaria Magistral
         </div>
@@ -375,7 +384,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="glass-panel p-8 rounded-3xl space-y-4 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border border-[#D48B80]/20 group" data-aos="fade-up" data-aos-delay="100">
+        <div class="glass-panel p-8 rounded-3xl space-y-4 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border border-[#D48B80]/20 group">
           <div class="w-14 h-14 rounded-2xl bg-[#F6EAE7] flex items-center justify-center text-[#B86B60] shadow-inner group-hover:scale-110 transition duration-300">
             <i data-lucide="leaf" class="w-7 h-7"></i>
           </div>
@@ -389,7 +398,7 @@
           </div>
         </div>
 
-        <div class="glass-panel p-8 rounded-3xl space-y-4 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border border-[#D48B80]/20 group" data-aos="fade-up" data-aos-delay="200">
+        <div class="glass-panel p-8 rounded-3xl space-y-4 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border border-[#D48B80]/20 group">
           <div class="w-14 h-14 rounded-2xl bg-[#F6EAE7] flex items-center justify-center text-[#B86B60] shadow-inner group-hover:scale-110 transition duration-300">
             <i data-lucide="gem" class="w-7 h-7"></i>
           </div>
@@ -403,7 +412,7 @@
           </div>
         </div>
 
-        <div class="glass-panel p-8 rounded-3xl space-y-4 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border border-[#D48B80]/20 group" data-aos="fade-up" data-aos-delay="300">
+        <div class="glass-panel p-8 rounded-3xl space-y-4 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border border-[#D48B80]/20 group">
           <div class="w-14 h-14 rounded-2xl bg-[#F6EAE7] flex items-center justify-center text-[#B86B60] shadow-inner group-hover:scale-110 transition duration-300">
             <i data-lucide="droplet" class="w-7 h-7"></i>
           </div>
@@ -421,9 +430,9 @@
   </section>
 
   <!-- 🔍 3. SIDE-BY-SIDE RESULTADOS & COMPARATIVA -->
-  <section id="transformacion" class="py-20 bg-[#FAF7F2] relative">
+  <section id="transformacion" class="py-20 bg-[#FAF7F2] relative reveal-on-scroll">
     <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center space-y-3 mb-14" data-aos="fade-up">
+      <div class="text-center space-y-3 mb-14">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-widest">
           <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-emerald-600"></i>
           Evidencia Clínica Visual
@@ -437,9 +446,9 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-        <div class="glass-panel rounded-3xl overflow-hidden shadow-xl border-2 border-rose-200/80 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
+        <div class="glass-panel rounded-3xl overflow-hidden shadow-xl border-2 border-rose-200/80 flex flex-col justify-between">
           <div class="relative aspect-[4/3] bg-stone-900 overflow-hidden">
-            <img src="assets/images/ugc_before_texture.jpg" alt="Antes: Piel de Fresa" class="w-full h-full object-cover">
+            <img src="assets/images/ugc_before_texture.jpg" alt="Antes: Piel de Fresa" class="w-full h-full object-cover" loading="lazy" decoding="async">
             <div class="absolute top-4 left-4 bg-rose-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-rose-400/40 text-white text-xs font-bold uppercase tracking-wider">
               🔴 ANTES: Textura Folicular Obstruida
             </div>
@@ -456,9 +465,9 @@
           </div>
         </div>
 
-        <div class="glass-panel rounded-3xl overflow-hidden shadow-2xl border-2 border-emerald-300/80 flex flex-col justify-between bg-white" data-aos="fade-up" data-aos-delay="200">
+        <div class="glass-panel rounded-3xl overflow-hidden shadow-2xl border-2 border-emerald-300/80 flex flex-col justify-between bg-white">
           <div class="relative aspect-[4/3] bg-stone-900 overflow-hidden">
-            <img src="assets/images/ugc_after_texture.jpg" alt="Después: Piel de Seda" class="w-full h-full object-cover">
+            <img src="assets/images/ugc_after_texture.jpg" alt="Después: Piel de Seda" class="w-full h-full object-cover" loading="lazy" decoding="async">
             <div class="absolute top-4 left-4 bg-emerald-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-emerald-400/40 text-white text-xs font-bold uppercase tracking-wider">
               ✨ DESPUÉS: Acabado Satinado de Seda
             </div>
@@ -478,11 +487,11 @@
     </div>
   </section>
 
-  <!-- 🎬 4. EL RITUAL EN 3 ESCALONES -->
-  <section id="ritual-escalones" class="py-24 bg-white border-y border-[#D48B80]/15 relative">
+  <!-- 🎬 4. EL RITUAL EN 3 ESCALONES (LAZY-LOADED VIDEOS) -->
+  <section id="ritual-escalones" class="py-24 bg-white border-y border-[#D48B80]/15 relative reveal-on-scroll">
     <div class="max-w-7xl mx-auto px-6 space-y-24">
       
-      <div class="text-center max-w-2xl mx-auto space-y-3" data-aos="fade-up">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-100 text-[#B86B60] text-xs font-bold uppercase tracking-widest">
           El Ritual Kivaneli en Video
         </div>
@@ -495,11 +504,10 @@
       </div>
 
       <!-- Escalón 1 -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center" data-aos="fade-up">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-5">
           <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[9/16] max-w-[320px] mx-auto bg-stone-900">
-            <video class="w-full h-full object-cover" autoplay muted loop playsinline poster="assets/images/adeus_jar_botanicals.jpg">
-              <source src="assets/videos/adeus_tratamiento.mp4" type="video/mp4">
+            <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/adeus_jar_botanicals.jpg" data-src="assets/videos/adeus_tratamiento.mp4">
             </video>
             <div class="absolute top-3 left-3 bg-[#181514]/80 backdrop-blur-md px-3 py-1 rounded-full text-amber-300 text-[10px] font-extrabold tracking-wider">
               ⭐ ESCALÓN 1: CUERPO
@@ -527,7 +535,7 @@
       </div>
 
       <!-- Escalón 2 -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center" data-aos="fade-up">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-7 space-y-5 order-2 lg:order-1">
           <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-purple-800">
             <span class="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-700">2</span>
@@ -548,8 +556,7 @@
         </div>
         <div class="lg:col-span-5 order-1 lg:order-2">
           <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-purple-200 aspect-[9/16] max-w-[320px] mx-auto bg-stone-900">
-            <video class="w-full h-full object-cover" autoplay muted loop playsinline poster="assets/images/kormesic_jar_purple.jpg">
-              <source src="assets/videos/kormesic_patches.mp4" type="video/mp4">
+            <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/kormesic_jar_purple.jpg" data-src="assets/videos/kormesic_patches.mp4">
             </video>
             <div class="absolute top-3 left-3 bg-purple-950/85 backdrop-blur-md px-3 py-1 rounded-full text-purple-200 text-[10px] font-extrabold tracking-wider border border-purple-400/30">
               💜 ESCALÓN 2: MIRADA
@@ -559,11 +566,10 @@
       </div>
 
       <!-- Escalón 3 -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center" data-aos="fade-up">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-5">
           <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-amber-200 aspect-[9/16] max-w-[320px] mx-auto bg-stone-900">
-            <video class="w-full h-full object-cover" autoplay muted loop playsinline poster="assets/images/kojic_soap_box.jpg">
-              <source src="assets/videos/kojic_soap.mp4" type="video/mp4">
+            <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/kojic_soap_box.jpg" data-src="assets/videos/kojic_soap.mp4">
             </video>
             <div class="absolute top-3 left-3 bg-amber-950/85 backdrop-blur-md px-3 py-1 rounded-full text-amber-200 text-[10px] font-extrabold tracking-wider border border-amber-400/30">
               🧡 ESCALÓN 3: TONO
@@ -594,12 +600,9 @@
   </section>
 
   <!-- 👯 5. CLUB INVITA A TU AMIGA -->
-  <section id="amigas" class="py-20 bg-gradient-to-b from-[#FAF7F2] to-white relative overflow-hidden">
+  <section id="amigas" class="py-20 bg-gradient-to-b from-[#FAF7F2] to-white relative overflow-hidden reveal-on-scroll">
     <div class="max-w-5xl mx-auto px-6">
-      <div class="glass-panel rounded-[2.5rem] p-8 md:p-14 border-2 border-[#D48B80]/40 shadow-2xl relative overflow-hidden" data-aos="zoom-in">
-        <div class="absolute -top-12 -right-12 w-64 h-64 bg-purple-200/50 rounded-full filter blur-3xl pointer-events-none"></div>
-        <div class="absolute -bottom-12 -left-12 w-64 h-64 bg-rose-200/50 rounded-full filter blur-3xl pointer-events-none"></div>
-
+      <div class="glass-panel rounded-[2.5rem] p-8 md:p-14 border-2 border-[#D48B80]/40 shadow-2xl relative overflow-hidden">
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div class="lg:col-span-7 space-y-5">
             <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-bold uppercase tracking-widest">
@@ -671,9 +674,9 @@
   </section>
 
   <!-- ⭐ 6. UGC WALL & REVIEWS -->
-  <section id="testimonios" class="py-20 bg-white border-y border-[#D48B80]/15">
+  <section id="testimonios" class="py-20 bg-white border-y border-[#D48B80]/15 reveal-on-scroll">
     <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center max-w-2xl mx-auto space-y-3 mb-16" data-aos="fade-up">
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-widest">
           Experiencias 100% Reales
         </div>
@@ -686,10 +689,10 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="glass-panel p-6 rounded-3xl space-y-4 border border-[#D48B80]/20 hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="100">
+        <div class="glass-panel p-6 rounded-3xl space-y-4 border border-[#D48B80]/20 hover:shadow-xl transition">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <img src="assets/images/ugc_reviewer_carmen.jpg" class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-sm" alt="Carmen G.">
+              <img src="assets/images/ugc_reviewer_carmen.jpg" class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-sm" alt="Carmen G." loading="lazy" width="44" height="44">
               <div>
                 <h4 class="font-bold text-xs text-[#181514]">Carmen G. (Sevilla)</h4>
                 <span class="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
@@ -715,10 +718,10 @@
           </div>
         </div>
 
-        <div class="glass-panel p-6 rounded-3xl space-y-4 border border-[#D48B80]/20 hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="200">
+        <div class="glass-panel p-6 rounded-3xl space-y-4 border border-[#D48B80]/20 hover:shadow-xl transition">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <img src="assets/images/ugc_reviewer_lucia.jpg" class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-sm" alt="Lucía M.">
+              <img src="assets/images/ugc_reviewer_lucia.jpg" class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-sm" alt="Lucía M." loading="lazy" width="44" height="44">
               <div>
                 <h4 class="font-bold text-xs text-[#181514]">Lucía M. (Madrid)</h4>
                 <span class="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
@@ -744,10 +747,10 @@
           </div>
         </div>
 
-        <div class="glass-panel p-6 rounded-3xl space-y-4 border border-[#D48B80]/20 hover:shadow-xl transition" data-aos="fade-up" data-aos-delay="300">
+        <div class="glass-panel p-6 rounded-3xl space-y-4 border border-[#D48B80]/20 hover:shadow-xl transition">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <img src="assets/images/ugc_reviewer_elena.jpg" class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-sm" alt="Elena S.">
+              <img src="assets/images/ugc_reviewer_elena.jpg" class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-sm" alt="Elena S." loading="lazy" width="44" height="44">
               <div>
                 <h4 class="font-bold text-xs text-[#181514]">Elena S. (Valencia)</h4>
                 <span class="text-[10px] text-emerald-700 font-semibold flex items-center gap-1">
@@ -776,11 +779,11 @@
     </div>
   </section>
 
-  <!-- 🛍️ 7. HIGH-CONVERSION OFFER TIERS (EXPLICIT PACK DETAILS & UPSELL VALUE) -->
-  <section id="packs" class="py-24 bg-[#FAF7F2] relative">
+  <!-- 🛍️ 7. HIGH-CONVERSION OFFER TIERS -->
+  <section id="packs" class="py-24 bg-[#FAF7F2] relative reveal-on-scroll">
     <div class="max-w-6xl mx-auto px-6">
       
-      <div class="text-center max-w-2xl mx-auto space-y-3 mb-16" data-aos="fade-up">
+      <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-100 text-[#B86B60] text-xs font-bold uppercase tracking-widest">
           <i data-lucide="clock" class="w-3.5 h-3.5"></i>
           OFERTA ESPECIAL POR TIEMPO LIMITADO · ALMACÉN ESPAÑA
@@ -796,8 +799,8 @@
       <!-- 3 Tier Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
         
-        <!-- Pack 1: Tratamiento Inicial -->
-        <div class="glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border border-stone-200 hover:border-[#D48B80] transition duration-300" data-aos="fade-up" data-aos-delay="100">
+        <!-- Pack 1 -->
+        <div class="glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border border-stone-200 hover:border-[#D48B80] transition duration-300">
           <div class="space-y-4">
             <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">TRATAMIENTO INICIAL</span>
             <h3 class="font-serif-luxury text-2xl font-bold text-[#181514]">1x ADEUS™ (300g)</h3>
@@ -823,8 +826,8 @@
           </button>
         </div>
 
-        <!-- Pack 2: Tratamiento Renovación Dúo (MÁS VENDIDO) -->
-        <div class="relative glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border-2 border-[#D48B80] shadow-2xl bg-white scale-105 z-10" data-aos="fade-up" data-aos-delay="200">
+        <!-- Pack 2: MÁS VENDIDO -->
+        <div class="relative glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border-2 border-[#D48B80] shadow-2xl bg-white scale-105 z-10">
           
           <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-rose-gradient text-white text-[11px] font-black px-5 py-1.5 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5">
             <i data-lucide="flame" class="w-3.5 h-3.5 text-amber-300"></i>
@@ -861,8 +864,8 @@
           </button>
         </div>
 
-        <!-- Pack 3: Ritual Supremo 3-en-1 -->
-        <div class="glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border border-amber-300 hover:border-amber-500 transition duration-300" data-aos="fade-up" data-aos-delay="300">
+        <!-- Pack 3: Ritual Supremo -->
+        <div class="glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border border-amber-300 hover:border-amber-500 transition duration-300">
           <div class="space-y-4">
             <span class="text-xs font-bold text-amber-700 uppercase tracking-wider">RITUAL SUPREMO 3-EN-1</span>
             <h3 class="font-serif-luxury text-2xl font-bold text-[#181514]">Ritual Total Kivaneli</h3>
@@ -900,7 +903,7 @@
       </div>
 
       <!-- Checkout Form Container -->
-      <div id="checkoutContainer" class="mt-20 glass-panel rounded-[2.5rem] p-8 md:p-14 border-2 border-[#D48B80]/35 shadow-2xl max-w-3xl mx-auto relative" data-aos="fade-up">
+      <div id="checkoutContainer" class="mt-20 glass-panel rounded-[2.5rem] p-8 md:p-14 border-2 border-[#D48B80]/35 shadow-2xl max-w-3xl mx-auto relative">
         
         <div class="text-center space-y-2 mb-8">
           <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
@@ -966,7 +969,7 @@
             <p id="couponMessage" class="text-[11px] font-semibold text-purple-700 hidden"></p>
           </div>
 
-          <!-- 50/50 Incentive Payment Mode Toggle -->
+          <!-- 50/50 Payment Method Toggle -->
           <div class="pt-2 space-y-2">
             <label class="text-xs font-bold text-stone-700">Método de Pago Preferido:</label>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -1020,7 +1023,6 @@
             </div>
           </div>
 
-          <!-- Post-Purchase Social Engagement Trigger Button -->
           <div class="pt-3">
             <button onclick="openSocialModal()" class="bg-[#181514] text-amber-300 px-6 py-3 rounded-2xl font-bold text-xs hover:bg-[#D48B80] hover:text-white transition flex items-center justify-center gap-2 mx-auto shadow-lg">
               <i data-lucide="gift" class="w-4 h-4 text-amber-400"></i>
@@ -1035,9 +1037,9 @@
   </section>
 
   <!-- ❓ 8. FAQ ACCORDION -->
-  <section class="py-16 bg-white border-t border-[#D48B80]/15">
+  <section class="py-16 bg-white border-t border-[#D48B80]/15 reveal-on-scroll">
     <div class="max-w-4xl mx-auto px-6">
-      <div class="text-center space-y-3 mb-12" data-aos="fade-up">
+      <div class="text-center space-y-3 mb-12">
         <h2 class="font-serif-luxury text-3xl md:text-4xl font-black text-[#181514]">
           Preguntas Frecuentes
         </h2>
@@ -1046,7 +1048,7 @@
         </p>
       </div>
 
-      <div class="space-y-4" data-aos="fade-up">
+      <div class="space-y-4">
         <details class="glass-panel p-5 rounded-2xl border border-stone-200 group">
           <summary class="font-serif-luxury font-bold text-sm text-[#181514] cursor-pointer flex items-center justify-between list-none">
             <span>¿Cómo y cuándo pago mi pedido?</span>
@@ -1120,7 +1122,7 @@
             <li><a href="#transformacion" class="hover:text-[#D48B80] transition">Resultados Clínicos</a></li>
             <li><a href="#ritual-escalones" class="hover:text-[#D48B80] transition">El Ritual en Video</a></li>
             <li><button onclick="openAmigaModal()" class="hover:text-[#D48B80] transition text-left text-[#B86B60] font-bold">Club Invita a tu Amiga</button></li>
-            <li><a href="blog.html" class="hover:text-[#D48B80] transition text-emerald-400 font-semibold">Biblioteca / Blog SEO</a></li>
+            <li><a href="blog" class="hover:text-[#D48B80] transition text-emerald-400 font-semibold">Biblioteca / Blog SEO</a></li>
             <li><a href="#packs" class="hover:text-[#D48B80] transition">Ofertas & Packs</a></li>
           </ul>
         </div>
@@ -1162,7 +1164,7 @@
     </div>
   </footer>
 
-  <!-- 👯 MODAL EXCLUSIVO CLUB AMIGAS -->
+  <!-- 👯 MODAL CLUB AMIGAS -->
   <div id="amigaModalBackdrop" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4">
     <div class="bg-white rounded-[2.5rem] p-6 md:p-9 max-w-lg w-full space-y-5 shadow-2xl relative border border-stone-200 text-center">
       <button onclick="closeAmigaModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200 transition">
@@ -1172,7 +1174,7 @@
         <i data-lucide="gift" class="w-8 h-8"></i>
       </div>
       <div class="space-y-1.5">
-        <h3 id="amigaModalTitle" class="font-serif-luxury font-black text-2xl text-[#181514]">¡Tu Pase Especial de Regalo Está Listo!</h3>
+        <h3 class="font-serif-luxury font-black text-2xl text-[#181514]">¡Tu Pase Especial de Regalo Está Listo!</h3>
         <p class="text-xs text-stone-600 leading-relaxed">
           Comparte tu enlace exclusivo con tu amiga. Cuando ella realice su pedido, recibirá <strong>1x Bote de Parches Körmesic GRATIS</strong> y tú un <strong>Vale de 15€</strong>.
         </p>
@@ -1196,7 +1198,7 @@
     </div>
   </div>
 
-  <!-- 💬 POST-PURCHASE SOCIAL REVIEW & REWARD MODAL (TikTok / Instagram / Facebook) -->
+  <!-- 💬 POST-PURCHASE SOCIAL MODAL -->
   <div id="socialModalBackdrop" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4">
     <div class="bg-white rounded-[2.5rem] p-6 md:p-9 max-w-md w-full space-y-5 shadow-2xl relative border border-stone-200 text-center">
       <button onclick="closeSocialModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200 transition">
@@ -1228,24 +1230,7 @@
     </div>
   </div>
 
-  <!-- 🍪 FLOATING COOKIE BANNER -->
-  <div id="cookieBanner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-md z-50 glass-card-dark p-4 rounded-2xl shadow-2xl border border-white/15 text-white text-xs space-y-3">
-    <div class="flex items-start justify-between gap-2">
-      <div class="flex items-center gap-2 text-amber-300 font-bold">
-        <i data-lucide="cookie" class="w-4 h-4"></i>
-        <span>Preferencia de Privacidad</span>
-      </div>
-      <button onclick="dismissCookieBanner()" class="text-stone-400 hover:text-white"><i data-lucide="x" class="w-4 h-4"></i></button>
-    </div>
-    <p class="text-stone-300 text-[11px] leading-relaxed">
-      Utilizamos cookies técnicas para asegurar el funcionamiento del carrito y el despacho contra-reembolso. Consulta nuestra <button onclick="openLegalModal('cookies')" class="text-[#D48B80] underline">política de cookies</button>.
-    </p>
-    <div class="flex items-center justify-end gap-2 pt-1">
-      <button onclick="dismissCookieBanner()" class="bg-rose-gradient text-white px-4 py-1.5 rounded-lg font-bold text-xs hover:opacity-90 transition">Aceptar Todo</button>
-    </div>
-  </div>
-
-  <!-- 📜 INTERACTIVE LEGAL MODAL -->
+  <!-- 📜 LEGAL MODAL -->
   <div id="legalModalBackdrop" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4">
     <div class="bg-white rounded-3xl p-6 md:p-8 max-w-2xl w-full max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl relative border border-stone-200">
       <div class="flex items-center justify-between pb-3 border-b border-stone-200">
@@ -1261,16 +1246,71 @@
     </div>
   </div>
 
-  <!-- 🚀 INTERACTIVE JAVASCRIPT ENGINE WITH SUPABASE CLIENT -->
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <!-- Non-Blocking Deferred Scripts Loaded at Bottom of Body -->
+  <script src="https://unpkg.com/lucide@latest" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+
   <script>
-    AOS.init({ once: true, duration: 800, offset: 50 });
-    lucide.createIcons();
+    // Native IntersectionObserver for Ultra-Smooth Zero-Lag Scroll Reveals
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal-on-scroll');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => observer.observe(el));
+
+        // Lazy load below-the-fold videos only when visible
+        const lazyVideos = document.querySelectorAll('video.lazy-video');
+        const videoObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const v = entry.target;
+              if (v.dataset.src) {
+                v.src = v.dataset.src;
+                v.load();
+                v.play().catch(() => {});
+              }
+              videoObserver.unobserve(v);
+            }
+          });
+        }, { rootMargin: '200px' });
+        lazyVideos.forEach(v => videoObserver.observe(v));
+      } else {
+        reveals.forEach(el => el.classList.add('is-visible'));
+      }
+
+      // Initialize hero video playback
+      const heroV = document.getElementById('heroVideo');
+      if (heroV) {
+        heroV.play().catch(() => {});
+      }
+
+      // Icons
+      if (window.lucide) lucide.createIcons();
+    });
+
+    window.addEventListener('load', () => {
+      if (window.lucide) lucide.createIcons();
+    });
 
     // Supabase Live Client Initialization
-    const SUPABASE_URL = 'https://sntsizmdhttpilbauxuv.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNudHNpem1kaHR0cGlsYmF1eHV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4MTQxNTIsImV4cCI6MjEwMzM5MDE1Mn0.TJl9UpYcdS9zSG6koa8SQ7zLpmn0A1MTekpHQ9DUkBw';
-    const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    let db = null;
+    function getSupabase() {
+      if (!db && window.supabase) {
+        db = window.supabase.createClient(
+          'https://sntsizmdhttpilbauxuv.supabase.co',
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNudHNpem1kaHR0cGlsYmF1eHV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4MTQxNTIsImV4cCI6MjEwMzM5MDE1Mn0.TJl9UpYcdS9zSG6koa8SQ7zLpmn0A1MTekpHQ9DUkBw'
+        );
+      }
+      return db;
+    }
 
     // Global State
     let currentPackName = "Pack Dúo 2x ADEUS + Parches Gratis";
@@ -1279,16 +1319,10 @@
     let currentCoupon = "";
     let generatedAmigaCode = "KIV-AMIGA-VIP";
 
-    // Track Pageview to Supabase Analytics
-    try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const refParam = urlParams.get('ref') || 'direct';
-      db.from('analytics_events').insert({
-        event_type: 'pageview',
-        traffic_source: refParam,
-        user_agent: navigator.userAgent
-      }).then(() => console.log('Pageview logged'));
-    } catch(e) {}
+    function trackCustomPixel(eventName, params = {}) {
+      if (window.fbq) fbq('track', eventName, params);
+      if (window.ttq) ttq.track(eventName, params);
+    }
 
     function selectPack(name, price) {
       currentPackName = name;
@@ -1319,7 +1353,7 @@
     function updateCheckoutPriceDisplay() {
       let finalPrice = currentPackBasePrice;
       if (currentCoupon === 'SEDA10') finalPrice *= 0.90;
-      if (currentPaymentMode === 'CARD') finalPrice *= 0.95; // 5% extra discount
+      if (currentPaymentMode === 'CARD') finalPrice *= 0.95;
 
       document.getElementById('selectedPackText').innerText = currentPackName + ' (' + finalPrice.toFixed(2).replace('.', ',') + ' €)';
       document.getElementById('selectedPackPrice').innerText = finalPrice.toFixed(2).replace('.', ',') + ' €';
@@ -1336,10 +1370,9 @@
         v.muted = true;
         icon.setAttribute('data-lucide', 'volume-x');
       }
-      lucide.createIcons();
+      if (window.lucide) lucide.createIcons();
     }
 
-    // Amiga Referral Registration with Supabase Insert
     async function handleAmigaSubmit(e) {
       e.preventDefault();
       const name = document.getElementById('referralUserName').value.trim() || 'AMIGA';
@@ -1351,19 +1384,22 @@
       const shareUrl = 'https://kivaneli.es/?ref=' + generatedAmigaCode;
       
       try {
-        await db.from('referrals').upsert({
-          referrer_name: name,
-          referrer_phone: phone,
-          referrer_email: email,
-          referral_code: generatedAmigaCode
-        }, { onConflict: 'referrer_email' });
+        const client = getSupabase();
+        if (client) {
+          await client.from('referrals').upsert({
+            referrer_name: name,
+            referrer_phone: phone,
+            referrer_email: email,
+            referral_code: generatedAmigaCode
+          }, { onConflict: 'referrer_email' });
+        }
       } catch(err) {
         console.error('Referral save error:', err);
       }
 
       document.getElementById('amigaShareUrlInput').value = shareUrl;
       openAmigaModal();
-      confetti({ particleCount: 70, spread: 60, origin: { y: 0.7 } });
+      if (window.confetti) confetti({ particleCount: 70, spread: 60, origin: { y: 0.7 } });
       trackCustomPixel('Lead', { referral_code: generatedAmigaCode });
     }
 
@@ -1395,7 +1431,7 @@
       const input = document.getElementById('amigaShareUrlInput');
       navigator.clipboard.writeText(input.value).then(() => {
         alert('¡Enlace de invitación copiado! Envíalo a tu amiga para que reciba sus parches gratis.');
-        confetti({ particleCount: 40, spread: 50 });
+        if (window.confetti) confetti({ particleCount: 40, spread: 50 });
       });
     }
 
@@ -1405,7 +1441,6 @@
       window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
     }
 
-    // Coupon Engine
     function applyCoupon() {
       const code = document.getElementById('couponInput').value.trim().toUpperCase();
       const msg = document.getElementById('couponMessage');
@@ -1414,12 +1449,12 @@
         msg.innerText = '✅ Cupón VIP SEDA10 aplicado: 10% de descuento deducido.';
         msg.classList.remove('hidden');
         updateCheckoutPriceDisplay();
-        confetti({ particleCount: 40, spread: 50 });
+        if (window.confetti) confetti({ particleCount: 40, spread: 50 });
       } else if (code.includes('AMIGA') || code.includes('VIP') || code.startsWith('KIV-')) {
         currentCoupon = code;
         msg.innerText = '🎁 Código de Amiga Válido: ¡Parches Körmesic GRATIS añadidos a tu paquete!';
         msg.classList.remove('hidden');
-        confetti({ particleCount: 60, spread: 70 });
+        if (window.confetti) confetti({ particleCount: 60, spread: 70 });
       } else {
         msg.innerText = '❌ Código no reconocido. Prueba con SEDA10.';
         msg.classList.remove('hidden');
@@ -1433,7 +1468,6 @@
       applyCoupon();
     }
 
-    // Order Submission Engine (Direct to Supabase)
     async function handleOrderSubmit(e) {
       e.preventDefault();
       
@@ -1452,58 +1486,53 @@
       document.getElementById('orderSuccessCodeDisplay').innerText = orderNumber;
 
       try {
-        // 1. Insert into Supabase orders table
-        await db.from('orders').insert({
-          order_number: orderNumber,
-          customer_name: custName,
-          customer_phone: custPhone,
-          customer_email: custEmail,
-          customer_address: custAddress,
-          customer_zip: custZip,
-          customer_city: custCity,
-          pack_selected: currentPackName,
-          total_amount: finalPrice.toFixed(2),
-          payment_method: currentPaymentMode,
-          payment_status: currentPaymentMode === 'CARD' ? 'PAID' : 'PENDING',
-          shipping_status: 'IN_PREPARATION',
-          coupon_applied: currentCoupon,
-          referral_code_used: currentCoupon.startsWith('KIV-') ? currentCoupon : null
-        });
+        const client = getSupabase();
+        if (client) {
+          await client.from('orders').insert({
+            order_number: orderNumber,
+            customer_name: custName,
+            customer_phone: custPhone,
+            customer_email: custEmail,
+            customer_address: custAddress,
+            customer_zip: custZip,
+            customer_city: custCity,
+            pack_selected: currentPackName,
+            total_amount: finalPrice.toFixed(2),
+            payment_method: currentPaymentMode,
+            payment_status: currentPaymentMode === 'CARD' ? 'PAID' : 'PENDING',
+            shipping_status: 'IN_PREPARATION',
+            coupon_applied: currentCoupon,
+            referral_code_used: currentCoupon.startsWith('KIV-') ? currentCoupon : null
+          });
 
-        // 2. Provision customer silent account
-        await db.from('customers').upsert({
-          name: custName,
-          email: custEmail,
-          phone: custPhone,
-          address: custAddress,
-          city: custCity,
-          zip: custZip,
-          total_spent: finalPrice.toFixed(2)
-        }, { onConflict: 'email' });
-
+          await client.from('customers').upsert({
+            name: custName,
+            email: custEmail,
+            phone: custPhone,
+            address: custAddress,
+            city: custCity,
+            zip: custZip,
+            total_spent: finalPrice.toFixed(2)
+          }, { onConflict: 'email' });
+        }
       } catch(err) {
-        console.error('Supabase order insert error:', err);
+        console.error('Order insert error:', err);
       }
 
       document.getElementById('orderForm').classList.add('hidden');
       document.getElementById('orderSuccess').classList.remove('hidden');
-      lucide.createIcons();
+      if (window.lucide) lucide.createIcons();
       
-      confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+      if (window.confetti) confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
       document.getElementById('checkoutContainer').scrollIntoView({ behavior: 'smooth' });
       
       trackCustomPixel('Purchase', { value: finalPrice, currency: 'EUR', order_id: orderNumber });
     }
 
-    function dismissCookieBanner() {
-      document.getElementById('cookieBanner').style.display = 'none';
-    }
-
-    // Legal Modals
     const legalContents = {
       aviso: {
         title: 'Aviso Legal e Información Corporativa',
-        body: '<p>En cumplimiento con el artículo 10 de la Ley 34/2002 de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa que KIVANELI COSMETICS opera como plataforma de comercio electrónico de formulación boticaria y distribución directa con almacén logístico en España.</p><p>Para cualquier consulta o atención comercial, nuestro canal de atención es: soporte@kivaneli.com.</p>'
+        body: '<p>En cumplimiento con el artículo 10 de la Ley 34/2002 de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa que KIVANELI COSMETICS opera como plataforma de comercio electrónico de formulación boticaria y distribución directa con almacén logístico en España.</p><p>Para cualquier consulta o atención comercial, nuestro canal de atención es: soporte@kivaneli.es.</p>'
       },
       privacidad: {
         title: 'Política de Privacidad y Tratamiento de Datos (RGPD)',
