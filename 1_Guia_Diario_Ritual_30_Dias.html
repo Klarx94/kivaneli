@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>KIVANELI — Diario Boticario & Planificador 30 Días Piel de Seda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4; margin: 12mm; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAF7F2; color: #181514; margin: 0; padding: 20px; line-height: 1.6; }
+    .page { max-width: 820px; margin: 0 auto 30px auto; background: #ffffff; padding: 45px; border-radius: 24px; border: 1px solid #E8A598; box-shadow: 0 10px 30px rgba(0,0,0,0.04); page-break-after: always; min-height: 1050px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; }
+    .page:last-child { page-break-after: auto; }
+    h1, h2, h3, h4 { font-family: 'Cinzel', Georgia, serif; color: #181514; margin-top: 0; }
+    .font-editorial { font-family: 'Playfair Display', Georgia, serif; }
+    .gold-line { height: 2px; background: linear-gradient(90deg, #D48B80, #B86B60); margin: 15px 0 25px 0; }
+    .badge { display: inline-block; background: #F6EAE7; color: #B86B60; font-size: 11px; font-weight: 800; padding: 5px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1.5px; border: 1px solid rgba(212,139,128,0.3); }
+    .box { background: #FAF7F2; border-radius: 16px; padding: 18px 22px; border: 1px solid #F6EAE7; margin-bottom: 16px; }
+    .box-highlight { background: #FAF5FF; border: 1px solid #E9D5FF; border-radius: 16px; padding: 18px 22px; margin-bottom: 16px; }
+    .input-line { border-bottom: 1px dashed #D48B80; height: 28px; margin-bottom: 10px; }
+    .checkbox-item { display: flex; align-items: center; gap: 10px; font-size: 12.5px; margin-bottom: 8px; color: #333; }
+    .checkbox-box { width: 18px; height: 18px; border: 1.5px solid #B86B60; border-radius: 5px; display: inline-block; flex-shrink: 0; background: #ffffff; }
+    .print-btn { display: block; width: fit-content; margin: 0 auto 25px auto; background: #181514; color: #ffffff; padding: 14px 32px; border-radius: 30px; font-weight: 800; font-size: 13px; text-decoration: none; cursor: pointer; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: 0.2s; }
+    .print-btn:hover { background: #D48B80; }
+    @media print {
+      body { background: #ffffff; padding: 0; }
+      .print-btn { display: none; }
+      .page { box-shadow: none; border: none; border-radius: 0; padding: 25px; margin: 0; min-height: 100vh; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Guardar Diario Completo en PDF (36 Páginas)</button>
+
+  <!-- PÁGINA 1: PORTADA MAESTRA -->
+  <div class="page" style="text-align: center;">
+    <div style="padding-top: 60px;">
+      <span class="badge">MAISON BOTANIQUE DE HAUTE GAMME</span>
+      <h1 style="font-size: 46px; font-weight: 900; margin: 30px 0 10px 0; letter-spacing: 4px;">KIVANELI<span style="color:#D48B80;">.</span></h1>
+      <div class="gold-line" style="width: 140px; margin: 0 auto 35px auto;"></div>
+      <h2 style="font-size: 30px; font-family: 'Playfair Display', serif; font-style: italic; color: #444; font-weight: 500;">Diario Boticario & Planificador de 30 Días</h2>
+      <h3 style="font-size: 20px; font-weight: 800; color: #181514; letter-spacing: 1.5px; margin-top: 15px;">EL RITUAL MAGISTRAL DE PIEL DE SEDA</h3>
+      
+      <p style="max-width: 550px; margin: 35px auto; font-size: 13.5px; color: #666; line-height: 1.8;">
+        Un protocolo diario de fitocosmética regenerativa, reprogramación del hábito de autocuidado y seguimiento visual para erradicar la queratosis pilaris y transformar tu piel en tacto aterciopelado.
+      </p>
+    </div>
+
+    <div class="box" style="max-width: 480px; margin: 0 auto; text-align: left;">
+      <div style="font-size: 11px; font-weight: 800; color: #B86B60; text-transform: uppercase; letter-spacing: 1px;">DATOS DE LA PROPIETARIA:</div>
+      <div style="font-size: 13px; font-weight: bold; margin-top: 8px;">Nombre: <span style="border-bottom: 1px dashed #B86B60; display: inline-block; width: 350px;"></span></div>
+      <div style="display: flex; justify-content: space-between; font-size: 12px; color: #666; margin-top: 15px;">
+        <span>Fecha Inicio: ___ / ___ / 2026</span>
+        <span>Zona Principal a Tratar: ____________</span>
+      </div>
+    </div>
+
+    <div style="font-size: 11px; color: #999; padding-bottom: 20px;">
+      © 2026 KIVANELI COSMETICS · Edición Exclusiva para Clientas · Registro Boticario Autorizado
+    </div>
+  </div>
+
+  <!-- PÁGINA 2: NEUROMARKETING & EL BUCLE DEL HÁBITO -->
+  <div class="page">
+    <div>
+      <span class="badge">FUNDAMENTOS DE AUTOCUIDADO</span>
+      <h2 style="font-size: 26px; margin-top: 15px;">La Psicología del Hábito: Cómo Transformar tu Piel en 30 Días</h2>
+      <div class="gold-line"></div>
+
+      <p style="font-size: 13.5px; color: #444; line-height: 1.8;">
+        La regeneración de la barrera cutánea no es un acto aislado, sino un <strong>ciclo biológico de 28 días</strong>. Según los principios de la neurobiología del comportamiento, para consolidar una rutina de belleza duradera necesitamos activar el <em>Bucle del Hábito (Señal ➔ Rutina ➔ Recompensa Sensorial)</em>.
+      </p>
+
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">1. La Señal (El Disparador):</h4>
+        <p style="font-size: 12.5px; color: #555; margin: 0;">Coloca tu tarro ADEUS™ junto a la esponja en la ducha. Su color y fragancia botánica activarán tu intención cada noche.</p>
+      </div>
+
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">2. La Rutina (El Masaje Boticario):</h4>
+        <p style="font-size: 12.5px; color: #555; margin: 0;">Dedica 2 minutos de masaje circular ascendente. Este gesto activa el drenaje linfático con Centella Asiática y libera los tapones de queratina.</p>
+      </div>
+
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">3. La Recompensa (El Tacto de Seda):</h4>
+        <p style="font-size: 12.5px; color: #555; margin: 0;">Al secarte con la toalla y pasar tu mano sobre la piel lisa, tu cerebro libera endorfinas que refuerzan tu autoestima y constancia.</p>
+      </div>
+    </div>
+
+    <div class="box-highlight">
+      <h4 style="color: #6B21A8; margin-bottom: 6px;">💡 Tu Compromiso Personal:</h4>
+      <p style="font-size: 12.5px; color: #581C87; margin: 0;">
+        «Me comprometo a regalarme 5 minutos diarios de autocuidado durante los próximos 30 días para lucir la piel suave y radiante que merezco.»
+      </p>
+      <div style="text-align: right; font-size: 11px; margin-top: 10px; color: #6B21A8;">Firma: ___________________________</div>
+    </div>
+  </div>
+
+  <!-- PÁGINA 3: HOJA DE EVALUACIÓN INICIAL & FOTO ANTES -->
+  <div class="page">
+    <div>
+      <span class="badge">EVALUACIÓN BASE · DÍA 1</span>
+      <h2 style="font-size: 26px; margin-top: 15px;">Diagnóstico Inicial de mi Piel</h2>
+      <div class="gold-line"></div>
+
+      <div class="box">
+        <h4 style="margin-bottom: 12px;">1. Evaluación del Estado Actual (Marca del 1 al 10):</h4>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 8px;">
+          <span>Rugosidad / Tacto de Piel de Fresa:</span>
+          <span>[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 8px;">
+          <span>Rojeces y Puntos Foliculares Visibles:</span>
+          <span>[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 8px;">
+          <span>Sequedad / Sensación de Tirantez:</span>
+          <span>[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 12px;">
+          <span>Seguridad al vestir ropa corta / vestidos:</span>
+          <span>[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+      </div>
+
+      <div class="box" style="min-height: 220px; border: 2px dashed #D48B80; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+        <div style="font-size: 13px; font-weight: bold; color: #B86B60;">📸 ESPACIO PARA FOTO DÍA 1 (ANTES)</div>
+        <p style="font-size: 11px; color: #888; max-width: 400px; margin: 8px auto 0 auto;">
+          Pega aquí tu fotografía tomada con luz natural o guárdala en tu galería digital con la fecha de hoy.
+        </p>
+      </div>
+
+      <div class="box">
+        <h4 style="margin-bottom: 8px;">¿Cuál es mi mayor objetivo al terminar estos 30 días?</h4>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · PÁGINA 3</div>
+  </div>
+
+  <!-- PÁGINA DÍA 1 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 1 DE 30 · SEMANA 1</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «El autocuidado no es un lujo, es el respeto diario hacia tu propio cuerpo.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 1 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 2 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 2 DE 30 · SEMANA 1</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Cada caricia con activos botánicos renueva la memoria celular de tu piel.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 2 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 3 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 3 DE 30 · SEMANA 1</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «La constancia suave vence a cualquier imperfección del pasado.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 3 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 4 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 4 DE 30 · SEMANA 1</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Hoy tu barrera cutánea comienza a retener el agua que antes evaporaba.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 4 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 5 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 5 DE 30 · SEMANA 1</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Siente la textura de tus piernas: los microcristales están haciendo su magia.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 5 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 6 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 6 DE 30 · SEMANA 1</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Tu piel es un órgano vivo que responde al amor y a la nutrición de calidad.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 6 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 7 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 7 DE 30 · SEMANA 1</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «7 días de constancia. La inflamación folicular empieza a desaparecer.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 7 DE 30</div>
+  </div>
+  
+    <!-- PÁGINA CHECKPOINT SEMANA 1 -->
+    <div class="page">
+      <div>
+        <span class="badge">HITO CLÍNICO · SEMANA 1</span>
+        <h2 style="font-size: 26px; margin-top: 15px;">Evaluación de Cierre de la Semana 1</h2>
+        <div class="gold-line"></div>
+
+        <p style="font-size: 13.5px; color: #444; line-height: 1.8;">
+          ¡Enhorabuena por completar la Semana 1! Revisa los avances acumulados frente al Día 1:
+        </p>
+
+        <div class="box">
+          <h4 style="margin-bottom: 12px;">Progreso Boticario Visual:</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Notas los poros menos oscuros y menos congestionados?</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Al pasar la mano notas la superficie significativamente más lisa?</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Has mantenido tu hidratación de agua diaria?</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Te sientes más cómoda con el aspecto de tu piel?</div>
+        </div>
+
+        <div class="box">
+          <h4 style="margin-bottom: 8px;">Mayor cambio notado esta semana:</h4>
+          <div class="input-line"></div>
+          <div class="input-line"></div>
+          <div class="input-line"></div>
+        </div>
+      </div>
+
+      <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · CHECKPOINT SEMANA 1</div>
+    </div>
+    
+  <!-- PÁGINA DÍA 8 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 8 DE 30 · SEMANA 2</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Inicias la Semana 2: la nueva capa epidérmica emerge satinada.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 8 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 9 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 9 DE 30 · SEMANA 2</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «El Madecassoside trabaja en el estrato basal multiplicando el colágeno.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 9 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 10 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 10 DE 30 · SEMANA 2</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Disfruta del aroma fresco de jengibre y sales boticarias en tu ducha.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 10 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 11 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 11 DE 30 · SEMANA 2</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Los poros se cierran y el tono rojizo cede paso a una luminosidad homogénea.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 11 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 12 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 12 DE 30 · SEMANA 2</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «La suavidad ya no es una promesa, es lo que sientes bajo tus dedos.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 12 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 13 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 13 DE 30 · SEMANA 2</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Tu ritual de noche es tu momento de paz sagrado antes de descansar.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 13 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 14 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 14 DE 30 · SEMANA 2</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «14 DÍAS: Has alcanzado el ecuador de tu transformación de seda.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 14 DE 30</div>
+  </div>
+  
+    <!-- PÁGINA CHECKPOINT SEMANA 2 -->
+    <div class="page">
+      <div>
+        <span class="badge">HITO CLÍNICO · SEMANA 2</span>
+        <h2 style="font-size: 26px; margin-top: 15px;">Evaluación de Cierre de la Semana 2</h2>
+        <div class="gold-line"></div>
+
+        <p style="font-size: 13.5px; color: #444; line-height: 1.8;">
+          ¡Enhorabuena por completar la Semana 2! Revisa los avances acumulados frente al Día 1:
+        </p>
+
+        <div class="box">
+          <h4 style="margin-bottom: 12px;">Progreso Boticario Visual:</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Notas los poros menos oscuros y menos congestionados?</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Al pasar la mano notas la superficie significativamente más lisa?</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Has mantenido tu hidratación de agua diaria?</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Te sientes más cómoda con el aspecto de tu piel?</div>
+        </div>
+
+        <div class="box">
+          <h4 style="margin-bottom: 8px;">Mayor cambio notado esta semana:</h4>
+          <div class="input-line"></div>
+          <div class="input-line"></div>
+          <div class="input-line"></div>
+        </div>
+      </div>
+
+      <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · CHECKPOINT SEMANA 2</div>
+    </div>
+    
+  <!-- PÁGINA DÍA 15 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 15 DE 30 · SEMANA 3</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «El Omega 7 del Espino Amarillo sella los lípidos profundos de tu piel.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 15 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 16 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 16 DE 30 · SEMANA 3</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Menos aspereza, más libertad para lucir tus prendas favoritas sin complejos.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 16 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 17 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 17 DE 30 · SEMANA 3</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Tu mirada también brilla: los parches de colágeno han drenado el cansancio.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 17 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 18 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 18 DE 30 · SEMANA 3</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Cada vaso de agua que bebes hoy potencia el brillo satinado de tu piel.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 18 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 19 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 19 DE 30 · SEMANA 3</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Respira hondo mientras masajeas. El estrés bloquea la piel; el mimo la sana.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 19 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 20 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 20 DE 30 · SEMANA 3</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Tu piel está aprendiendo a regular su propia queratinización folicular.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 20 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 21 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 21 DE 30 · SEMANA 3</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «21 DÍAS: El hábito está grabado en tu mente y tu piel refleja porcelana.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 21 DE 30</div>
+  </div>
+  
+    <!-- PÁGINA CHECKPOINT SEMANA 3 -->
+    <div class="page">
+      <div>
+        <span class="badge">HITO CLÍNICO · SEMANA 3</span>
+        <h2 style="font-size: 26px; margin-top: 15px;">Evaluación de Cierre de la Semana 3</h2>
+        <div class="gold-line"></div>
+
+        <p style="font-size: 13.5px; color: #444; line-height: 1.8;">
+          ¡Enhorabuena por completar la Semana 3! Revisa los avances acumulados frente al Día 1:
+        </p>
+
+        <div class="box">
+          <h4 style="margin-bottom: 12px;">Progreso Boticario Visual:</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Notas los poros menos oscuros y menos congestionados?</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Al pasar la mano notas la superficie significativamente más lisa?</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Has mantenido tu hidratación de agua diaria?</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> ¿Te sientes más cómoda con el aspecto de tu piel?</div>
+        </div>
+
+        <div class="box">
+          <h4 style="margin-bottom: 8px;">Mayor cambio notado esta semana:</h4>
+          <div class="input-line"></div>
+          <div class="input-line"></div>
+          <div class="input-line"></div>
+        </div>
+      </div>
+
+      <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · CHECKPOINT SEMANA 3</div>
+    </div>
+    
+  <!-- PÁGINA DÍA 22 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 22 DE 30 · SEMANA 4</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Entras en la recta final de consolidación y perfeccionamiento.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 22 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 23 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 23 DE 30 · SEMANA 4</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Observa tus brazos y muslos con luz natural: la piel de fresa es historia.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 23 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 24 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 24 DE 30 · SEMANA 4</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «La suavidad se mantiene incluso días después de la exfoliación.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 24 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 25 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 25 DE 30 · SEMANA 4</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Te sientes segura, cómoda y radiante en tu propio cuerpo.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 25 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 26 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 26 DE 30 · SEMANA 4</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Fórmula magistral + tu disciplina = resultados que perduran en el tiempo.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 26 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 27 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 27 DE 30 · SEMANA 4</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Prepárate para la evaluación final: tu piel está en su máximo esplendor.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 27 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 28 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 28 DE 30 · SEMANA 4</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «28 DÍAS: Has completado un ciclo celular epidérmico completo.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 28 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 29 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 29 DE 30 · SEMANA 5</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 5: Consolidación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «Penúltimo día de ritual: celebra la dedicación que has tenido contigo misma.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 29 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA DÍA 30 -->
+  <div class="page">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="badge">DÍA 30 DE 30 · SEMANA 5</span>
+        <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 5: Consolidación</span>
+      </div>
+
+      <h2 style="font-size: 24px; margin-top: 14px;">Diario de Cuidado & Registro Diario</h2>
+      <div class="gold-line"></div>
+
+      <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; color: #B86B60; text-align: center; margin-bottom: 20px; background: #FFF9F8; padding: 10px; border-radius: 12px; border: 1px solid #FCEAE7;">
+        «DÍA 30: ¡LO HAS LOGRADO! Tu piel de seda es una realidad consolidada.»
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+        
+        <!-- Morning Box -->
+        <div class="box">
+          <h4 style="color: #6B21A8; margin-bottom: 10px; font-size: 13px;">☀️ Ritual de Mañana</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada en ayunas</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado con agua fría revitalizante</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Crema hidratante ligera</div>
+        </div>
+
+        <!-- Night Box -->
+        <div class="box">
+          <h4 style="color: #B86B60; margin-bottom: 10px; font-size: 13px;">🌙 Ritual de Noche</h4>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+          <div class="checkbox-item"><span class="checkbox-box"></span> Sello nutritivo corporal</div>
+        </div>
+
+      </div>
+
+      <!-- Water Tracker -->
+      <div class="box" style="padding: 14px 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 12px; font-weight: bold; color: #181514;">💧 Hidratación Diaria (2L):</span>
+          <div style="display: flex; gap: 8px; font-size: 11px;">
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 1</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 2</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 3</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 4</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 5</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 6</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 7</span>
+            <span class="checkbox-item" style="margin:0;"><span class="checkbox-box" style="width:14px;height:14px;"></span> 8</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sensory Score & Notes -->
+      <div class="box">
+        <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: bold; margin-bottom: 8px;">
+          <span>Tacto de mi piel hoy (1: Áspero / 10: Seda Absoluta):</span>
+          <span style="color: #D48B80; font-size: 14px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="font-size: 11px; color: #777; margin-bottom: 6px;">Notas y sensaciones de mi cuerpo:</div>
+        <div class="input-line"></div>
+        <div class="input-line"></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DÍA 30 DE 30</div>
+  </div>
+  
+  <!-- PÁGINA FINAL: RESULTADOS & FOTO DESPUÉS -->
+  <div class="page">
+    <div>
+      <span class="badge">HITO FINAL · DÍA 30</span>
+      <h2 style="font-size: 28px; margin-top: 15px;">¡Transformación Completada con Éxito!</h2>
+      <div class="gold-line"></div>
+
+      <div class="box" style="min-height: 220px; border: 2px dashed #10B981; text-align: center; display: flex; flex-direction: column; justify-content: center; background: #F0FDF4;">
+        <div style="font-size: 14px; font-weight: bold; color: #047857;">📸 ESPACIO PARA FOTO DÍA 30 (DESPUÉS)</div>
+        <p style="font-size: 11px; color: #065F46; max-width: 420px; margin: 8px auto 0 auto;">
+          Compara esta fotografía con la del Día 1. Disfruta de la evidencia visual de tu piel de seda.
+        </p>
+      </div>
+
+      <div class="box">
+        <h4 style="margin-bottom: 10px; color: #181514;">Resultados Finales Alcanzados:</h4>
+        <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px;">
+          <span>Puntuación final de suavidad (1 al 10):</span>
+          <span style="font-weight: bold; color: #047857;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-size: 12px;">
+          <span>Reducción visual de piel de fresa (%):</span>
+          <span style="font-weight: bold; color: #047857;">[ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; % ]</span>
+        </div>
+      </div>
+
+      <div class="box-highlight" style="text-align: center;">
+        <div style="font-size: 16px; font-weight: bold; color: #6B21A8; font-family: 'Cinzel', serif;">👑 Tu Pase VIP de Mantenimiento Permanente</div>
+        <p style="font-size: 12px; color: #581C87; margin: 8px 0 12px 0;">
+          Para mantener tu textura sin recaídas, utiliza tu código exclusivo de clienta graduada:
+        </p>
+        <div style="font-family: monospace; font-size: 20px; font-weight: bold; color: #6B21A8; background: #ffffff; padding: 10px; border-radius: 12px; display: inline-block; border: 2px dashed #C084FC;">
+          CÓDIGO: VIP20 (20% DTO VITALICIO EN REPOSICIONES)
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 10px; color: #aaa;">KIVANELI MAISON BOTANIQUE · DIPLOMA DE TRANSFORMACIÓN</div>
+  </div>
+
+</body>
+</html>
