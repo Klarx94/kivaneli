@@ -5,209 +5,84 @@
   <title>KIVANELI — Protocolo Mirada Radiante 15 Min (12 Páginas)</title>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-  
-  @page {
-    size: A4;
-    margin: 10mm;
-  }
-  * {
-    box-sizing: border-box;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-  body {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: #FAF7F2;
-    color: #181514;
-    margin: 0;
-    padding: 20px;
-    line-height: 1.65;
-  }
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { margin: 0; padding: 0; background-color: #FAF7F2; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; color: #1A1615; }
   .font-serif-luxury { font-family: 'Cinzel', Georgia, serif; }
   .font-editorial { font-family: 'Playfair Display', Georgia, serif; }
   
   .page {
-    width: 100%;
-    max-width: 860px;
-    margin: 0 auto 35px auto;
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    margin: 0 auto;
     background: #ffffff;
-    padding: 48px 52px;
-    border-radius: 24px;
-    border: 1.5px solid #E8A598;
-    box-shadow: 0 15px 35px rgba(24, 21, 20, 0.05);
+    padding: 18mm 20mm 16mm 20mm;
     page-break-after: always;
     break-after: page;
-    min-height: 1120px;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
+    box-sizing: border-box;
   }
-  .page:last-child {
-    page-break-after: auto;
-    break-after: auto;
-  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
   
-  .header-decor {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(212, 139, 128, 0.25);
-    padding-bottom: 12px;
-    margin-bottom: 22px;
-  }
-  .header-brand {
-    font-family: 'Cinzel', serif;
-    font-weight: 900;
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: #181514;
-  }
-  .badge-tag {
-    display: inline-block;
-    background: #F6EAE7;
-    color: #B86B60;
-    font-size: 10px;
-    font-weight: 800;
-    padding: 4px 14px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border: 1px solid rgba(212, 139, 128, 0.35);
-  }
-  .footer-decor {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid rgba(212, 139, 128, 0.25);
-    padding-top: 12px;
-    margin-top: 22px;
-    font-size: 10px;
-    color: #888;
-    letter-spacing: 1px;
-  }
-  .gold-divider {
-    height: 2px;
-    background: linear-gradient(90deg, #D48B80, #B86B60);
-    margin: 12px 0 20px 0;
-    border-radius: 2px;
-  }
-  .luxury-box {
-    background: #FAF7F2;
-    border: 1px solid #F0D5D0;
-    border-radius: 16px;
-    padding: 16px 20px;
-    margin: 14px 0;
-    font-size: 12.5px;
-  }
-  .highlight-card {
-    background: linear-gradient(135deg, rgba(246, 234, 231, 0.6) 0%, rgba(255, 255, 255, 0.9) 100%);
-    border: 1px solid #D48B80;
-    border-radius: 18px;
-    padding: 18px 22px;
-    margin: 16px 0;
-  }
-  .author-quote {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 15px;
-    color: #555;
-    border-left: 3px solid #D48B80;
-    padding-left: 18px;
-    margin: 18px 0;
-    line-height: 1.7;
-  }
-  .checklist-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 8px;
-    font-size: 12px;
-  }
-  .check-circle {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    border: 1.5px solid #B86B60;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .print-btn-bar {
-    position: sticky;
-    top: 15px;
-    z-index: 100;
-    max-width: 860px;
-    margin: 0 auto 20px auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #181514;
-    color: #FAF7F2;
-    padding: 12px 24px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  }
-  .btn-print {
-    background: #D48B80;
-    color: #ffffff;
-    font-weight: 800;
-    font-size: 12px;
-    padding: 10px 22px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+  .header-decor { display: flex; align-items: center; justify-content: space-between; border-bottom: 1.5px solid #E8A598; padding-bottom: 8px; margin-bottom: 14px; }
+  .header-brand { font-family: 'Cinzel', serif; font-weight: 900; font-size: 13px; letter-spacing: 3px; color: #181514; }
+  .badge-tag { display: inline-block; background: #F6EAE7; color: #B86B60; font-size: 10px; font-weight: 800; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1.5px; border: 1px solid rgba(212, 139, 128, 0.4); }
+  
+  .footer-decor { display: flex; align-items: center; justify-content: space-between; border-top: 1.5px solid #E8A598; padding-top: 8px; margin-top: 12px; font-size: 10px; color: #7A726E; letter-spacing: 1px; font-weight: 600; }
+  .gold-divider { height: 2px; background: linear-gradient(90deg, #D48B80, #B86B60); margin: 8px 0 14px 0; border-radius: 2px; }
+  
+  h1 { font-family: 'Cinzel', serif; color: #181514; margin: 0; line-height: 1.2; }
+  h2 { font-family: 'Cinzel', serif; color: #181514; font-size: 19px; margin: 0 0 4px 0; line-height: 1.3; font-weight: 800; }
+  h3 { font-family: 'Cinzel', serif; color: #B86B60; font-size: 13.5px; margin: 0 0 4px 0; font-weight: 800; letter-spacing: 0.5px; }
+  h4 { font-family: 'Plus Jakarta Sans', sans-serif; color: #181514; font-size: 13.5px; font-weight: 800; margin: 0 0 4px 0; }
+  p { font-size: 13px; line-height: 1.65; color: #2D2725; margin: 0 0 10px 0; }
+  
+  .luxury-box { background: #FAF7F2; border: 1px solid #F0D5D0; border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6; color: #332C2A; }
+  .highlight-card { background: linear-gradient(135deg, rgba(246, 234, 231, 0.6) 0%, rgba(255, 255, 255, 0.95) 100%); border: 1.5px solid #D48B80; border-radius: 14px; padding: 14px 18px; margin-bottom: 12px; }
+  .author-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14.5px; color: #4A3E3B; border-left: 3px solid #D48B80; padding: 10px 14px; margin: 12px 0; line-height: 1.65; background: #FCF9F6; border-radius: 0 10px 10px 0; }
+  
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  
   @media print {
-    body {
-      background: #ffffff;
-      padding: 0;
-    }
-    .print-btn-bar {
-      display: none !important;
-    }
-    .page {
-      border: none;
-      box-shadow: none;
-      border-radius: 0;
-      padding: 24px 28px;
-      margin: 0;
-      min-height: 100vh;
-    }
+    body { background: #ffffff; padding: 0; }
+    .page { margin: 0; border: none; box-shadow: none; width: 210mm; height: 297mm; page-break-after: always; break-after: page; }
   }
 </style>
 </head>
 <body>
-  <div class="print-btn-bar">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <span style="font-family:'Cinzel', serif; font-weight:900; letter-spacing:2px; font-size:14px;">KIVANELI EDITORIAL</span>
-      <span style="font-size:11px; color:#E8A598;">· Protocolo Mirada Radiante (12 Páginas Completas)</span>
-    </div>
-    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>
-  </div>
   
-    <div class="page" style="text-align: center; justify-content: center; background: radial-gradient(circle at center, #FFFFFF 0%, #FAF7F2 100%);">
-      <div style="margin: auto 0;">
-        <span class="badge-tag" style="font-size: 11px; padding: 6px 20px;">PROTOCOLO CLÍNICO-BOTÁNICO</span>
-        <h1 class="font-serif-luxury" style="font-size: 44px; font-weight: 900; margin: 30px 0 10px 0; letter-spacing: 5px; color: #181514;">
+    <div class="page" style="text-align: center; justify-content: space-around; background: radial-gradient(circle at center, #FFFFFF 0%, #FAF7F2 100%);">
+      <div>
+        <span class="badge-tag" style="font-size: 11px; padding: 6px 22px;">PROTOCOLO CLÍNICO-BOTÁNICO DE MIRADA</span>
+      </div>
+      
+      <div style="margin: 20px 0;">
+        <h1 class="font-serif-luxury" style="font-size: 46px; font-weight: 900; letter-spacing: 6px; color: #181514; margin-bottom: 5px;">
           KIVANELI<span style="color:#D48B80;">.</span>
         </h1>
-        <div class="gold-divider" style="width: 160px; margin: 0 auto 30px auto; height: 3px;"></div>
-        <h2 class="font-editorial" style="font-size: 30px; font-style: italic; color: #B86B60; margin: 0 0 15px 0; font-weight: 600;">
-          Protocolo Exprés de Mirada Radiante & Crioterapia en 15 Minutos
-        </h2>
-        <h3 class="font-serif-luxury" style="font-size: 15px; font-weight: 800; color: #181514; letter-spacing: 2px; text-transform: uppercase;">
-          Drenaje Linfático Orbital · Descongestión de Bolsas · Alisamiento de Ojeras con Hidrogel
-        </h3>
+        <div class="gold-divider" style="width: 140px; margin: 15px auto 25px auto; height: 3px;"></div>
         
-        <div style="margin: 40px auto; max-width: 480px; padding: 22px; background: rgba(255,255,255,0.9); border: 1.5px solid #E8A598; border-radius: 20px; box-shadow: 0 8px 20px rgba(212,139,128,0.15); font-size: 12px; color: #555;">
-          <p style="margin: 0; font-weight: 700; color: #181514;">Manual Maestro de Crioterapia Periocular Boticaria</p>
-          <p style="margin: 6px 0 0 0; font-size: 11px; color: #777;">Técnicas de Acupresión, Colágeno Marino y Sinergias de Acción Inmediata</p>
+        <h2 class="font-editorial" style="font-size: 30px; font-style: italic; color: #B86B60; font-weight: 600; margin-bottom: 15px;">
+          Protocolo Exprés de Mirada Radiante & Crioterapia
+        </h2>
+        
+        <div style="font-family: 'Cinzel', serif; font-size: 15px; font-weight: 800; color: #181514; letter-spacing: 2px; text-transform: uppercase; max-width: 580px; margin: 0 auto 25px auto; line-height: 1.6;">
+          Drenaje Linfático Orbital en 15 Minutos · Descongestión de Bolsas · Alisamiento de Ojeras con Hidrogel
+        </div>
+        
+        <div style="max-width: 520px; margin: 0 auto; padding: 20px 24px; background: rgba(255,255,255,0.95); border: 2px solid #E8A598; border-radius: 18px; box-shadow: 0 10px 25px rgba(212,139,128,0.15); text-align: left; font-size: 12px; color: #444; line-height: 1.7;">
+          <strong style="color: #181514; text-transform: uppercase; letter-spacing: 1px;">Manual Maestro de Crioterapia Periocular Boticaria:</strong>
+          <p style="margin: 4px 0 0 0;">Técnicas de Acupresión en 3 Puntos, Colágeno Marino Hidrolizado y Sinergias de Acción Inmediata para Ojos Cansados.</p>
         </div>
       </div>
       
-      <div style="font-size: 11px; color: #999; letter-spacing: 1.5px; text-transform: uppercase;">
+      <div style="font-size: 11px; color: #888; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid #E8A598; padding-top: 12px;">
         © 2026 KIVANELI COSMETICS · LABORATORIOS BOTÁNICOS ESPAÑA
       </div>
     </div>
@@ -215,232 +90,278 @@
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">KIVANELI MAISON BOTANIQUE</span><span class="badge-tag">PRÓLOGO DE LA MIRADA</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">La Vulnerabilidad y Poder de la Zona Periocular</h2>
+        <div class="header-decor">
+          <span class="header-brand">KIVANELI MAISON BOTANIQUE</span>
+          <span class="badge-tag">PRÓLOGO DE LA MIRADA</span>
+        </div>
+        
+        <h2>La Vulnerabilidad y el Poder de la Zona Periocular</h2>
         <div class="gold-divider"></div>
         
-        <p class="font-editorial author-quote">
-          «Los ojos son el primer testigo del cansancio, el estrés oxidativo y el paso del tiempo. La piel que los rodea es cinco veces más delgada que la del resto del rostro y carece de glándulas sebáceas protectoras. Cuidarla requiere precisión botánica y respeto absoluto.»
-        </p>
-
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          Este protocolo exprés ha sido diseñado para ofrecer una respuesta de choque en solo <strong>15 minutos</strong> mediante la combinación de dos fuerzas científicas: la <strong>crioterapia boticaria</strong> (vasoconstricción refleja provocada por el hidrogel frío) y la infusión osmótica de <strong>colágeno marino hidrolizado</strong> y extractos botánicos desfatigantes.
-        </p>
-      </div>
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 2 DE 12</span></div>
-    </div>
-  
-
-    <div class="page">
-      <div>
-        <div class="header-decor"><span class="header-brand">KIVANELI MAISON BOTANIQUE</span><span class="badge-tag">SUMARIO DEL PROTOCOLO</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Índice del Protocolo de Mirada</h2>
-        <div class="gold-divider"></div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; line-height: 1.9;">
-          <div>
-            <div style="font-weight: 800; color: #B86B60; border-bottom: 1px solid #E8A598; padding-bottom: 3px; text-transform: uppercase;">Módulo I: Diagnóstico & Ciencia</div>
-            <div style="display:flex; justify-content:space-between;"><span>1. Anatomía Periocular</span><span style="font-weight:bold;">Pág. 4</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>2. Tipos de Ojeras & Diagnóstico</span><span style="font-weight:bold;">Pág. 5</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>3. Tecnología de Hidrogel & Frío</span><span style="font-weight:bold;">Pág. 6</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>4. Activos: Colágeno & Botánica</span><span style="font-weight:bold;">Pág. 7</span></div>
-          </div>
-          <div>
-            <div style="font-weight: 800; color: #B86B60; border-bottom: 1px solid #E8A598; padding-bottom: 3px; text-transform: uppercase;">Módulo II: Práctica & Masaje</div>
-            <div style="display:flex; justify-content:space-between;"><span>5. Protocolo 15 Minutos Paso a Paso</span><span style="font-weight:bold;">Pág. 8</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>6. Masaje Orbital & Acupresión</span><span style="font-weight:bold;">Pág. 9</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>7. Sinergia Integral Kivaneli</span><span style="font-weight:bold;">Pág. 10</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>8. Hábitos & Conclusión</span><span style="font-weight:bold;">Págs. 11-12</span></div>
-          </div>
+        <div class="author-quote">
+          «Los ojos son el primer testigo del cansancio, el estrés oxidativo y el ritmo frenético de la vida moderna. La piel que los rodea es cinco veces más delgada que la del resto del rostro y carece de glándulas sebáceas protectoras. Cuidarla requiere precisión botánica y respeto absoluto.»
         </div>
-      </div>
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 3 DE 12</span></div>
-    </div>
-  
 
-    <div class="page">
-      <div>
-        <div class="header-decor"><span class="header-brand">CAPÍTULO 1</span><span class="badge-tag">ANATOMÍA DEL ROSTRO</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 6px;">Por qué la Piel de los Ojos es 5 Veces más Fina</h2>
-        <div class="gold-divider"></div>
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          El grosor epidérmico periocular no supera los <strong>0,5 milímetros</strong> (frente a los 2 mm de las mejillas). Además, parpadeamos más de 15.000 veces al día mediante el músculo orbicular, lo que genera una fatiga mecánica constante sobre una red de colágeno muy frágil.
+        <p>
+          Este protocolo exprés ha sido diseñado para ofrecer una respuesta de choque en solo <strong>15 minutos</strong> mediante la combinación de dos fuerzas científicas: la <strong>crioterapia boticaria</strong> (vasoconstricción refleja provocada por el hidrogel frío) y la infusión osmótica de <strong>colágeno marino hidrolizado</strong> y extractos botánicos desfatigantes.
         </p>
 
         <div class="highlight-card">
-          <strong style="color: #B86B60; font-size: 13px;">Particularidades Fisiológicas:</strong>
-          <ul style="margin: 6px 0 0 0; padding-left: 18px; font-size: 11.5px; color: #444; line-height: 1.7;">
-            <li>Ausencia de glándulas sebáceas: tendencia inmediata a la deshidratación y arrugas de expresión.</li>
-            <li>Drenaje linfático lento: propensión a la acumulación de líquido intersticial (bolsas matutinas).</li>
-            <li>Transparencia vascular: los capilares congestionados se transparentan en forma de ojeras azuladas.</li>
-          </ul>
+          <h4 style="color: #B86B60;">Efecto Clínico Inmediato:</h4>
+          <p style="margin: 4px 0 0 0; font-size: 12.5px;">
+            En apenas un cuarto de hora, los parches de hidrogel refrigerados reducen el volumen de las bolsas edematosas hasta en un <strong>64%</strong> y aclaran la congestión vascular que provoca la ojera azulada.
+          </p>
         </div>
       </div>
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 4 DE 12</span></div>
+      
+      <div class="footer-decor">
+        <span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span>
+        <span>PÁGINA 2 DE 12</span>
+      </div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">CAPÍTULO 2</span><span class="badge-tag">DIAGNÓSTICO DERMATOLÓGICO</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 6px;">Tipología de Ojeras: Vascular, Pigmentaria & Estructural</h2>
+        <div class="header-decor">
+          <span class="header-brand">KIVANELI MAISON BOTANIQUE</span>
+          <span class="badge-tag">SUMARIO DEL PROTOCOLO</span>
+        </div>
+        
+        <h2>Índice General del Protocolo de Mirada</h2>
         <div class="gold-divider"></div>
-        <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px;">
-          <div class="luxury-box">
+        
+        <div class="grid-2" style="font-size: 12px; line-height: 1.85;">
+          <div>
+            <div style="font-weight: 800; color: #B86B60; border-bottom: 1.5px solid #E8A598; padding-bottom: 3px; text-transform: uppercase; margin-bottom: 6px;">
+              Módulo I: Diagnóstico & Ciencia
+            </div>
+            <div style="display:flex; justify-content:space-between;"><span>1. Anatomía Periocular (0,5 mm)</span><span style="font-weight:bold;">Pág. 4</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>2. Tipos de Ojeras: Vascular vs Pigmentaria</span><span style="font-weight:bold;">Pág. 5</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>3. Tecnología de Hidrogel & Crioterapia</span><span style="font-weight:bold;">Pág. 6</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>4. Activos Magistrales: Colágeno & Hialurónico</span><span style="font-weight:bold;">Pág. 7</span></div>
+          </div>
+
+          <div>
+            <div style="font-weight: 800; color: #B86B60; border-bottom: 1.5px solid #E8A598; padding-bottom: 3px; text-transform: uppercase; margin-bottom: 6px;">
+              Módulo II: Práctica & Masaje Orbital
+            </div>
+            <div style="display:flex; justify-content:space-between;"><span>5. Protocolo de 15 Minutos Paso a Paso</span><span style="font-weight:bold;">Pág. 8</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>6. Masaje de Acupresión en 3 Puntos</span><span style="font-weight:bold;">Pág. 9</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>7. Sinergia Integral Rostro & Cuerpo</span><span style="font-weight:bold;">Pág. 10</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>8. Hábitos de Protección & Conclusión</span><span style="font-weight:bold;">Págs. 11-12</span></div>
+          </div>
+        </div>
+
+        <div class="luxury-box" style="margin-top: 14px;">
+          <strong style="color: #181514;">Consejo de Almacenamiento:</strong> Conserva siempre tus parches Körmesic™ en la puerta de la nevera (entre 4ºC y 6ºC) para activar la crioterapia boticaria al instante.
+        </div>
+      </div>
+      
+      <div class="footer-decor">
+        <span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span>
+        <span>PÁGINA 3 DE 12</span>
+      </div>
+    </div>
+  
+
+    <div class="page">
+      <div>
+        <div class="header-decor"><span class="header-brand">CAPÍTULO 1</span><span class="badge-tag">ANATOMÍA FACIAL</span></div>
+        <h2>Por qué la Piel Periocular es 5 Veces más Fina</h2>
+        <div class="gold-divider"></div>
+        
+        <p>
+          El estrato córneo periocular apenas mide <strong>0,5 milímetros de espesor</strong>, lo que lo convierte en el tejido más delicado de toda la anatomía humana. Además, realizamos más de 15.000 parpadeos al día, sometiendo al músculo orbicular a una fatiga mecánica incesante.
+        </p>
+
+        <div class="highlight-card">
+          <h4 style="color: #B86B60;">Particularidades Fisiológicas del Contorno:</h4>
+          <ul style="padding-left: 18px; margin: 6px 0 0 0; font-size: 11.5px; line-height: 1.65;">
+            <li><strong>Ausencia de Glándulas Sebáceas:</strong> Propensión acelerada a la deshidratación y a las arrugas finas de expresión.</li>
+            <li><strong>Drenaje Linfático Lento:</strong> Facilidad extrema para acumular líquido intersticial durante la noche (bolsas matutinas).</li>
+            <li><strong>Transparencia Vascular:</strong> Los capilares dilatados se transparentan como una sombra violácea u oscura.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-decor"><span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span><span>PÁGINA 4 DE 12</span></div>
+    </div>
+  
+
+    <div class="page">
+      <div>
+        <div class="header-decor"><span class="header-brand">CAPÍTULO 2</span><span class="badge-tag">DIAGNÓSTICO</span></div>
+        <h2>Tipología de Ojeras: Diagnóstico Diferencial</h2>
+        <div class="gold-divider"></div>
+        
+        <div class="luxury-box" style="font-size: 12px; line-height: 1.7;">
+          <div style="margin-bottom: 8px;">
             <strong style="color: #B86B60;">1. Ojera Vascular (Azulada / Violácea):</strong>
-            <p style="margin: 2px 0 0 0; font-size: 11.5px; color: #555;">Causada por microcirculación estancada y falta de sueño. Responde de forma instantánea a la crioterapia fría de los parches Körmesic™.</p>
+            <p style="margin: 2px 0 0 0; color: #444;">Producida por microcirculación estancada y falta de oxigenación. Responde de forma espectacular a la crioterapia fría de los parches Körmesic™.</p>
           </div>
-          <div class="luxury-box">
+          <div style="margin-bottom: 8px;">
             <strong style="color: #B86B60;">2. Ojera Pigmentaria (Marrón / Oscura):</strong>
-            <p style="margin: 2px 0 0 0; font-size: 11.5px; color: #555;">Acumulación de melanina por factores genéticos o daño solar. Se trata eficazmente con antioxidantes y activos aclarantes.</p>
+            <p style="margin: 2px 0 0 0; color: #444;">Depósitos de melanina por fricción o radiación solar. Requiere antioxidantes botánicos y despigmentantes suaves.</p>
           </div>
-          <div class="luxury-box">
+          <div>
             <strong style="color: #B86B60;">3. Bolsas Edematosas (Hinchazón Matutina):</strong>
-            <p style="margin: 2px 0 0 0; font-size: 11.5px; color: #555;">Retención de linfa nocturna que cede en 15 minutos mediante el masaje orbital y frío.</p>
+            <p style="margin: 2px 0 0 0; color: #444;">Retención de linfa nocturna que se evacúa en 15 minutos con masaje orbital y frío constante.</p>
           </div>
         </div>
       </div>
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 5 DE 12</span></div>
+      <div class="footer-decor"><span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span><span>PÁGINA 5 DE 12</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">CAPÍTULO 3</span><span class="badge-tag">TECNOLOGÍA BOTICARIA</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 6px;">La Ciencia del Hidrogel Boticario & Crioterapia</h2>
+        <h2>La Ciencia del Hidrogel Boticario & Crioterapia</h2>
         <div class="gold-divider"></div>
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          La matriz de hidrogel polimérico actúa como un reservorio osmótico continuo. Al mantenerse en la nevera a <strong>4ºC-6ºC</strong>, el parche transfiere frío terapéutico constante al tejido periocular.
+        
+        <p>
+          La matriz de hidrogel bio-polimérico actúa como un reservorio osmótico continuo. Al mantenerse refrigerado a <strong>4ºC-6ºC</strong>, el parche transfiere frío terapéutico constante al tejido conjuntivo periocular.
         </p>
 
         <div class="highlight-card">
-          <strong style="color: #B86B60; font-size: 13px;">Efecto Descongestivo Inmediato:</strong>
-          <p style="font-size: 12px; color: #444; margin: 4px 0 0 0; line-height: 1.6;">
-            El frío contrae los capilares dilatados, reabsorbe el edema periorbital y tensa la piel laxa en apenas 15 minutos.
+          <h4 style="color: #B86B60;">Efecto Descongestivo Reflejo:</h4>
+          <p style="font-size: 12px; margin: 4px 0 0 0;">
+            El frío contrae los capilares dilatados por vasodilatación pasiva, reabsorbe el edema periorbital y tensa las fibras elásticas en apenas 15 minutos de reposo.
           </p>
         </div>
+
+        <div class="luxury-box">
+          <strong style="color: #181514;">Oclusión Beneficiosa:</strong> La película de hidrogel impide la evaporación de los activos, forzando su penetración profunda hacia la dermis reticular.
+        </div>
       </div>
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 6 DE 12</span></div>
+      <div class="footer-decor"><span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span><span>PÁGINA 6 DE 12</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">CAPÍTULO 4</span><span class="badge-tag">BIOACTIVOS PERIOCULARES</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 6px;">Colágeno Marino Hidrolizado & Extractos Botánicos</h2>
+        <h2>Colágeno Marino Hidrolizado & Ácido Hialurónico</h2>
         <div class="gold-divider"></div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 15px;">
+        
+        <div class="grid-2">
           <div class="luxury-box">
-            <strong style="color: #B86B60; font-size: 12px;">Colágeno Marino Hidrolizado:</strong>
-            <p style="margin: 4px 0 0 0; font-size: 11.5px; color: #555;">Péptidos de bajo peso molecular que penetran en la dermis rellenando las líneas finas de expresión.</p>
+            <strong style="color: #B86B60; font-size: 12.5px;">Colágeno Marino Hidrolizado:</strong>
+            <p style="margin: 4px 0 0 0; font-size: 11.5px;">Péptidos de bajo peso molecular que redensifican la matriz extracelular, alisando las patas de gallo y líneas de fatiga.</p>
           </div>
           <div class="luxury-box">
-            <strong style="color: #B86B60; font-size: 12px;">Ácido Hialurónico Botánico:</strong>
-            <p style="margin: 4px 0 0 0; font-size: 11.5px; color: #555;">Retiene hasta 1.000 veces su peso en agua, devolviendo el volumen túrgido a la cuenca ocular.</p>
+            <strong style="color: #B86B60; font-size: 12.5px;">Ácido Hialurónico Botánico:</strong>
+            <p style="margin: 4px 0 0 0; font-size: 11.5px;">Retiene hasta 1.000 veces su peso molecular en agua, rellenando el hundimiento de la cuenca ocular deshidratada.</p>
           </div>
         </div>
+
+        <div class="highlight-card">
+          <h4 style="color: #181514; font-size: 12px;">Extractos Desfatigantes:</h4>
+          <p style="margin: 2px 0 0 0; font-size: 11.5px;">Extracto de camomila romana y té verde para calmar el picor ocular derivado del uso prolongado de pantallas.</p>
+        </div>
       </div>
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 7 DE 12</span></div>
+      <div class="footer-decor"><span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span><span>PÁGINA 7 DE 12</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">CAPÍTULO 5</span><span class="badge-tag">PASO A PASO</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 6px;">El Protocolo de 15 Minutos Paso a Paso</h2>
+        <h2>El Protocolo de 15 Minutos Paso a Paso</h2>
         <div class="gold-divider"></div>
         
-        <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px;">
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <strong style="color: #B86B60;">Minuto 0 a 2 · Extracción Fría:</strong>
-            <p style="margin: 2px 0 0 0; font-size: 11.5px; color: #444;">Saca el frasco de parches Körmesic™ de la nevera y extrae 2 unidades con la espátula boticaria.</p>
-          </div>
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <strong style="color: #B86B60;">Minuto 2 a 12 · Aplicación & Reposo:</strong>
-            <p style="margin: 2px 0 0 0; font-size: 11.5px; color: #444;">Coloca la parte más ancha del parche sobre la zona de mayor hinchazón. Relájate con los ojos cerrados durante 10 minutos.</p>
-          </div>
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <strong style="color: #B86B60;">Minuto 12 a 15 · Retirada & Toques:</strong>
-            <p style="margin: 2px 0 0 0; font-size: 11.5px; color: #444;">Retira los parches y realiza un suave tecleo con el dedo anular para absorber el suero residual.</p>
-          </div>
+        <div class="highlight-card">
+          <strong style="color: #B86B60;">Minuto 0 a 2 · Extracción Fría:</strong>
+          <p style="margin: 2px 0 0 0; font-size: 11.5px;">Saca los parches de la nevera y extrae 2 unidades con la espátula boticaria para mantener la asepsia del frasco.</p>
+        </div>
+
+        <div class="highlight-card">
+          <strong style="color: #B86B60;">Minuto 2 a 12 · Reposo & Absorción Térmica:</strong>
+          <p style="margin: 2px 0 0 0; font-size: 11.5px;">Coloca la parte ancha sobre la ojera o bolsa. Cierra los ojos y relájate durante 10 minutos en posición semi-inclinada.</p>
+        </div>
+
+        <div class="highlight-card">
+          <strong style="color: #B86B60;">Minuto 12 a 15 · Retirada & Micro-Tecleo:</strong>
+          <p style="margin: 2px 0 0 0; font-size: 11.5px;">Retira los parches hacia el exterior y realiza un suave tecleo con el dedo anular hasta absorber todo el suero residual.</p>
         </div>
       </div>
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 8 DE 12</span></div>
+      <div class="footer-decor"><span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span><span>PÁGINA 8 DE 12</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">CAPÍTULO 6</span><span class="badge-tag">DRENAJE ORBITAL</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 6px;">Masaje de Drenaje Linfático Orbital & Acupresión</h2>
+        <h2>Masaje Orbital & Acupresión en 3 Puntos Clave</h2>
         <div class="gold-divider"></div>
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          Aplica suave presión durante 3 segundos en estos 3 puntos clave con la yema del dedo anular:
-        </p>
+        <p>Aplica una presión suave y sostenida de 3 segundos con la yema del dedo anular en estos 3 puntos anatómicos:</p>
 
-        <div class="luxury-box">
-          <ul style="margin: 0; padding-left: 18px; font-size: 11.5px; color: #444; line-height: 1.7;">
-            <li><strong>Punto 1 (Lagrimal interno):</strong> Descongestiona el conducto nasolagrimal y drena la hinchazón nasal.</li>
-            <li><strong>Punto 2 (Centro del arco supraciliar):</strong> Relaja el músculo corrugador y alivia la fatiga ocular.</li>
-            <li><strong>Punto 3 (Sien / Rabillo del ojo):</strong> Estimula el ganglio preauricular para evacuar la linfa orbital.</li>
-          </ul>
+        <div class="luxury-box" style="font-size: 12px; line-height: 1.7;">
+          <div style="margin-bottom: 6px;"><strong style="color: #B86B60;">Punto 1 · Lagrimal Interno (Jingming):</strong> Descongestiona el conducto nasolagrimal y drena la hinchazón de la esquina interior.</div>
+          <div style="margin-bottom: 6px;"><strong style="color: #B86B60;">Punto 2 · Centro del Arco Supraciliar (Yuyao):</strong> Relaja el músculo corrugador de la ceja y alivia la fatiga visual.</div>
+          <div><strong style="color: #B86B60;">Punto 3 · Sien / Rabillo del Ojo (Taiyang):</strong> Estimula el ganglio preauricular para evacuar la linfa orbital hacia el cuello.</div>
         </div>
       </div>
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 9 DE 12</span></div>
+      <div class="footer-decor"><span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span><span>PÁGINA 9 DE 12</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">CAPÍTULO 7</span><span class="badge-tag">RITUAL COMPLETO</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 6px;">Sinergia Boticaria: Rostro, Mirada & Cuerpo</h2>
+        <h2>Sinergia Boticaria: Rostro, Mirada & Cuerpo</h2>
         <div class="gold-divider"></div>
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          Aprovecha los 15 minutos de aplicación de los parches Körmesic™ para aplicar ADEUS™ en piernas y brazos tras la ducha con la barra de Ácido Kójico. Una experiencia spa boticaria integral de pies a cabeza.
+        <p>
+          Aprovecha los 15 minutos de reposo con los parches Körmesic™ para aplicar ADEUS™ en piernas y brazos tras la ducha con la barra de Ácido Kójico. Una experiencia spa integral de pies a cabeza en la comodidad de tu hogar.
         </p>
+
+        <div class="luxury-box">
+          <strong style="color: #181514;">Armonía de Autocuidado:</strong> Cuidar tu mirada mientras nutres tu piel corporal equilibra tu sistema nervioso y transforma tu rutina en un ritual sagrado de bienestar.
+        </div>
       </div>
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 10 DE 12</span></div>
+      <div class="footer-decor"><span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span><span>PÁGINA 10 DE 12</span></div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">CAPÍTULO 8</span><span class="badge-tag">PREVENCIÓN</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 6px;">Los 7 Hábitos para Proteger la Mirada</h2>
+        <div class="header-decor"><span class="header-brand">CAPÍTULO 8</span><span class="badge-tag">HÁBITOS DE PROTECCIÓN</span></div>
+        <h2>Los 7 Hábitos para Proteger la Mirada</h2>
         <div class="gold-divider"></div>
+        
         <div class="luxury-box" style="font-size: 11.5px; line-height: 1.8;">
-          1. <strong>Regla 20-20-20 frente a pantallas:</strong> Cada 20 min, mira a 20 pies (6 metros) durante 20 segundos.<br/>
-          2. <strong>Filtro de luz azul nocturno</strong> en móvil y ordenador a partir de las 20:00.<br/>
-          3. <strong>Dormir con almohada ligeramente elevada</strong> para evitar la retención linfática facial.<br/>
-          4. <strong>Desmaquillar con aceites botánicos</strong> sin frotar nunca los párpados.<br/>
-          5. <strong>Mantener siempre los parches Körmesic™ refrigerados a 4ºC.</strong><br/>
-          6. <strong>Gafas de sol con protección UV400</strong> incluso en días nublados.<br/>
-          7. <strong>Consumo moderado de sodio</strong> en la cena para prevenir el edema periocular matutino.
+          1. <strong>Regla 20-20-20:</strong> Cada 20 min de pantalla, mira a 6 metros durante 20 segundos.<br/>
+          2. <strong>Filtro de luz azul</strong> activado en pantallas a partir de las 20:00.<br/>
+          3. <strong>Dormir con almohada elevada</strong> para evitar la retención linfática facial.<br/>
+          4. <strong>Desmaquillar con aceites nobles</strong> sin frotar jamás los párpados.<br/>
+          5. <strong>Mantener los parches en la nevera a 4ºC</strong> para crioterapia constante.<br/>
+          6. <strong>Gafas con protección UV400</strong> incluso en días nublados.<br/>
+          7. <strong>Cena ligera baja en sodio</strong> para amanecer sin bolsas en los ojos.
         </div>
       </div>
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 11 DE 12</span></div>
+      <div class="footer-decor"><span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span><span>PÁGINA 11 DE 12</span></div>
     </div>
   
 
     <div class="page" style="text-align: center; justify-content: space-between;">
-      <div class="header-decor"><span class="header-brand">KIVANELI MAISON BOTANIQUE</span><span class="badge-tag">CONCLUSIÓN</span></div>
+      <div class="header-decor"><span class="header-brand">KIVANELI MAISON BOTANIQUE</span><span class="badge-tag">CONCLUSIÓN EDITORIAL</span></div>
       
-      <div style="margin: 20px auto; max-width: 600px;">
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin: 0 0 8px 0;">Tu Mirada Despierta y Luminosa</h2>
-        <div class="gold-divider" style="width: 100px; margin: 10px auto 20px auto;"></div>
-        <p style="font-size: 13px; color: #444; line-height: 1.8;">
-          Disfruta de la ligereza y frescura de una mirada revitalizada cada mañana con el poder del hidrogel y la crioterapia boticaria.
+      <div style="margin: auto 0; max-width: 580px; align-self: center;">
+        <h2 style="font-size: 22px; margin-bottom: 6px;">Tu Mirada Despierta & Radiante</h2>
+        <div class="gold-divider" style="width: 100px; margin: 8px auto 16px auto;"></div>
+        <p style="font-size: 13px; color: #444; line-height: 1.7;">
+          Disfruta de la frescura, ligereza y luminosidad de una mirada revitalizada cada mañana con el poder del hidrogel y la crioterapia boticaria.
         </p>
 
-        <div style="margin: 30px 0; padding: 20px; background: #FAF7F2; border: 1px solid #E8A598; border-radius: 18px; font-size: 12px; color: #666;">
-          <div style="font-weight: 800; color: #181514; font-size: 13px;">Canales de Contacto Boticario:</div>
-          <div style="margin-top: 8px;">📧 <strong>Email:</strong> <a href="mailto:beauty@kivaneli.es" style="color:#B86B60; text-decoration:none; font-weight:bold;">beauty@kivaneli.es</a></div>
+        <div style="margin: 24px 0; padding: 18px 22px; background: #FAF7F2; border: 1.5px solid #E8A598; border-radius: 16px; font-size: 12px; color: #555; text-align: left;">
+          <div style="font-weight: 800; color: #181514; font-size: 12.5px; margin-bottom: 6px;">Canales de Contacto Boticario:</div>
+          <div>📧 <strong>Email Asesoras:</strong> <a href="mailto:beauty@kivaneli.es" style="color:#B86B60; text-decoration:none; font-weight:bold;">beauty@kivaneli.es</a></div>
           <div style="margin-top: 4px;">📸 <strong>Instagram:</strong> <a href="https://instagram.com" target="_blank" style="color:#B86B60; text-decoration:none; font-weight:bold;">@kivaneli.es</a></div>
           <div style="margin-top: 4px;">🎵 <strong>TikTok:</strong> <a href="https://tiktok.com" target="_blank" style="color:#B86B60; text-decoration:none; font-weight:bold;">@kivanelicosmetics</a></div>
         </div>
       </div>
 
-      <div class="footer-decor"><span>PROTOCOLO MIRADA RADIANTE</span><span>PÁGINA 12 DE 12</span></div>
+      <div class="footer-decor"><span>PROTOCOLO EXPRÉS DE MIRADA RADIANTE</span><span>PÁGINA 12 DE 12</span></div>
     </div>
   
 </body>

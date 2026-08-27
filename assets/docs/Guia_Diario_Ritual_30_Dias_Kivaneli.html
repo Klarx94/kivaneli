@@ -5,214 +5,91 @@
   <title>KIVANELI — Diario Boticario & Planificador 30 Días (36 Páginas)</title>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-  
-  @page {
-    size: A4;
-    margin: 10mm;
-  }
-  * {
-    box-sizing: border-box;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-  }
-  body {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: #FAF7F2;
-    color: #181514;
-    margin: 0;
-    padding: 20px;
-    line-height: 1.65;
-  }
+  @page { size: A4 portrait; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  html, body { margin: 0; padding: 0; background-color: #FAF7F2; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; color: #1A1615; }
   .font-serif-luxury { font-family: 'Cinzel', Georgia, serif; }
   .font-editorial { font-family: 'Playfair Display', Georgia, serif; }
   
   .page {
-    width: 100%;
-    max-width: 860px;
-    margin: 0 auto 35px auto;
+    width: 210mm;
+    height: 297mm;
+    min-height: 297mm;
+    max-height: 297mm;
+    margin: 0 auto;
     background: #ffffff;
-    padding: 48px 52px;
-    border-radius: 24px;
-    border: 1.5px solid #E8A598;
-    box-shadow: 0 15px 35px rgba(24, 21, 20, 0.05);
+    padding: 18mm 20mm 16mm 20mm;
     page-break-after: always;
     break-after: page;
-    min-height: 1120px;
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
+    box-sizing: border-box;
   }
-  .page:last-child {
-    page-break-after: auto;
-    break-after: auto;
-  }
+  .page:last-child { page-break-after: auto; break-after: auto; }
   
-  .header-decor {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(212, 139, 128, 0.25);
-    padding-bottom: 12px;
-    margin-bottom: 22px;
-  }
-  .header-brand {
-    font-family: 'Cinzel', serif;
-    font-weight: 900;
-    font-size: 13px;
-    letter-spacing: 3px;
-    color: #181514;
-  }
-  .badge-tag {
-    display: inline-block;
-    background: #F6EAE7;
-    color: #B86B60;
-    font-size: 10px;
-    font-weight: 800;
-    padding: 4px 14px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border: 1px solid rgba(212, 139, 128, 0.35);
-  }
-  .footer-decor {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid rgba(212, 139, 128, 0.25);
-    padding-top: 12px;
-    margin-top: 22px;
-    font-size: 10px;
-    color: #888;
-    letter-spacing: 1px;
-  }
-  .gold-divider {
-    height: 2px;
-    background: linear-gradient(90deg, #D48B80, #B86B60);
-    margin: 12px 0 20px 0;
-    border-radius: 2px;
-  }
-  .luxury-box {
-    background: #FAF7F2;
-    border: 1px solid #F0D5D0;
-    border-radius: 16px;
-    padding: 16px 20px;
-    margin: 14px 0;
-    font-size: 12.5px;
-  }
-  .highlight-card {
-    background: linear-gradient(135deg, rgba(246, 234, 231, 0.6) 0%, rgba(255, 255, 255, 0.9) 100%);
-    border: 1px solid #D48B80;
-    border-radius: 18px;
-    padding: 18px 22px;
-    margin: 16px 0;
-  }
-  .author-quote {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 15px;
-    color: #555;
-    border-left: 3px solid #D48B80;
-    padding-left: 18px;
-    margin: 18px 0;
-    line-height: 1.7;
-  }
-  .checklist-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 8px;
-    font-size: 12px;
-  }
-  .check-circle {
-    width: 16px;
-    height: 16px;
-    border-radius: 4px;
-    border: 1.5px solid #B86B60;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .print-btn-bar {
-    position: sticky;
-    top: 15px;
-    z-index: 100;
-    max-width: 860px;
-    margin: 0 auto 20px auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #181514;
-    color: #FAF7F2;
-    padding: 12px 24px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  }
-  .btn-print {
-    background: #D48B80;
-    color: #ffffff;
-    font-weight: 800;
-    font-size: 12px;
-    padding: 10px 22px;
-    border-radius: 30px;
-    border: none;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+  .header-decor { display: flex; align-items: center; justify-content: space-between; border-bottom: 1.5px solid #E8A598; padding-bottom: 8px; margin-bottom: 14px; }
+  .header-brand { font-family: 'Cinzel', serif; font-weight: 900; font-size: 13px; letter-spacing: 3px; color: #181514; }
+  .badge-tag { display: inline-block; background: #F6EAE7; color: #B86B60; font-size: 10px; font-weight: 800; padding: 3px 12px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1.5px; border: 1px solid rgba(212, 139, 128, 0.4); }
+  
+  .footer-decor { display: flex; align-items: center; justify-content: space-between; border-top: 1.5px solid #E8A598; padding-top: 8px; margin-top: 12px; font-size: 10px; color: #7A726E; letter-spacing: 1px; font-weight: 600; }
+  .gold-divider { height: 2px; background: linear-gradient(90deg, #D48B80, #B86B60); margin: 8px 0 14px 0; border-radius: 2px; }
+  
+  h1 { font-family: 'Cinzel', serif; color: #181514; margin: 0; line-height: 1.2; }
+  h2 { font-family: 'Cinzel', serif; color: #181514; font-size: 19px; margin: 0 0 4px 0; line-height: 1.3; font-weight: 800; }
+  h3 { font-family: 'Cinzel', serif; color: #B86B60; font-size: 13.5px; margin: 0 0 4px 0; font-weight: 800; letter-spacing: 0.5px; }
+  p { font-size: 13px; line-height: 1.65; color: #2D2725; margin: 0 0 10px 0; }
+  
+  .luxury-box { background: #FAF7F2; border: 1px solid #F0D5D0; border-radius: 12px; padding: 12px 16px; margin-bottom: 12px; font-size: 12.5px; line-height: 1.6; color: #332C2A; }
+  .highlight-card { background: linear-gradient(135deg, rgba(246, 234, 231, 0.6) 0%, rgba(255, 255, 255, 0.95) 100%); border: 1.5px solid #D48B80; border-radius: 14px; padding: 14px 18px; margin-bottom: 12px; }
+  .author-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 14.5px; color: #4A3E3B; border-left: 3px solid #D48B80; padding: 10px 14px; margin: 12px 0; line-height: 1.65; background: #FCF9F6; border-radius: 0 10px 10px 0; }
+  
+  .checklist-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px; font-size: 12.5px; color: #2D2725; }
+  .check-circle { width: 15px; height: 15px; border-radius: 3px; border: 1.5px solid #B86B60; flex-shrink: 0; margin-top: 2px; background: #fff; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  
   @media print {
-    body {
-      background: #ffffff;
-      padding: 0;
-    }
-    .print-btn-bar {
-      display: none !important;
-    }
-    .page {
-      border: none;
-      box-shadow: none;
-      border-radius: 0;
-      padding: 24px 28px;
-      margin: 0;
-      min-height: 100vh;
-    }
+    body { background: #ffffff; padding: 0; }
+    .page { margin: 0; border: none; box-shadow: none; width: 210mm; height: 297mm; page-break-after: always; break-after: page; }
   }
 </style>
 </head>
 <body>
-  <div class="print-btn-bar">
-    <div style="display:flex; align-items:center; gap:10px;">
-      <span style="font-family:'Cinzel', serif; font-weight:900; letter-spacing:2px; font-size:14px;">KIVANELI EDITORIAL</span>
-      <span style="font-size:11px; color:#E8A598;">· Diario Boticario 30 Días (36 Páginas Completas)</span>
-    </div>
-    <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>
-  </div>
   
-    <div class="page" style="text-align: center; justify-content: center; background: radial-gradient(circle at center, #FFFFFF 0%, #FAF7F2 100%);">
-      <div style="margin: auto 0;">
-        <span class="badge-tag" style="font-size: 11px; padding: 6px 20px;">DOCUMENTO OFICIAL & PLANIFICADOR DE AUTOR</span>
-        <h1 class="font-serif-luxury" style="font-size: 46px; font-weight: 900; margin: 30px 0 10px 0; letter-spacing: 5px; color: #181514;">
+    <div class="page" style="text-align: center; justify-content: space-around; background: radial-gradient(circle at center, #FFFFFF 0%, #FAF7F2 100%);">
+      <div>
+        <span class="badge-tag" style="font-size: 11px; padding: 6px 22px;">DOCUMENTO OFICIAL DE AUTOR & PLANIFICADOR MAESTRO</span>
+      </div>
+      
+      <div style="margin: 20px 0;">
+        <h1 class="font-serif-luxury" style="font-size: 46px; font-weight: 900; letter-spacing: 6px; color: #181514; margin-bottom: 5px;">
           KIVANELI<span style="color:#D48B80;">.</span>
         </h1>
-        <div class="gold-divider" style="width: 160px; margin: 0 auto 30px auto; height: 3px;"></div>
-        <h2 class="font-editorial" style="font-size: 30px; font-style: italic; color: #B86B60; margin: 0 0 15px 0; font-weight: 600;">
+        <div class="gold-divider" style="width: 140px; margin: 15px auto 25px auto; height: 3px;"></div>
+        
+        <h2 class="font-editorial" style="font-size: 32px; font-style: italic; color: #B86B60; font-weight: 600; margin-bottom: 15px;">
           Diario Boticario & Planificador del Ritual de 30 Días
         </h2>
-        <h3 class="font-serif-luxury" style="font-size: 16px; font-weight: 800; color: #181514; letter-spacing: 2px; text-transform: uppercase;">
-          Cuaderno de Seguimiento Celular · Erradicación de la Piel de Fresa · Textura de Seda
-        </h3>
         
-        <div style="margin: 40px auto; max-width: 480px; padding: 22px; background: rgba(255,255,255,0.9); border: 1.5px solid #E8A598; border-radius: 20px; box-shadow: 0 8px 20px rgba(212,139,128,0.15);">
-          <div style="font-size: 12px; color: #666; margin-bottom: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Este Diario Boticario Pertenece a:</div>
-          <div style="border-bottom: 1.5px dashed #B86B60; height: 30px; margin: 10px 0; font-family: 'Playfair Display', serif; font-size: 18px; color: #181514; font-style: italic;"></div>
-          <div style="display: flex; justify-content: space-between; font-size: 11px; color: #888; margin-top: 12px;">
-            <span>Fecha de Inicio: ___ / ___ / 2026</span>
-            <span>Hito Día 30: ___ / ___ / 2026</span>
+        <div style="font-family: 'Cinzel', serif; font-size: 15px; font-weight: 800; color: #181514; letter-spacing: 2px; text-transform: uppercase; max-width: 580px; margin: 0 auto 25px auto; line-height: 1.6;">
+          Cuaderno Clínico-Botánico de Seguimiento Celular · Erradicación de la Queratosis Pilaris · Piel de Seda Perpetua
+        </div>
+        
+        <div style="max-width: 520px; margin: 0 auto; padding: 22px 28px; background: rgba(255,255,255,0.95); border: 2px solid #E8A598; border-radius: 18px; box-shadow: 0 10px 25px rgba(212,139,128,0.15); text-align: left;">
+          <div style="font-size: 12px; color: #666; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">Este Diario Boticario Pertenece a:</div>
+          <div style="border-bottom: 1.5px dashed #B86B60; height: 28px; font-family: 'Playfair Display', serif; font-size: 18px; color: #181514; font-style: italic; margin-bottom: 12px;"></div>
+          <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #555; font-weight: 600;">
+            <span>📅 Fecha de Inicio: ____ / ____ / 2026</span>
+            <span>🎯 Hito Día 30: ____ / ____ / 2026</span>
           </div>
         </div>
       </div>
       
-      <div style="font-size: 11px; color: #999; letter-spacing: 1.5px; text-transform: uppercase;">
-        © 2026 KIVANELI MAISON BOTANIQUE · EDICIÓN PRIVADA EXCLUSIVA PARA CLIENTAS
+      <div style="font-size: 11px; color: #888; letter-spacing: 2px; text-transform: uppercase; border-top: 1px solid #E8A598; padding-top: 12px;">
+        © 2026 KIVANELI MAISON BOTANIQUE · EDICIÓN PRIVADA EXCLUSIVA PARA CLIENTAS OFICIALES
       </div>
     </div>
   
@@ -224,31 +101,31 @@
           <span class="badge-tag">PRÓLOGO DE AUTOR</span>
         </div>
         
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">El Manifiesto de la Piel de Seda</h2>
+        <h2>El Manifiesto de la Piel de Seda</h2>
         <div class="gold-divider"></div>
         
-        <p class="font-editorial author-quote">
-          «La textura de tu piel no es una condena genética ni una imperfección que deba ocultarse bajo capas de ropa. Es simplemente la manifestación biológica de una epidermis que pide auxilio, sobrecargada de queratina oxidada y privada de lípidos regeneradores. Este diario es el mapa hacia tu verdadera piel: suave, radiante e invulnerable.»
+        <div class="author-quote">
+          «La textura áspera, los puntos oscurecidos y la queratosis en brazos y piernas no son una condena biológica. Son el grito de una epidermis privada de lípidos protectores y sobrecargada de queratina dura. Este diario es tu guía hacia la verdadera suavidad que tu cuerpo merece.»
+        </div>
+
+        <p>
+          Durante décadas, la cosmetología comercial ha intentado convencer a las mujeres de que la denominada <em>piel de fresa</em> se soluciona rascando la piel con exfoliantes agresivos de azúcar o aplicando geles sintéticos con sulfatos ocluyentes. La dermatología boticaria ha demostrado exactamente lo contrario: <strong>la agresión mecánica desgarra la barrera lipídica</strong> y activa una hiperqueratinización de rebote que endurece los poros en 72 horas.
         </p>
 
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          Durante años, la industria convencional nos ha hecho creer que las asperezas corporales, la queratosis pilaris (comúnmente conocida como <em>piel de fresa</em>) y los poros oscurecidos en piernas y brazos se solucionaban mediante exfoliantes abrasivos de azúcar o cremas sintéticas repletas de aceites minerales ocluyentes. La realidad dermatológica ha demostrado exactamente lo contrario: la agresión mecánica excesiva inflama el folículo y genera una respuesta de rebote que duplica la producción de queratina.
-        </p>
-
-        <div class="luxury-box">
-          <strong style="color: #B86B60; font-size: 13px;">La Filosofía Boticaria Kivaneli:</strong>
-          <p style="margin: 6px 0 0 0; font-size: 12.5px; color: #444;">
-            El tratamiento <strong>ADEUS™</strong> no busca raspar la piel, sino <strong>disolver osmóticamente los enlaces intercelulares</strong> de los tapones de queratina mientras nutre en profundidad la dermis con <em>Centella Asiática</em> de grado boticario y <em>Omega-7 de Espino Amarillo</em>. Este diario es la herramienta indispensable para reprogramar tu hábito durante 30 días, garantizando que el ciclo biológico de renovación se complete con éxito.
+        <div class="highlight-card">
+          <h4 style="color: #B86B60; margin-bottom: 6px;">El Principio Osmótico de ADEUS™:</h4>
+          <p style="margin: 0; font-size: 12.5px;">
+            La fórmula magistral de <strong>ADEUS™</strong> no lija la epidermis; <strong>disuelve mediante gradiente osmótico</strong> las proteínas de adhesión celular que mantienen el tapón córneo incrustado en el folículo. Al mismo tiempo, infunde <em>Centella Asiática (Madecassoside >95%)</em> y <em>Omega-7 de Espino Amarillo</em>, devolviendo la flexibilidad a la membrana en cada aplicación.
           </p>
         </div>
 
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          Te invitamos a comprometerte contigo misma durante los próximos 30 días. Dedicarte 5 minutos cada mañana y cada noche no es un acto de vanidad; es una declaración de amor propio y respeto hacia el templo que habitas.
+        <p>
+          Este diario ha sido diseñado para acompañarte día tras día. Te pedimos un compromiso noble: dedica 5 minutos en cada ducha a escuchar y cuidar tu piel. Al culminar los 30 días, la transformación no será un efecto pasajero, sino una realidad biológica consolidada.
         </p>
       </div>
       
       <div class="footer-decor">
-        <span>KIVANELI · DIARIO BOTICARIO</span>
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
         <span>PÁGINA 2 DE 36</span>
       </div>
     </div>
@@ -261,69 +138,60 @@
           <span class="badge-tag">SUMARIO EDITORIAL</span>
         </div>
         
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Índice General del Ritual</h2>
+        <h2>Índice General del Ritual de 30 Días</h2>
         <div class="gold-divider"></div>
         
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; line-height: 1.8;">
+        <div class="grid-2" style="font-size: 12px; line-height: 1.8;">
           <div>
-            <div style="font-weight: 800; color: #B86B60; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #E8A598; padding-bottom: 3px;">
-              Fase 1: Fundamentos & Diagnóstico
+            <div style="font-weight: 800; color: #B86B60; border-bottom: 1.5px solid #E8A598; padding-bottom: 3px; text-transform: uppercase; margin-bottom: 6px;">
+              Fase 1: Diagnóstico & Descongestión
             </div>
             <div style="display:flex; justify-content:space-between;"><span>• Prólogo y Manifiesto de Seda</span><span style="font-weight:bold;">Pág. 2</span></div>
             <div style="display:flex; justify-content:space-between;"><span>• La Ciencia de los 30 Días Biológicos</span><span style="font-weight:bold;">Pág. 4</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• Test & Evaluación Inicial de la Piel</span><span style="font-weight:bold;">Pág. 5</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• Test Inicial & Mapa de Zonas Afectadas</span><span style="font-weight:bold;">Pág. 5</span></div>
             <div style="display:flex; justify-content:space-between;"><span>• Protocolo Termodinámico ADEUS™</span><span style="font-weight:bold;">Pág. 6</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• Cepillado en Seco & Drenaje</span><span style="font-weight:bold;">Pág. 7</span></div>
-
-            <div style="font-weight: 800; color: #B86B60; margin-top: 16px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #E8A598; padding-bottom: 3px;">
-              Fase 2: Semana 1 (Días 1 a 7)
-            </div>
-            <div style="display:flex; justify-content:space-between;"><span>• Descongestión & Apertura Poral</span><span style="font-weight:bold;">Pág. 8</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• Fichas Diarias Días 1 a 7</span><span style="font-weight:bold;">Págs. 8-11</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• Técnica de Cepillado en Seco (Linfa)</span><span style="font-weight:bold;">Pág. 7</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• Fichas Diarias: Días 1 a 7</span><span style="font-weight:bold;">Págs. 8-11</span></div>
             <div style="display:flex; justify-content:space-between;"><span>• Hito 1: Balance de Semana 1</span><span style="font-weight:bold;">Pág. 12</span></div>
             <div style="display:flex; justify-content:space-between;"><span>• Nutrición Celular Antifolicular</span><span style="font-weight:bold;">Pág. 13</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• 5 Errores Críticos al Secarse</span><span style="font-weight:bold;">Pág. 14</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• 5 Errores Fatales al Salir de la Ducha</span><span style="font-weight:bold;">Pág. 14</span></div>
 
-            <div style="font-weight: 800; color: #B86B60; margin-top: 16px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #E8A598; padding-bottom: 3px;">
-              Fase 3: Semana 2 (Días 8 a 14)
+            <div style="font-weight: 800; color: #B86B60; border-bottom: 1.5px solid #E8A598; padding-bottom: 3px; text-transform: uppercase; margin: 12px 0 6px 0;">
+              Fase 2: Pulido Osmótico (Semana 2)
             </div>
-            <div style="display:flex; justify-content:space-between;"><span>• Pulido Osmótico & Renovación</span><span style="font-weight:bold;">Pág. 15</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• Fichas Diarias Días 8 a 14</span><span style="font-weight:bold;">Págs. 15-18</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• Fichas Diarias: Días 8 a 14</span><span style="font-weight:bold;">Págs. 15-18</span></div>
             <div style="display:flex; justify-content:space-between;"><span>• Hito 2: Balance de Semana 2</span><span style="font-weight:bold;">Pág. 19</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• Cronobiología y Mitosis Nocturna</span><span style="font-weight:bold;">Pág. 20</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• Cronobiología & Mitosis Nocturna</span><span style="font-weight:bold;">Pág. 20</span></div>
             <div style="display:flex; justify-content:space-between;"><span>• Contraste Térmico Vascular</span><span style="font-weight:bold;">Pág. 21</span></div>
           </div>
 
           <div>
-            <div style="font-weight: 800; color: #B86B60; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #E8A598; padding-bottom: 3px;">
-              Fase 4: Semana 3 (Días 15 a 21)
+            <div style="font-weight: 800; color: #B86B60; border-bottom: 1.5px solid #E8A598; padding-bottom: 3px; text-transform: uppercase; margin-bottom: 6px;">
+              Fase 3: Aclarado & Unificación (Semana 3)
             </div>
-            <div style="display:flex; justify-content:space-between;"><span>• Aclarado & Unificación del Tono</span><span style="font-weight:bold;">Pág. 22</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• Fichas Diarias Días 15 a 21</span><span style="font-weight:bold;">Págs. 22-25</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• Fichas Diarias: Días 15 a 21</span><span style="font-weight:bold;">Págs. 22-25</span></div>
             <div style="display:flex; justify-content:space-between;"><span>• Hito 3: Balance de Semana 3</span><span style="font-weight:bold;">Pág. 26</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• Psicología del Tacto & Cortisol</span><span style="font-weight:bold;">Pág. 27</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• Neuro-Cosmética: Masaje & Cortisol</span><span style="font-weight:bold;">Pág. 27</span></div>
             <div style="display:flex; justify-content:space-between;"><span>• Protección frente a Fricción Textil</span><span style="font-weight:bold;">Pág. 28</span></div>
 
-            <div style="font-weight: 800; color: #B86B60; margin-top: 16px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #E8A598; padding-bottom: 3px;">
-              Fase 5: Semana 4 (Días 22 a 30)
+            <div style="font-weight: 800; color: #B86B60; border-bottom: 1.5px solid #E8A598; padding-bottom: 3px; text-transform: uppercase; margin: 12px 0 6px 0;">
+              Fase 4: Cristalización & Maestría (Semana 4)
             </div>
-            <div style="display:flex; justify-content:space-between;"><span>• Cristalización & Seda Permanente</span><span style="font-weight:bold;">Pág. 29</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• Fichas Diarias Días 22 a 29</span><span style="font-weight:bold;">Págs. 29-32</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• DÍA 30: La Gran Revelación</span><span style="font-weight:bold;">Pág. 33</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• Fichas Diarias: Días 22 a 29</span><span style="font-weight:bold;">Págs. 29-32</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• DÍA 30: La Gran Revelación de Seda</span><span style="font-weight:bold;">Pág. 33</span></div>
             <div style="display:flex; justify-content:space-between;"><span>• Plan de Mantenimiento Anual</span><span style="font-weight:bold;">Pág. 34</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• Preguntas Frecuentes & FAQs</span><span style="font-weight:bold;">Pág. 35</span></div>
-            <div style="display:flex; justify-content:space-between;"><span>• Certificado Boticario & Soporte</span><span style="font-weight:bold;">Pág. 36</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• Consultorio Boticario & FAQs</span><span style="font-weight:bold;">Pág. 35</span></div>
+            <div style="display:flex; justify-content:space-between;"><span>• Diploma Oficial & Canales de Soporte</span><span style="font-weight:bold;">Pág. 36</span></div>
           </div>
         </div>
 
-        <div class="luxury-box" style="margin-top: 25px; text-align: center;">
-          <span style="color: #181514; font-weight: 700;">💡 Instrucción de Oro:</span>
-          Imprime este documento o guárdalo en tu lector de tablet para rellenar tus reflexiones cada noche antes de dormir.
+        <div class="luxury-box" style="margin-top: 14px; text-align: center;">
+          <strong style="color: #181514;">Instrucción de Oro:</strong> Guarda este PDF en tu dispositivo o imprímelo para rellenar tus avances diarios cada noche antes de acostarte.
         </div>
       </div>
       
       <div class="footer-decor">
-        <span>KIVANELI · DIARIO BOTICARIO</span>
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
         <span>PÁGINA 3 DE 36</span>
       </div>
     </div>
@@ -333,41 +201,45 @@
       <div>
         <div class="header-decor">
           <span class="header-brand">KIVANELI MAISON BOTANIQUE</span>
-          <span class="badge-tag">CIENCIA BOTÁNICA</span>
+          <span class="badge-tag">CIENCIA DERMATOLÓGICA</span>
         </div>
         
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">La Biología del Ciclo Celular de 28-30 Días</h2>
+        <h2>La Biología del Ciclo Celular de 28-30 Días</h2>
         <div class="gold-divider"></div>
         
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          La epidermis humana no es una superficie inerte; es un órgano dinámico en constante regeneración. En la capa basal de la epidermis, las células madre epiteliales se dividen continuamente mediante mitosis. Estas nuevas células migran lentamente hacia el exterior a través del estrato espinoso y granuloso, transformándose en <strong>corneocitos</strong> maduros hasta alcanzar el estrato córneo superficial.
+        <p>
+          La epidermis humana se renueva mediante un proceso biológico continuo denominado <strong>queratinización ascendente</strong>. En la capa basal más profunda, las células madre epiteliales se dividen por mitosis. Estas células jóvenes tardan aproximadamente 14 días en ascender hasta la superficie y otros 14 días en desprenderse como corneocitos maduros.
         </p>
 
         <div class="highlight-card">
-          <h4 class="font-serif-luxury" style="color: #B86B60; margin: 0 0 8px 0; font-size: 14px;">¿Por qué los tratamientos rápidos de 3 días siempre fallan?</h4>
-          <p style="font-size: 12.5px; color: #444; margin: 0; line-height: 1.7;">
+          <h4 style="color: #B86B60;">¿Por qué los tratamientos milagro de 3 días siempre fallan?</h4>
+          <p style="margin: 4px 0 0 0; font-size: 12.5px;">
             Un peeling superficial solo elimina la capa más externa de queratina muerta, pero deja intacto el folículo inflamado y la tasa de hiperqueratinización basal. En apenas 72 horas, la piel vuelve a producir tapones córneos aún más duros para defenderse. Se requieren exactamente <strong>28 a 30 días continuos</strong> para que toda la columna celular se renueve bajo la influencia calmante de los triterpenos de la <em>Centella Asiática</em> y los ácidos grasos <em>Omega-7</em>.
           </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 18px;">
-          <div style="background: #FAF7F2; padding: 14px; border-radius: 14px; border: 1px solid #E8A598;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60; text-transform: uppercase;">Días 1 a 14: Fase Lítica</div>
-            <p style="font-size: 11.5px; color: #555; margin: 5px 0 0 0;">
-              Las micro-sales y el ácido esteárico disuelven suavemente los puentes de desmogleína que adhieren el tapón córneo al orificio del folículo.
+        <div class="grid-2" style="margin-top: 10px;">
+          <div class="luxury-box">
+            <strong style="color: #B86B60; font-size: 12.5px;">Fase Lítica (Días 1 a 14):</strong>
+            <p style="font-size: 12px; margin: 4px 0 0 0;">
+              Las micro-sales bio-minerales y el ácido esteárico disuelven suavemente los puentes de desmogleína que adhieren el tapón córneo al orificio del folículo piloso.
             </p>
           </div>
-          <div style="background: #FAF7F2; padding: 14px; border-radius: 14px; border: 1px solid #E8A598;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60; text-transform: uppercase;">Días 15 a 30: Fase Trófica</div>
-            <p style="font-size: 11.5px; color: #555; margin: 5px 0 0 0;">
-              El Madecassoside estimula la síntesis de colágeno dérmico, cerrando el poro y estabilizando la película hidrolipídica para evitar recaídas.
+          <div class="luxury-box">
+            <strong style="color: #B86B60; font-size: 12.5px;">Fase Trófica (Días 15 a 30):</strong>
+            <p style="font-size: 12px; margin: 4px 0 0 0;">
+              El Madecassoside puro estimula a los fibroblastos dérmicos a sintetizar pro-colágeno tipo I y III, cerrando el poro y blindando la barrera hidrolipídica.
             </p>
           </div>
+        </div>
+
+        <div class="luxury-box">
+          <strong style="color: #181514;">Garantía Fisiológica:</strong> La disciplina diaria garantiza que las células nacientes lleguen al estrato córneo con una película lipídica intacta, erradicando la piel de fresa de forma permanente.
         </div>
       </div>
       
       <div class="footer-decor">
-        <span>KIVANELI · DIARIO BOTICARIO</span>
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
         <span>PÁGINA 4 DE 36</span>
       </div>
     </div>
@@ -380,50 +252,51 @@
           <span class="badge-tag">DÍA 0 · DIAGNÓSTICO INICIAL</span>
         </div>
         
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Evaluación & Mapa Cutáneo Inicial</h2>
+        <h2>Evaluación & Mapa Cutáneo Inicial (Día 0)</h2>
         <div class="gold-divider"></div>
         
-        <p style="font-size: 13px; color: #333; line-height: 1.7;">
+        <p>
           Antes de aplicar la primera dosis de ADEUS™, tómate 5 minutos frente a un espejo bien iluminado para registrar el estado exacto de tu piel. Este diagnóstico servirá como referencia para comparar tus resultados al finalizar el ciclo.
         </p>
 
-        <div class="highlight-card" style="margin-top: 15px;">
-          <div style="font-weight: 800; font-size: 13px; color: #B86B60; margin-bottom: 10px; text-transform: uppercase;">1. Diagnóstico de Zonas Afectadas (Marca las que correspondan):</div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>Parte posterior de los brazos (Tríceps)</span></div>
+        <div class="highlight-card">
+          <h4 style="color: #B86B60; margin-bottom: 8px;">1. Diagnóstico de Zonas Afectadas (Marca las que correspondan):</h4>
+          <div class="grid-2">
+            <div class="checklist-item"><div class="check-circle"></div><span>Tríceps / Parte posterior de brazos</span></div>
             <div class="checklist-item"><div class="check-circle"></div><span>Muslos anteriores y laterales</span></div>
             <div class="checklist-item"><div class="check-circle"></div><span>Pantorrillas / Espinillas (Piel de fresa)</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Glúteos y zona subglútea</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Codos y rodillas (Hiperpigmentación)</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Escote / Espalda superior</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Glúteos y pliegue subglúteo</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Codos y rodillas oscurecidas</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Escote y espalda superior</span></div>
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+        <div class="grid-2">
           <div class="luxury-box">
-            <strong style="color: #181514; font-size: 12px;">Escala de Aspereza Táctil (1 al 10):</strong>
-            <p style="font-size: 11px; color: #666; margin: 4px 0 8px 0;">(1 = Seda pura · 10 = Papel de lija muy rugoso)</p>
-            <div style="font-size: 16px; font-weight: 900; color: #B86B60; text-align: center; border: 1px dashed #B86B60; padding: 6px; border-radius: 10px;">
-              Nivel Inicial: [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]
+            <strong style="color: #181514; font-size: 12.5px;">Nivel de Aspereza Táctil Inicial:</strong>
+            <p style="font-size: 11px; color: #666; margin: 3px 0 6px 0;">(1 = Seda pura · 10 = Muy áspero y rugoso)</p>
+            <div style="font-size: 16px; font-weight: 900; color: #B86B60; text-align: center; border: 1.5px dashed #B86B60; padding: 6px; border-radius: 8px; background: #fff;">
+              Nivel Día 0: [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]
             </div>
           </div>
+
           <div class="luxury-box">
-            <strong style="color: #181514; font-size: 12px;">Visibilidad de Puntos Rojos/Oscuros:</strong>
-            <p style="font-size: 11px; color: #666; margin: 4px 0 8px 0;">(1 = Invisibles · 10 = Muy marcados y evidentes)</p>
-            <div style="font-size: 16px; font-weight: 900; color: #B86B60; text-align: center; border: 1px dashed #B86B60; padding: 6px; border-radius: 10px;">
-              Visibilidad: [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]
+            <strong style="color: #181514; font-size: 12.5px;">Visibilidad de Puntos Rojos / Oscuros:</strong>
+            <p style="font-size: 11px; color: #666; margin: 3px 0 6px 0;">(1 = Imperceptibles · 10 = Muy marcados)</p>
+            <div style="font-size: 16px; font-weight: 900; color: #B86B60; text-align: center; border: 1.5px dashed #B86B60; padding: 6px; border-radius: 8px; background: #fff;">
+              Visibilidad Día 0: [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]
             </div>
           </div>
         </div>
 
-        <div style="margin-top: 15px; border: 1.5px dashed #E8A598; border-radius: 16px; padding: 15px; background: #fff;">
-          <strong style="font-size: 12px; color: #181514;">Notas Personales & Expectativa de Transformación:</strong>
-          <div style="height: 60px; border-bottom: 1px dashed #ddd; margin-top: 8px;"></div>
+        <div class="luxury-box">
+          <strong style="font-size: 12px; color: #181514;">Mis Expectativas & Metas de Transformación:</strong>
+          <div style="height: 45px; border-bottom: 1px dashed #ccc; margin-top: 6px;"></div>
         </div>
       </div>
       
       <div class="footer-decor">
-        <span>KIVANELI · DIARIO BOTICARIO</span>
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
         <span>PÁGINA 5 DE 36</span>
       </div>
     </div>
@@ -436,46 +309,56 @@
           <span class="badge-tag">GUÍA TÉCNICA DE APLICACIÓN</span>
         </div>
         
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Protocolo Termodinámico de ADEUS™</h2>
+        <h2>Protocolo Termodinámico de Aplicación de ADEUS™</h2>
         <div class="gold-divider"></div>
         
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
+        <p>
           La efectividad de la fórmula ADEUS™ se multiplica por tres cuando se aplica respetando las leyes de la termodinámica cutánea. Sigue estos 4 pasos precisos en cada sesión de tratamiento:
         </p>
 
-        <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px;">
-          <div class="highlight-card" style="padding: 14px 18px; margin: 0;">
-            <div style="font-weight: 800; font-size: 13px; color: #B86B60;">PASO 1 · PREPARACIÓN TÉRMICA EN LA DUCHA (2 Minutos)</div>
-            <p style="font-size: 12px; color: #444; margin: 4px 0 0 0;">
-              Limpia la zona con agua tibia (nunca excesivamente caliente). El vapor abre suavemente el orificio del poro y ablanda la queratina superficial sin deshidratar.
-            </p>
+        <div class="highlight-card">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <span style="background:#B86B60; color:#fff; font-weight:900; padding:2px 8px; border-radius:50%; font-size:12px;">1</span>
+            <div>
+              <strong style="color: #B86B60; font-size: 13px;">Apertura Térmica en Ducha (2 Minutos):</strong>
+              <p style="margin: 2px 0 0 0; font-size: 12px;">Limpia la zona con agua templada. El vapor dilata suavemente el ostium folicular y reblandece la queratina sin agredir.</p>
+            </div>
           </div>
+        </div>
 
-          <div class="highlight-card" style="padding: 14px 18px; margin: 0;">
-            <div style="font-weight: 800; font-size: 13px; color: #B86B60;">PASO 2 · DOSIFICACIÓN MILIMÉTRICA DE ADEUS™</div>
-            <p style="font-size: 12px; color: #444; margin: 4px 0 0 0;">
-              Extrae una porción equivalente al tamaño de una nuez para cada extremidad. Extiéndela sobre la piel aún ligeramente humedecida para facilitar la emulsión osmótica.
-            </p>
+        <div class="highlight-card">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <span style="background:#B86B60; color:#fff; font-weight:900; padding:2px 8px; border-radius:50%; font-size:12px;">2</span>
+            <div>
+              <strong style="color: #B86B60; font-size: 13px;">Dosificación Milimétrica de ADEUS™:</strong>
+              <p style="margin: 2px 0 0 0; font-size: 12px;">Extrae una porción equivalente al tamaño de una nuez por cada extremidad. Aplica sobre la piel húmeda para favorecer la emulsión.</p>
+            </div>
           </div>
+        </div>
 
-          <div class="highlight-card" style="padding: 14px 18px; margin: 0;">
-            <div style="font-weight: 800; font-size: 13px; color: #B86B60;">PASO 3 · MASAJE CIRCULAR CENTRÍPETO (60 Segundos)</div>
-            <p style="font-size: 12px; color: #444; margin: 4px 0 0 0;">
-              Masajea con las yemas de los dedos en movimientos circulares firmes pero amables, siempre en dirección ascendente hacia el corazón para estimular el drenaje linfático.
-            </p>
+        <div class="highlight-card">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <span style="background:#B86B60; color:#fff; font-weight:900; padding:2px 8px; border-radius:50%; font-size:12px;">3</span>
+            <div>
+              <strong style="color: #B86B60; font-size: 13px;">Masaje Circular Centrípeto (60 Segundos):</strong>
+              <p style="margin: 2px 0 0 0; font-size: 12px;">Masajea con movimientos circulares ascendentes hacia el corazón. Activa el drenaje linfático y desobstruye el poro.</p>
+            </div>
           </div>
+        </div>
 
-          <div class="highlight-card" style="padding: 14px 18px; margin: 0;">
-            <div style="font-weight: 800; font-size: 13px; color: #B86B60;">PASO 4 · LA VENTANA DE ABSORCIÓN DE LOS 3 MINUTOS</div>
-            <p style="font-size: 12px; color: #444; margin: 4px 0 0 0;">
-              Seca la piel con una toalla suave mediante toques delicados (sin frotar). Los aceites botánicos sellarán la hidratación en el estrato córneo durante las siguientes 24 horas.
-            </p>
+        <div class="highlight-card">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <span style="background:#B86B60; color:#fff; font-weight:900; padding:2px 8px; border-radius:50%; font-size:12px;">4</span>
+            <div>
+              <strong style="color: #B86B60; font-size: 13px;">La Ventana de Oro de los 3 Minutos:</strong>
+              <p style="margin: 2px 0 0 0; font-size: 12px;">Seca mediante toques suaves con toalla de algodón. Los lípidos botánicos sellarán la hidratación celular durante 24 horas.</p>
+            </div>
           </div>
         </div>
       </div>
       
       <div class="footer-decor">
-        <span>KIVANELI · DIARIO BOTICARIO</span>
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
         <span>PÁGINA 6 DE 36</span>
       </div>
     </div>
@@ -488,44 +371,44 @@
           <span class="badge-tag">TÉCNICA MAESTRA</span>
         </div>
         
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Cepillado en Seco & Drenaje Linfático</h2>
+        <h2>Cepillado en Seco & Estimulación Linfática</h2>
         <div class="gold-divider"></div>
         
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
+        <p>
           El cepillado en seco (<em>Dry Brushing</em>) es un pilar fundamental de la fitocosmética europea. Antes de entrar a la ducha, pasar un cepillo de cerdas naturales sobre la piel seca activa el flujo linfático, elimina células muertas que obstruyen el poro y despierta la microcirculación dérmica.
         </p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+        <div class="grid-2">
           <div class="luxury-box">
-            <strong style="color: #B86B60; font-size: 12.5px;">Mapa Direccional en Extremidades:</strong>
-            <ul style="padding-left: 16px; margin: 8px 0 0 0; font-size: 11.5px; color: #444; line-height: 1.6;">
-              <li><strong>Pies y Pantorrillas:</strong> Pases largos desde los tobillos hacia las rodillas.</li>
-              <li><strong>Muslos:</strong> Movimientos ascendentes firmes hacia los ganglios de la ingle.</li>
-              <li><strong>Brazos:</strong> Desde las muñecas hacia los ganglios axilares bajo el hombro.</li>
+            <strong style="color: #B86B60; font-size: 12.5px;">Mapa Direccional del Masaje:</strong>
+            <ul style="padding-left: 16px; margin: 6px 0 0 0; font-size: 11.5px; line-height: 1.6;">
+              <li><strong>Pies y Pantorrillas:</strong> Pases largos desde tobillos hacia rodillas.</li>
+              <li><strong>Muslos:</strong> Movimientos firmes hacia los ganglios inguinales.</li>
+              <li><strong>Brazos:</strong> Desde las muñecas hacia las axilas.</li>
               <li><strong>Glúteos:</strong> Movimientos circulares ascendentes.</li>
             </ul>
           </div>
 
           <div class="luxury-box">
-            <strong style="color: #B86B60; font-size: 12.5px;">Frecuencia & Reglas de Oro:</strong>
-            <ul style="padding-left: 16px; margin: 8px 0 0 0; font-size: 11.5px; color: #444; line-height: 1.6;">
-              <li>Realizar de <strong>2 a 3 veces por semana</strong>, nunca sobre piel irritada o recién afeitada.</li>
-              <li>Presión moderada: la piel debe quedar ligeramente rosada por la irrigación, nunca enrojecida o dolorida.</li>
-              <li>Duración total: 3 a 5 minutos antes de la ducha.</li>
+            <strong style="color: #B86B60; font-size: 12.5px;">Reglas de Oro del Cepillado:</strong>
+            <ul style="padding-left: 16px; margin: 6px 0 0 0; font-size: 11.5px; line-height: 1.6;">
+              <li>Frecuencia: <strong>2 a 3 veces por semana</strong> antes de ducharse.</li>
+              <li>Presión suave: la piel debe quedar rosada, nunca enrojecida ni con dolor.</li>
+              <li>Duración total: 3 a 5 minutos por sesión.</li>
             </ul>
           </div>
         </div>
 
-        <div class="highlight-card" style="margin-top: 18px;">
-          <strong style="color: #181514; font-size: 12.5px;">¿Por qué potencia a ADEUS™?</strong>
-          <p style="font-size: 12px; color: #555; margin: 4px 0 0 0; line-height: 1.6;">
-            Al retirar la barrera física de células muertas antes de la ducha, los principios activos de ADEUS™ (Centella Asiática y Omega-7) penetran hasta un <strong>65% más profundo</strong> en el folículo piloso, acelerando los resultados desde los primeros 4 días.
+        <div class="highlight-card">
+          <h4 style="color: #181514; font-size: 12.5px;">Sinergia con ADEUS™:</h4>
+          <p style="margin: 2px 0 0 0; font-size: 12px;">
+            Al retirar la capa de células muertas antes de la ducha, los activos botánicos de ADEUS™ penetran hasta un <strong>65% más profundo</strong> en el folículo piloso, acelerando los resultados desde la primera semana.
           </p>
         </div>
       </div>
       
       <div class="footer-decor">
-        <span>KIVANELI · DIARIO BOTICARIO</span>
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
         <span>PÁGINA 7 DE 36</span>
       </div>
     </div>
@@ -535,933 +418,987 @@
       <div>
         <div class="header-decor">
           <span class="header-brand">SEMANA 1 · DÍA 1 DE 30</span>
-          <span class="badge-tag">FASE DE DESCONGESTIÓN</span>
+          <span class="badge-tag">DESCONGESTIÓN PORAL</span>
         </div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 4px;">Día 1: El Despertar de la Piel</h2>
+        
+        <h2>Día 1: El Despertar de la Piel</h2>
         <div class="gold-divider"></div>
         
         <div class="luxury-box">
           <strong style="color: #B86B60;">Consejo Boticario del Día:</strong> Día 1: Siente el primer contacto con ADEUS. La piel absorbe los lípidos botánicos de forma casi instantánea.
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-          <div class="highlight-card" style="margin: 0; padding: 16px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60; text-transform: uppercase;">☀️ Ritual de Mañana</div>
-            <div class="checklist-item" style="margin-top: 10px;"><div class="check-circle"></div><span>Ducha tibia de apertura (2 min)</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Aplicación masaje ADEUS™ en húmedo</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Secado a toques delicados</span></div>
-            <div style="margin-top: 12px; font-size: 11px; color: #666;">Sensación Matutina:</div>
-            <div style="border-bottom: 1px dashed #B86B60; height: 24px;"></div>
+        <div class="grid-2">
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">☀️ Ritual de Mañana</h4>
+            <div class="checklist-item"><div class="check-circle"></div><span>Ducha templada con vapor de apertura</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Aplicación de ADEUS™ en brazos y piernas</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Secado a toques suaves con toalla</span></div>
+            <div style="font-size: 11px; color: #666; margin-top: 8px;">Sensación al vestir: __________________</div>
           </div>
 
-          <div class="highlight-card" style="margin: 0; padding: 16px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60; text-transform: uppercase;">🌙 Ritual de Noche</div>
-            <div class="checklist-item" style="margin-top: 10px;"><div class="check-circle"></div><span>Inspección táctil de piernas y brazos</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Vaso de agua mineral + descanso</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Ropa de algodón holgada</span></div>
-            <div style="margin-top: 12px; font-size: 11px; color: #666;">Nivel de Suavidad Percibido (1-10):</div>
-            <div style="font-weight: 800; color: #B86B60; font-size: 14px; text-align: center; margin-top: 4px;">[ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">🌙 Ritual de Noche</h4>
+            <div class="checklist-item"><div class="check-circle"></div><span>Inspección táctil en frío</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Vaso de agua mineral con limón</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Ropa de descanso de algodón suelta</span></div>
+            <div style="font-size: 11px; color: #666; margin-top: 8px;">Nivel de confort (1-10): [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
           </div>
         </div>
 
-        <div style="margin-top: 18px; border: 1.5px dashed #E8A598; border-radius: 16px; padding: 16px; background: #fff;">
-          <strong style="font-size: 12px; color: #181514;">Reflexión Diaria & Sensaciones Cutáneas:</strong>
-          <p style="font-size: 11.5px; color: #777; margin: 4px 0 10px 0;">¿Cómo sientes la piel al tacto tras la primera absorción de ADEUS?</p>
-          <div style="border-bottom: 1px dashed #ddd; height: 25px;"></div>
-          <div style="border-bottom: 1px dashed #ddd; height: 25px;"></div>
+        <div class="luxury-box">
+          <strong style="color: #181514;">Registro de Sensaciones & Tacto del Día 1:</strong>
+          <p style="font-size: 11.5px; color: #666; margin: 4px 0 8px 0;">¿Cómo percibes la textura de tus brazos y piernas tras la primera absorción de los lípidos botánicos?</p>
+          <div style="height: 45px; border-bottom: 1px dashed #ccc;"></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 8 DE 36</span></div>
+      
+      <div class="footer-decor">
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
+        <span>PÁGINA 8 DE 36</span>
+      </div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">SEMANA 1 · DÍAS 2 & 3</span><span class="badge-tag">FASE DE DESCONGESTIÓN</span></div>
+        <div class="header-decor">
+          <span class="header-brand">SEMANA 1 · DÍAS 2 & 3</span>
+          <span class="badge-tag">DESCONGESTIÓN PORAL</span>
+        </div>
         
         <!-- DÍA 2 -->
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 2: Sellado del Manto Lipídico</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 2: Sellado del Manto Lipídico</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;">
-            <strong>Tip:</strong> Día 2: Evita frotar con la toalla tras la ducha; el secado a toques conserva el manto lipídico recién creado.
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;">
+            <strong>Tip Boticario:</strong> Día 2: Evita frotar con la toalla tras la ducha; el secado a toques conserva el manto lipídico recién creado.
           </div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>Masaje ascendente realizado</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Piel sin sensación de tirantez</span></div>
+          <div class="grid-2" style="margin-bottom: 6px;">
+            <div class="checklist-item"><div class="check-circle"></div><span>Masaje centrípeto completado</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Cero sensación de tirantez o picor</span></div>
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 2: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 2: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <!-- DÍA 3 -->
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 3: Primer Desprendimiento Córneo</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 3: Primer Desprendimiento Córneo</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;">
-            <strong>Tip:</strong> Día 3: Revisa la textura en la parte posterior de los brazos. Las asperezas más finas comienzan a ceder.
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;">
+            <strong>Tip Boticario:</strong> Día 3: Revisa la textura en la parte posterior de los brazos. Las asperezas más finas comienzan a ceder.
           </div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>Zonas rugosas más flexibles</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>2L de agua ingeridos</span></div>
+          <div class="grid-2" style="margin-bottom: 6px;">
+            <div class="checklist-item"><div class="check-circle"></div><span>Asperezas en brazos más suaves</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>2 litros de agua consumidos</span></div>
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 3: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 3: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
-        <div class="highlight-card" style="margin-top: 20px;">
-          <strong style="color: #B86B60; font-size: 12px;">Micro-Inspección Táctil:</strong> Pasa el dorso de tus dedos por la parte exterior del brazo. ¿Notas menor fricción al deslizar? Registra la evolución.
+        <div class="highlight-card" style="margin-top: 14px;">
+          <strong style="color: #B86B60; font-size: 12px;">Auto-Inspección Táctil:</strong> Desliza el dorso de la mano por el muslo. ¿Sientes que el tacto es más continuo y menos rugoso? Anota la sensación.
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 9 DE 36</span></div>
+      
+      <div class="footer-decor">
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
+        <span>PÁGINA 9 DE 36</span>
+      </div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">SEMANA 1 · DÍAS 4 & 5</span><span class="badge-tag">FASE DE DESCONGESTIÓN</span></div>
+        <div class="header-decor">
+          <span class="header-brand">SEMANA 1 · DÍAS 4 & 5</span>
+          <span class="badge-tag">DESCONGESTIÓN PORAL</span>
+        </div>
         
         <!-- DÍA 4 -->
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 4: Hidratación Folicular Activa</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 4: Hidratación Folicular Profunda</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 4: Mantén una hidratación hídrica constante: bebe al menos 2 litros de agua mineral para nutrir el estrato basal.</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>Absorción completa sin residuo graso</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Cero picor tras vestirse</span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;">
+            <strong>Tip Boticario:</strong> Día 4: Mantén una hidratación hídrica constante: bebe al menos 2 litros de agua mineral para nutrir el estrato basal.
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 4: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="grid-2" style="margin-bottom: 6px;">
+            <div class="checklist-item"><div class="check-circle"></div><span>Absorción instantánea sin residuo pegajoso</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Cero picor al usar ropa ajustada</span></div>
+          </div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 4: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <!-- DÍA 5 -->
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 5: Atenuación del Tono Rojizo</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 5: Atenuación del Enrojecimiento</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 5: Primer cambio visual: los puntos de fresa más superficiales pierden su tono rojizo inflamatorio.</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>Puntos rojos menos inflamados</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Tacto sedoso tras 12h de aplicación</span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;">
+            <strong>Tip Boticario:</strong> Día 5: Primer cambio visual: los puntos de fresa más superficiales pierden su tono rojizo inflamatorio.
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 5: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="grid-2" style="margin-bottom: 6px;">
+            <div class="checklist-item"><div class="check-circle"></div><span>Puntos rojos menos marcados</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Tacto aterciopelado prolongado</span></div>
+          </div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 5: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
-        <div class="highlight-card" style="margin-top: 20px;">
-          <strong style="color: #B86B60; font-size: 12px;">Regla Boticaria:</strong> La constancia en estos primeros 5 días prepara el terreno celular para la renovación profunda que tendrá lugar en la segunda semana.
+        <div class="highlight-card" style="margin-top: 14px;">
+          <strong style="color: #B86B60; font-size: 12px;">Hito Celular:</strong> Los corneocitos superficiales están recibiendo el aporte de lípidos bioidénticos. La piel se vuelve más elástica y receptiva.
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 10 DE 36</span></div>
+      
+      <div class="footer-decor">
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
+        <span>PÁGINA 10 DE 36</span>
+      </div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">SEMANA 1 · DÍAS 6 & 7</span><span class="badge-tag">FASE DE DESCONGESTIÓN</span></div>
+        <div class="header-decor">
+          <span class="header-brand">SEMANA 1 · DÍAS 6 & 7</span>
+          <span class="badge-tag">DESCONGESTIÓN PORAL</span>
+        </div>
         
         <!-- DÍA 6 -->
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 6: Refuerzo en Codos y Rodillas</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 6: Refuerzo en Codos y Rodillas</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 6: Masajea durante 10 segundos extra en la zona de codos y rodillas para acelerar el recambio celular.</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>Masaje de 10s extra en articulaciones</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Suavidad homogénea en muslos</span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;">
+            <strong>Tip Boticario:</strong> Día 6: Masajea durante 10 segundos extra en la zona de codos y rodillas para acelerar el recambio celular.
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 6: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="grid-2" style="margin-bottom: 6px;">
+            <div class="checklist-item"><div class="check-circle"></div><span>Masaje reforzado de 10s en articulaciones</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Homogeneidad táctil en pantorrillas</span></div>
+          </div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 6: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <!-- DÍA 7 -->
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 7: Culminación de la Primera Fase</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 7: Fin de la Primera Fase</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 7: ¡Primer hito cumplido! Evalúa la reducción de asperezas en tu balance de fin de semana.</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>7 días consecutivos completados</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Listo para la evaluación de hito</span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;">
+            <strong>Tip Boticario:</strong> Día 7: ¡Primer hito cumplido! Evalúa la reducción de asperezas en tu balance de fin de semana.
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 7: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="grid-2" style="margin-bottom: 6px;">
+            <div class="checklist-item"><div class="check-circle"></div><span>7 días consecutivos sin fallar</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Preparada para el balance de Semana 1</span></div>
+          </div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 7: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
-        <div class="luxury-box" style="margin-top: 20px; text-align: center;">
-          🎉 <strong>¡Enhorabuena!</strong> Has superado la primera semana crítica. Pasa a la siguiente página para realizar tu primer balance comparativo.
+        <div class="luxury-box" style="margin-top: 14px; text-align: center;">
+          🎉 <strong>¡Enhorabuena por completar los primeros 7 días!</strong> Pasa a la siguiente página para realizar tu primera evaluación comparativa.
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 11 DE 36</span></div>
+      
+      <div class="footer-decor">
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
+        <span>PÁGINA 11 DE 36</span>
+      </div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">EVALUACIÓN DE HITO</span><span class="badge-tag">FIN DE SEMANA 1</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Balance de Transformación · Día 7</h2>
+        <div class="header-decor">
+          <span class="header-brand">EVALUACIÓN DE HITO</span>
+          <span class="badge-tag">FIN DE SEMANA 1</span>
+        </div>
+        
+        <h2>Balance de Transformación · Día 7</h2>
         <div class="gold-divider"></div>
         
         <div class="highlight-card">
-          <strong style="color: #B86B60; font-size: 13px;">Comparativa Táctil & Visual tras 7 Días:</strong>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 12px; font-size: 12px;">
-            <div style="background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #E8A598;">
-              <div style="font-weight: 800; color: #888;">DÍA 0 (INICIAL):</div>
-              <div style="font-size: 14px; font-weight: 900; color: #181514; margin-top: 4px;">Nivel Aspereza: [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+          <h4 style="color: #B86B60; margin-bottom: 8px;">Comparativa Táctil & Visual tras 7 Días:</h4>
+          <div class="grid-2">
+            <div style="background: #fff; padding: 12px; border-radius: 10px; border: 1px solid #E8A598; text-align: center;">
+              <div style="font-size: 11px; font-weight: 800; color: #888;">DÍA 0 (INICIAL):</div>
+              <div style="font-size: 16px; font-weight: 900; color: #181514; margin-top: 4px;">Aspereza: [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
             </div>
-            <div style="background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #E8A598;">
-              <div style="font-weight: 800; color: #B86B60;">DÍA 7 (HOY):</div>
-              <div style="font-size: 14px; font-weight: 900; color: #B86B60; margin-top: 4px;">Nivel Aspereza: [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+            <div style="background: #fff; padding: 12px; border-radius: 10px; border: 2px solid #B86B60; text-align: center;">
+              <div style="font-size: 11px; font-weight: 800; color: #B86B60;">DÍA 7 (HOY):</div>
+              <div style="font-size: 16px; font-weight: 900; color: #B86B60; margin-top: 4px;">Aspereza: [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
             </div>
           </div>
         </div>
 
-        <div class="luxury-box" style="margin-top: 18px;">
-          <strong style="color: #181514; font-size: 12.5px;">Checklist de Logros Semana 1:</strong>
-          <div class="checklist-item" style="margin-top: 8px;"><div class="check-circle"></div><span>Disminución del 40-50% en la rugosidad al tacto en seco.</span></div>
-          <div class="checklist-item"><div class="check-circle"></div><span>Menor enrojecimiento periporal tras salir de la ducha.</span></div>
-          <div class="checklist-item"><div class="check-circle"></div><span>Hábito de autocuidado diario 100% instaurado en mi rutina.</span></div>
+        <div class="luxury-box">
+          <strong style="color: #181514; font-size: 12.5px;">Checklist de Logros Alcanzados en Semana 1:</strong>
+          <div class="checklist-item" style="margin-top: 8px;"><div class="check-circle"></div><span>Disminución perceptible del 40-50% en la aspereza en seco.</span></div>
+          <div class="checklist-item"><div class="check-circle"></div><span>Desaparición de la irritación periporal tras la ducha.</span></div>
+          <div class="checklist-item"><div class="check-circle"></div><span>Hábito de autocuidado diario 100% integrado sin esfuerzo.</span></div>
         </div>
 
-        <div style="margin-top: 18px; border: 1.5px dashed #E8A598; border-radius: 16px; padding: 15px; background: #fff;">
-          <strong style="font-size: 12px; color: #181514;">Notas de la Autora para la Semana 2:</strong>
-          <div style="height: 50px; border-bottom: 1px dashed #ddd; margin-top: 6px;"></div>
+        <div class="luxury-box">
+          <strong style="font-size: 12px; color: #181514;">Mis Reflexiones de Cierre de Semana 1:</strong>
+          <div style="height: 45px; border-bottom: 1px dashed #ccc; margin-top: 6px;"></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 12 DE 36</span></div>
+      
+      <div class="footer-decor">
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
+        <span>PÁGINA 12 DE 36</span>
+      </div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">NUTRICIÓN CELULAR</span><span class="badge-tag">GUÍA DE AUTOR</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Dieta Antifolicular: Los 4 Nutrientes de Oro</h2>
+        <div class="header-decor">
+          <span class="header-brand">NUTRICIÓN CELULAR</span>
+          <span class="badge-tag">GUÍA BOTICARIA</span>
+        </div>
+        
+        <h2>Dieta Antifolicular: Los 4 Nutrientes de Oro</h2>
         <div class="gold-divider"></div>
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          La piel es el espejo del metabolismo interno. Para evitar que el folículo piloso vuelva a producir queratina densa, complementa la aplicación tópica de ADEUS™ con estos 4 nutrientes esenciales:
+        
+        <p>
+          La piel es el reflejo del metabolismo interno. Para evitar que el folículo piloso sobreproduzca queratina densa, complementa la aplicación tópica de ADEUS™ con estos 4 nutrientes esenciales:
         </p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 15px;">
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60;">1. Ácidos Grasos Omega-3 & 7</div>
-            <p style="font-size: 11.5px; color: #444; margin: 4px 0 0 0;">
-              Semillas de chía, nueces, salmón salvaje y aceite de oliva virgen extra. Fluidifican el sebo del poro y reducen la inflamación dérmica.
+        <div class="grid-2">
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">1. Ácidos Grasos Omega-3 & 7</h4>
+            <p style="font-size: 11.5px; margin: 4px 0 0 0;">
+              Semillas de chía, nueces, salmón y aceite de oliva virgen extra. Fluidifican el sebo del poro y reducen la respuesta inflamatoria dérmica.
             </p>
           </div>
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60;">2. Beta-Caroteno & Vitamina A</div>
-            <p style="font-size: 11.5px; color: #444; margin: 4px 0 0 0;">
-              Zanahorias, calabaza, espinacas y boniatos. Regulan la diferenciación de los queratinocitos evitando taponamientos.
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">2. Beta-Caroteno & Vitamina A</h4>
+            <p style="font-size: 11.5px; margin: 4px 0 0 0;">
+              Zanahorias, boniato, espinacas y calabaza. Regulan la diferenciación de los queratinocitos evitando la formación de tapones córneos.
             </p>
           </div>
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60;">3. Zinc Biodisponible</div>
-            <p style="font-size: 11.5px; color: #444; margin: 4px 0 0 0;">
-              Semillas de calabaza, garbanzos y copos de avena integral. Fundamental para la síntesis de colágeno y cicatrización poral.
+        </div>
+
+        <div class="grid-2">
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">3. Zinc Biodisponible</h4>
+            <p style="font-size: 11.5px; margin: 4px 0 0 0;">
+              Semillas de calabaza, garbanzos y copos de avena. Cofactor indispensable en la síntesis de colágeno y cicatrización periporal.
             </p>
           </div>
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60;">4. Polifenoles Antioxidantes</div>
-            <p style="font-size: 11.5px; color: #444; margin: 4px 0 0 0;">
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">4. Polifenoles Antioxidantes</h4>
+            <p style="font-size: 11.5px; margin: 4px 0 0 0;">
               Arándanos, té verde matcha y cacao puro (>85%). Neutralizan los radicales libres que oxidan los lípidos de la barrera cutánea.
             </p>
           </div>
         </div>
+
+        <div class="luxury-box">
+          <strong style="color: #181514;">Consejo de Hidratación:</strong> Bebe 2 a 2.5 litros de agua al día para mantener túrgida la matriz extracelular dérmica.
+        </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 13 DE 36</span></div>
+      
+      <div class="footer-decor">
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
+        <span>PÁGINA 13 DE 36</span>
+      </div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">PREVENCIÓN BOTICARIA</span><span class="badge-tag">HÁBITOS DE DUCHA</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Los 5 Errores Críticos al Salir de la Ducha</h2>
+        <div class="header-decor">
+          <span class="header-brand">PREVENCIÓN BOTICARIA</span>
+          <span class="badge-tag">HÁBITOS DE DUCHA</span>
+        </div>
+        
+        <h2>Los 5 Errores Críticos al Salir de la Ducha</h2>
         <div class="gold-divider"></div>
         
-        <div class="luxury-box" style="font-size: 12.5px; line-height: 1.8;">
-          <div style="margin-bottom: 10px;">
+        <div class="luxury-box" style="font-size: 12px; line-height: 1.7;">
+          <div style="margin-bottom: 8px;">
             <strong style="color: #B86B60;">1. Friccionar violentamente con la toalla:</strong>
-            <p style="margin: 2px 0 0 0; color: #555;">La fricción mecánica rompe la queratina ablandada y desgarra los micro-capilares. Seca siempre mediante toques suaves como una caricia.</p>
+            <p style="margin: 2px 0 0 0; color: #444;">La fricción mecánica rompe la queratina ablandada y desgarra micro-capilares. Seca siempre a toques suaves.</p>
           </div>
-          <div style="margin-bottom: 10px;">
+          <div style="margin-bottom: 8px;">
             <strong style="color: #B86B60;">2. Usar agua a temperatura de ebullición (>39ºC):</strong>
-            <p style="margin: 2px 0 0 0; color: #555;">El agua excesivamente caliente diluye los lípidos intercorneocitarios protectores, provocando una deshidratación por rebote masiva.</p>
+            <p style="margin: 2px 0 0 0; color: #444;">El agua hirviendo disuelve los lípidos intercorneocitarios protectores, provocando deshidratación por rebote masiva.</p>
           </div>
-          <div style="margin-bottom: 10px;">
+          <div style="margin-bottom: 8px;">
             <strong style="color: #B86B60;">3. Vestir inmediatamente ropa sintética ajustada (Poliéster / Lycra):</strong>
-            <p style="margin: 2px 0 0 0; color: #555;">Las fibras plásticas no transpiran y acumulan bacterias en los poros recién abiertos. Opta por algodón orgánico o lino.</p>
+            <p style="margin: 2px 0 0 0; color: #444;">Las fibras plásticas atrapan bacterias en los poros recién abiertos. Opta por algodón orgánico o lino.</p>
           </div>
-          <div style="margin-bottom: 10px;">
+          <div style="margin-bottom: 8px;">
             <strong style="color: #B86B60;">4. Esperar más de 3 minutos para hidratar:</strong>
-            <p style="margin: 2px 0 0 0; color: #555;">La pérdida transepidérmica de agua (TEWL) se acelera a los 180 segundos de salir de la ducha. Sella los activos de inmediato.</p>
+            <p style="margin: 2px 0 0 0; color: #444;">La evaporación transepidérmica (TEWL) se dispara a los 180 segundos. Aplica ADEUS™ de inmediato.</p>
           </div>
           <div>
             <strong style="color: #B86B60;">5. Interrumpir el ritual al notar las primeras mejoras:</strong>
-            <p style="margin: 2px 0 0 0; color: #555;">El alivio superficial no significa que el ciclo celular haya terminado. Se requieren 30 días para consolidar el tejido.</p>
+            <p style="margin: 2px 0 0 0; color: #444;">El alivio temprano no significa que el ciclo celular haya culminado. Se requieren 30 días continuos.</p>
           </div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 14 DE 36</span></div>
+      
+      <div class="footer-decor">
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
+        <span>PÁGINA 14 DE 36</span>
+      </div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">SEMANA 2 · DÍA 8 DE 30</span><span class="badge-tag">PULIDO OSMÓTICO</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 4px;">Día 8: Inicio del Pulido Osmótico</h2>
+        <div class="header-decor">
+          <span class="header-brand">SEMANA 2 · DÍA 8 DE 30</span>
+          <span class="badge-tag">PULIDO OSMÓTICO</span>
+        </div>
+        
+        <h2>Día 8: Inicio del Pulido Osmótico</h2>
         <div class="gold-divider"></div>
-        <div class="luxury-box"><strong style="color: #B86B60;">Consejo Boticario:</strong> Día 8: Comienza la Fase de Pulido Osmótico. La barrera cutánea está desinflamada y lista para regenerarse.</div>
+        
+        <div class="luxury-box">
+          <strong style="color: #B86B60;">Consejo Boticario del Día:</strong> Día 8: Comienza la Fase de Pulido Osmótico. La barrera cutánea está desinflamada y lista para regenerarse.
+        </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-          <div class="highlight-card" style="margin: 0; padding: 16px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60; text-transform: uppercase;">☀️ Ritual de Mañana</div>
-            <div class="checklist-item" style="margin-top: 10px;"><div class="check-circle"></div><span>Ducha tibia + Masaje ADEUS™</span></div>
+        <div class="grid-2">
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">☀️ Ritual de Mañana</h4>
+            <div class="checklist-item"><div class="check-circle"></div><span>Ducha templada + Masaje ADEUS™</span></div>
             <div class="checklist-item"><div class="check-circle"></div><span>Enfoque en muslos y glúteos</span></div>
-            <div style="margin-top: 12px; font-size: 11px; color: #666;">Sensación Matutina:</div>
-            <div style="border-bottom: 1px dashed #B86B60; height: 24px;"></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Secado a toques delicados</span></div>
+            <div style="font-size: 11px; color: #666; margin-top: 8px;">Tacto matutino: ____________________</div>
           </div>
-          <div class="highlight-card" style="margin: 0; padding: 16px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60; text-transform: uppercase;">🌙 Ritual de Noche</div>
-            <div class="checklist-item" style="margin-top: 10px;"><div class="check-circle"></div><span>Tacto suave y sin tirantez</span></div>
+
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">🌙 Ritual de Noche</h4>
+            <div class="checklist-item"><div class="check-circle"></div><span>Piel suave y flexible al tacto</span></div>
             <div class="checklist-item"><div class="check-circle"></div><span>Hidratación interna óptima</span></div>
-            <div style="margin-top: 12px; font-size: 11px; color: #666;">Nivel de Suavidad (1-10): [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Ropa suelta de descanso</span></div>
+            <div style="font-size: 11px; color: #666; margin-top: 8px;">Nivel de suavidad (1-10): [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
           </div>
         </div>
 
-        <div style="margin-top: 18px; border: 1.5px dashed #E8A598; border-radius: 16px; padding: 16px; background: #fff;">
-          <strong style="font-size: 12px; color: #181514;">Reflexión Día 8:</strong>
-          <div style="border-bottom: 1px dashed #ddd; height: 25px; margin-top: 8px;"></div>
-          <div style="border-bottom: 1px dashed #ddd; height: 25px;"></div>
+        <div class="luxury-box">
+          <strong style="color: #181514;">Reflexión Día 8:</strong>
+          <p style="font-size: 11.5px; color: #666; margin: 4px 0 8px 0;">La barrera está desinflamada y lista para la renovación profunda de la segunda semana.</p>
+          <div style="height: 45px; border-bottom: 1px dashed #ccc;"></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 15 DE 36</span></div>
+      
+      <div class="footer-decor">
+        <span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span>
+        <span>PÁGINA 15 DE 36</span>
+      </div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">SEMANA 2 · DÍAS 9 & 10</span><span class="badge-tag">PULIDO OSMÓTICO</span></div>
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 9: Integración de la Barra Kójica</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 9: Integración de la Barra Kójica</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 9: Integra la barra de Ácido Kójico si buscas unificar el tono en zonas con marcas de fricción o sol.</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>Espuma kójica 60s en zonas oscuras</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Aplicación ADEUS post-ducha</span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 9: Integra la barra de Ácido Kójico si buscas unificar el tono en zonas con marcas de fricción o sol.</div>
+          <div class="grid-2" style="margin-bottom: 6px;">
+            <div class="checklist-item"><div class="check-circle"></div><span>Espuma kójica 60s en zonas oscurecidas</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Aplicación de ADEUS™ post-ducha</span></div>
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 9: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 9: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 10: Luminosidad y Cierre Poral</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 10: Cierre Poral y Luminosidad</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 10: La piel de las piernas refleja la luz con mayor uniformidad; el poro comienza a cerrarse.</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>Menor visibilidad de poros oscuros</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Tacto uniforme en piernas</span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 10: La piel de las piernas refleja la luz con mayor uniformidad; el poro comienza a cerrarse.</div>
+          <div class="grid-2" style="margin-bottom: 6px;">
+            <div class="checklist-item"><div class="check-circle"></div><span>Poros visiblemente más cerrados</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Tono homogéneo bajo luz diurna</span></div>
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 10: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 10: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 16 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 16 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">SEMANA 2 · DÍAS 11 & 12</span><span class="badge-tag">PULIDO OSMÓTICO</span></div>
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 11: Estimulación Microcirculatoria</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 11: Estimulación Microcirculatoria</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 11: Realiza un cepillado en seco suave antes de la ducha de la noche para activar la linfa.</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>Cepillado en seco realizado (3 min)</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Ligero calor agradable en extremidades</span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 11: Realiza un cepillado en seco suave antes de la ducha de la noche para activar la linfa.</div>
+          <div class="grid-2" style="margin-bottom: 6px;">
+            <div class="checklist-item"><div class="check-circle"></div><span>Cepillado en seco previo realizado</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Calor agradable en extremidades</span></div>
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 11: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 11: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 12: La Ventana de Oro de 3 Minutos</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 12: Ventana de Oro de 3 Minutos</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 12: Aplica ADEUS™ inmediatamente tras salir de la ducha, antes de que pasen los 3 minutos de oro.</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
-            <div class="checklist-item"><div class="check-circle"></div><span>Aplicación inmediata post-ducha</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Nutrición profunda percibida</span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 12: Aplica ADEUS™ inmediatamente tras salir de la ducha, antes de que pasen los 3 minutos de oro.</div>
+          <div class="grid-2" style="margin-bottom: 6px;">
+            <div class="checklist-item"><div class="check-circle"></div><span>Aplicación inmediata al salir del agua</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Nutrición lipídica profunda</span></div>
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 12: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 12: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 17 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 17 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">SEMANA 2 · DÍAS 13 & 14</span><span class="badge-tag">PULIDO OSMÓTICO</span></div>
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 13: Suavidad Táctil en Seco</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 13: Suavidad Táctil en Seco</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 13: Observa la suavidad táctil al pasar la palma de tu mano en seco: ya no se siente rugosa.</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 13: Observa la suavidad táctil al pasar la palma de tu mano en seco: ya no se siente rugosa.</div>
+          <div class="grid-2" style="margin-bottom: 6px;">
             <div class="checklist-item"><div class="check-circle"></div><span>Deslizamiento suave sin asperezas</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Tríceps y muslos homogéneos</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Brazos y muslos homogéneos</span></div>
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 13: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 13: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 14: Ecuador del Ritual Boticario</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 14: Ecuador del Ritual (Mitad de Ciclo)</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 14: Ecuador del ritual: el 60% de los tapones de queratina han sido disueltos osmóticamente.</div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 11px;">
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 14: Ecuador del ritual: el 60% de los tapones de queratina han sido disueltos osmóticamente.</div>
+          <div class="grid-2" style="margin-bottom: 6px;">
             <div class="checklist-item"><div class="check-circle"></div><span>14 días de fidelidad boticaria</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Preparada para la Fase de Aclarado</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Lista para el balance de mitad de ritual</span></div>
           </div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 14: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 14: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 18 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 18 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">EVALUACIÓN DE HITO</span><span class="badge-tag">FIN DE SEMANA 2</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Balance de Transformación · Día 14</h2>
+        <h2>Balance de Transformación · Día 14 (Ecuador)</h2>
         <div class="gold-divider"></div>
         
         <div class="highlight-card">
-          <strong style="color: #B86B60; font-size: 13px;">Evolución Acumulada a Mitad de Ritual:</strong>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 12px; font-size: 12px;">
-            <div style="background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #E8A598;">
-              <div style="font-weight: 800; color: #888;">DÍA 0 (INICIAL): [ ___ / 10 ]</div>
-              <div style="font-weight: 800; color: #888; margin-top: 4px;">DÍA 7 (SEM 1): [ ___ / 10 ]</div>
+          <h4 style="color: #B86B60; margin-bottom: 8px;">Evolución Acumulada a Mitad de Ritual:</h4>
+          <div class="grid-2">
+            <div style="background: #fff; padding: 12px; border-radius: 10px; border: 1px solid #E8A598; text-align: center;">
+              <div style="font-size: 11px; font-weight: 800; color: #888;">DÍA 0: [ ___ / 10 ]</div>
+              <div style="font-size: 11px; font-weight: 800; color: #888; margin-top: 4px;">DÍA 7: [ ___ / 10 ]</div>
             </div>
-            <div style="background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #E8A598;">
-              <div style="font-weight: 800; color: #B86B60;">DÍA 14 (HOY):</div>
-              <div style="font-size: 16px; font-weight: 900; color: #B86B60; margin-top: 4px;">Nivel Aspereza: [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+            <div style="background: #fff; padding: 12px; border-radius: 10px; border: 2px solid #B86B60; text-align: center;">
+              <div style="font-size: 11px; font-weight: 800; color: #B86B60;">DÍA 14 (HOY):</div>
+              <div style="font-size: 16px; font-weight: 900; color: #B86B60; margin-top: 4px;">Aspereza: [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
             </div>
           </div>
         </div>
 
-        <div class="luxury-box" style="margin-top: 18px;">
-          <strong style="color: #181514; font-size: 12.5px;">Manifestaciones Clínicas del Día 14:</strong>
-          <div class="checklist-item" style="margin-top: 8px;"><div class="check-circle"></div><span>Disolución del 60% de los micro-tapones córneos foliculares.</span></div>
-          <div class="checklist-item"><div class="check-circle"></div><span>Mejora evidente en la retención hídrica (la piel no pide crema a media tarde).</span></div>
-          <div class="checklist-item"><div class="check-circle"></div><span>Tono de la piel más homogéneo y luminoso bajo luz natural.</span></div>
+        <div class="luxury-box">
+          <strong style="color: #181514; font-size: 12.5px;">Manifestaciones Clínico-Botánicas del Día 14:</strong>
+          <div class="checklist-item" style="margin-top: 8px;"><div class="check-circle"></div><span>Disolución de más del 60% de los tapones de queratina.</span></div>
+          <div class="checklist-item"><div class="check-circle"></div><span>Retención hídrica natural: la piel no se reseca a lo largo del día.</span></div>
+          <div class="checklist-item"><div class="check-circle"></div><span>Tono satinado y luminoso sin necesidad de productos adicionales.</span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 19 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 19 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">CIENCIA DERMATOLÓGICA</span><span class="badge-tag">CRONOBIOLOGÍA</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Cronobiología: El Secreto de la Mitosis Nocturna</h2>
+        <h2>Cronobiología Dérmica: Mitosis de 23:00 a 04:00</h2>
         <div class="gold-divider"></div>
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          La división celular de la capa basal sigue un ritmo circadiano estricto. Entre las <strong>23:00 y las 04:00</strong> de la madrugada, la velocidad de mitosis de los queratinocitos se triplica, mientras que la permeabilidad de la barrera cutánea alcanza su punto máximo.
+        <p>
+          La división celular de la capa basal sigue un ritmo circadiano estricto. Entre las <strong>23:00 y las 04:00</strong> de la madrugada, la mitosis de los queratinocitos se triplica y la permeabilidad celular alcanza su punto máximo.
         </p>
 
         <div class="highlight-card">
-          <strong style="color: #B86B60; font-size: 13px;">¿Por qué la aplicación nocturna de ADEUS™ es insustituible?</strong>
-          <p style="font-size: 12px; color: #444; margin: 6px 0 0 0; line-height: 1.7;">
-            Al aplicar ADEUS antes de acostarte, sus triterpenos de Centella Asiática actúan como cofactores directos durante el pico de proliferación celular nocturna, asegurando que las nuevas células que ascienden al estrato córneo nazcan con una matriz lipídica flexible y perfectamente hidratada.
+          <h4 style="color: #B86B60;">Por qué la aplicación nocturna de ADEUS™ es insustituible:</h4>
+          <p style="font-size: 12px; margin: 4px 0 0 0;">
+            Los triterpenos de Centella Asiática actúan como cofactores directos durante el pico de proliferación celular nocturna, asegurando que las nuevas células que ascienden al estrato córneo nazcan con una matriz lipídica flexible y perfectamente estructurada.
           </p>
         </div>
 
-        <div class="luxury-box" style="margin-top: 15px;">
-          <strong style="color: #181514; font-size: 12.5px;">Condiciones Óptimas para la Noche:</strong>
-          <ul style="padding-left: 16px; margin: 6px 0 0 0; font-size: 11.5px; color: #555; line-height: 1.6;">
-            <li>Temperatura de la habitación: entre 18ºC y 20ºC para evitar la sudoración que altera el pH dérmico.</li>
-            <li>Dormir al menos 7 horas continuas para favorecer la secreción de melatonina y hormona de crecimiento (GH).</li>
+        <div class="luxury-box">
+          <strong style="color: #181514; font-size: 12px;">Pautas para el Descanso Regenerador:</strong>
+          <ul style="padding-left: 16px; margin: 4px 0 0 0; font-size: 11.5px; line-height: 1.6;">
+            <li>Dormir al menos 7 horas continuas para favorecer la hormona de crecimiento (GH).</li>
+            <li>Temperatura ambiental fresca (18ºC-20ºC) para evitar sudoración que altere el pH dérmico.</li>
           </ul>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 20 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 20 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">TÉCNICA MAESTRA</span><span class="badge-tag">HIDROTERAPIA BOTICARIA</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">El Ritual de Contraste Frío/Calor para Tonificación</h2>
+        <h2>El Ritual de Contraste Frío/Calor para Tonificación</h2>
         <div class="gold-divider"></div>
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
+        <p>
           La alternancia térmica en la ducha es una técnica de balneoterapia boticaria que activa los lechos capilares periféricos mediante vasoconstricción y vasodilatación refleja:
         </p>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60;">Fase 1: Calor Confortable (3 min)</div>
-            <p style="font-size: 11.5px; color: #444; margin: 4px 0 0 0;">
-              Vasodilatación arterial: oxigena los tejidos y abre el poro para la asimilación de los bio-activos.
+        <div class="grid-2">
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">Fase 1: Calor Confortable (3 min)</h4>
+            <p style="font-size: 11.5px; margin: 4px 0 0 0;">
+              Vasodilatación arterial: oxigena los tejidos dérmicos y dilata el poro para recibir los principios activos.
             </p>
           </div>
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60;">Fase 2: Chorro Frío Final (30 seg)</div>
-            <p style="font-size: 11.5px; color: #444; margin: 4px 0 0 0;">
-              Vasoconstricción refleja: tonifica las paredes vasculares, reduce la inflamación periporal y tensa el tejido.
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">Fase 2: Chorro Frío Final (30 seg)</h4>
+            <p style="font-size: 11.5px; margin: 4px 0 0 0;">
+              Vasoconstricción refleja: tonifica las paredes vasculares, desinflama el folículo y tensa la piel.
             </p>
           </div>
         </div>
 
-        <div class="luxury-box" style="margin-top: 18px;">
-          <strong style="color: #181514; font-size: 12px;">Resultado Inmediato:</strong>
-          <p style="margin: 4px 0 0 0; font-size: 11.5px; color: #555;">
-            Sensación de piernas ligeras, desaparición de la pesadez vascular y absorción ultrasónica de ADEUS™ en el estrato córneo.
-          </p>
+        <div class="luxury-box">
+          <strong style="color: #181514; font-size: 12px;">Efecto Inmediato:</strong>
+          <p style="margin: 4px 0 0 0; font-size: 11.5px;">Piernas ligeras, retorno venoso optimizado y absorción ultra-rápida de ADEUS™ en el estrato córneo.</p>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 21 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 21 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">SEMANA 3 · DÍA 15 DE 30</span><span class="badge-tag">ACLARADO & UNIFICACIÓN</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 4px;">Día 15: Fase de Unificación del Tono</h2>
+        <h2>Día 15: Fase de Unificación del Tono</h2>
         <div class="gold-divider"></div>
         <div class="luxury-box"><strong style="color: #B86B60;">Consejo Boticario:</strong> Día 15: Iniciamos la Fase de Aclarado y Regeneración Tisular profunda con Madecassoside puro.</div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-          <div class="highlight-card" style="margin: 0; padding: 16px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60; text-transform: uppercase;">☀️ Ritual de Mañana</div>
-            <div class="checklist-item" style="margin-top: 10px;"><div class="check-circle"></div><span>ADEUS™ en piernas completas y brazos</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Absorción y tacto de seda</span></div>
+        <div class="grid-2">
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">☀️ Ritual de Mañana</h4>
+            <div class="checklist-item"><div class="check-circle"></div><span>ADEUS™ en piernas completas y brazos</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Tacto de seda inmediato</span></div>
           </div>
-          <div class="highlight-card" style="margin: 0; padding: 16px;">
-            <div style="font-weight: 800; font-size: 12px; color: #B86B60; text-transform: uppercase;">🌙 Ritual de Noche</div>
-            <div class="checklist-item" style="margin-top: 10px;"><div class="check-circle"></div><span>Revisión visual bajo luz natural</span></div>
-            <div class="checklist-item"><div class="check-circle"></div><span>Puntos oscuros visiblemente difuminados</span></div>
+          <div class="highlight-card">
+            <h4 style="color: #B86B60;">🌙 Ritual de Noche</h4>
+            <div class="checklist-item"><div class="check-circle"></div><span>Marcas oscuras visiblemente difuminadas</span></div>
+            <div class="checklist-item"><div class="check-circle"></div><span>Piel calmada y nutrida</span></div>
           </div>
         </div>
 
-        <div style="margin-top: 18px; border: 1.5px dashed #E8A598; border-radius: 16px; padding: 16px; background: #fff;">
-          <strong style="font-size: 12px; color: #181514;">Reflexión Día 15:</strong>
-          <div style="border-bottom: 1px dashed #ddd; height: 25px; margin-top: 8px;"></div>
-          <div style="border-bottom: 1px dashed #ddd; height: 25px;"></div>
+        <div class="luxury-box">
+          <strong style="color: #181514;">Reflexión Día 15:</strong>
+          <div style="height: 45px; border-bottom: 1px dashed #ccc; margin-top: 6px;"></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 22 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 22 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">SEMANA 3 · DÍAS 16 & 17</span><span class="badge-tag">ACLARADO & UNIFICACIÓN</span></div>
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 16: Sinergia Facial & Corporal</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 16: Sinergia Facial & Corporal</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 16: Si tienes parches de colágeno Körmesic, aplícalos mientras dejas actuar ADEUS en el cuerpo.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 16: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 16: Si tienes parches de colágeno Körmesic, aplícalos mientras dejas actuar ADEUS en el cuerpo.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 16: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 17: Elasticidad y Rebote Cutáneo</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 17: Elasticidad y Rebote Cutáneo</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 17: La elasticidad de los muslos y brazos mejora visiblemente gracias al Omega-7 de Espino Amarillo.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 17: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 17: La elasticidad de los muslos y brazos mejora visiblemente gracias al Omega-7 de Espino Amarillo.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 17: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 23 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 23 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">SEMANA 3 · DÍAS 18 & 19</span><span class="badge-tag">ACLARADO & UNIFICACIÓN</span></div>
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 18: Libertad ante la Fricción</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 18: Libertad ante la Fricción</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 18: La ropa ceñida ya no genera fricción molesta ni picor tras el afeitado o depilación.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 18: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 18: La ropa ceñida ya no genera fricción molesta ni picor tras el afeitado o depilación.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 18: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 19: Gratitud y Transformación Interior</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 19: Gratitud y Transformación Interior</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 19: Momento de gratitud: reconoce el hábito de autocuidado que has consolidado durante 19 días.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 19: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 19: Momento de gratitud: reconoce el hábito de autocuidado que has consolidado durante 19 días.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 19: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 24 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 24 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">SEMANA 3 · DÍAS 20 & 21</span><span class="badge-tag">ACLARADO & UNIFICACIÓN</span></div>
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 20: El Poro Invisible</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 20: El Poro Invisible</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 20: Los poros oscurecidos en las piernas están casi imperceptibles a distancia de conversación.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 20: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 20: Los poros oscurecidos en las piernas están casi imperceptibles a distancia de conversación.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 20: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 21: Tres Semanas de Hábito Perfecto</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 21: Tres Semanas de Hábito Consolidado</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 21: Fin de la Semana 3: Tu piel ha renovado el 75% de los corneocitos del estrato córneo.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 21: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 21: Fin de la Semana 3: Tu piel ha renovado el 75% de los corneocitos del estrato córneo.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 21: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 25 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 25 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">EVALUACIÓN DE HITO</span><span class="badge-tag">FIN DE SEMANA 3</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Balance de Transformación · Día 21</h2>
+        <h2>Balance de Transformación · Día 21</h2>
         <div class="gold-divider"></div>
         
         <div class="highlight-card">
-          <strong style="color: #B86B60; font-size: 13px;">Evolución Táctil Acumulada:</strong>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 12px; font-size: 12px;">
-            <div style="background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #E8A598;">
-              <div style="font-weight: 800; color: #888;">DÍA 0: [ ___ / 10 ]</div>
-              <div style="font-weight: 800; color: #888; margin-top: 4px;">DÍA 14: [ ___ / 10 ]</div>
+          <h4 style="color: #B86B60; margin-bottom: 8px;">Evolución Táctil Acumulada:</h4>
+          <div class="grid-2">
+            <div style="background: #fff; padding: 12px; border-radius: 10px; border: 1px solid #E8A598; text-align: center;">
+              <div style="font-size: 11px; font-weight: 800; color: #888;">DÍA 0: [ ___ / 10 ]</div>
+              <div style="font-size: 11px; font-weight: 800; color: #888; margin-top: 4px;">DÍA 14: [ ___ / 10 ]</div>
             </div>
-            <div style="background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #E8A598;">
-              <div style="font-weight: 800; color: #B86B60;">DÍA 21 (HOY):</div>
-              <div style="font-size: 16px; font-weight: 900; color: #B86B60; margin-top: 4px;">Nivel Aspereza: [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+            <div style="background: #fff; padding: 12px; border-radius: 10px; border: 2px solid #B86B60; text-align: center;">
+              <div style="font-size: 11px; font-weight: 800; color: #B86B60;">DÍA 21 (HOY):</div>
+              <div style="font-size: 16px; font-weight: 900; color: #B86B60; margin-top: 4px;">Aspereza: [ &nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
             </div>
           </div>
         </div>
 
-        <div class="luxury-box" style="margin-top: 18px;">
+        <div class="luxury-box">
           <strong style="color: #181514; font-size: 12.5px;">Manifestaciones del Día 21:</strong>
-          <div class="checklist-item" style="margin-top: 8px;"><div class="check-circle"></div><span>Reducción del 85% de la queratosis pilaris en todas las áreas tratadas.</span></div>
+          <div class="checklist-item" style="margin-top: 8px;"><div class="check-circle"></div><span>Reducción del 85% de la queratosis pilaris en todas las áreas.</span></div>
           <div class="checklist-item"><div class="check-circle"></div><span>Tono satinado sin necesidad de aceites corporales adicionales.</span></div>
           <div class="checklist-item"><div class="check-circle"></div><span>Cero irritación post-depilación o afeitado.</span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 26 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 26 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">NEURO-COSMÉTICA</span><span class="badge-tag">EJE PIEL-CEREBRO</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Psicología del Tacto: Cómo el Masaje Reduce el Cortisol</h2>
+        <h2>Psicología del Tacto: Cómo el Masaje Reduce el Cortisol</h2>
         <div class="gold-divider"></div>
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
+        <p>
           La piel y el sistema nervioso central comparten el mismo origen embriológico (el ectodermo). En la dermis residen millones de fibras nerviosas sensoriales de baja velocidad denominadas <strong>aferentes C-táctiles</strong>.
         </p>
 
         <div class="highlight-card">
-          <strong style="color: #B86B60; font-size: 13px;">La Vía de la Oxitocina:</strong>
-          <p style="font-size: 12px; color: #444; margin: 6px 0 0 0; line-height: 1.7;">
-            Cuando te aplicas ADEUS™ con movimientos lentos y circulares (a una velocidad de 3 a 5 cm por segundo), las fibras C-táctiles envían señales directas a la corteza insular del cerebro, desencadenando una liberación inmediata de oxitocina y reduciendo los niveles de cortisol circulante hasta en un 32%.
+          <h4 style="color: #B86B60;">La Vía de la Oxitocina:</h4>
+          <p style="font-size: 12px; margin: 4px 0 0 0;">
+            Cuando te aplicas ADEUS™ con movimientos lentos y envolventes (a una velocidad de 3 a 5 cm por segundo), las fibras C-táctiles envían impulsos a la corteza insular del cerebro, desencadenando una liberación de oxitocina y reduciendo los niveles de cortisol circulante hasta en un <strong>32%</strong>.
           </p>
         </div>
 
-        <div class="luxury-box" style="margin-top: 15px;">
+        <div class="luxury-box">
           <strong style="color: #181514; font-size: 12px;">Beneficio Dermatológico Directo:</strong>
-          <p style="margin: 4px 0 0 0; font-size: 11.5px; color: #555;">
-            El cortisol alto degrada el colágeno y activa la producción de queratina reactiva. Al relajarte durante el masaje diario, estás protegiendo biológicamente la juventud de tu piel.
-          </p>
+          <p style="margin: 4px 0 0 0; font-size: 11.5px;">El cortisol alto degrada el colágeno y activa la queratina reactiva. Al relajarte durante el masaje diario, estás protegiendo biológicamente la juventud de tu piel.</p>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 27 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 27 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">CUIDADO DIARIO</span><span class="badge-tag">PROTECCIÓN TEXTIL</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Protección frente a la Fricción Textil</h2>
+        <h2>Protección frente a la Fricción Textil</h2>
         <div class="gold-divider"></div>
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          El roce constante de pantalones vaqueros ajustados o medias sintéticas es uno de los mayores desencadenantes de la queratosis en muslos y glúteos. Protege tu nueva piel con estas pautas boticarias:
+        <p>
+          El roce continuo de pantalones vaqueros ajustados o medias sintéticas es uno de los mayores desencadenantes de la queratosis en muslos y glúteos. Protege tu nueva piel con estas pautas boticarias:
         </p>
 
-        <div style="display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px;">
-          <div class="luxury-box">
-            <strong style="color: #B86B60;">1. Fibras Naturales Transpirables:</strong>
-            <p style="margin: 2px 0 0 0; font-size: 11.5px; color: #555;">Prioriza el algodón 100%, seda o bambú en la ropa que esté en contacto directo con las extremidades.</p>
-          </div>
-          <div class="luxury-box">
-            <strong style="color: #B86B60;">2. Detergentes Hipoalergénicos sin Perfumes Sintéticos:</strong>
-            <p style="margin: 2px 0 0 0; font-size: 11.5px; color: #555;">Los suavizantes textiles dejan micro-residuos cerosos en las fibras que taponan el poro durante el día.</p>
-          </div>
-          <div class="luxury-box">
-            <strong style="color: #B86B60;">3. El Escudo Lipídico de ADEUS™:</strong>
-            <p style="margin: 2px 0 0 0; font-size: 11.5px; color: #555;">La manteca de karité y los triglicéridos vegetales actúan como una película protectora invisible que anula la fricción de la ropa.</p>
-          </div>
+        <div class="luxury-box" style="font-size: 12px; line-height: 1.7;">
+          <div style="margin-bottom: 6px;"><strong style="color: #B86B60;">1. Fibras Naturales Transpirables:</strong> Prioriza algodón 100%, seda o bambú en contacto con la piel.</div>
+          <div style="margin-bottom: 6px;"><strong style="color: #B86B60;">2. Detergentes Hipoalergénicos:</strong> Evita suavizantes que dejan micro-residuos cerosos ocluyentes en la tela.</div>
+          <div><strong style="color: #B86B60;">3. Escudo Lipídico de ADEUS™:</strong> La manteca de karité crea una película invisible que anula la fricción de la ropa.</div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 28 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 28 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">SEMANA 4 · DÍAS 22 & 23</span><span class="badge-tag">CRISTALIZACIÓN DE RESULTADOS</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 22px; color: #181514; margin-bottom: 4px;">Días 22 & 23: La Fase de Cristalización</h2>
-        <div class="gold-divider"></div>
-        
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        <div class="header-decor"><span class="header-brand">SEMANA 4 · DÍAS 22 & 23</span><span class="badge-tag">CRISTALIZACIÓN</span></div>
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 22: Estabilidad de la Textura</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 22: Estabilidad de la Textura</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 22: Entramos en la Fase de Cristalización. La textura de seda se vuelve permanente y estable.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 22: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 22: Entramos en la Fase de Cristalización. La textura de seda se vuelve permanente y estable.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 22: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 23: Plenitud Sensorial</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 23: Plenitud Sensorial</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 23: Masajea con movimientos envolventes lentos, disfrutando del aroma botánico y la relajación mental.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 23: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 23: Masajea con movimientos envolventes lentos, disfrutando del aroma botánico y la relajación mental.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 23: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 29 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 29 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">SEMANA 4 · DÍAS 24 & 25</span><span class="badge-tag">CRISTALIZACIÓN DE RESULTADOS</span></div>
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        <div class="header-decor"><span class="header-brand">SEMANA 4 · DÍAS 24 & 25</span><span class="badge-tag">CRISTALIZACIÓN</span></div>
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 24: Síntesis de Colágeno en su Cénit</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 24: Síntesis de Colágeno en su Cénit</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 24: La producción endógena de colágeno tipo I y III está en su nivel óptimo de estimulación.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 24: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 24: La producción endógena de colágeno tipo I y III está en su nivel óptimo de estimulación.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 24: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 25: Resiliencia Térmica</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 25: Resiliencia Térmica</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 25: Piel luminosa, tersa y profundamente calmada, incluso ante cambios de temperatura ambiental.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 25: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 25: Piel luminosa, tersa y profundamente calmada, incluso ante cambios de temperatura ambiental.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 25: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 30 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 30 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">SEMANA 4 · DÍAS 26 & 27</span><span class="badge-tag">CRISTALIZACIÓN DE RESULTADOS</span></div>
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        <div class="header-decor"><span class="header-brand">SEMANA 4 · DÍAS 26 & 27</span><span class="badge-tag">CRISTALIZACIÓN</span></div>
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 26: La Autonomía de tu Barrera</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 26: La Autonomía de tu Barrera</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 26: La necesidad de productos adicionales desaparece: tu barrera cutánea es autosuficiente.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 26: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 26: La necesidad de productos adicionales desaparece: tu barrera cutánea es autosuficiente.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 26: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 27: Víspera de la Gran Revelación</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 27: Víspera de la Gran Revelación</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 27: Prepárate para el hito final: compara mentalmente cómo se sentía tu piel el Día 1.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 27: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 27: Prepárate para el hito final: compara mentalmente cómo se sentía tu piel el Día 1.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 27: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 31 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 31 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">SEMANA 4 · DÍAS 28 & 29</span><span class="badge-tag">CRISTALIZACIÓN DE RESULTADOS</span></div>
-        <div style="border-bottom: 2px solid #FAF7F2; padding-bottom: 15px; margin-bottom: 15px;">
+        <div class="header-decor"><span class="header-brand">SEMANA 4 · DÍAS 28 & 29</span><span class="badge-tag">CRISTALIZACIÓN</span></div>
+        <div style="border-bottom: 1.5px solid #F0D5D0; padding-bottom: 12px; margin-bottom: 12px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 28: Ciclo Biológico Completo</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 28: Ciclo Biológico Completo</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 28: Ciclo celular biológico completo: la epidermis original ha sido sustituida por tejido nuevo.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 28: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 28: Ciclo celular biológico completo: la epidermis original ha sido sustituida por tejido nuevo.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 28: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
 
         <div>
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3 class="font-serif-luxury" style="font-size: 17px; color: #181514; margin: 0;">Día 29: Consolidación Definitiva</h3>
-            <span style="font-size: 11px; color: #B86B60; font-weight: 700;">Check: [ ☀️ Mañana ] [ 🌙 Noche ]</span>
+            <h2>Día 29: Consolidación Definitiva</h2>
+            <span style="font-size: 11px; font-weight: 700; color: #B86B60;">[ ☀️ Mañana ] [ 🌙 Noche ]</span>
           </div>
-          <div class="luxury-box" style="margin: 8px 0; padding: 10px 14px; font-size: 11.5px;"><strong>Tip:</strong> Día 29: Último día de consolidación activa antes de la gran revelación de resultados.</div>
-          <div style="margin-top: 8px; font-size: 11px; color: #666;">Notas del Día 29: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
+          <div class="luxury-box" style="margin: 6px 0 10px 0; padding: 10px 14px;"><strong>Tip:</strong> Día 29: Último día de consolidación activa antes de la gran revelación de resultados.</div>
+          <div style="font-size: 11.5px; color: #555;">Notas Día 29: <span style="border-bottom: 1px dashed #ccc; display: inline-block; width: 80%;"></span></div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 32 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 32 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
         <div class="header-decor"><span class="header-brand">HITO SOLEMNE DÍA 30</span><span class="badge-tag">LA GRAN REVELACIÓN</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 26px; color: #181514; margin-bottom: 6px; text-align: center;">Día 30: Tu Verdadera Piel de Seda</h2>
-        <div class="gold-divider" style="width: 140px; margin: 10px auto 20px auto;"></div>
+        <h2 style="text-align: center;">Día 30: Tu Verdadera Piel de Seda</h2>
+        <div class="gold-divider" style="width: 140px; margin: 8px auto 14px auto;"></div>
         
-        <p class="font-editorial author-quote" style="text-align: center;">
-          «Has completado los 30 días del ciclo biológico. Lo que hoy tocas y ves frente al espejo no es un efecto temporal, sino la culminación de un tejido completamente regenerado.»
-        </p>
+        <div class="author-quote" style="text-align: center;">
+          «Has completado los 30 días del ciclo biológico. Lo que hoy tocas y ves frente al espejo no es un efecto cosmético temporal, sino la culminación de un tejido dérmico completamente regenerado.»
+        </div>
 
-        <div class="highlight-card" style="margin-top: 20px;">
-          <h4 class="font-serif-luxury" style="color: #B86B60; margin: 0 0 10px 0; font-size: 14px;">Evaluación Final vs. Día 0 Inicial:</h4>
-          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-size: 11.5px; text-align: center;">
-            <div style="background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #E8A598;">
-              <div style="font-weight: 800; color: #888;">DÍA 0 (INICIAL)</div>
-              <div style="font-weight: 900; color: #888; font-size: 14px; margin-top: 4px;">[ ___ / 10 ]</div>
+        <div class="highlight-card">
+          <h4 style="color: #B86B60; text-align: center; margin-bottom: 8px;">Evaluación Final vs. Día 0 Inicial:</h4>
+          <div class="grid-3">
+            <div style="background: #fff; padding: 10px; border-radius: 8px; border: 1px solid #E8A598; text-align: center;">
+              <div style="font-size: 10px; font-weight: 800; color: #888;">DÍA 0 (INICIAL)</div>
+              <div style="font-weight: 900; color: #888; font-size: 14px; margin-top: 2px;">[ ___ / 10 ]</div>
             </div>
-            <div style="background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #E8A598;">
-              <div style="font-weight: 800; color: #888;">DÍA 14 (MITAD)</div>
-              <div style="font-weight: 900; color: #888; font-size: 14px; margin-top: 4px;">[ ___ / 10 ]</div>
+            <div style="background: #fff; padding: 10px; border-radius: 8px; border: 1px solid #E8A598; text-align: center;">
+              <div style="font-size: 10px; font-weight: 800; color: #888;">DÍA 14 (MITAD)</div>
+              <div style="font-weight: 900; color: #888; font-size: 14px; margin-top: 2px;">[ ___ / 10 ]</div>
             </div>
-            <div style="background: #fff; padding: 12px; border-radius: 12px; border: 2px solid #B86B60;">
-              <div style="font-weight: 800; color: #B86B60;">DÍA 30 (FINAL)</div>
-              <div style="font-weight: 900; color: #B86B60; font-size: 16px; margin-top: 4px;">[ ___ / 10 ]</div>
+            <div style="background: #fff; padding: 10px; border-radius: 8px; border: 2px solid #B86B60; text-align: center;">
+              <div style="font-size: 10px; font-weight: 800; color: #B86B60;">DÍA 30 (FINAL)</div>
+              <div style="font-weight: 900; color: #B86B60; font-size: 15px; margin-top: 2px;">[ ___ / 10 ]</div>
             </div>
           </div>
         </div>
 
-        <div class="luxury-box" style="margin-top: 20px;">
-          <strong style="color: #181514; font-size: 12.5px;">Declaración de Transformación:</strong>
-          <p style="font-size: 12px; color: #555; margin: 4px 0 0 0;">
-            Mis piernas, brazos y zonas tratadas están 100% suaves, libres de asperezas, con poros cerrados y tono uniforme.
+        <div class="luxury-box">
+          <strong style="color: #181514; font-size: 12px;">Declaración de Victoria Cutánea:</strong>
+          <p style="font-size: 11.5px; color: #555; margin: 4px 0 0 0;">
+            Mis piernas, brazos y zonas tratadas están 100% suaves, libres de asperezas, con poros cerrados y tono satinado permanente.
           </p>
-          <div style="margin-top: 10px; display: flex; justify-content: space-between; font-size: 11px; color: #777;">
+          <div style="margin-top: 10px; display: flex; justify-content: space-between; font-size: 11px; color: #666;">
             <span>Firma de la Amiga Kivaneli: _____________________</span>
             <span>Fecha: ___ / ___ / 2026</span>
           </div>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 33 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 33 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">ESTRATEGIA BOTICARIA</span><span class="badge-tag">PLAN DE MANTENIMIENTO</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Protocolo de Mantenimiento Anual</h2>
+        <div class="header-decor"><span class="header-brand">ESTRATEGIA BOTICARIA</span><span class="badge-tag">MANTENIMIENTO ANUAL</span></div>
+        <h2>Protocolo de Mantenimiento Anual</h2>
         <div class="gold-divider"></div>
-        <p style="font-size: 13px; color: #333; line-height: 1.8;">
-          Una vez alcanzada la piel de seda en el Día 30, no necesitas continuar con una aplicación diaria intensiva. Tu nuevo protocolo de mantenimiento consiste en:
-        </p>
+        <p>Una vez alcanzada la piel de seda en el Día 30, tu nuevo protocolo de sostenimiento consiste en:</p>
 
-        <div style="display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 15px;">
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <div style="font-weight: 800; font-size: 13px; color: #B86B60;">1. Sesión de Mantenimiento Semanal (2 Veces por Semana)</div>
-            <p style="font-size: 12px; color: #444; margin: 4px 0 0 0;">
-              Aplica ADEUS™ los miércoles y domingos tras la ducha para disolver micro-acumulaciones tempranas de queratina antes de que se endurezcan.
-            </p>
-          </div>
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <div style="font-weight: 800; font-size: 13px; color: #B86B60;">2. Cepillado en Seco Preventivo (1 Vez por Semana)</div>
-            <p style="font-size: 12px; color: #444; margin: 4px 0 0 0;">
-              Un pase suave de 3 minutos el fin de semana para mantener la linfa activa y la microcirculación oxigenada.
-            </p>
-          </div>
-          <div class="highlight-card" style="margin: 0; padding: 14px;">
-            <div style="font-weight: 800; font-size: 13px; color: #B86B60;">3. Prevención en Épocas de Frío / Invierno</div>
-            <p style="font-size: 12px; color: #444; margin: 4px 0 0 0;">
-              En los meses de invierno donde la calefacción reseca el ambiente, incrementa a 3 aplicaciones semanales para reforzar el escudo lipídico.
-            </p>
-          </div>
+        <div class="highlight-card">
+          <h4 style="color: #B86B60;">1. Sesión de Mantenimiento Semanal (2 Veces por Semana)</h4>
+          <p style="font-size: 12px; margin: 2px 0 0 0;">Aplica ADEUS™ los miércoles y domingos tras la ducha para disolver micro-acumulaciones tempranas de queratina.</p>
+        </div>
+
+        <div class="highlight-card">
+          <h4 style="color: #B86B60;">2. Cepillado en Seco Preventivo (1 Vez por Semana)</h4>
+          <p style="font-size: 12px; margin: 2px 0 0 0;">Un pase suave de 3 minutos el fin de semana para mantener la linfa activa y la microcirculación oxigenada.</p>
+        </div>
+
+        <div class="highlight-card">
+          <h4 style="color: #B86B60;">3. Prevención en Meses de Invierno</h4>
+          <p style="font-size: 12px; margin: 2px 0 0 0;">Con la calefacción y el aire seco, incrementa a 3 aplicaciones semanales para reforzar el escudo lipídico.</p>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 34 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 34 DE 36</span></div>
     </div>
   
 
     <div class="page">
       <div>
-        <div class="header-decor"><span class="header-brand">RESOLUCIÓN DE DUDAS</span><span class="badge-tag">CONSULTORIO BOTICARIO</span></div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin-bottom: 6px;">Preguntas Frecuentes & Casos Especiales</h2>
+        <div class="header-decor"><span class="header-brand">CONSULTORIO BOTICARIO</span><span class="badge-tag">PREGUNTAS FRECUENTES</span></div>
+        <h2>Preguntas Frecuentes & Casos Especiales</h2>
         <div class="gold-divider"></div>
 
-        <div class="luxury-box" style="font-size: 12px; line-height: 1.7;">
+        <div class="luxury-box" style="font-size: 12px; line-height: 1.65;">
           <strong style="color: #B86B60;">¿Puedo depilarme con cuchilla o cera durante los 30 días?</strong>
-          <p style="margin: 2px 0 8px 0; color: #444;">Sí, pero aplica ADEUS™ 24 horas antes de la depilación (para ablandar el folículo) y 12 horas después para calmar la irritación. Nunca apliques inmediatamente tras pasar la cuchilla sobre piel abierta.</p>
+          <p style="margin: 2px 0 6px 0;">Sí, aplica ADEUS™ 24h antes para reblandecer el poro y 12h después para calmar. Nunca apliques inmediatamente sobre la piel abierta.</p>
 
           <strong style="color: #B86B60;">¿Es compatible con la depilación láser?</strong>
-          <p style="margin: 2px 0 8px 0; color: #444;">Totalmente. Suspende la aplicación 48h antes de la sesión de láser y reanuda 48h después cuando la epidermis se haya enfriado.</p>
+          <p style="margin: 2px 0 6px 0;">Totalmente. Suspende la aplicación 48h antes de la sesión y reanuda 48h después cuando la dermis se haya enfriado.</p>
 
-          <strong style="color: #B86B60;">¿Puedo exponerme al sol mientras uso ADEUS™?</strong>
-          <p style="margin: 2px 0 8px 0; color: #444;">ADEUS™ no contiene ácidos fotosensibilizantes (como el retinol o hidroquinona). No obstante, si te expones al sol en exteriores, aplica siempre un protector solar corporal SPF50+.</p>
+          <strong style="color: #B86B60;">¿Puedo exponerme al sol usando ADEUS™?</strong>
+          <p style="margin: 2px 0 6px 0;">ADEUS™ no contiene ingredientes fotosensibilizantes. Aplica siempre protector solar corporal SPF50+ en exteriores.</p>
 
-          <strong style="color: #B86B60;">¿Qué hago si un día olvido la aplicación?</strong>
-          <p style="margin: 2px 0 0 0; color: #444;">No intentes compensar aplicando el doble al día siguiente. Simplemente retoma tu ritual con normalidad en la siguiente ducha.</p>
+          <strong style="color: #B86B60;">¿Qué hago si olvido una aplicación?</strong>
+          <p style="margin: 2px 0 0 0;">No apliques el doble al día siguiente; retoma tu rutina con total tranquilidad en tu siguiente ducha.</p>
         </div>
       </div>
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 35 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 35 DE 36</span></div>
     </div>
   
 
     <div class="page" style="text-align: center; justify-content: space-between;">
       <div class="header-decor"><span class="header-brand">KIVANELI MAISON BOTANIQUE</span><span class="badge-tag">CERTIFICACIÓN OFICIAL</span></div>
       
-      <div style="margin: 20px auto; max-width: 600px;">
-        <div style="width: 70px; height: 70px; border-radius: 50%; background: linear-gradient(135deg, #D48B80, #B86B60); color: #fff; font-family: 'Cinzel', serif; font-size: 28px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px auto; box-shadow: 0 10px 20px rgba(184,107,96,0.3);">
+      <div style="margin: auto 0; max-width: 580px; align-self: center;">
+        <div style="width: 65px; height: 65px; border-radius: 50%; background: linear-gradient(135deg, #D48B80, #B86B60); color: #fff; font-family: 'Cinzel', serif; font-size: 26px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; box-shadow: 0 8px 20px rgba(184,107,96,0.25);">
           K
         </div>
-        <h2 class="font-serif-luxury" style="font-size: 24px; color: #181514; margin: 0 0 8px 0;">Diploma de Excelencia Boticaria</h2>
-        <div class="gold-divider" style="width: 100px; margin: 10px auto 20px auto;"></div>
-        <p style="font-size: 13px; color: #444; line-height: 1.8;">
-          Se certifica formalmente que la titular de este diario ha completado con disciplina y constancia el <strong>Ritual Boticario de 30 Días KIVANELI™</strong>, alcanzando la máxima regeneración del estrato córneo y la auténtica <em>Piel de Seda</em>.
+        <h2 style="font-size: 22px; margin-bottom: 6px;">Diploma de Excelencia Boticaria</h2>
+        <div class="gold-divider" style="width: 100px; margin: 8px auto 16px auto;"></div>
+        <p style="font-size: 12.5px; color: #444; line-height: 1.7;">
+          Se certifica formalmente que la titular de este diario ha completado con éxito el <strong>Ritual Boticario de 30 Días KIVANELI™</strong>, alcanzando la regeneración biológica de la barrera cutánea y la auténtica <em>Piel de Seda</em>.
         </p>
 
-        <div style="margin: 30px 0; padding: 20px; background: #FAF7F2; border: 1px solid #E8A598; border-radius: 18px; font-size: 12px; color: #666;">
-          <div style="font-weight: 800; color: #181514; font-size: 13px;">Canales de Asesoría & Acompañamiento Personalizado:</div>
-          <div style="margin-top: 8px;">📧 <strong>Email Oficial de Asesoras:</strong> <a href="mailto:beauty@kivaneli.es" style="color:#B86B60; text-decoration:none; font-weight:bold;">beauty@kivaneli.es</a></div>
-          <div style="margin-top: 4px;">📸 <strong>Instagram Oficial:</strong> <a href="https://instagram.com" target="_blank" style="color:#B86B60; text-decoration:none; font-weight:bold;">@kivaneli.es</a></div>
-          <div style="margin-top: 4px;">🎵 <strong>TikTok Boticario:</strong> <a href="https://tiktok.com" target="_blank" style="color:#B86B60; text-decoration:none; font-weight:bold;">@kivanelicosmetics</a></div>
+        <div style="margin: 20px 0; padding: 16px 20px; background: #FAF7F2; border: 1.5px solid #E8A598; border-radius: 16px; font-size: 12px; color: #555; text-align: left;">
+          <div style="font-weight: 800; color: #181514; font-size: 12.5px; margin-bottom: 6px;">Canales de Asesoría & Acompañamiento Personalizado:</div>
+          <div>📧 <strong>Email Asesoras:</strong> <a href="mailto:beauty@kivaneli.es" style="color:#B86B60; text-decoration:none; font-weight:bold;">beauty@kivaneli.es</a></div>
+          <div style="margin-top: 3px;">📸 <strong>Instagram Oficial:</strong> <a href="https://instagram.com" target="_blank" style="color:#B86B60; text-decoration:none; font-weight:bold;">@kivaneli.es</a></div>
+          <div style="margin-top: 3px;">🎵 <strong>TikTok Boticario:</strong> <a href="https://tiktok.com" target="_blank" style="color:#B86B60; text-decoration:none; font-weight:bold;">@kivanelicosmetics</a></div>
         </div>
 
-        <div style="display: flex; justify-content: space-around; margin-top: 20px; font-size: 11px; color: #777;">
+        <div style="display: flex; justify-content: space-around; font-size: 11px; color: #777; margin-top: 15px;">
           <div>
-            <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: #181514;">Dra. Elena Alarcón</div>
-            <div style="border-top: 1px solid #B86B60; margin-top: 4px; padding-top: 2px;">Dirección de Formulación Botánica</div>
+            <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: #181514;">Dra. Elena Alarcón</div>
+            <div style="border-top: 1px solid #B86B60; margin-top: 3px; padding-top: 2px;">Dirección de Formulación Botánica</div>
           </div>
           <div>
-            <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; color: #181514;">Kivaneli Maison</div>
-            <div style="border-top: 1px solid #B86B60; margin-top: 4px; padding-top: 2px;">Sello de Autenticidad Boticaria</div>
+            <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; color: #181514;">Kivaneli Maison</div>
+            <div style="border-top: 1px solid #B86B60; margin-top: 3px; padding-top: 2px;">Sello de Autenticidad Boticaria</div>
           </div>
         </div>
       </div>
 
-      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO</span><span>PÁGINA 36 DE 36</span></div>
+      <div class="footer-decor"><span>KIVANELI · DIARIO BOTICARIO DE AUTOR</span><span>PÁGINA 36 DE 36</span></div>
     </div>
   
 </body>
