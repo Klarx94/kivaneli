@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KIVANELI — Panel de Control & Centro Logístico</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0F0D0C; color: #FAF7F2; }
+    .font-serif-luxury { font-family: 'Cinzel', serif; }
+    .glass-card {
+      background: rgba(26, 23, 22, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 139, 128, 0.15);
+    }
+  </style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+
+  <div class="max-w-7xl mx-auto space-y-8">
+    
+    <!-- Top Bar -->
+    <header class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-stone-800">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#D48B80] to-amber-500 flex items-center justify-center font-serif-luxury font-bold text-white shadow-lg">K</div>
+        <div>
+          <h1 class="font-serif-luxury text-2xl font-black tracking-wider text-white">KIVANELI CONTROL</h1>
+          <p class="text-xs text-stone-400">Centro de Operaciones Logísticas, Dropea & Club Amigas</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="fetchDashboardData()" class="bg-stone-800 hover:bg-stone-700 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 border border-stone-700 transition">
+          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+          <span>Actualizar Datos</span>
+        </button>
+        <button onclick="exportToDropeaCSV()" class="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 shadow-lg hover:opacity-90 transition">
+          <i data-lucide="download" class="w-3.5 h-3.5"></i>
+          <span>Exportar a Dropea (CSV)</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- KPI Metric Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      
+      <!-- Total Revenue -->
+      <div class="glass-card p-6 rounded-3xl space-y-2">
+        <div class="flex items-center justify-between text-xs text-stone-400 font-bold uppercase">
+          <span>Facturación Bruta</span>
+          <i data-lucide="wallet" class="w-4 h-4 text-amber-400"></i>
+        </div>
+        <div id="kpiRevenue" class="text-3xl font-black text-white">0,00 €</div>
+        <p class="text-[11px] text-emerald-400 font-semibold flex items-center gap-1">
+          <i data-lucide="trending-up" class="w-3.5 h-3.5"></i> +100% en tiempo real
+        </p>
+      </div>
+
+      <!-- Total Orders -->
+      <div class="glass-card p-6 rounded-3xl space-y-2">
+        <div class="flex items-center justify-between text-xs text-stone-400 font-bold uppercase">
+          <span>Total Pedidos</span>
+          <i data-lucide="shopping-bag" class="w-4 h-4 text-[#D48B80]"></i>
+        </div>
+        <div id="kpiOrdersCount" class="text-3xl font-black text-white">0</div>
+        <p class="text-[11px] text-stone-400">Registrados en base de datos</p>
+      </div>
+
+      <!-- 50/50 Payment Method Split -->
+      <div class="glass-card p-6 rounded-3xl space-y-2">
+        <div class="flex items-center justify-between text-xs text-stone-400 font-bold uppercase">
+          <span>Ratio Pago (COD vs Tarjeta)</span>
+          <i data-lucide="scale" class="w-4 h-4 text-purple-400"></i>
+        </div>
+        <div class="flex items-baseline justify-between">
+          <span id="kpiCodRatio" class="text-xl font-bold text-amber-300">0% COD</span>
+          <span id="kpiCardRatio" class="text-xl font-bold text-emerald-400">0% Tarjeta</span>
+        </div>
+        <div class="w-full h-2 bg-stone-800 rounded-full overflow-hidden flex">
+          <div id="kpiCodBar" class="bg-amber-400 h-full" style="width: 50%"></div>
+          <div id="kpiCardBar" class="bg-emerald-400 h-full" style="width: 50%"></div>
+        </div>
+      </div>
+
+      <!-- Club Amigas Ambassadors -->
+      <div class="glass-card p-6 rounded-3xl space-y-2">
+        <div class="flex items-center justify-between text-xs text-stone-400 font-bold uppercase">
+          <span>Embajadoras Club Amigas</span>
+          <i data-lucide="users" class="w-4 h-4 text-purple-400"></i>
+        </div>
+        <div id="kpiAmbassadors" class="text-3xl font-black text-purple-300">0</div>
+        <p class="text-[11px] text-purple-400">Enlaces virales activos</p>
+      </div>
+
+    </div>
+
+    <!-- Main Tabs Navigation -->
+    <div class="flex items-center gap-4 border-b border-stone-800 pb-2">
+      <button onclick="switchTab('orders')" id="tabBtnOrders" class="text-sm font-bold pb-2 border-b-2 border-[#D48B80] text-white">
+        📦 Pedidos en Vivo & Despacho
+      </button>
+      <button onclick="switchTab('referrals')" id="tabBtnReferrals" class="text-sm font-bold pb-2 border-b-2 border-transparent text-stone-400 hover:text-white">
+        👯 Club Amigas & Referidos
+      </button>
+      <button onclick="switchTab('analytics')" id="tabBtnAnalytics" class="text-sm font-bold pb-2 border-b-2 border-transparent text-stone-400 hover:text-white">
+        📊 Origen de Tráfico (Ads)
+      </button>
+    </div>
+
+    <!-- Orders Tab Section -->
+    <div id="tabOrders" class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-bold text-white">Listado de Pedidos Recientes</h2>
+        <span id="ordersLoadedBadge" class="text-xs text-stone-500 font-mono">Cargando datos...</span>
+      </div>
+
+      <div class="glass-card rounded-3xl overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-stone-900/90 text-stone-400 uppercase text-[10px] tracking-wider border-b border-stone-800">
+            <tr>
+              <th class="p-4">Pedido / Fecha</th>
+              <th class="p-4">Clienta</th>
+              <th class="p-4">Dirección / CP</th>
+              <th class="p-4">Pack Seleccionado</th>
+              <th class="p-4">Importe</th>
+              <th class="p-4">Método</th>
+              <th class="p-4">Estado Envío</th>
+              <th class="p-4 text-right">Acción</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody" class="divide-y divide-stone-800/60 font-medium text-stone-300">
+            <tr>
+              <td colspan="8" class="p-8 text-center text-stone-500">Conectando a Supabase...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Referrals Tab Section (Hidden by default) -->
+    <div id="tabReferrals" class="space-y-4 hidden">
+      <h2 class="text-lg font-bold text-white">Embajadoras Registradas en el Club Amigas</h2>
+      <div class="glass-card rounded-3xl overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-stone-900/90 text-stone-400 uppercase text-[10px] tracking-wider border-b border-stone-800">
+            <tr>
+              <th class="p-4">Fecha</th>
+              <th class="p-4">Embajadora</th>
+              <th class="p-4">Email / Teléfono</th>
+              <th class="p-4">Código Único</th>
+              <th class="p-4">Amigas Invitadas</th>
+              <th class="p-4">Vales Ganados</th>
+            </tr>
+          </thead>
+          <tbody id="referralsTableBody" class="divide-y divide-stone-800/60 font-medium text-stone-300">
+            <tr>
+              <td colspan="6" class="p-8 text-center text-stone-500">Cargando registros...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Analytics Tab Section (Hidden by default) -->
+    <div id="tabAnalytics" class="space-y-4 hidden">
+      <h2 class="text-lg font-bold text-white">Eventos y Fuentes de Tráfico Publicitario</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="glass-card p-6 rounded-3xl space-y-2">
+          <h3 class="font-bold text-sm text-stone-300">Meta Ads (Instagram & FB)</h3>
+          <div id="metaTrafficCount" class="text-2xl font-bold text-blue-400">0 visitas</div>
+        </div>
+        <div class="glass-card p-6 rounded-3xl space-y-2">
+          <h3 class="font-bold text-sm text-stone-300">TikTok Ads / UGC</h3>
+          <div id="tiktokTrafficCount" class="text-2xl font-bold text-pink-400">0 visitas</div>
+        </div>
+        <div class="glass-card p-6 rounded-3xl space-y-2">
+          <h3 class="font-bold text-sm text-stone-300">Tráfico Directo / WhatsApp</h3>
+          <div id="directTrafficCount" class="text-2xl font-bold text-emerald-400">0 visitas</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    // Supabase Credentials
+    const SUPABASE_URL = 'https://sntsizmdhttpilbauxuv.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNudHNpem1kaHR0cGlsYmF1eHV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4MTQxNTIsImV4cCI6MjEwMzM5MDE1Mn0.TJl9UpYcdS9zSG6koa8SQ7zLpmn0A1MTekpHQ9DUkBw';
+    
+    const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    let ordersCache = [];
+
+    async function fetchDashboardData() {
+      try {
+        // 1. Fetch Orders
+        const { data: orders, error: oErr } = await db.from('orders').select('*').order('created_at', { ascending: false });
+        if (orders) {
+          ordersCache = orders;
+          renderOrders(orders);
+          calculateKPIs(orders);
+        }
+
+        // 2. Fetch Referrals
+        const { data: refs, error: rErr } = await db.from('referrals').select('*').order('created_at', { ascending: false });
+        if (refs) {
+          renderReferrals(refs);
+          document.getElementById('kpiAmbassadors').innerText = refs.length;
+        }
+
+        // 3. Fetch Analytics Events
+        const { data: events } = await db.from('analytics_events').select('*');
+        if (events) {
+          renderAnalytics(events);
+        }
+
+        document.getElementById('ordersLoadedBadge').innerText = 'Sincronizado: ' + new Date().toLocaleTimeString();
+      } catch (err) {
+        console.error('Error fetching dashboard:', err);
+      }
+    }
+
+    function calculateKPIs(orders) {
+      let revenue = 0;
+      let codCount = 0;
+      let cardCount = 0;
+
+      orders.forEach(o => {
+        revenue += parseFloat(o.total_amount || 0);
+        if (o.payment_method === 'COD') codCount++;
+        else cardCount++;
+      });
+
+      document.getElementById('kpiRevenue').innerText = revenue.toFixed(2).replace('.', ',') + ' €';
+      document.getElementById('kpiOrdersCount').innerText = orders.length;
+
+      const total = orders.length || 1;
+      const codPct = Math.round((codCount / total) * 100);
+      const cardPct = Math.round((cardCount / total) * 100);
+
+      document.getElementById('kpiCodRatio').innerText = codPct + '% COD (' + codCount + ')';
+      document.getElementById('kpiCardRatio').innerText = cardPct + '% Tarjeta (' + cardCount + ')';
+      document.getElementById('kpiCodBar').style.width = codPct + '%';
+      document.getElementById('kpiCardBar').style.width = cardPct + '%';
+    }
+
+    function renderOrders(orders) {
+      const tbody = document.getElementById('ordersTableBody');
+      if (orders.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" class="p-8 text-center text-stone-500">No hay pedidos registrados todavía. Los pedidos de la web aparecerán aquí en vivo.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = orders.map(o => {
+        const isCOD = o.payment_method === 'COD';
+        const dateStr = new Date(o.created_at).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+        return `
+          <tr class="hover:bg-stone-900/50 transition">
+            <td class="p-4">
+              <div class="font-mono font-bold text-white">${o.order_number}</div>
+              <div class="text-[10px] text-stone-500">${dateStr}</div>
+            </td>
+            <td class="p-4">
+              <div class="font-bold text-white">${o.customer_name}</div>
+              <div class="text-[10px] text-stone-400">${o.customer_phone}</div>
+              <div class="text-[10px] text-stone-500 truncate max-w-[140px]">${o.customer_email}</div>
+            </td>
+            <td class="p-4 text-stone-300">
+              <div>${o.customer_address}</div>
+              <div class="text-[10px] text-stone-500">${o.customer_zip} ${o.customer_city}</div>
+            </td>
+            <td class="p-4 text-xs font-semibold text-stone-200">${o.pack_selected}</td>
+            <td class="p-4 font-bold text-white">${parseFloat(o.total_amount).toFixed(2)} €</td>
+            <td class="p-4">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${isCOD ? 'bg-amber-950 text-amber-300 border border-amber-500/30' : 'bg-emerald-950 text-emerald-300 border border-emerald-500/30'}">
+                ${isCOD ? 'CONTRA-REEMBOLSO' : 'TARJETA'}
+              </span>
+            </td>
+            <td class="p-4">
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-950 text-blue-300 border border-blue-500/30">
+                ${o.shipping_status || 'EN PREPARACIÓN'}
+              </span>
+            </td>
+            <td class="p-4 text-right">
+              <button onclick="markDispatched('${o.id}')" class="text-[10px] bg-stone-800 hover:bg-emerald-700 text-white px-2.5 py-1 rounded transition">
+                Despachar
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+      lucide.createIcons();
+    }
+
+    function renderReferrals(refs) {
+      const tbody = document.getElementById('referralsTableBody');
+      if (refs.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-stone-500">No hay embajadoras registradas aún.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = refs.map(r => {
+        const dateStr = new Date(r.created_at).toLocaleDateString('es-ES');
+        return `
+          <tr class="hover:bg-stone-900/50 transition">
+            <td class="p-4 text-stone-400">${dateStr}</td>
+            <td class="p-4 font-bold text-white">${r.referrer_name}</td>
+            <td class="p-4 text-stone-300">${r.referrer_email}<br><span class="text-[10px] text-stone-500">${r.referrer_phone}</span></td>
+            <td class="p-4 font-mono font-bold text-purple-400">${r.referral_code}</td>
+            <td class="p-4 font-bold text-white">${r.friends_invited_count || 0}</td>
+            <td class="p-4 font-bold text-emerald-400">${parseFloat(r.vouchers_earned || 0).toFixed(2)} €</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function renderAnalytics(events) {
+      let meta = 0, tiktok = 0, direct = 0;
+      events.forEach(e => {
+        const src = (e.traffic_source || '').toLowerCase();
+        if (src.includes('meta') || src.includes('instagram') || src.includes('facebook')) meta++;
+        else if (src.includes('tiktok')) tiktok++;
+        else direct++;
+      });
+      document.getElementById('metaTrafficCount').innerText = meta + ' visitas';
+      document.getElementById('tiktokTrafficCount').innerText = tiktok + ' visitas';
+      document.getElementById('directTrafficCount').innerText = direct + ' visitas';
+    }
+
+    async function markDispatched(orderId) {
+      await db.from('orders').update({ shipping_status: 'DISPATCHED' }).eq('id', orderId);
+      fetchDashboardData();
+    }
+
+    function switchTab(tab) {
+      ['orders', 'referrals', 'analytics'].forEach(t => {
+        document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1)).classList.add('hidden');
+        document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1)).classList.remove('border-[#D48B80]', 'text-white');
+        document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1)).classList.add('border-transparent', 'text-stone-400');
+      });
+      document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.remove('hidden');
+      document.getElementById('tabBtn' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('border-[#D48B80]', 'text-white');
+      document.getElementById('tabBtn' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.remove('border-transparent', 'text-stone-400');
+    }
+
+    function exportToDropeaCSV() {
+      if (ordersCache.length === 0) {
+        alert('No hay pedidos para exportar.');
+        return;
+      }
+      let csv = 'OrderNumber,CustomerName,Phone,Address,Zip,City,Pack,Amount,PaymentMethod,Created\n';
+      ordersCache.forEach(o => {
+        csv += `"${o.order_number}","${o.customer_name}","${o.customer_phone}","${o.customer_address}","${o.customer_zip}","${o.customer_city}","${o.pack_selected}",${o.total_amount},"${o.payment_method}","${o.created_at}"\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'dropea_orders_' + new Date().toISOString().slice(0, 10) + '.csv';
+      a.click();
+    }
+
+    fetchDashboardData();
+    setInterval(fetchDashboardData, 20000);
+  </script>
+</body>
+</html>

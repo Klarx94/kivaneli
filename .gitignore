@@ -1,6 +1,7 @@
-# Large raw videos in root
-Producto 1.mp4
-Producto 2 base upsell strella.mp4
-Producto 3 upsell complemento.mp4
+node_modules/
+*.mp4
+!assets/videos/*.mp4
 extracted_frames/
 __pycache__/
+setup_db.js
+*.txt

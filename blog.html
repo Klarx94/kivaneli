@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog KIVANELI — Guías Boticarias & Cuidado de la Piel</title>
+  <meta name="description" content="Artículos de dermatología boticaria y autocuidado: cómo curar la piel de fresa, eliminar queratosis pilaris, desinflamar ojeras y aclarar manchas.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --color-ivory: #FAF7F2;
+      --color-obsidian: #181514;
+      --color-rose-silk: #D48B80;
+      --color-champagne-gold: #D97706;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--color-ivory);
+      color: var(--color-obsidian);
+    }
+    .font-serif-luxury {
+      font-family: 'Cinzel', serif;
+    }
+    .text-gold-gradient {
+      background: linear-gradient(135deg, #b45309 0%, #d97706 40%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .text-rose-gradient {
+      background: linear-gradient(135deg, #a8584c 0%, #d48b80 45%, #e8a598 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .bg-rose-gradient {
+      background: linear-gradient(135deg, #d48b80 0%, #b86b60 100%);
+    }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 139, 128, 0.2);
+    }
+  </style>
+</head>
+<body class="selection:bg-[#D48B80] selection:text-white">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#D48B80]/15">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-sm shadow-md">K</div>
+        <span class="font-serif-luxury text-2xl font-black tracking-[0.22em] text-[#181514]">
+          KIVANELI<span class="text-[#D48B80]">.</span>
+        </span>
+      </a>
+      <div class="flex items-center gap-4">
+        <a href="index.html#packs" class="bg-[#181514] text-white px-5 py-2.5 rounded-full text-xs font-bold hover:bg-[#D48B80] transition shadow-sm">
+          Ver Ofertas & Ritual
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section class="py-16 bg-[#F6EAE7]/50 border-b border-[#D48B80]/15">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-4">
+      <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FAF7F2] text-[#B86B60] text-xs font-bold uppercase tracking-widest border border-[#D48B80]/30">
+        <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+        Biblioteca Boticaria Kivaneli
+      </span>
+      <h1 class="font-serif-luxury text-3xl md:text-5xl font-black text-[#181514] leading-tight">
+        Guías Clínicas, Ciencia Botánica y Secretos de Piel de Seda
+      </h1>
+      <p class="text-stone-600 text-sm md:text-base max-w-2xl mx-auto">
+        Aprende a cuidar tu piel con rigor científico, extractos botánicos de alta pureza y rutinas probadas de autor.
+      </p>
+    </div>
+  </section>
+
+  <!-- Articles Container -->
+  <main class="max-w-4xl mx-auto px-6 py-16 space-y-16">
+    
+    <!-- 📄 ARTÍCULO 1 -->
+    <article id="articulo-piel-de-fresa" class="glass-panel p-8 md:p-12 rounded-[2.5rem] space-y-6 shadow-xl border border-[#D48B80]/25">
+      <div class="flex items-center gap-3 text-xs text-stone-500 font-semibold">
+        <span class="text-[#B86B60] font-bold uppercase tracking-wider">Tratamiento Corporal</span>
+        <span>•</span>
+        <span>Lectura: 6 min</span>
+        <span>•</span>
+        <span class="text-emerald-700 font-bold flex items-center gap-1"><i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> Revisado por Dermatólogos</span>
+      </div>
+
+      <h2 class="font-serif-luxury text-2xl md:text-4xl font-bold text-[#181514] leading-snug">
+        Cómo eliminar la "Piel de Fresa" y la Queratosis Pilaris en 7 Días: Guía Boticaria Definitiva
+      </h2>
+
+      <div class="text-stone-700 text-sm md:text-base leading-relaxed space-y-4">
+        <p>
+          La llamada <strong>"piel de fresa" (*strawberry legs*)</strong> o <em>queratosis pilaris</em> afecta a más del 50% de las mujeres en España. Se manifiesta como pequeños puntos oscuros o rojizos en los folículos de las piernas, brazos y glúteos, provocando un aspecto moteado y una textura rugosa al tacto.
+        </p>
+        
+        <h3 class="font-serif-luxury font-bold text-lg text-[#181514] pt-2">¿Por qué las cremas hidratantes convencionales no funcionan?</h3>
+        <p>
+          La causa biológica no es la sequedad superficial, sino un exceso de <strong>queratina acumulada</strong> que bloquea la salida del vello y atrapa bacterias y sebo oxidado. Las cremas estándar solo aportan grasa superficial sin destapar el tapón folicular.
+        </p>
+
+        <h3 class="font-serif-luxury font-bold text-lg text-[#181514] pt-2">El Protocolo Boticario en 3 Pasos con ADEUS™ 300g:</h3>
+        <ul class="list-disc pl-5 space-y-2 text-stone-600 text-sm">
+          <li><strong>Exfoliación con Micro-Sales Pulidoras:</strong> Fricción circular suave que desobstruye el poro sin generar micro-abrasiones.</li>
+          <li><strong>Acción Descongestionante de Centella Asiática:</strong> Calma el eritema y la inflamación de los capilares perifoliculares.</li>
+          <li><strong>Sellado Lipídico con Omega 7 (Espino Amarillo):</strong> Regenera la barrera celular para evitar que la queratina vuelva a solidificarse.</li>
+        </ul>
+
+        <div class="bg-[#F6EAE7]/80 p-5 rounded-2xl border border-[#D48B80]/40 my-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <div class="font-serif-luxury font-bold text-[#181514] text-base">¿Lista para lucir piernas de porcelana?</div>
+            <div class="text-xs text-stone-500">Prueba el tratamiento intensivo ADEUS™ 300g con pago contra-reembolso.</div>
+          </div>
+          <a href="index.html#packs" class="bg-rose-gradient text-white px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition whitespace-nowrap shadow-md">
+            Ver Oferta Pack Dúo
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 📄 ARTÍCULO 2 -->
+    <article id="articulo-centella-espino" class="glass-panel p-8 md:p-12 rounded-[2.5rem] space-y-6 shadow-xl border border-[#D48B80]/25">
+      <div class="flex items-center gap-3 text-xs text-stone-500 font-semibold">
+        <span class="text-[#B86B60] font-bold uppercase tracking-wider">Activos Botánicos</span>
+        <span>•</span>
+        <span>Lectura: 5 min</span>
+      </div>
+
+      <h2 class="font-serif-luxury text-2xl md:text-4xl font-bold text-[#181514] leading-snug">
+        Centella Asiática y Aceite de Espino Amarillo: El Secreto Médico para una Piel de Seda
+      </h2>
+
+      <div class="text-stone-700 text-sm md:text-base leading-relaxed space-y-4">
+        <p>
+          En la alta cosmética boticaria, la sinergia entre extractos puros marca la diferencia entre un alivio temporal y una regeneración estructural. La <em>Centella Asiática (*Gotu Kola*)</em> combinada con el <em>Aceite de Espino Amarillo (*Sea Buckthorn*)</em> constituye uno de los complejos bioactivos más eficaces para restaurar el tono y la elasticidad corporal.
+        </p>
+
+        <h3 class="font-serif-luxury font-bold text-lg text-[#181514] pt-2">Los Beneficios Clínicos del Complejo Kivaneli:</h3>
+        <p>
+          1. <strong>Síntesis Natural de Colágeno:</strong> El madecassoside estimula los fibroblastos dérmicos, aumentando la firmeza cutánea.<br>
+          2. <strong>Ácidos Grasos Esenciales Omega 3, 6, 7 y 9:</strong> El espino amarillo es el único fruto vegetal que contiene alta concentración de Omega 7, el lípido principal que compone la membrana celular humana.
+        </p>
+      </div>
+    </article>
+
+    <!-- 📄 ARTÍCULO 3 -->
+    <article id="articulo-parches-ojeras" class="glass-panel p-8 md:p-12 rounded-[2.5rem] space-y-6 shadow-xl border border-purple-200">
+      <div class="flex items-center gap-3 text-xs text-stone-500 font-semibold">
+        <span class="text-purple-700 font-bold uppercase tracking-wider">Cuidado Facial & Mirada</span>
+        <span>•</span>
+        <span>Lectura: 4 min</span>
+      </div>
+
+      <h2 class="font-serif-luxury text-2xl md:text-4xl font-bold text-[#181514] leading-snug">
+        Parches de Hidrogel de Colágeno vs Cremas de Contorno: Cómo Desinflamar Bolsas en 15 Minutos
+      </h2>
+
+      <div class="text-stone-700 text-sm md:text-base leading-relaxed space-y-4">
+        <p>
+          La piel del contorno de ojos es hasta 5 veces más fina que la del resto del rostro. La retención de líquidos nocturna y el estrés provocan estancamiento linfático que se traduce en bolsas violáceas y arrugas de expresión.
+        </p>
+        <p>
+          A diferencia de las cremas convencionales que se evaporan con rapidez, los <strong>Parches de Hidrogel KÖRMESIC™</strong> crean un sello oclusivo osmótico: la matriz de hidrogel transfiere el colágeno soluble y el suero revitalizante directamente a las capas profundas de la piel, proporcionando un <strong>efecto lifting y mirada descansada en solo 15 minutos</strong>.
+        </p>
+        
+        <div class="bg-purple-50 p-4 rounded-2xl border border-purple-200 text-xs text-purple-900 font-semibold flex items-center justify-between">
+          <span>🎁 Recuerda: Puedes recibir este bote de 60 parches GRATIS invitando a una amiga al club Kivaneli.</span>
+          <a href="index.html#amigas" class="underline text-purple-700 font-bold">Generar Enlace</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 📄 ARTÍCULO 4 -->
+    <article id="articulo-acido-kojico" class="glass-panel p-8 md:p-12 rounded-[2.5rem] space-y-6 shadow-xl border border-amber-200">
+      <div class="flex items-center gap-3 text-xs text-stone-500 font-semibold">
+        <span class="text-amber-700 font-bold uppercase tracking-wider">Tono & Despigmentación</span>
+        <span>•</span>
+        <span>Lectura: 5 min</span>
+      </div>
+
+      <h2 class="font-serif-luxury text-2xl md:text-4xl font-bold text-[#181514] leading-snug">
+        Ácido Kójico Puro: La Solución Dermatológica para Manchas, Axilas Oscuras y Marcas
+      </h2>
+
+      <div class="text-stone-700 text-sm md:text-base leading-relaxed space-y-4">
+        <p>
+          El <strong>Ácido Kójico</strong> es un compuesto biotecnológico obtenido de la fermentación del arroz en la medicina oriental. Su función principal es inhibir la enzima <em>tirosinasa</em>, responsable de la sobreproducción de melanina que genera manchas solares, hiperpigmentación por fricción y marcas post-depilación.
+        </p>
+        <p>
+          Utilizar la barra limpiadora de Ácido Kójico en la ducha 2 a 3 veces por semana unifica el tono de axilas, codos, rodillas y zonas íntimas sin la agresividad de los peelings químicos invasivos.
+        </p>
+      </div>
+    </article>
+
+  </main>
+
+  <!-- Floating WhatsApp Direct Contact Button -->
+  <div class="fixed bottom-6 right-6 z-50">
+    <a href="https://api.whatsapp.com/send?phone=34612345678&text=Hola%20Kivaneli,%20tengo%20una%20consulta%20sobre%20el%20Ritual%20Piel%20de%20Seda" target="_blank" class="bg-[#25D366] text-white p-4 rounded-full shadow-2xl flex items-center gap-2.5 font-bold text-xs hover:scale-105 transition">
+      <i data-lucide="message-circle" class="w-5 h-5"></i>
+      <span class="hidden sm:inline">¿Dudas? Escríbenos por WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-[#181514] text-stone-400 py-12 text-xs border-t border-[#D48B80]/20 text-center space-y-4">
+    <div class="font-serif-luxury text-xl font-bold tracking-[0.2em] text-[#FAF7F2]">
+      KIVANELI<span class="text-[#D48B80]">.</span>
+    </div>
+    <p class="text-stone-500 text-xs">Maison Botanique de Cuidado Personal. Artículos con fines educativos y de divulgación cosmética.</p>
+    <div class="text-stone-600">© 2026 Kivaneli. Todos los derechos reservados. <a href="index.html" class="text-[#D48B80] underline">Volver a la Tienda</a></div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
