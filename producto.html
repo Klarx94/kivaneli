@@ -66,11 +66,7 @@
 </head>
 <body class="selection:bg-[#D48B80] selection:text-white min-h-screen flex flex-col justify-between">
 
-  <!-- 📢 Top Urgency Bar -->
-  <div class="bg-[#181514] text-white py-2 px-4 text-center text-xs tracking-wider uppercase font-semibold flex items-center justify-center gap-2 border-b border-[#D48B80]/30">
-    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-    <span>Envío Urgente 24/48h desde Madrid · Pago Contra-Reembolso en Puerta (Sin Tarjeta)</span>
-  </div>
+  
 
   <!-- 👑 Clean Unified Luxury Floating Header -->
   <div class="fixed top-4 inset-x-0 z-40 px-4 sm:px-6 pointer-events-none">
@@ -125,7 +121,7 @@
   </div>
 
   <!-- 🛍️ MAIN PRODUCT STAGE -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-32 pb-12 flex-1 w-full">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-36 sm:pt-40 pb-12 flex-1 w-full">
     
     <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-xs text-stone-500 mb-6 font-medium">
@@ -204,10 +200,10 @@
         <div class="p-4 sm:p-5 rounded-2xl bg-white border-2 border-[#D48B80]/30 shadow-xs space-y-2.5">
           <div class="flex items-baseline justify-between">
             <div class="flex items-baseline gap-2.5">
-              <span id="productPriceDisplay" class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514]">29,90 €</span>
-              <span id="productRegularPriceDisplay" class="text-xs sm:text-sm text-stone-400 line-through">39,90 €</span>
+              <span id="productPriceDisplay" class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514] whitespace-nowrap">29,90&nbsp;€</span>
+              <span id="productRegularPriceDisplay" class="text-xs sm:text-sm text-stone-400 line-through whitespace-nowrap">39,90&nbsp;€</span>
             </div>
-            <span id="productDiscountPill" class="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Ahorras 10,00 €</span>
+            <span id="productDiscountPill" class="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Ahorras 10,00&nbsp;€</span>
           </div>
           <div class="text-[11px] text-stone-500 flex items-center gap-1.5">
             <i data-lucide="package-check" class="w-3.5 h-3.5 text-emerald-600"></i>
@@ -404,9 +400,9 @@
       document.getElementById('productCategoryTag').innerText = p.categoryTag;
       document.getElementById('productTitle').innerText = p.title;
       document.getElementById('productSubtitle').innerText = p.subtitle;
-      document.getElementById('productPriceDisplay').innerText = p.price.toFixed(2).replace('.', ',') + ' €';
-      document.getElementById('productRegularPriceDisplay').innerText = p.regularPrice.toFixed(2).replace('.', ',') + ' €';
-      document.getElementById('productDiscountPill').innerText = 'Ahorras ' + (p.regularPrice - p.price).toFixed(2).replace('.', ',') + ' €';
+      document.getElementById('productPriceDisplay').innerHTML = p.price.toFixed(2).replace('.', ',') + '&nbsp;€';
+      document.getElementById('productRegularPriceDisplay').innerHTML = p.regularPrice.toFixed(2).replace('.', ',') + '&nbsp;€';
+      document.getElementById('productDiscountPill').innerHTML = 'Ahorras ' + (p.regularPrice - p.price).toFixed(2).replace('.', ',') + '&nbsp;€';
       document.getElementById('productBadge').innerHTML = `<i data-lucide="check-circle" class="w-3 h-3"></i><span>${p.badge}</span>`;
       document.getElementById('mainProductImage').src = p.images[0];
 
@@ -436,7 +432,7 @@
             <img src="${other.image}" alt="${other.name}" class="w-10 h-10 rounded-lg object-cover flex-shrink-0">
             <div class="flex-1 min-w-0">
               <div class="font-serif-luxury font-bold text-xs text-[#181514] truncate">${other.shortName}</div>
-              <div class="text-[10.5px] text-[#B86B60] font-bold">+${other.impulsePrice.toFixed(2).replace('.', ',')} € <span class="text-[9px] text-stone-400 line-through">${other.price.toFixed(2).replace('.', ',')} €</span></div>
+              <div class="text-[10.5px] text-[#B86B60] font-bold">+${other.impulsePrice.toFixed(2).replace('.', ',')}&nbsp;€ <span class="text-[9px] text-stone-400 line-through whitespace-nowrap">${other.price.toFixed(2).replace('.', ',')}&nbsp;€</span></div>
             </div>
             <button onclick="window.kivaneliCart.addItem('${other.id}', 1, true)" class="bg-[#181514] text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs whitespace-nowrap">
               <i data-lucide="plus" class="w-3 h-3"></i>

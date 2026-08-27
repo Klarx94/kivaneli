@@ -172,11 +172,11 @@
           <div class="pt-4 border-t border-stone-200/80 space-y-2 text-xs text-stone-600">
             <div class="flex justify-between">
               <span>Subtotal productos:</span>
-              <span id="summarySubtotal" class="font-bold text-[#181514]">0,00 €</span>
+              <span id="summarySubtotal" class="font-bold text-[#181514]">0,00&nbsp;€</span>
             </div>
             <div id="summaryDiscountRow" class="flex justify-between text-emerald-700 font-bold hidden">
               <span>Descuento aplicado:</span>
-              <span id="summaryDiscount">-0,00 €</span>
+              <span id="summaryDiscount">-0,00&nbsp;€</span>
             </div>
             <div class="flex justify-between text-emerald-800">
               <span>Gastos de envío (GLS Express 24h):</span>
@@ -184,7 +184,7 @@
             </div>
             <div class="flex justify-between text-base font-black text-[#181514] pt-2 border-t border-stone-200">
               <span>Total a pagar:</span>
-              <span id="summaryTotal" class="font-serif-luxury text-2xl text-[#D48B80]">0,00 €</span>
+              <span id="summaryTotal" class="font-serif-luxury text-2xl text-[#D48B80]">0,00&nbsp;€</span>
             </div>
           </div>
 
@@ -415,7 +415,7 @@
       }
 
       document.getElementById('summarySubtotal').innerText = subtotal.toFixed(2).replace('.', ',') + ' €';
-      document.getElementById('summaryTotal').innerText = total.toFixed(2).replace('.', ',') + ' €';
+      document.getElementById('summaryTotal').innerHTML = total.toFixed(2).replace('.', ',') + '&nbsp;€';
 
       const discountRow = document.getElementById('summaryDiscountRow');
       if (discount > 0) {

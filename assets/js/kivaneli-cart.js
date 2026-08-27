@@ -168,7 +168,7 @@ class KivaneliCart {
     if (this.items.length === 0) {
       container.innerHTML = '';
       if (emptyState) emptyState.classList.remove('hidden');
-      if (subtotalEl) subtotalEl.innerText = '0,00 €';
+      if (subtotalEl) subtotalEl.innerHTML = '0,00&nbsp;€';
       if (checkoutBtn) {
         checkoutBtn.classList.add('opacity-50', 'pointer-events-none');
       }
@@ -184,8 +184,8 @@ class KivaneliCart {
           <div class="flex-1 min-w-0">
             <h4 class="font-serif-luxury font-bold text-xs text-[#181514] truncate">${item.shortName || item.name}</h4>
             <div class="flex items-baseline gap-2 mt-0.5">
-              <span class="font-black text-sm text-[#D48B80]">${(item.price * item.quantity).toFixed(2).replace('.', ',')} €</span>
-              ${item.regularPrice ? `<span class="text-[10px] text-stone-400 line-through">${(item.regularPrice * item.quantity).toFixed(2).replace('.', ',')} €</span>` : ''}
+              <span class="whitespace-nowrap font-black text-sm text-[#D48B80]">${(item.price * item.quantity).toFixed(2).replace('.', ',')}&nbsp;€</span>
+              ${item.regularPrice ? `<span class="whitespace-nowrap text-[10px] text-stone-400 line-through">${(item.regularPrice * item.quantity).toFixed(2).replace('.', ',')}&nbsp;€</span>` : ''}
             </div>
             <div class="flex items-center gap-2 mt-2">
               <button onclick="window.kivaneliCart.updateQuantity('${item.id}', -1)" class="w-6 h-6 rounded-lg bg-stone-100 text-stone-700 font-bold flex items-center justify-center hover:bg-stone-200 transition text-xs">-</button>
@@ -200,7 +200,7 @@ class KivaneliCart {
       `).join('');
 
       const total = this.getTotal();
-      if (subtotalEl) subtotalEl.innerText = total.toFixed(2).replace('.', ',') + ' €';
+      if (subtotalEl) subtotalEl.innerHTML = total.toFixed(2).replace('.', ',') + '&nbsp;€';
     }
 
     // Render Impulse Cross-sells (Only individual items not in cart)
@@ -224,8 +224,8 @@ class KivaneliCart {
                   <div class="flex-1 min-w-0">
                     <div class="font-serif-luxury font-bold text-xs text-[#181514] truncate">${up.shortName}</div>
                     <div class="flex items-baseline gap-1.5 text-[11px]">
-                      <span class="font-bold text-[#B86B60]">+${up.impulsePrice.toFixed(2).replace('.', ',')} €</span>
-                      <span class="text-[10px] text-stone-400 line-through">${up.price.toFixed(2).replace('.', ',')} €</span>
+                      <span class="whitespace-nowrap font-bold text-[#B86B60]">+${up.impulsePrice.toFixed(2).replace('.', ',')}&nbsp;€</span>
+                      <span class="whitespace-nowrap text-[10px] text-stone-400 line-through">${up.price.toFixed(2).replace('.', ',')}&nbsp;€</span>
                     </div>
                   </div>
                   <button onclick="window.kivaneliCart.addItem('${up.id}', 1, true)" class="bg-[#181514] text-white px-3 py-1.5 rounded-xl text-[10px] font-extrabold uppercase hover:bg-[#D48B80] transition whitespace-nowrap flex items-center gap-1 shadow-xs">
