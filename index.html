@@ -14,8 +14,8 @@
   <meta property="og:url" content="https://kivaneli.es/">
   <meta property="og:image" content="https://kivaneli.es/assets/images/ugc_after_texture.jpg">
 
-  <!-- Preload Critical Hero Assets for Sub-Second LCP -->
-  <link rel="preload" as="image" href="assets/images/adeus_jar_botanicals.jpg">
+  <!-- Preload Critical Video 1st Frame Poster for Seamless Zero-Lag Paint -->
+  <link rel="preload" as="image" href="assets/images/video1_first_frame.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -50,7 +50,7 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Critical Inline CSS: 0ms First Paint, Zero Blocking Opacity -->
+  <!-- Critical Inline CSS: 0ms First Paint, Zero Dark Flash -->
   <style>
     :root {
       --color-ivory: #FAF7F2;
@@ -150,24 +150,7 @@
       to { transform: translateX(-50%); }
     }
 
-    /* Video Preloader Spinner */
-    .video-preloader {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #181514;
-      z-index: 10;
-      transition: opacity 0.4s ease-out;
-    }
-    .video-preloader.loaded {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    /* Native Smooth Scroll Reveal (No Blocking Opacity) */
+    /* Native Smooth Scroll Reveal */
     .reveal-on-scroll {
       opacity: 0;
       transform: translateY(20px);
@@ -226,7 +209,7 @@
 
       </header>
 
-      <!-- 🌸 Attached Subtle Ticker (Warm Pearl Background & Slow Continuous Marquee) -->
+      <!-- 🌸 Attached Subtle Ticker -->
       <div class="glass-ticker-pill rounded-full py-1.5 px-4 shadow-sm overflow-hidden text-xs text-[#B86B60] max-w-4xl mx-auto border border-[#D48B80]/20">
         <div class="marquee-wrapper">
           <div class="marquee-content flex items-center gap-8 font-medium text-[11px] tracking-wider">
@@ -258,11 +241,11 @@
     </div>
   </div>
 
-  <!-- 🌸 1. HERO SECTION (INSTANT 0ms RENDER, ZERO BLOCKING LAG) -->
+  <!-- 🌸 1. HERO SECTION (INSTANT 0ms RENDER & ZERO DARK FLASH) -->
   <section class="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
       
-      <!-- Text Column (Immediate Paint) -->
+      <!-- Text Column -->
       <div class="lg:col-span-7 space-y-7">
         <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#F6EAE7] border border-[#D48B80]/40 text-[#B86B60] text-xs font-extrabold uppercase tracking-widest shadow-sm">
           <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D48B80]"></i>
@@ -326,26 +309,17 @@
         </div>
       </div>
 
-      <!-- Video Hero Container with Instant Poster & Seamless Preloader -->
+      <!-- Video Hero Container: Exact 1st Frame Poster + Soft Pearl Background (Zero Dark Flash) -->
       <div class="lg:col-span-5 relative">
         <div class="absolute -inset-4 bg-gradient-to-tr from-[#D48B80]/30 to-amber-300/30 rounded-[2.5rem] filter blur-2xl -z-10 opacity-70"></div>
-        <div class="relative rounded-[2.2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[9/16] max-w-[350px] mx-auto bg-stone-950">
+        <div class="relative rounded-[2.2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[9/16] max-w-[350px] mx-auto bg-[#F6EAE7]">
           
-          <!-- Background Poster Image (Renders Instantly at 0ms) -->
-          <img id="heroVideoPoster" src="assets/images/adeus_jar_botanicals.jpg" alt="ADEUS Tratamiento Piel de Seda" class="absolute inset-0 w-full h-full object-cover z-0" fetchpriority="high">
-
-          <!-- HTML5 Video Loaded Async without Blocking UI -->
-          <video id="heroVideo" class="relative z-10 w-full h-full object-cover transition-opacity duration-700 opacity-0" muted loop playsinline preload="metadata" oncanplay="this.classList.remove('opacity-0'); document.getElementById('heroPreloader').classList.add('loaded');">
+          <!-- Exact Frame 1 Poster Video Player -->
+          <video id="heroVideo" class="w-full h-full object-cover" autoplay muted loop playsinline preload="auto" poster="assets/images/video1_first_frame.jpg">
             <source src="assets/videos/adeus_tratamiento.mp4" type="video/mp4">
           </video>
 
-          <!-- Luxury Preloader Spinner -->
-          <div id="heroPreloader" class="video-preloader z-20">
-            <div class="w-10 h-10 rounded-full border-2 border-[#D48B80]/30 border-t-[#D48B80] animate-spin mb-3"></div>
-            <span class="font-serif-luxury text-[10px] tracking-[0.2em] text-[#D48B80] uppercase">Cargando Ritual...</span>
-          </div>
-
-          <div class="absolute top-4 left-4 right-4 z-30 flex items-center justify-between pointer-events-none">
+          <div class="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
             <div class="bg-[#181514]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-white text-[10px] font-extrabold tracking-wider flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
               APLICACIÓN REAL EN PIEL
@@ -355,7 +329,7 @@
             </button>
           </div>
           
-          <div class="absolute bottom-4 left-4 right-4 z-30 glass-card-dark p-4 rounded-2xl text-white space-y-1">
+          <div class="absolute bottom-4 left-4 right-4 z-20 glass-card-dark p-4 rounded-2xl text-white space-y-1">
             <div class="flex items-center justify-between">
               <span class="font-serif-luxury font-bold text-sm tracking-wider text-amber-200">ADEUS™ 300g</span>
               <span class="text-[10px] font-extrabold text-emerald-400 bg-emerald-950/70 px-2 py-0.5 rounded border border-emerald-500/30">LABORATORIO CERTIFICADO</span>
@@ -447,7 +421,7 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
         <div class="glass-panel rounded-3xl overflow-hidden shadow-xl border-2 border-rose-200/80 flex flex-col justify-between">
-          <div class="relative aspect-[4/3] bg-stone-900 overflow-hidden">
+          <div class="relative aspect-[4/3] bg-[#F6EAE7] overflow-hidden">
             <img src="assets/images/ugc_before_texture.jpg" alt="Antes: Piel de Fresa" class="w-full h-full object-cover" loading="lazy" decoding="async">
             <div class="absolute top-4 left-4 bg-rose-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-rose-400/40 text-white text-xs font-bold uppercase tracking-wider">
               🔴 ANTES: Textura Folicular Obstruida
@@ -466,7 +440,7 @@
         </div>
 
         <div class="glass-panel rounded-3xl overflow-hidden shadow-2xl border-2 border-emerald-300/80 flex flex-col justify-between bg-white">
-          <div class="relative aspect-[4/3] bg-stone-900 overflow-hidden">
+          <div class="relative aspect-[4/3] bg-[#F6EAE7] overflow-hidden">
             <img src="assets/images/ugc_after_texture.jpg" alt="Después: Piel de Seda" class="w-full h-full object-cover" loading="lazy" decoding="async">
             <div class="absolute top-4 left-4 bg-emerald-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-emerald-400/40 text-white text-xs font-bold uppercase tracking-wider">
               ✨ DESPUÉS: Acabado Satinado de Seda
@@ -487,7 +461,7 @@
     </div>
   </section>
 
-  <!-- 🎬 4. EL RITUAL EN 3 ESCALONES (LAZY-LOADED VIDEOS) -->
+  <!-- 🎬 4. EL RITUAL EN 3 ESCALONES -->
   <section id="ritual-escalones" class="py-24 bg-white border-y border-[#D48B80]/15 relative reveal-on-scroll">
     <div class="max-w-7xl mx-auto px-6 space-y-24">
       
@@ -506,8 +480,8 @@
       <!-- Escalón 1 -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-5">
-          <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[9/16] max-w-[320px] mx-auto bg-stone-900">
-            <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/adeus_jar_botanicals.jpg" data-src="assets/videos/adeus_tratamiento.mp4">
+          <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[9/16] max-w-[320px] mx-auto bg-[#F6EAE7]">
+            <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/video1_first_frame.jpg" data-src="assets/videos/adeus_tratamiento.mp4">
             </video>
             <div class="absolute top-3 left-3 bg-[#181514]/80 backdrop-blur-md px-3 py-1 rounded-full text-amber-300 text-[10px] font-extrabold tracking-wider">
               ⭐ ESCALÓN 1: CUERPO
@@ -555,8 +529,8 @@
           </div>
         </div>
         <div class="lg:col-span-5 order-1 lg:order-2">
-          <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-purple-200 aspect-[9/16] max-w-[320px] mx-auto bg-stone-900">
-            <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/kormesic_jar_purple.jpg" data-src="assets/videos/kormesic_patches.mp4">
+          <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-purple-200 aspect-[9/16] max-w-[320px] mx-auto bg-purple-50">
+            <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/video2_first_frame.jpg" data-src="assets/videos/kormesic_patches.mp4">
             </video>
             <div class="absolute top-3 left-3 bg-purple-950/85 backdrop-blur-md px-3 py-1 rounded-full text-purple-200 text-[10px] font-extrabold tracking-wider border border-purple-400/30">
               💜 ESCALÓN 2: MIRADA
@@ -568,8 +542,8 @@
       <!-- Escalón 3 -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-5">
-          <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-amber-200 aspect-[9/16] max-w-[320px] mx-auto bg-stone-900">
-            <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/kojic_soap_box.jpg" data-src="assets/videos/kojic_soap.mp4">
+          <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-amber-200 aspect-[9/16] max-w-[320px] mx-auto bg-amber-50">
+            <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/video3_first_frame.jpg" data-src="assets/videos/kojic_soap.mp4">
             </video>
             <div class="absolute top-3 left-3 bg-amber-950/85 backdrop-blur-md px-3 py-1 rounded-full text-amber-200 text-[10px] font-extrabold tracking-wider border border-amber-400/30">
               🧡 ESCALÓN 3: TONO
@@ -1292,7 +1266,6 @@
         heroV.play().catch(() => {});
       }
 
-      // Icons
       if (window.lucide) lucide.createIcons();
     });
 
