@@ -1,0 +1,38 @@
+{
+  "Producto 1.mp4": {
+    "duration_sec": 50.379777777777775,
+    "resolution": "720x1280",
+    "frames": [
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 1_frame_1.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 1_frame_2.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 1_frame_3.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 1_frame_4.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 1_frame_5.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 1_frame_6.jpg"
+    ]
+  },
+  "Producto 2 base upsell strella.mp4": {
+    "duration_sec": 32.779773,
+    "resolution": "720x1280",
+    "frames": [
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 2 base upsell strella_frame_1.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 2 base upsell strella_frame_2.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 2 base upsell strella_frame_3.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 2 base upsell strella_frame_4.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 2 base upsell strella_frame_5.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 2 base upsell strella_frame_6.jpg"
+    ]
+  },
+  "Producto 3 upsell complemento.mp4": {
+    "duration_sec": 31.279777777777777,
+    "resolution": "720x1280",
+    "frames": [
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 3 upsell complemento_frame_1.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 3 upsell complemento_frame_2.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 3 upsell complemento_frame_3.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 3 upsell complemento_frame_4.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 3 upsell complemento_frame_5.jpg",
+      "C:\\Users\\karc0\\OneDrive\\Desktop\\kivaneli\\extracted_frames\\Producto 3 upsell complemento_frame_6.jpg"
+    ]
+  }
+}
