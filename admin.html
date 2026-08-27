@@ -662,9 +662,17 @@
           ? '<span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-bold">🟢 Seguro</span>'
           : '<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 text-[10px] font-bold">🟡 Revisar CP</span>';
 
+        const isDelivered = o.shipping_status === 'DELIVERED' || o.payment_status === 'PAID';
+        const digitalBadge = isDelivered
+          ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">🔓 Guías Despachadas</span>'
+          : '<span class="px-2 py-0.5 rounded bg-stone-100 text-stone-600 text-[10px] font-bold">🔒 Guías Retenidas (COD)</span>';
+
         return `
           <tr class="hover:bg-[#FAF7F2] transition">
-            <td class="p-4 font-mono font-bold text-[#181514]">${o.order_number}</td>
+            <td class="p-4 font-mono font-bold text-[#181514]">
+              ${o.order_number}
+              <div class="mt-1">${digitalBadge}</div>
+            </td>
             <td class="p-4 font-semibold text-[#181514]">${o.customer_name}</td>
             <td class="p-4 text-stone-600">
               <div>${o.customer_phone}</div>
@@ -677,10 +685,15 @@
             <td class="p-4 text-stone-800 font-medium">${o.pack_selected}</td>
             <td class="p-4 font-bold text-[#D48B80]">${amt.toFixed(2)} €</td>
             <td class="p-4">${riskBadge}</td>
-            <td class="p-4">
-              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold ${o.shipping_status === 'IN_PREPARATION' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">
+            <td class="p-4 space-y-1">
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold inline-block ${o.shipping_status === 'IN_PREPARATION' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">
                 ${o.shipping_status === 'IN_PREPARATION' ? 'En Preparación' : 'Entregado'}
               </span>
+              ${!isDelivered ? `
+                <button onclick="confirmDropeaDeliveryManually('${o.order_number}')" class="block text-[10px] font-bold text-emerald-700 hover:underline">
+                  ⚡ Marcar Entregado & Desbloquear Guías
+                </button>
+              ` : ''}
             </td>
           </tr>
         `;
@@ -778,6 +791,23 @@
           <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">Despachado</span></td>
         </tr>
       `).join('');
+    }
+
+    
+    async function confirmDropeaDeliveryManually(orderNumber) {
+      if (!confirm('¿Confirmar que el cliente ha recibido y pagado el pedido ' + orderNumber + '? Esto desbloqueará automáticamente las 3 guías y registrará el despacho del correo.')) return;
+      
+      const { data, error } = await supabaseClient.rpc('trigger_unlock_digital_guides', {
+        target_order_number: orderNumber
+      });
+
+      if (error) {
+        alert('Error al desbloquear: ' + error.message);
+      } else {
+        alert('¡Pedido marcado como ENTREGADO / PAGADO! Guías desbloqueadas con éxito.');
+        loadAdminData();
+        if (window.confetti) confetti({ particleCount: 60 });
+      }
     }
 
     // Modals

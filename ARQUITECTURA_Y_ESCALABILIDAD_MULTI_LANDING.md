@@ -1,89 +1,103 @@
-# 🏛️ ARQUITECTURA TÉCNICA, AUTOMATIZACIÓN DE EMAILS Y GUÍA DE ESCALABILIDAD MULTI-LANDING — KIVANELI COSMETICS
-*Documento Maestro de Arquitectura, Continuidad Operativa y Guía de Implementación para Futuros Agentes / Desarrolladores.*
+# 🏛️ ARQUITECTURA TÉCNICA, AUTOMATIZACIÓN DE EMAILS, GATING DE GUÍAS Y ESCALABILIDAD — KIVANELI COSMETICS
+*Documento Maestro de Arquitectura, Continuidad Operativa y Seguridad Integral para Futuros Agentes / Desarrolladores.*
 *Fecha de Emisión: 27 de Agosto de 2026.*
 
 ---
 
 ## 1. 📋 Resumen del Ecosistema en Producción
 
-* **Dominio Corporativo Principal:** `https://kivaneli.es/` (Canónicos y sitemaps vinculados).
+* **Dominio Corporativo Principal:** `https://kivaneli.es/` y `https://www.kivaneli.es/`.
 * **Alojamiento Edge:** Vercel Global Edge CDN (Proyecto `kivaneli`, Equipo `Architect Project`).
 * **Base de Datos & Auth:** Supabase PostgreSQL (Proyecto `sntsizmdhttpilbauxuv`, Región Londres `eu-west-2`).
 * **Correo Corporativo Transaccional:** Arsys Correo Pro (`beauty@kivaneli.es`, Servidor `smtp.serviciodecorreo.es:465` SSL/TLS).
-* **Logística & Despacho:** Dropea Logistics (Madrid, 24/48h).
+* **Operador Logístico:** Dropea Logistics (Madrid, Despacho en 24/48h).
+* **Pasarela de Pagos Digitales:** Revolut Pay / Tarjetas Seguras SSL.
 
 ---
 
-## 2. ✉️ Checklist de Correos Transaccionales y Campañas de Retargeting
+## 2. 🛡️ Arquitectura de Seguridad & Gating de Entrega Digital (Anti-Fraude y Anti-Bots)
 
-Se han creado, diseñado y cargado en la tabla `email_templates` de Supabase las siguientes **6 plantillas transaccionales**:
+Para proteger el contenido de alto valor y evitar que personas que piden por impulso y rechazan el paquete contra-reembolso se queden con las guías gratuitas, se ha implementado un **motor de entrega condicionada (Gating)**:
 
-| # | Slug de Plantilla | Tipo / Categoría | Asunto del Correo | Enlace / Regalo Incluido |
-|---|---|---|---|---|
-| **1** | `order_confirmation` | Transaccional (Inmediato) | `✨ Pedido Confirmado #{{order_number}} — Tu Ritual Piel de Seda` | Factura Digital + Acceso a la **Guía Maestra & Diario 30 Días (PDF)** |
-| **2** | `abandoned_checkout_recovery` | Retargeting (2h / 24h) | `🌸 {{customer_name}}, hemos reservado tu Lote (+ Regalo Exclusivo)` | Cupón de rescate **SEDA10** (10% DTO) + Envío Prioritario |
-| **3** | `amiga_welcome_referral` | Comunidad / Viral | `💜 ¡Bienvenida al Club Kivaneli & Amigas! Tu pase está activo` | Enlace de Embajadora único (`kivaneli.es/?ref=...`) |
-| **4** | `amiga_reward_earned` | Notificación Recompensa | `🎉 ¡Enhorabuena {{referrer_name}}! Tu amiga ha completado su pedido` | Código de **Vale de 15,00 €** para su próxima compra |
-| **5** | `post_purchase_checkin_day7` | Nurture / Fidelización | `🌿 Día 7 con ADEUS™: Tu piel empieza a renovarse por completo` | Consejos de drenaje linfático + Recordatorio de registro en el Diario |
-| **6** | `winback_promo_30days` | Retargeting / Reposición | `✨ {{customer_name}}, ¿se termina tu primer tarro? Tu 20% VIP` | Cupón de reposición **VIP20** (20% DTO + Envío Gratis) |
-
-> **Cumplimiento RGPD:** Cada plantilla incluye en el pie de página el enlace directo de baja (`https://kivaneli.es/baja?email=...`) conectado a la tabla `unsubscribes` en Supabase.
-
----
-
-## 3. 🏷️ Motor de Cupones & Descuentos Activos en Base de Datos
-
-Tabla Supabase: `discount_coupons`
-
-| Código | Tipo | Valor | Pedido Mínimo | Estado | Propósito |
-|---|---|---|---|---|---|
-| **`SEDA10`** | Porcentaje | **10%** | 0 € | 🟢 Activo | Cupón general de bienvenida y newsletter |
-| **`BIENVENIDA5`** | Importe Fijo | **5,00 €** | 25 € | 🟢 Activo | Rescate de carrito y referidos iniciales |
-| **`VIP15`** | Porcentaje | **15%** | 0 € | 🟢 Activo | Socias VIP recurrentes del Club Kivaneli |
-| **`TIKTOK10`** | Porcentaje | **10%** | 0 € | 🟢 Activo | Campañas de creadores de contenido y UGC |
-
----
-
-## 4. 📚 Guías Editoriales y Lead Magnets Desarrollados (Formato PDF / Imprimible)
-
-Ubicación en el repositorio: [`assets/docs/`](file:///C:/Users/karc0/OneDrive/Desktop/kivaneli/assets/docs/)
-
-1. **`Guia_Diario_Ritual_30_Dias_Kivaneli.html` (Diario Clínico de 30 Días):**
-   * 30 páginas interactivas imprimibles con casillas para marcar ritual de mañana, ritual de noche, vasos de agua, escala de suavidad del 1 al 10, notas de sensaciones diarias y evaluaciones semanales.
-2. **`Guia_Secretos_Fitocosmetica_Kivaneli.html` (Tratado Boticario):**
-   * Más de 15 secciones de dermatología aplicada: Mecanismo del Madecassoside, regeneración de la barrera de lípidos con Omega-7 (Espino Amarillo), e inhibición de tirosinasa con Ácido Kójico.
-3. **`Guia_Protocolo_Mirada_Radiante_15Min.html` (Guía Periocular):**
-   * Protocolo de 15 minutos con 5 puntos de acupresión linfática (*Zanzhu, Yuyao, Sizhukong, Tongziliao, Chengqi*) y terapia de frío con colágeno hidrolizado.
-
----
-
-## 5. 🚀 Procedimiento para Clonar y Crear Futuras Micro-Landings
-
-Para añadir una nueva micro-landing (ejemplo: *Micro-Landing de Parches Körmesic* o *Micro-Landing de Jabón Kójico*):
-
-### Paso 1: Registrar la Landing en Supabase
-Ejecutar en la tabla `landings`:
-```sql
-INSERT INTO landings (id, name, domain, slug, is_active)
-VALUES ('kivaneli-mirada-kormesic', 'Landing Mirada Radiante — Körmesic™', 'kivaneli.es', '/landing-mirada', true);
+```mermaid
+flowchart TD
+    A[Clienta realiza Pedido en kivaneli.es] --> B{Método de Pago}
+    
+    B -->|Tarjeta / Revolut Pay| C[Pago Confirmado Inmediato]
+    C --> D[Guías Desbloqueadas al Instante]
+    D --> E[Email Transaccional con Guías & Diario Enviado]
+    
+    B -->|Contra-Reembolso COD| F[Pedido En Preparación]
+    F --> G[🔒 Guías Retenidas en Base de Datos]
+    G --> H[Dropea despacha el paquete a domicilio]
+    H --> I[Repartidor Cobra en Efectivo & Entrega Paquete]
+    I --> J[⚡ Webhook Dropea: STATUS = DELIVERED]
+    J --> K[Supabase RPC: trigger_unlock_digital_guides]
+    K --> L[🔓 Desbloqueo Automático & Envío de Guías por Email]
 ```
 
-### Paso 2: Crear el Archivo HTML de la Micro-Landing
-* Crear `landing-mirada.html` en la raíz del proyecto.
-* Configurar el selector del formulario para asignar `landing_id: 'kivaneli-mirada-kormesic'` en los pedidos insertados en la tabla `orders`.
-
-### Paso 3: Gestión desde el Panel Admin (`admin.html`)
-* En el desplegable superior de `admin.html`, seleccionar la landing deseada para filtrar pedidos, cupones y audiencias de retargeting de forma independiente.
+### Disparadores Clave en Base de Datos:
+1. **`customer_digital_access`**: Tabla con tokens únicos por cliente. Si el pedido es COD, `is_unlocked = false`.
+2. **`trigger_unlock_digital_guides(order_number)`**: Función PL/pgSQL ejecutada automáticamente al recibir la confirmación de entrega de Dropea o al validarse manualmente desde el panel `admin.html`.
+3. **`verify_coupon(input_code, order_amount)`**: Función RPC protegida con `SECURITY DEFINER`. **Los cupones nunca se exponen al frontend**, impidiendo que bots o IAs maliciosas extraigan listas de códigos.
 
 ---
 
-## 6. 🔐 Credenciales y Canales de Conexión
+## 3. 📦 Webhook de Dropea Logistics (`/api/dropea-webhook`)
 
-* **Servidor Saliente SMTP Arsys:**
-  * Host: `smtp.serviciodecorreo.es`
-  * Puerto: `465` (SSL/TLS)
-  * Usuario: `beauty@kivaneli.es`
-  * Webmail: `https://correo.arsys.es`
-* **Supabase Pooler:**
-  * Host: `aws-0-eu-west-2.pooler.supabase.com:6543/postgres`
-  * Contraseña Postgres: `Alex_019403.`
+* **Endpoint:** `https://kivaneli.es/api/dropea-webhook` (Método `POST`).
+* **Función:** Recibe eventos automáticos desde Dropea Logistics.
+  * Si `status == 'DELIVERED'` o `'ENTREGADO'`, actualiza `payment_status = 'PAID'` y desbloquea el acceso a las guías.
+  * Si `status == 'IN_TRANSIT'`, actualiza el tracking interno.
+  * Si `status == 'RETURNED'`, marca el pedido como no cobrado sin liberar los activos digitales.
+
+---
+
+## 4. 📚 Las 3 Guías Editoriales de Alto Valor (Archivos Locales & Imprimibles)
+
+Ubicación local en el equipo: [`C:\Users\karc0\OneDrive\Desktop\kivaneli\assets\docs\`](file:///C:/Users/karc0/OneDrive/Desktop/kivaneli/assets/docs/)
+
+1. 📖 **[`Guia_Diario_Ritual_30_Dias_Kivaneli.html`](file:///C:/Users/karc0/OneDrive/Desktop/kivaneli/assets/docs/Guia_Diario_Ritual_30_Dias_Kivaneli.html) (36 Páginas Completas):**
+   * Psicología del hábito (Bucle Señal-Rutina-Recompensa).
+   * Hoja de diagnóstico y foto del Día 1.
+   * **30 fichas diarias estructuradas** con listas de verificación de mañana y noche, contador de agua (8 vasos), escala táctil del 1 al 10, notas de sensaciones y frases motivacionales.
+   * 4 Hitos semanales (Día 7, 14, 21, 28).
+   * Evaluación final del Día 30 con espacio para foto del antes/después y Pase VIP de reposición vitalicio (`VIP20`).
+
+2. 🔬 **[`Guia_Secretos_Fitocosmetica_Kivaneli.html`](file:///C:/Users/karc0/OneDrive/Desktop/kivaneli/assets/docs/Guia_Secretos_Fitocosmetica_Kivaneli.html) (16 Páginas de Tratado Boticario):**
+   * Biología del estrato córneo y fisiología de la queratosis pilaris.
+   * Madecassoside de Centella Asiática y síntesis de pro-colágeno I y III.
+   * Aceite de bayas de Espino Amarillo y Ácido Palmitoleico (Omega-7).
+   * Micro-sales osmóticas vs. exfoliantes abrasivos.
+   * Despigmentación con Ácido Kójico.
+   * Técnica magistral del cepillado en seco (*Dry Brushing*).
+   * Los 7 errores comunes en la ducha.
+
+3. 👁️ **[`Guia_Protocolo_Mirada_Radiante_15Min.html`](file:///C:/Users/karc0/OneDrive/Desktop/kivaneli/assets/docs/Guia_Protocolo_Mirada_Radiante_15Min.html) (12 Páginas Perioculares):**
+   * Anatomía del párpado y fosa periocular.
+   * Diferenciación clínica entre ojeras vasculares, pigmentarias y bolsas de edema.
+   * Crioterapia osmótica a 4°C con parches de hidrogel.
+   * Los 5 puntos de acupresión linfática (*Zanzhu, Yuyao, Sizhukong, Tongziliao, Chengqi*).
+   * Protocolo exprés pre-evento y maquillaje.
+
+---
+
+## 5. ✉️ Correos Transaccionales y Retargeting en Supabase (`email_templates`)
+
+| Slug | Asunto | Disparador | Enlace / Beneficio |
+|---|---|---|---|
+| `order_confirmation` | ✨ Pedido Confirmado #{{order_number}} | Confirmación Inmediata (Tarjeta) o Post-Entrega Dropea (COD) | Factura Digital + Acceso a las **3 Guías PDF** |
+| `abandoned_checkout_recovery` | 🌸 Hemos reservado tu Lote de Piel de Seda | 2h y 24h tras intento de compra | Cupón **SEDA10** (10% DTO) |
+| `amiga_welcome_referral` | 💜 ¡Bienvenida al Club de Embajadoras! | Registro en Club Amigas | Enlace `https://kivaneli.es/?ref=...` |
+| `amiga_reward_earned` | 🎉 Tu amiga ha completado su pedido | Validación de entrega de referida | Vale de **15,00 €** |
+| `post_purchase_checkin_day7` | 🌿 Día 7 con ADEUS™: Tu piel se renueva | 7 días post-entrega Dropea | Consejos de masaje y Diario |
+| `winback_promo_30days` | ✨ ¿Se termina tu primer tarro? | 30 días post-entrega Dropea | Cupón **VIP20** (20% DTO) |
+
+---
+
+## 6. 🚀 Próximos Pasos de Integración: Dropea & Revolut Pay
+
+1. **Dropea Logistics:**
+   * Enlazar las credenciales API y configurar la URL del Webhook (`https://kivaneli.es/api/dropea-webhook`) en el panel de Dropea para la sincronización automática de estados de entrega.
+2. **Revolut Pay:**
+   * Incorporar el Merchant API Key de Revolut en el checkout para procesamiento de tarjetas con 1-click checkout y 5% de descuento adicional.

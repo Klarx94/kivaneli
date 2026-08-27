@@ -1335,9 +1335,8 @@
     }
 
     function updateCheckoutPriceDisplay() {
-      let finalPrice = currentPackBasePrice;
-      if (currentCoupon === 'SEDA10') finalPrice *= 0.90;
-      if (currentPaymentMode === 'CARD') finalPrice *= 0.95;
+      let finalPrice = Math.max(0, currentPackBasePrice - activeCouponDiscountAmt);
+      if (currentPaymentMode === 'CARD') finalPrice *= 0.95; // 5% extra discount for online card payment
 
       document.getElementById('selectedPackText').innerText = currentPackName + ' (' + finalPrice.toFixed(2).replace('.', ',') + ' €)';
       document.getElementById('selectedPackPrice').innerText = finalPrice.toFixed(2).replace('.', ',') + ' €';
@@ -1425,23 +1424,48 @@
       window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
     }
 
-    function applyCoupon() {
+    let activeCouponDiscountAmt = 0;
+
+    async function applyCoupon() {
       const code = document.getElementById('couponInput').value.trim().toUpperCase();
       const msg = document.getElementById('couponMessage');
-      if (code === 'SEDA10') {
-        currentCoupon = 'SEDA10';
-        msg.innerText = '✅ Cupón VIP SEDA10 aplicado: 10% de descuento deducido.';
-        msg.classList.remove('hidden');
-        updateCheckoutPriceDisplay();
-        if (window.confetti) confetti({ particleCount: 40, spread: 50 });
-      } else if (code.includes('AMIGA') || code.includes('VIP') || code.startsWith('KIV-')) {
-        currentCoupon = code;
-        msg.innerText = '🎁 Código de Amiga Válido: ¡Parches Körmesic GRATIS añadidos a tu paquete!';
-        msg.classList.remove('hidden');
-        if (window.confetti) confetti({ particleCount: 60, spread: 70 });
-      } else {
-        msg.innerText = '❌ Código no reconocido. Prueba con SEDA10.';
-        msg.classList.remove('hidden');
+      if (!code) return;
+
+      try {
+        const client = getSupabase();
+        if (client) {
+          const { data, error } = await client.rpc('verify_coupon', {
+            input_code: code,
+            order_amount: currentPackBasePrice
+          });
+
+          if (error || !data || !data.valid) {
+            msg.innerText = (data && data.message) || '❌ Código no válido o caducado.';
+            msg.className = 'text-xs font-bold text-rose-600';
+            msg.classList.remove('hidden');
+            currentCoupon = '';
+            activeCouponDiscountAmt = 0;
+            updateCheckoutPriceDisplay();
+            return;
+          }
+
+          currentCoupon = data.code;
+          if (data.discount_type === 'PERCENTAGE') {
+            activeCouponDiscountAmt = (currentPackBasePrice * (data.discount_value / 100));
+          } else if (data.discount_type === 'FIXED') {
+            activeCouponDiscountAmt = data.discount_value;
+          } else {
+            activeCouponDiscountAmt = 0;
+          }
+
+          msg.innerText = data.message;
+          msg.className = 'text-xs font-bold text-emerald-700';
+          msg.classList.remove('hidden');
+          updateCheckoutPriceDisplay();
+          if (window.confetti) confetti({ particleCount: 50, spread: 60 });
+        }
+      } catch (err) {
+        console.error('Coupon verify error:', err);
       }
     }
 
@@ -1485,8 +1509,23 @@
             payment_method: currentPaymentMode,
             payment_status: currentPaymentMode === 'CARD' ? 'PAID' : 'PENDING',
             shipping_status: 'IN_PREPARATION',
-            coupon_applied: currentCoupon,
+            coupon_applied: currentCoupon || null,
             referral_code_used: currentCoupon.startsWith('KIV-') ? currentCoupon : null
+          });
+
+          // Gated Digital Access Registration (Secure Tokens)
+          const isInstantUnlock = currentPaymentMode === 'CARD';
+          const token = 'kiv_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
+
+          await client.from('customer_digital_access').insert({
+            order_id: orderNumber,
+            customer_email: custEmail,
+            customer_name: custName,
+            access_token: token,
+            payment_method: currentPaymentMode,
+            payment_status: isInstantUnlock ? 'PAID' : 'PENDING_COD',
+            is_unlocked: isInstantUnlock,
+            unlocked_at: isInstantUnlock ? new Date().toISOString() : null
           });
 
           await client.from('customers').upsert({
