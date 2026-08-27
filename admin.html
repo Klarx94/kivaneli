@@ -539,27 +539,35 @@
     let allCustomers = [];
     let currentActiveLandingId = 'kivaneli-piel-de-seda';
 
-    // Authentication Guard
+    // Authentication Guard (Exclusive Admin: beauty@kivaneli.es / Kivaneli_2026.)
+    const REQUIRED_ADMIN_EMAIL = 'beauty@kivaneli.es';
+    const REQUIRED_ADMIN_PASS = 'Kivaneli_2026.';
+
     function handleAdminLogin(e) {
       e.preventDefault();
-      const email = document.getElementById('adminEmail').value.trim();
-      const pass = document.getElementById('adminPass').value.trim();
+      const emailInput = document.getElementById('adminEmail').value.trim().toLowerCase();
+      const passInput = document.getElementById('adminPass').value;
+      const err = document.getElementById('authError');
 
-      if (pass === 'Alex_019403.' || pass === 'Kivaneli2026!') {
+      if (emailInput === REQUIRED_ADMIN_EMAIL && passInput === REQUIRED_ADMIN_PASS) {
         sessionStorage.setItem('kivaneli_admin_auth', 'true');
+        sessionStorage.setItem('kivaneli_admin_user', REQUIRED_ADMIN_EMAIL);
+        err.classList.add('hidden');
         document.getElementById('authScreen').classList.add('hidden');
         document.getElementById('mainDashboard').classList.remove('hidden');
         loadAdminData();
         if (window.lucide) lucide.createIcons();
       } else {
-        const err = document.getElementById('authError');
-        err.innerText = 'Contraseña incorrecta. Acceso restringido a administradores.';
+        err.innerText = 'Acceso Denegado: Credenciales no autorizadas. Acceso restringido exclusivamente para el usuario administrador (beauty@kivaneli.es).';
         err.classList.remove('hidden');
+        document.getElementById('adminPass').value = '';
+        document.getElementById('adminPass').focus();
       }
     }
 
     function handleLogout() {
       sessionStorage.removeItem('kivaneli_admin_auth');
+      sessionStorage.removeItem('kivaneli_admin_user');
       window.location.reload();
     }
 
@@ -911,10 +919,13 @@
     }
 
     // Auto check if already logged in session
-    if (sessionStorage.getItem('kivaneli_admin_auth') === 'true') {
+    if (sessionStorage.getItem('kivaneli_admin_auth') === 'true' && sessionStorage.getItem('kivaneli_admin_user') === REQUIRED_ADMIN_EMAIL) {
       document.getElementById('authScreen').classList.add('hidden');
       document.getElementById('mainDashboard').classList.remove('hidden');
       loadAdminData();
+    } else {
+      sessionStorage.removeItem('kivaneli_admin_auth');
+      sessionStorage.removeItem('kivaneli_admin_user');
     }
 
     window.addEventListener('load', () => {
