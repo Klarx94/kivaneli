@@ -21,36 +21,36 @@
 <body class="selection:bg-[#D48B80] selection:text-white">
 
   
-    <!-- 🌟 FLOATING ISLAND HEADER & MOBILE DRAWER -->
-  <div class="fixed top-3 inset-x-0 z-50 px-4 pointer-events-none">
-    <div class="max-w-6xl mx-auto space-y-2 pointer-events-auto">
+  <!-- 🌟 FLOATING ISLAND HEADER & SUBTLE MARQUEE -->
+  <div class="fixed top-4 inset-x-0 z-50 px-4 sm:px-6 pointer-events-none">
+    <div class="max-w-5xl mx-auto space-y-2 pointer-events-auto">
       
-      <header class="bg-[#FAF7F2]/95 backdrop-blur-2xl rounded-full px-4 sm:px-6 md:px-7 py-3 sm:py-3.5 flex items-center justify-between border border-[#D48B80]/25 shadow-xl transition-all duration-300">
+      <header class="bg-white/90 backdrop-blur-md rounded-full px-6 sm:px-8 py-3.5 flex items-center justify-between border border-[#D48B80]/25 shadow-xl transition-all duration-300">
         
-        <a href="/" class="flex items-center gap-2.5 sm:gap-3 group">
+        <a href="index.html" class="flex items-center gap-3 group">
           <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#D48B80] to-[#B86B60] flex items-center justify-center text-white font-serif font-bold text-sm shadow-md group-hover:scale-105 transition duration-300">K</div>
-          <span class="font-serif text-lg sm:text-xl md:text-2xl font-black tracking-[0.20em] sm:tracking-[0.22em] text-[#181514]">
+          <span class="font-serif text-lg sm:text-xl font-black tracking-[0.22em] text-[#181514]">
             KIVANELI<span class="text-[#D48B80]">.</span>
           </span>
         </a>
 
-        <nav class="hidden lg:flex items-center gap-6 text-[11px] font-bold tracking-[0.16em] text-stone-600 uppercase">
-          <a href="/" class="hover:text-[#D48B80] transition">Inicio</a>
-          <a href="/#formula" class="hover:text-[#D48B80] transition">Fórmula</a>
-          <a href="/#guias-editoriales" class="hover:text-[#D48B80] transition text-purple-800 font-extrabold flex items-center gap-1">
-            <i data-lucide="book-open" class="w-3.5 h-3.5 text-purple-600"></i>
-            Guías & Diario
+        <nav class="hidden lg:flex items-center gap-7 xl:gap-9 text-[11px] font-bold tracking-[0.18em] text-stone-700 uppercase">
+          <a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-black flex items-center gap-1.5">
+            <i data-lucide="grid" class="w-3.5 h-3.5 text-[#B86B60]"></i>
+            Catálogo
           </a>
-          <a href="/blog" class="hover:text-[#D48B80] transition text-[#B86B60]">Biblioteca Boticaria</a>
-          <a href="/#packs" class="hover:text-[#D48B80] transition text-rose-700 font-extrabold">Ver Ofertas</a>
+          <a href="producto.html?slug=adeus-crema-corporal" class="hover:text-[#D48B80] transition">Crema ADEUS™</a>
+          <a href="index.html#formula" class="hover:text-[#D48B80] transition">Fórmula</a>
+          <a href="blog.html" class="hover:text-[#D48B80] transition text-[#B86B60]">Biblioteca</a>
         </nav>
 
-        <div class="flex items-center gap-2">
-          <a href="/#packs" class="bg-[#181514] text-[#FAF7F2] px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-[11px] font-bold hover:bg-[#D48B80] transition shadow-md whitespace-nowrap">
-            Ir a la Tienda
+        <div class="flex items-center gap-3">
+          <a href="index.html#packs" class="bg-[#181514] text-white px-5 py-2.5 rounded-full text-[11px] font-bold hover:bg-[#D48B80] transition shadow-md whitespace-nowrap flex items-center gap-1.5">
+            <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-[#D48B80]"></i>
+            <span>Comprar Ahora</span>
           </a>
 
-          <button onclick="toggleMobileMenu()" id="mobileMenuBtn" aria-label="Abrir Menú" class="lg:hidden w-9 h-9 rounded-full bg-white border border-stone-200 flex items-center justify-center text-stone-700 hover:text-[#B86B60] transition shadow-sm">
+          <button onclick="toggleMobileMenu()" id="mobileMenuBtn" aria-label="Abrir Menú" class="lg:hidden w-9 h-9 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-700 hover:text-[#B86B60] transition shadow-sm">
             <i data-lucide="menu" id="hamburgerIcon" class="w-4 h-4"></i>
             <i data-lucide="x" id="closeMenuIcon" class="w-4 h-4 hidden"></i>
           </button>
@@ -59,7 +59,7 @@
       </header>
 
       <!-- Mobile Drawer -->
-      <div id="mobileDrawer" class="hidden lg:hidden bg-[#FAF7F2]/95 backdrop-blur-2xl rounded-3xl p-6 shadow-2xl border border-[#D48B80]/30 space-y-5">
+      <div id="mobileDrawer" class="hidden lg:hidden bg-white/95 backdrop-blur-2xl rounded-3xl p-6 shadow-2xl border border-[#D48B80]/30 space-y-5">
         <div class="flex items-center justify-between pb-3 border-b border-stone-200">
           <span class="font-serif font-bold text-sm text-[#181514] tracking-wider">MENÚ DE NAVEGACIÓN</span>
           <button onclick="toggleMobileMenu()" class="w-7 h-7 rounded-full bg-stone-200 flex items-center justify-center text-stone-500 hover:bg-stone-300">
@@ -68,42 +68,34 @@
         </div>
 
         <nav class="grid grid-cols-1 gap-2.5 text-xs font-bold uppercase tracking-wider text-stone-700">
-          <a href="/" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-white hover:text-[#B86B60] transition border border-stone-100">
+          <a href="index.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-white hover:text-[#B86B60] transition border border-stone-100">
             <i data-lucide="home" class="w-4 h-4 text-stone-500"></i>
-            <span>Página Principal (Tienda)</span>
+            <span>Página Principal</span>
           </a>
-          <a href="/#formula" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-white hover:text-[#B86B60] transition border border-stone-100">
-            <i data-lucide="leaf" class="w-4 h-4 text-emerald-600"></i>
-            <span>Fórmula & Principios Activos</span>
+          <a href="catalogo.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-purple-50 text-purple-900 transition border border-purple-200 font-extrabold">
+            <i data-lucide="grid" class="w-4 h-4 text-purple-600"></i>
+            <span>Catálogo Completo & Fichas</span>
           </a>
-          <a href="/#guias-editoriales" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-purple-50 text-purple-900 transition border border-purple-200 font-extrabold">
-            <i data-lucide="book-open" class="w-4 h-4 text-purple-600"></i>
-            <span>Las 3 Guías PDF & Diario 30 Días</span>
+          <a href="producto.html?slug=adeus-crema-corporal" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-white hover:text-[#B86B60] transition border border-stone-100">
+            <i data-lucide="sparkles" class="w-4 h-4 text-rose-600"></i>
+            <span>Crema ADEUS™ (300 g)</span>
           </a>
-          <a href="/blog" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-white hover:text-[#B86B60] transition border border-stone-100">
+          <a href="blog.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-white hover:text-[#B86B60] transition border border-stone-100">
             <i data-lucide="newspaper" class="w-4 h-4 text-blue-600"></i>
             <span>Biblioteca Boticaria / Artículos</span>
           </a>
-          <a href="/#packs" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-[#F6EAE7] text-[#B86B60] transition border border-[#D48B80]/30 font-extrabold">
+          <a href="index.html#packs" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-[#F6EAE7] text-[#B86B60] transition border border-[#D48B80]/30 font-extrabold">
             <i data-lucide="shopping-bag" class="w-4 h-4 text-[#B86B60]"></i>
-            <span>Packs & Ofertas Contra-Reembolso</span>
+            <span>Comprar con Pago Contra-Reembolso</span>
           </a>
         </nav>
-
-        <div class="pt-2">
-          <a href="/#packs" onclick="toggleMobileMenu()" class="w-full bg-[#181514] text-white py-3.5 rounded-2xl font-bold text-xs tracking-wider uppercase text-center flex items-center justify-center gap-2 shadow-lg hover:bg-[#D48B80] transition">
-            <i data-lucide="truck" class="w-4 h-4 text-amber-400"></i>
-            <span>PEDIR CON PAGO EN CASA (24/48H)</span>
-          </a>
-        </div>
       </div>
 
     </div>
   </div>
 
-
   <!-- Hero Header -->
-  <section class="py-16 pt-24 bg-[#F6EAE7]/60 border-b border-[#D48B80]/15">
+  <section class="py-16 pt-28 bg-[#F6EAE7]/60 border-b border-[#D48B80]/15">
     <div class="max-w-4xl mx-auto px-6 text-center space-y-4">
       <span class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-[#FAF7F2] text-[#B86B60] text-xs font-bold uppercase tracking-widest border border-[#D48B80]/30 shadow-sm">
         <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
@@ -118,20 +110,20 @@
     </div>
   </section>
 
-  <!-- Lead Magnet Banner (PDF Ritual de Regalo) -->
+  <!-- Newsletter Banner -->
   <div class="max-w-5xl mx-auto px-6 -mt-8 relative z-20">
     <div class="glass-panel p-6 md:p-8 rounded-3xl border-2 border-[#D48B80]/40 shadow-2xl bg-white flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="space-y-1.5 text-center md:text-left">
-        <div class="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase text-amber-700 bg-amber-100 px-3 py-0.5 rounded-full">
-          🎁 Descarga Gratuita
+        <div class="inline-flex items-center gap-1.5 text-xs font-extrabold uppercase text-emerald-800 bg-emerald-100 px-3 py-0.5 rounded-full">
+          ✨ Club Exclusivo Kivaneli
         </div>
-        <h3 class="font-serif font-bold text-xl text-[#181514]">Guía Maestra: "Ritual Piel de Seda en 30 Días" (PDF)</h3>
-        <p class="text-xs text-stone-500">Planificador diario de exfoliación, drenaje linfático y nutrición dérmica.</p>
+        <h3 class="font-serif font-bold text-xl text-[#181514]">Recibe Protocolos de Cuidado & 10% DTO</h3>
+        <p class="text-xs text-stone-500">Suscríbete para recibir consejos semanales de autocuidado y ofertas exclusivas.</p>
       </div>
       <form onsubmit="handleLeadMagnet(event)" class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
         <input type="email" id="leadEmail" required placeholder="Introduce tu email" class="px-4 py-2.5 rounded-xl border border-stone-300 text-xs outline-none focus:border-[#D48B80] bg-stone-50 min-w-[240px]">
         <button type="submit" class="bg-gradient-to-r from-[#D48B80] to-[#B86B60] text-white px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider hover:opacity-90 transition whitespace-nowrap shadow-md">
-          Recibir PDF Gratis
+          Unirme al Club
         </button>
       </form>
     </div>
@@ -253,44 +245,70 @@
   </div>
 
   
-    <!-- Comprehensive Luxury Footer for Editorial Pages -->
-  <footer class="bg-[#181514] text-stone-400 py-12 text-xs border-t border-[#D48B80]/20 text-center space-y-6 mt-20">
-    <div class="max-w-4xl mx-auto px-4 space-y-4">
-      <div class="font-serif text-xl font-bold tracking-[0.2em] text-[#FAF7F2]">
-        KIVANELI<span class="text-[#D48B80]">.</span>
-      </div>
-      <p class="text-stone-500 text-xs">Maison Botanique de Cuidado Personal & Belleza de Autor · Envíos 24/48h con Pago Contra-reembolso</p>
-      
-      <!-- Social Media Links -->
-      <div class="flex items-center justify-center gap-3 text-stone-400 py-2">
-        <a href="https://instagram.com" target="_blank" title="Instagram @kivaneli.es" class="w-8 h-8 rounded-full bg-stone-900 flex items-center justify-center hover:text-white hover:bg-gradient-to-tr hover:from-purple-600 hover:to-pink-500 transition shadow">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <a href="https://tiktok.com" target="_blank" title="TikTok @kivanelicosmetics" class="w-8 h-8 rounded-full bg-stone-900 flex items-center justify-center hover:text-white hover:bg-black transition shadow">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/></svg>
-        </a>
+  <!-- Comprehensive Luxury Footer for Editorial Pages -->
+  <footer class="w-full bg-[#181514] text-stone-400 pt-16 pb-12 text-xs border-t border-[#D48B80]/20 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left">
+        
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif font-bold text-sm shadow-md">K</div>
+            <span class="font-serif text-xl font-bold tracking-[0.2em] text-[#FAF7F2]">
+              KIVANELI<span class="text-[#D48B80]">.</span>
+            </span>
+          </div>
+          <p class="text-stone-500 leading-relaxed text-[11px]">
+            Maison Botanique de Cuidado Personal & Belleza de Alta Gama. Fórmulas de autor y despacho logístico directo Dropea España.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-white font-serif font-bold text-xs uppercase tracking-wider">Navegación</h4>
+          <ul class="space-y-2 text-[11px]">
+            <li><a href="index.html" class="hover:text-[#D48B80] transition">Página Principal</a></li>
+            <li><a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-bold">Catálogo Completo</a></li>
+            <li><a href="producto.html?slug=adeus-crema-corporal" class="hover:text-[#D48B80] transition">Crema ADEUS™ (300 g)</a></li>
+            <li><a href="index.html#formula" class="hover:text-[#D48B80] transition">Fórmula Botánica</a></li>
+            <li><a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca / Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-white font-serif font-bold text-xs uppercase tracking-wider">Garantía & Confianza</h4>
+          <ul class="space-y-2 text-[11px]">
+            <li><span class="text-emerald-400 font-semibold flex items-center gap-1"><i data-lucide="truck" class="w-3 h-3"></i> Envíos 24/48h GLS Express</span></li>
+            <li><span class="text-stone-400">Pago Contra-reembolso en Puerta</span></li>
+            <li><span class="text-stone-400">Stock Oficial Almacén Madrid</span></li>
+            <li><span class="text-stone-400">Fórmulas Dermatológicamente Testadas</span></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-white font-serif font-bold text-xs uppercase tracking-wider">Atención al Cliente</h4>
+          <p class="text-stone-500 text-[11px]">Soporte oficial boticario:</p>
+          <div class="space-y-1 text-[11px] text-stone-300">
+            <div><strong class="text-stone-400">Email:</strong> beauty@kivaneli.es</div>
+            <div><strong class="text-stone-400">Horario:</strong> Lunes a Viernes 09:00 - 19:00h</div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[11px] text-stone-400 pt-2 border-t border-stone-800/80">
-        <a href="index.html" class="hover:text-white transition">Tienda Oficial</a>
-        <a href="blog.html" class="hover:text-white transition">Biblioteca Boticaria</a>
-        <a href="index.html#amigas" class="hover:text-white transition">Club Amigas</a>
-        <a href="index.html#packs" class="hover:text-white transition">Packs de Tratamiento</a>
-        <a href="index.html#testimonios" class="hover:text-white transition">Opiniones Reales</a>
-      </div>
-
-      <div class="text-stone-600 text-[10px] pt-1">
-        © 2026 KIVANELI COSMETICS. Todos los derechos reservados · Fórmulas de alta pureza botánica.
+      <div class="pt-8 border-t border-stone-800/80 flex flex-wrap items-center justify-between gap-4 text-[10px] text-stone-500">
+        <div>© 2026 KIVANELI COSMETICS. Todos los derechos reservados.</div>
+        <div class="flex items-center gap-4">
+          <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-500"></i> Calidad Garantizada</span>
+          <span class="flex items-center gap-1"><i data-lucide="lock" class="w-3.5 h-3.5 text-amber-400"></i> Despacho Seguro</span>
+        </div>
       </div>
     </div>
   </footer>
-
 
   <script>
     lucide.createIcons();
     function handleLeadMagnet(e) {
       e.preventDefault();
-      alert('¡Excelente! Te hemos enviado la Guía Maestra PDF a tu correo. Revisa tu bandeja de entrada.');
+      alert('¡Excelente! Te has unido al Club Privado Kivaneli. Recibirás tus protocolos y ofertas exclusivas.');
     }
   </script>
 
