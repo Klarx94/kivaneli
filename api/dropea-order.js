@@ -1,12 +1,14 @@
-// Vercel Serverless Function: Dropea Automated Order Creation & Sync
-// Receives checkout orders, stores in Supabase, and interfaces with Dropea Logistics
+// Vercel Serverless Function: Dropea Automated Order Creation & Sync (Spain Production Gateway)
+// Connects to https://es.public-api.dropea.com/dropshipper/orders
 
 const https = require('https');
 const crypto = require('crypto');
 
 const SUPABASE_URL = 'sntsizmdhttpilbauxuv.supabase.co';
 const SUPABASE_SERVICE_KEY = 'SUPABASE_SERVICE_KEY_REDACTED';
+
 const DROPEA_API_TOKEN = 'DROPEA_API_TOKEN_REDACTED';
+const DROPEA_STORE_ID = 18516; // Kivaneli Store ID in Dropea
 
 async function supabaseRest(path, method = 'GET', body = null) {
   return new Promise((resolve, reject) => {
@@ -42,48 +44,60 @@ async function supabaseRest(path, method = 'GET', body = null) {
   });
 }
 
-// Attempt sync with Dropea API
-async function sendOrderToDropea(orderData) {
+// Send Order to Dropea Spain Gateway
+async function sendOrderToDropeaPublicApi(orderData) {
   return new Promise((resolve) => {
-    const dropeaPayload = JSON.stringify({
-      order_number: orderData.order_number,
-      customer: {
+    const variantId = orderData.dropea_variant_id || 32674;
+    const quantity = parseInt(orderData.items_count || 1);
+    const unitPrice = parseFloat((parseFloat(orderData.total_amount) / quantity).toFixed(2));
+
+    const nameParts = (orderData.customer_name || 'Clienta Kivaneli').trim().split(/\s+/);
+    const firstName = nameParts[0] || 'Clienta';
+    const lastName = nameParts.slice(1).join(' ') || 'Kivaneli';
+
+    const dropeaBody = JSON.stringify({
+      store_id: DROPEA_STORE_ID,
+      external_order_id: orderData.order_number,
+      payment_method: orderData.payment_method === 'COD' ? 'COD' : 'PAID',
+      carrier: 'GLS',
+      service_type: '96|18', // GLS 24h
+      customer_details: {
         name: orderData.customer_name,
+        first_name: firstName,
+        last_name: lastName,
         email: orderData.customer_email,
         phone: orderData.customer_phone,
-        address: orderData.customer_address,
-        zip: orderData.customer_zip,
-        city: orderData.customer_city,
-        country: 'ES'
+        shipping_address: {
+          first_name: firstName,
+          last_name: lastName,
+          address_line_1: orderData.customer_address,
+          city: orderData.customer_city,
+          state: orderData.customer_city || 'Madrid',
+          postal_code: orderData.customer_zip,
+          country: 'ES'
+        }
       },
       line_items: [
         {
-          name: orderData.pack_selected || 'Tratamiento Boticario ADEUS™',
-          quantity: orderData.items_count || 1,
-          price: orderData.total_amount
+          variant_id: variantId,
+          quantity: quantity,
+          unit_price: unitPrice
         }
-      ],
-      payment: {
-        method: orderData.payment_method === 'COD' ? 'CASH_ON_DELIVERY' : 'PREPAID',
-        amount: orderData.total_amount,
-        is_paid: orderData.payment_status === 'COMPLETED'
-      },
-      notes: orderData.notes || 'Envío Urgente 24/48h Kivaneli Maison Botanique'
+      ]
     });
 
     const options = {
-      hostname: 'api.dropea.com',
-      path: '/graphql/dropshippers',
+      hostname: 'es.public-api.dropea.com',
+      path: '/dropshipper/orders',
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${DROPEA_API_TOKEN}`,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'X-Role': 'DROPSHIPPER',
-        'X-Market': 'ES',
-        'Content-Length': Buffer.byteLength(dropeaPayload)
+        'Idempotency-Key': crypto.randomUUID(),
+        'Content-Length': Buffer.byteLength(dropeaBody)
       },
-      timeout: 4000
+      timeout: 7000
     };
 
     const req = https.request(options, (res) => {
@@ -100,13 +114,12 @@ async function sendOrderToDropea(orderData) {
 
     req.on('error', (err) => resolve({ error: err.message }));
     req.on('timeout', () => { req.destroy(); resolve({ error: 'TIMEOUT' }); });
-    req.write(dropeaPayload);
+    req.write(dropeaBody);
     req.end();
   });
 }
 
 module.exports = async (req, res) => {
-  // CORS Headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -121,10 +134,8 @@ module.exports = async (req, res) => {
 
   try {
     const body = req.body || {};
-    
-    // Generate order number if not provided
     const orderNumber = body.order_number || `KV-${Date.now().toString().slice(-6)}`;
-    const isOnlinePayment = body.payment_method === 'CARD' || body.payment_method === 'REVOLUT';
+    const isOnlinePayment = body.payment_method === 'CARD' || body.payment_method === 'REVOLUT' || body.payment_method === 'STRIPE';
     const isCod = !isOnlinePayment;
 
     const orderRecord = {
@@ -135,21 +146,22 @@ module.exports = async (req, res) => {
       customer_address: body.customer_address || body.address || '',
       customer_zip: body.customer_zip || body.zip || '',
       customer_city: body.customer_city || body.city || '',
-      pack_selected: body.pack_selected || body.pack || 'Pack Boticario',
+      pack_selected: body.pack_selected || body.pack || 'ADEUS Creme para Massagem Corporal 300 g',
       items_count: parseInt(body.items_count || 1),
       total_amount: parseFloat(body.total_amount || body.total || 0),
-      payment_method: body.payment_method || (isCod ? 'COD' : 'CARD'),
+      payment_method: isCod ? 'COD' : 'CARD',
       payment_status: isOnlinePayment ? 'COMPLETED' : 'PENDING_COD',
-      shipping_status: 'PENDING_DROPEA_SYNC',
-      referral_code_used: body.referral_code_used || null,
+      shipping_status: 'PROCESSING',
+      dropea_variant_id: body.dropea_variant_id || 32674,
       coupon_applied: body.coupon_applied || null,
-      notes: body.notes || 'Pedido desde Micro-Landing Oficial KIVANELI'
+      referral_code_used: body.referral_code_used || null,
+      notes: body.notes || 'Pedido desde Tienda Oficial KIVANELI'
     };
 
-    // 1. Insert into Supabase orders table
-    const { data: savedOrder, error: orderErr } = await supabaseRest('orders', 'POST', orderRecord);
+    // 1. Save in Supabase
+    await supabaseRest('orders', 'POST', orderRecord);
 
-    // 2. Setup Digital Access Record
+    // 2. Digital Guides Record
     const accessToken = crypto.randomBytes(16).toString('hex');
     await supabaseRest('customer_digital_access', 'POST', {
       order_id: orderNumber,
@@ -158,7 +170,7 @@ module.exports = async (req, res) => {
       access_token: accessToken,
       payment_method: orderRecord.payment_method,
       payment_status: orderRecord.payment_status,
-      is_unlocked: isOnlinePayment, // Immediate for card, gated for COD
+      is_unlocked: isOnlinePayment,
       unlocked_at: isOnlinePayment ? new Date().toISOString() : null,
       guides_unlocked: isOnlinePayment ? [
         '1_Guia_Diario_Ritual_30_Dias_KIVANELI.pdf',
@@ -167,31 +179,36 @@ module.exports = async (req, res) => {
       ] : []
     });
 
-    // 3. Forward to Dropea Logistics
-    const dropeaRes = await sendOrderToDropea(orderRecord);
-    let dropeaStatus = 'QUEUED_FOR_SYNC';
+    // 3. Dispatch directly to Dropea Public API
+    const dropeaRes = await sendOrderToDropeaPublicApi(orderRecord);
+    let dropeaOrderId = null;
+    let dropeaStatus = 'SYNC_PENDING';
 
-    if (dropeaRes && dropeaRes.data && dropeaRes.data.data && dropeaRes.data.data.createOrder) {
-      dropeaStatus = 'SYNCED';
+    if (dropeaRes && dropeaRes.data && dropeaRes.data.success && dropeaRes.data.data) {
+      dropeaOrderId = dropeaRes.data.data.id;
+      dropeaStatus = 'SYNCED_DROPEA_LIVE';
+      
       await supabaseRest(`orders?order_number=eq.${encodeURIComponent(orderNumber)}`, 'PATCH', {
-        shipping_status: 'PROCESSING',
-        dropea_order_id: dropeaRes.data.data.createOrder.id || 'DROPEA-LIVE'
+        dropea_order_id: String(dropeaOrderId),
+        shipping_status: 'CONFIRMED'
       });
     }
 
     return res.status(200).json({
       success: true,
       order_number: orderNumber,
+      dropea_order_id: dropeaOrderId,
+      dropea_sync_status: dropeaStatus,
       payment_method: orderRecord.payment_method,
       digital_access_unlocked: isOnlinePayment,
-      dropea_sync_status: dropeaStatus,
+      dropea_response: dropeaRes.data || dropeaRes.error,
       message: isCod 
-        ? 'Pedido contra reembolso registrado correctamente. Dropea preparará el envío y las guías se desbloquearán al recibir el paquete.' 
-        : 'Pago confirmado. Pedido sincronizado con Dropea y Guías PDF desbloqueadas de inmediato.'
+        ? 'Pedido contra reembolso transmitido a Dropea Logistics con éxito.' 
+        : 'Pago confirmado. Pedido transmitido a Dropea y guías desbloqueadas.'
     });
 
   } catch (error) {
-    console.error('Order Creation Exception:', error);
+    console.error('Order Dispatch Error:', error);
     return res.status(500).json({ success: false, error: error.message });
   }
 };

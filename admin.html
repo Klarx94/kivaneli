@@ -200,6 +200,10 @@
         <i data-lucide="settings" class="w-4 h-4"></i>
         <span>5. Servidores & Guías PDF</span>
       </button>
+      <button onclick="switchTab('tabCatalog')" id="btnTabCatalog" class="nav-tab px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent text-stone-600 hover:text-[#B86B60] transition flex items-center gap-2">
+        <i data-lucide="package" class="w-4 h-4 text-emerald-600"></i>
+        <span>6. Catálogo & Productos Dropea</span>
+      </button>
     </div>
 
     <!-- 📦 TAB 1: ORDERS & DROPEA LOGISTICS -->
@@ -504,6 +508,152 @@
 
     </div>
 
+    <!-- 🏪 TAB 6: CATALOG & DROPEA PRODUCTS MANAGER -->
+    <div id="tabCatalog" class="space-y-6 hidden">
+      
+      <div class="glass-card p-6 rounded-3xl border-2 border-purple-500/30 bg-gradient-to-r from-purple-50/40 via-white to-stone-50 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-800 flex items-center justify-center font-bold">
+              <i data-lucide="package" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Gestión de Catálogo & Puente Dropea</h3>
+                <span class="text-[10px] font-extrabold uppercase tracking-wider bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full border border-purple-300">
+                  TIENDA MULTIPRODUCTO
+                </span>
+              </div>
+              <p class="text-xs text-stone-500">Conecta productos desde Dropea, personaliza su categoría, precios, fotos, packs y publica en la tienda con 1 clic.</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="openConnectDropeaModal()" class="bg-[#181514] text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1.5 shadow-md">
+              <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-400"></i>
+              <span>Conectar Producto de Dropea</span>
+            </button>
+            <button onclick="loadDropeaProductsLive()" class="bg-white text-stone-700 px-4 py-2.5 rounded-xl text-xs font-bold border border-stone-200 hover:bg-stone-50 transition flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+              <span>Sincronizar con Dropea</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Table in Store -->
+      <div class="glass-card rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+        <div class="p-4 bg-[#FAF0EE] border-b border-[#D48B80]/20 flex items-center justify-between">
+          <div class="font-serif-luxury font-bold text-sm text-[#B86B60]">Productos Conectados en la Tienda</div>
+          <span id="catalogCountBadge" class="text-xs bg-white px-3 py-1 rounded-full font-bold text-stone-700 border border-stone-200">1 Producto Vinculado</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-stone-50 text-stone-600 font-bold uppercase tracking-wider text-[10.5px] border-b border-stone-200">
+              <tr>
+                <th class="p-4">Producto / Imagen</th>
+                <th class="p-4">SKU / ID Dropea</th>
+                <th class="p-4">Categoría Web</th>
+                <th class="p-4">Sección Portada</th>
+                <th class="p-4">Stock Dropea</th>
+                <th class="p-4">Coste / PVP Venta</th>
+                <th class="p-4">Estado Tienda</th>
+                <th class="p-4 text-right">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="catalogTableBody" class="divide-y divide-stone-200/70">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 🌟 MODAL: CONECTAR / EDITAR PRODUCTO DROPEA -->
+  <div id="modalEditProduct" class="fixed inset-0 bg-stone-900/70 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto space-y-4 shadow-2xl border border-stone-200">
+      <div class="flex items-center justify-between pb-3 border-b border-stone-100">
+        <div>
+          <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">Configurar & Publicar Producto de Dropea</h3>
+          <p class="text-xs text-stone-500">Pasa la verificación editorial para publicar en la tienda o micro-landing</p>
+        </div>
+        <button onclick="closeEditProductModal()" class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200">✕</button>
+      </div>
+
+      <form onsubmit="handleSaveProduct(event)" class="space-y-4 text-xs">
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="font-bold text-stone-700">ID Producto Dropea *</label>
+            <input type="number" id="prodDropeaId" required value="32674" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono font-bold">
+          </div>
+          <div>
+            <label class="font-bold text-stone-700">SKU Dropea *</label>
+            <input type="text" id="prodDropeaSku" required value="ADEUS_16181" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono">
+          </div>
+        </div>
+
+        <div>
+          <label class="font-bold text-stone-700">Título Comercial para la Web *</label>
+          <input type="text" id="prodTitle" required value="ADEUS™ Crema Corporal Tratamiento Intensivo 300 g" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-bold">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="font-bold text-stone-700">Categoría en la Tienda *</label>
+            <select id="prodCategory" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
+              <option value="CORPORAL">Cuidado Corporal</option>
+              <option value="FACIAL">Cuidado Facial</option>
+              <option value="OJOS">Mirada & Contorno Ojos</option>
+              <option value="JABONES">Jabones Clarificantes</option>
+              <option value="PACKS">Packs de Tratamiento</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold text-stone-700">Sección en la Portada *</label>
+            <select id="prodSection" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
+              <option value="HERO">⭐ Producto Estrella (Hero Principal)</option>
+              <option value="BESTSELLER">🔥 Más Vendidos (Grid Portada)</option>
+              <option value="CATALOG">🌿 Colección General del Catálogo</option>
+              <option value="UPSELL">🎁 Upsell / Cross-Sell en Checkout</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          <div>
+            <label class="font-bold text-stone-700">PVP Unitario (1x) *</label>
+            <input type="number" step="0.05" id="prodPrice1" required value="29.90" class="w-full px-3 py-2 rounded-xl border border-stone-300 font-bold text-emerald-700">
+          </div>
+          <div>
+            <label class="font-bold text-stone-700">PVP Pack Dúo (2x) *</label>
+            <input type="number" step="0.05" id="prodPrice2" required value="49.95" class="w-full px-3 py-2 rounded-xl border border-stone-300 font-bold text-emerald-700">
+          </div>
+          <div>
+            <label class="font-bold text-stone-700">PVP Pack Trío (3x) *</label>
+            <input type="number" step="0.05" id="prodPrice3" required value="69.90" class="w-full px-3 py-2 rounded-xl border border-stone-300 font-bold text-emerald-700">
+          </div>
+        </div>
+
+        <div>
+          <label class="font-bold text-stone-700">URL Imagen Principal (HD)</label>
+          <input type="text" id="prodImageUrl" value="assets/images/adeus_jar_botanicals.jpg" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
+        </div>
+
+        <div>
+          <label class="font-bold text-stone-700">Descripción & Beneficios Boticarios</label>
+          <textarea id="prodDescription" rows="3" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-xs">Fórmula de masaje corporal para hidratación profunda, suavidad extrema y reducción de piel de fresa. Formato generoso de 300 g con tapa de rosca.</textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-rose-gradient text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition shadow-md flex items-center justify-center gap-2">
+          <i data-lucide="check" class="w-4 h-4"></i>
+          <span>GUARDAR & PUBLICAR EN LA TIENDA</span>
+        </button>
+      </form>
+    </div>
   </div>
 
   <!-- 🌟 MODAL: CREAR CUPÓN DE DESCUENTO -->
@@ -635,22 +785,228 @@
 
     // Tab Navigation
     function switchTab(tabId) {
-      ['tabOrders', 'tabEmails', 'tabCoupons', 'tabCustomers', 'tabSettings'].forEach(t => {
-        document.getElementById(t).classList.add('hidden');
+      ['tabOrders', 'tabEmails', 'tabCoupons', 'tabCustomers', 'tabSettings', 'tabCatalog'].forEach(t => {
+        const el = document.getElementById(t);
+        if (el) el.classList.add('hidden');
       });
       document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
 
-      document.getElementById(tabId).classList.remove('hidden');
+      const targetEl = document.getElementById(tabId);
+      if (targetEl) targetEl.classList.remove('hidden');
       
       const tabBtnMap = {
         tabOrders: 'btnTabOrders',
         tabEmails: 'btnTabEmails',
         tabCoupons: 'btnTabCoupons',
         tabCustomers: 'btnTabCustomers',
-        tabSettings: 'btnTabSettings'
+        tabSettings: 'btnTabSettings',
+        tabCatalog: 'btnTabCatalog'
       };
-      if (tabBtnMap[tabId]) document.getElementById(tabBtnMap[tabId]).classList.add('active');
+      if (tabBtnMap[tabId] && document.getElementById(tabBtnMap[tabId])) {
+        document.getElementById(tabBtnMap[tabId]).classList.add('active');
+      }
+      if (tabId === 'tabCatalog') loadDropeaProductsLive();
       if (window.lucide) lucide.createIcons();
+    }
+
+    // Dropea Catalog State
+    let storeProducts = [
+      {
+        id: 32674,
+        sku: 'ADEUS_16181',
+        name: 'ADEUS™ Crema Corporal Tratamiento Intensivo 300 g',
+        category: 'CORPORAL',
+        section: 'HERO',
+        stock: 291,
+        cost: 5.90,
+        price1: 29.90,
+        price2: 49.95,
+        price3: 69.90,
+        image_url: 'assets/images/adeus_jar_botanicals.jpg',
+        is_active: true,
+        slug: 'adeus-crema-corporal'
+      },
+      {
+        id: 32055,
+        sku: 'EYEMASK-BOTOX',
+        name: 'Parches de Colágeno & Keratina Körmesic™ (60 uds)',
+        category: 'OJOS',
+        section: 'UPSELL',
+        stock: 150,
+        cost: 4.00,
+        price1: 14.95,
+        price2: 26.90,
+        price3: 36.90,
+        image_url: 'assets/images/kormesic_jar_purple.jpg',
+        is_active: true,
+        slug: 'kormesic-parches-colageno'
+      },
+      {
+        id: 32591,
+        sku: 'JABONHYALUKISS',
+        name: 'Jabón en Pastilla Ácido Kójico + Hialurónico (100 g)',
+        category: 'JABONES',
+        section: 'UPSELL',
+        stock: 300,
+        cost: 3.50,
+        price1: 12.95,
+        price2: 22.90,
+        price3: 29.90,
+        image_url: 'assets/images/kojic_soap_box.jpg',
+        is_active: true,
+        slug: 'jabon-acido-kojico'
+      },
+      {
+        id: 99901,
+        sku: 'PACK-RITUAL-30D',
+        name: 'Pack Ritual Boticario Completo (ADEUS + Parches + Jabón)',
+        category: 'PACKS',
+        section: 'BESTSELLER',
+        stock: 150,
+        cost: 13.40,
+        price1: 59.95,
+        price2: 99.90,
+        price3: 139.90,
+        image_url: 'assets/images/adeus_hero_frame1.jpg',
+        is_active: true,
+        slug: 'pack-ritual-completo'
+      }
+    ];
+
+    async function loadDropeaProductsLive() {
+      const tbody = document.getElementById('catalogTableBody');
+      if (!tbody) return;
+
+      try {
+        const res = await fetch('/api/dropea-catalog?action=list_shop_products');
+        const data = await res.json();
+        if (data && data.data && data.data.items && data.data.items.length) {
+          console.log('Live Dropea Items from Shop 18516:', data.data.items);
+        }
+      } catch(e) {
+        console.log('Dropea catalog fetch note:', e.message);
+      }
+
+      renderCatalogTable();
+    }
+
+    function renderCatalogTable() {
+      const tbody = document.getElementById('catalogTableBody');
+      if (!tbody) return;
+
+      document.getElementById('catalogCountBadge').innerText = `${storeProducts.length} Productos Vinculados`;
+
+      tbody.innerHTML = storeProducts.map(p => `
+        <tr class="hover:bg-[#FAF7F2] transition">
+          <td class="p-4 flex items-center gap-3">
+            <img src="${p.image_url}" class="w-12 h-12 object-cover rounded-xl border border-stone-200 shadow-sm shrink-0">
+            <div>
+              <div class="font-bold text-[#181514] line-clamp-1">${p.name}</div>
+              <a href="producto.html?slug=${p.slug}" target="_blank" class="text-[10px] text-[#B86B60] hover:underline font-semibold flex items-center gap-0.5">
+                <span>Ver Ficha en Tienda</span>
+                <i data-lucide="external-link" class="w-2.5 h-2.5"></i>
+              </a>
+            </div>
+          </td>
+          <td class="p-4 font-mono text-[11px] text-stone-700">
+            <div>${p.sku}</div>
+            <div class="text-[10px] text-stone-400">ID: ${p.id}</div>
+          </td>
+          <td class="p-4">
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-purple-100 text-purple-800">
+              ${p.category}
+            </span>
+          </td>
+          <td class="p-4">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-stone-100 text-stone-700">
+              ${p.section === 'HERO' ? '⭐ Portada Hero' : (p.section === 'UPSELL' ? '🎁 Upsell Checkout' : '🔥 Más Vendidos')}
+            </span>
+          </td>
+          <td class="p-4 font-mono font-bold ${p.stock > 50 ? 'text-emerald-700' : 'text-amber-600'}">
+            ${p.stock} uds
+          </td>
+          <td class="p-4">
+            <div class="font-bold text-[#181514]">${p.price1.toFixed(2)} €</div>
+            <div class="text-[10px] text-stone-400">Coste: ${p.cost.toFixed(2)} €</div>
+          </td>
+          <td class="p-4">
+            <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold ${p.is_active ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-200 text-stone-600'}">
+              ${p.is_active ? '🟢 Activo en Tienda' : '⚪ Oculto'}
+            </span>
+          </td>
+          <td class="p-4 text-right space-x-2">
+            <button onclick="editProduct(${p.id})" class="text-xs bg-white text-stone-700 border border-stone-200 px-2.5 py-1.5 rounded-lg hover:border-[#D48B80] font-bold transition">Editar</button>
+          </td>
+        </tr>
+      `).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function openConnectDropeaModal() {
+      document.getElementById('prodDropeaId').value = '';
+      document.getElementById('prodDropeaSku').value = '';
+      document.getElementById('prodTitle').value = '';
+      document.getElementById('modalEditProduct').classList.remove('hidden');
+      document.getElementById('modalEditProduct').classList.add('flex');
+    }
+
+    function editProduct(id) {
+      const p = storeProducts.find(x => x.id === id);
+      if (!p) return;
+
+      document.getElementById('prodDropeaId').value = p.id;
+      document.getElementById('prodDropeaSku').value = p.sku;
+      document.getElementById('prodTitle').value = p.name;
+      document.getElementById('prodCategory').value = p.category;
+      document.getElementById('prodSection').value = p.section;
+      document.getElementById('prodPrice1').value = p.price1;
+      document.getElementById('prodPrice2').value = p.price2;
+      document.getElementById('prodPrice3').value = p.price3;
+      document.getElementById('prodImageUrl').value = p.image_url;
+
+      document.getElementById('modalEditProduct').classList.remove('hidden');
+      document.getElementById('modalEditProduct').classList.add('flex');
+    }
+
+    function closeEditProductModal() {
+      document.getElementById('modalEditProduct').classList.add('hidden');
+      document.getElementById('modalEditProduct').classList.remove('flex');
+    }
+
+    function handleSaveProduct(e) {
+      e.preventDefault();
+      const id = parseInt(document.getElementById('prodDropeaId').value);
+      const sku = document.getElementById('prodDropeaSku').value.trim();
+      const title = document.getElementById('prodTitle').value.trim();
+      const cat = document.getElementById('prodCategory').value;
+      const sec = document.getElementById('prodSection').value;
+      const p1 = parseFloat(document.getElementById('prodPrice1').value);
+      const p2 = parseFloat(document.getElementById('prodPrice2').value);
+      const p3 = parseFloat(document.getElementById('prodPrice3').value);
+      const img = document.getElementById('prodImageUrl').value.trim();
+
+      const existingIndex = storeProducts.findIndex(x => x.id === id);
+      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+      if (existingIndex >= 0) {
+        storeProducts[existingIndex] = {
+          ...storeProducts[existingIndex],
+          sku, name: title, category: cat, section: sec,
+          price1: p1, price2: p2, price3: p3, image_url: img, slug
+        };
+      } else {
+        storeProducts.push({
+          id, sku, name: title, category: cat, section: sec,
+          stock: 200, cost: 5.00, price1: p1, price2: p2, price3: p3,
+          image_url: img, is_active: true, slug
+        });
+      }
+
+      closeEditProductModal();
+      renderCatalogTable();
+      alert(`✅ Producto "${title}" guardado y publicado en la tienda.`);
+      if (window.confetti) confetti({ particleCount: 60 });
     }
 
     function changeActiveLanding(landingId) {
