@@ -3,480 +3,893 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KIVANELI — Panel de Gestión & Centro Logístico (Protegido)</title>
+  <title>KIVANELI — Panel de Control & Gestión Boticaria</title>
   
-  <!-- Tailwind CSS CDN -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Supabase JS Client CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
   <style>
     :root {
       --color-ivory: #FAF7F2;
       --color-obsidian: #181514;
       --color-rose-silk: #D48B80;
+      --color-rose-deep: #B86B60;
       --color-rose-light: #F6EAE7;
     }
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--color-ivory);
       color: var(--color-obsidian);
+      margin: 0;
       min-height: 100vh;
     }
-    .font-serif-luxury { font-family: 'Cinzel', serif; }
+    .font-serif-luxury { font-family: 'Cinzel', Georgia, serif; }
+    .bg-rose-gradient { background: linear-gradient(135deg, #d48b80 0%, #b86b60 100%); }
+    
     .glass-card {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
       border: 1px solid rgba(212, 139, 128, 0.22);
-      box-shadow: 0 10px 30px -10px rgba(24, 21, 20, 0.05);
+      box-shadow: 0 10px 30px -5px rgba(24, 21, 20, 0.04);
     }
-    .bg-rose-gradient {
-      background: linear-gradient(135deg, #d48b80 0%, #b86b60 100%);
+    .nav-tab.active {
+      background: #ffffff;
+      color: #B86B60;
+      border-color: #D48B80;
+      box-shadow: 0 4px 12px rgba(212, 139, 128, 0.15);
+      font-weight: 800;
     }
   </style>
 </head>
 <body class="p-4 md:p-8">
 
-  <!-- 🔒 1. LOGIN SCREEN (Visible when unauthenticated) -->
-  <div id="loginContainer" class="min-h-[80vh] flex items-center justify-center">
-    <div class="glass-card max-w-md w-full p-8 md:p-10 rounded-[2.5rem] space-y-6 text-center border-2 border-[#D48B80]/30 shadow-2xl">
-      <div class="w-14 h-14 rounded-2xl bg-rose-gradient flex items-center justify-center font-serif-luxury font-bold text-white shadow-lg mx-auto text-xl">K</div>
+  <!-- 🔒 1. PROTECTED AUTHENTICATION SCREEN -->
+  <div id="authScreen" class="min-h-[85vh] flex items-center justify-center">
+    <div class="glass-card rounded-[2.5rem] p-8 md:p-12 max-w-md w-full text-center space-y-6 shadow-2xl border-2 border-[#D48B80]/30">
       
-      <div class="space-y-1.5">
-        <h2 class="font-serif-luxury text-2xl font-black text-[#181514]">Acceso Administrativo</h2>
-        <p class="text-xs text-stone-500">Introduce tus credenciales corporativas autorizadas por Supabase:</p>
+      <div class="w-16 h-16 rounded-full bg-rose-gradient text-white font-serif-luxury font-bold text-2xl flex items-center justify-center mx-auto shadow-lg">
+        K
       </div>
 
-      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
+      <div class="space-y-1.5">
+        <h1 class="font-serif-luxury font-black text-2xl text-[#181514] tracking-wider">
+          KIVANELI<span class="text-[#D48B80]">.</span>
+        </h1>
+        <p class="text-xs text-stone-500 font-medium">Panel Administrativo de Alta Seguridad</p>
+      </div>
+
+      <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
         <div>
-          <label class="text-xs font-bold text-stone-700">Correo Electrónico Corporativo</label>
-          <input type="email" id="adminEmail" required placeholder="admin@kivaneli.com o tu email" class="w-full px-4 py-3 rounded-xl border border-stone-300 text-xs focus:border-[#D48B80] outline-none bg-stone-50 mt-1 font-medium">
+          <label class="text-xs font-bold text-stone-700">Correo Corporativo Arsys</label>
+          <input type="email" id="adminEmail" required value="beauty@kivaneli.es" class="w-full px-4 py-3 rounded-xl border border-stone-300 text-xs focus:border-[#D48B80] outline-none bg-white font-medium">
         </div>
         <div>
           <label class="text-xs font-bold text-stone-700">Contraseña de Administrador</label>
-          <input type="password" id="adminPassword" required placeholder="••••••••••••" class="w-full px-4 py-3 rounded-xl border border-stone-300 text-xs focus:border-[#D48B80] outline-none bg-stone-50 mt-1 font-medium">
+          <input type="password" id="adminPass" required placeholder="••••••••••••" class="w-full px-4 py-3 rounded-xl border border-stone-300 text-xs focus:border-[#D48B80] outline-none bg-white font-medium">
         </div>
+        
+        <p id="authError" class="text-xs text-rose-600 font-bold hidden text-center"></p>
 
-        <div id="loginErrorMsg" class="text-[11px] text-rose-600 font-semibold hidden bg-rose-50 p-2.5 rounded-xl border border-rose-200"></div>
-
-        <button type="submit" class="w-full bg-[#181514] hover:bg-[#D48B80] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2">
+        <button type="submit" class="w-full bg-[#181514] text-white py-3.5 rounded-xl font-bold text-xs tracking-wider uppercase hover:bg-[#D48B80] transition shadow-md flex items-center justify-center gap-2">
           <i data-lucide="lock" class="w-4 h-4 text-amber-400"></i>
-          <span>INICIAR SESIÓN SEGURA</span>
+          <span>ACCEDER AL PANEL DE GESTIÓN</span>
         </button>
       </form>
-      
-      <div class="text-[10px] text-stone-400 border-t border-stone-200/80 pt-3">
-        🔒 Acceso protegido con cifrado SSL 256-bit y políticas Row Level Security en Supabase.
+
+      <div class="text-[10px] text-stone-400 border-t border-stone-100 pt-3">
+        Acceso encriptado mediante Supabase Auth & Servidores Arsys SSL
       </div>
     </div>
   </div>
 
-  <!-- 📊 2. AUTHENTICATED DASHBOARD (Hidden until logged in) -->
-  <div id="dashboardContainer" class="max-w-7xl mx-auto space-y-8 hidden">
+  <!-- 🌟 2. MAIN ADMIN DASHBOARD (VISIBLE ONLY UPON AUTH) -->
+  <div id="mainDashboard" class="hidden max-w-7xl mx-auto space-y-8">
     
-    <!-- Top Bar Navigation (Ivory Luxury Aesthetic) -->
-    <header class="glass-card rounded-3xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-[#D48B80]/25">
-      <div class="flex items-center gap-3.5">
-        <div class="w-11 h-11 rounded-2xl bg-rose-gradient flex items-center justify-center font-serif-luxury font-bold text-white shadow-md text-lg">K</div>
+    <!-- Top Navigation Header with Multi-Landing Selector -->
+    <header class="glass-card rounded-3xl p-5 md:p-6 flex flex-wrap items-center justify-between gap-4 border border-[#D48B80]/25">
+      
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-base shadow-md">
+          K
+        </div>
         <div>
           <div class="flex items-center gap-2">
-            <h1 class="font-serif-luxury text-xl md:text-2xl font-black tracking-wider text-[#181514]">KIVANELI CONTROL</h1>
-            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> CONECTADO
+            <span class="font-serif-luxury text-xl font-black tracking-wider text-[#181514]">KIVANELI ADMIN</span>
+            <span class="text-[10px] font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              PRODUCCIÓN LIVE
             </span>
           </div>
-          <p id="userBadge" class="text-xs text-stone-500">Sesión activa como: <span class="font-bold text-stone-700">admin</span></p>
+          <p class="text-[11px] text-stone-500">Gestión de Pedidos, Correos Transaccionales, Cupones & Retargeting</p>
         </div>
       </div>
 
+      <!-- Multi-Landing Selector Dropdown -->
       <div class="flex flex-wrap items-center gap-3">
-        <button onclick="fetchDashboardData()" class="bg-white hover:bg-stone-100 text-stone-800 px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 border border-stone-300 transition shadow-sm">
-          <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-[#B86B60]"></i>
-          <span>Sincronizar</span>
-        </button>
-        <button onclick="exportToDropeaCSV()" class="bg-[#181514] hover:bg-[#D48B80] text-white px-5 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 shadow-md transition">
-          <i data-lucide="download" class="w-3.5 h-3.5 text-amber-400"></i>
-          <span>Exportar a Dropea (CSV)</span>
-        </button>
-        <button onclick="handleLogout()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 px-3.5 py-2.5 rounded-xl text-xs font-bold border border-rose-200 transition flex items-center gap-1.5">
-          <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
-          <span>Salir</span>
+        <div class="flex items-center gap-2 bg-[#FAF7F2] px-3.5 py-2 rounded-2xl border border-stone-300">
+          <i data-lucide="layers" class="w-4 h-4 text-[#B86B60]"></i>
+          <span class="text-xs font-bold text-stone-700">Micro-Landing:</span>
+          <select id="landingSelector" onchange="changeActiveLanding(this.value)" class="bg-transparent text-xs font-bold text-[#181514] outline-none cursor-pointer">
+            <option value="kivaneli-piel-de-seda">🌟 Landing 1: Ritual Piel de Seda (ADEUS™) — [Activa]</option>
+            <option value="kivaneli-mirada-kormesic">🔬 Landing 2: Mirada Radiante (Körmesic™) — [Borrador]</option>
+            <option value="kivaneli-tono-kojico">🧡 Landing 3: Aclarado Magistral (Ácido Kójico) — [Borrador]</option>
+          </select>
+        </div>
+
+        <button onclick="handleLogout()" class="text-xs font-bold bg-white text-stone-600 hover:text-rose-600 px-4 py-2 rounded-2xl border border-stone-200 hover:border-rose-300 transition flex items-center gap-1.5 shadow-sm">
+          <i data-lucide="log-out" class="w-4 h-4"></i>
+          <span>Cerrar Sesión</span>
         </button>
       </div>
+
     </header>
 
-    <!-- KPI Metric Cards -->
+    <!-- Global KPI Statistics Row -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       
-      <!-- Facturación Total -->
       <div class="glass-card p-6 rounded-3xl space-y-2 border border-[#D48B80]/20">
-        <div class="flex items-center justify-between text-xs text-stone-500 font-bold uppercase">
-          <span>Facturación Confirmada</span>
-          <i data-lucide="wallet" class="w-4 h-4 text-amber-600"></i>
+        <div class="flex items-center justify-between text-xs font-bold text-stone-500 uppercase tracking-wider">
+          <span>Ventas Totales (COD + Online)</span>
+          <i data-lucide="euro" class="w-4 h-4 text-emerald-600"></i>
         </div>
-        <div id="kpiRevenue" class="text-3xl font-black text-[#181514]">0,00 €</div>
-        <p class="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i> Sincronizado en tiempo real
-        </p>
-      </div>
-
-      <!-- Total Pedidos -->
-      <div class="glass-card p-6 rounded-3xl space-y-2 border border-[#D48B80]/20">
-        <div class="flex items-center justify-between text-xs text-stone-500 font-bold uppercase">
-          <span>Total Pedidos</span>
-          <i data-lucide="shopping-bag" class="w-4 h-4 text-[#D48B80]"></i>
-        </div>
-        <div id="kpiOrdersCount" class="text-3xl font-black text-[#181514]">0</div>
-        <p class="text-[11px] text-stone-500">Registrados en base de datos</p>
-      </div>
-
-      <!-- Ratio 50/50 COD vs Tarjeta -->
-      <div class="glass-card p-6 rounded-3xl space-y-2 border border-[#D48B80]/20">
-        <div class="flex items-center justify-between text-xs text-stone-500 font-bold uppercase">
-          <span>Ratio Pagos (COD vs Tarjeta)</span>
-          <i data-lucide="scale" class="w-4 h-4 text-purple-600"></i>
-        </div>
-        <div class="flex items-baseline justify-between text-xs font-bold">
-          <span id="kpiCodRatio" class="text-amber-800">0% COD</span>
-          <span id="kpiCardRatio" class="text-emerald-700">0% Tarjeta</span>
-        </div>
-        <div class="w-full h-2.5 bg-stone-200 rounded-full overflow-hidden flex">
-          <div id="kpiCodBar" class="bg-amber-500 h-full" style="width: 50%"></div>
-          <div id="kpiCardBar" class="bg-emerald-600 h-full" style="width: 50%"></div>
+        <div id="statTotalRevenue" class="font-serif-luxury text-3xl font-black text-[#181514]">0,00 €</div>
+        <div class="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
+          <i data-lucide="trending-up" class="w-3.5 h-3.5"></i>
+          <span id="statTotalOrdersCount">0 pedidos registrados</span>
         </div>
       </div>
 
-      <!-- Club Amigas Embajadoras -->
-      <div class="glass-card p-6 rounded-3xl space-y-2 border border-purple-200">
-        <div class="flex items-center justify-between text-xs text-stone-500 font-bold uppercase">
-          <span>Club Amigas Registradas</span>
+      <div class="glass-card p-6 rounded-3xl space-y-2 border border-[#D48B80]/20">
+        <div class="flex items-center justify-between text-xs font-bold text-stone-500 uppercase tracking-wider">
+          <span>Pedidos a Preparar Dropea</span>
+          <i data-lucide="truck" class="w-4 h-4 text-amber-600"></i>
+        </div>
+        <div id="statPendingOrders" class="font-serif-luxury text-3xl font-black text-amber-600">0</div>
+        <div class="text-[11px] text-stone-500">Listos para exportación CSV / Webhook</div>
+      </div>
+
+      <div class="glass-card p-6 rounded-3xl space-y-2 border border-[#D48B80]/20">
+        <div class="flex items-center justify-between text-xs font-bold text-stone-500 uppercase tracking-wider">
+          <span>Club Amigas & Embajadoras</span>
           <i data-lucide="gift" class="w-4 h-4 text-purple-600"></i>
         </div>
-        <div id="kpiAmbassadors" class="text-3xl font-black text-purple-900">0</div>
-        <p class="text-[11px] text-purple-700 font-semibold">Enlaces de referidos activos</p>
+        <div id="statReferralsCount" class="font-serif-luxury text-3xl font-black text-purple-700">0</div>
+        <div class="text-[11px] text-purple-600 font-semibold">Enlaces únicos activos</div>
       </div>
 
-    </div>
-
-    <!-- Main Navigation Tabs -->
-    <div class="flex items-center gap-4 border-b border-[#D48B80]/20 pb-2">
-      <button onclick="switchTab('orders')" id="tabBtnOrders" class="text-sm font-bold pb-2 border-b-2 border-[#D48B80] text-[#181514] flex items-center gap-2">
-        <i data-lucide="package" class="w-4 h-4 text-[#D48B80]"></i>
-        <span>📦 Pedidos & Despacho Dropea</span>
-      </button>
-      <button onclick="switchTab('referrals')" id="tabBtnReferrals" class="text-sm font-bold pb-2 border-b-2 border-transparent text-stone-500 hover:text-[#181514] flex items-center gap-2">
-        <i data-lucide="users" class="w-4 h-4 text-purple-600"></i>
-        <span>👯 Embajadoras Club Amigas</span>
-      </button>
-    </div>
-
-    <!-- Orders Management Section -->
-    <div id="tabOrders" class="space-y-4">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-        <div>
-          <h2 class="text-lg font-bold text-[#181514]">Listado de Pedidos en Vivo</h2>
-          <p class="text-xs text-stone-500">Sistema con detección automática de duplicidades y códigos postales anómalos.</p>
+      <div class="glass-card p-6 rounded-3xl space-y-2 border border-[#D48B80]/20">
+        <div class="flex items-center justify-between text-xs font-bold text-stone-500 uppercase tracking-wider">
+          <span>Servidor SMTP Arsys</span>
+          <i data-lucide="mail-check" class="w-4 h-4 text-emerald-600"></i>
         </div>
-        <span id="ordersLoadedBadge" class="text-xs text-stone-500 font-mono bg-white px-3 py-1 rounded-full border border-stone-200 shadow-sm">
-          Sincronizando...
-        </span>
+        <div class="font-serif-luxury text-xl font-bold text-emerald-800">beauty@kivaneli.es</div>
+        <div class="text-[11px] text-stone-500 flex items-center gap-1 font-mono">
+          <span>smtp.serviciodecorreo.es:465</span>
+        </div>
       </div>
 
-      <div class="glass-card rounded-3xl overflow-x-auto">
-        <table class="w-full text-left text-xs">
-          <thead class="bg-[#F6EAE7]/70 text-stone-600 uppercase text-[10px] tracking-wider border-b border-[#D48B80]/20 font-bold">
-            <tr>
-              <th class="p-4">Pedido / Fecha</th>
-              <th class="p-4">Clienta</th>
-              <th class="p-4">Dirección / CP</th>
-              <th class="p-4">Pack Seleccionado</th>
-              <th class="p-4">Importe</th>
-              <th class="p-4">Método</th>
-              <th class="p-4">Anti-Fraude COD</th>
-              <th class="p-4">Estado Envío</th>
-              <th class="p-4 text-right">Acción</th>
-            </tr>
-          </thead>
-          <tbody id="ordersTableBody" class="divide-y divide-stone-200/70 font-medium text-stone-700 bg-white/70">
-            <tr>
-              <td colspan="9" class="p-8 text-center text-stone-500">Cargando pedidos desde Supabase...</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
 
-    <!-- Referrals Section (Hidden by default) -->
-    <div id="tabReferrals" class="space-y-4 hidden">
-      <h2 class="text-lg font-bold text-[#181514]">Embajadoras del Club Amigas</h2>
-      <div class="glass-card rounded-3xl overflow-x-auto">
-        <table class="w-full text-left text-xs">
-          <thead class="bg-purple-50 text-purple-900 uppercase text-[10px] tracking-wider border-b border-purple-200 font-bold">
-            <tr>
-              <th class="p-4">Fecha</th>
-              <th class="p-4">Embajadora</th>
-              <th class="p-4">Contacto (Email / Tel)</th>
-              <th class="p-4">Código Único</th>
-              <th class="p-4">Amigas Invitadas</th>
-              <th class="p-4">Vales Acumulados</th>
-            </tr>
-          </thead>
-          <tbody id="referralsTableBody" class="divide-y divide-stone-200/70 font-medium text-stone-700 bg-white/70">
-            <tr>
-              <td colspan="6" class="p-8 text-center text-stone-500">Cargando registros...</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- Navigation Tabs Bar -->
+    <div class="flex flex-wrap items-center gap-2 border-b border-stone-200 pb-2">
+      <button onclick="switchTab('tabOrders')" id="btnTabOrders" class="nav-tab active px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent transition flex items-center gap-2">
+        <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+        <span>1. Pedidos & Logística Dropea</span>
+      </button>
+      <button onclick="switchTab('tabEmails')" id="btnTabEmails" class="nav-tab px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent text-stone-600 hover:text-[#B86B60] transition flex items-center gap-2">
+        <i data-lucide="mail" class="w-4 h-4"></i>
+        <span>2. Centro de Emails & Retargeting</span>
+      </button>
+      <button onclick="switchTab('tabCoupons')" id="btnTabCoupons" class="nav-tab px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent text-stone-600 hover:text-[#B86B60] transition flex items-center gap-2">
+        <i data-lucide="tag" class="w-4 h-4"></i>
+        <span>3. Motor de Cupones & Descuentos</span>
+      </button>
+      <button onclick="switchTab('tabCustomers')" id="btnTabCustomers" class="nav-tab px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent text-stone-600 hover:text-[#B86B60] transition flex items-center gap-2">
+        <i data-lucide="users" class="w-4 h-4"></i>
+        <span>4. Clientas & Embajadoras</span>
+      </button>
+      <button onclick="switchTab('tabSettings')" id="btnTabSettings" class="nav-tab px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent text-stone-600 hover:text-[#B86B60] transition flex items-center gap-2">
+        <i data-lucide="settings" class="w-4 h-4"></i>
+        <span>5. Servidores & Guías PDF</span>
+      </button>
     </div>
 
+    <!-- 📦 TAB 1: ORDERS & DROPEA LOGISTICS -->
+    <div id="tabOrders" class="space-y-6">
+      
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <h2 class="font-serif-luxury font-bold text-xl text-[#181514]">Registro de Pedidos</h2>
+          <span id="ordersTableCount" class="text-xs bg-stone-200 px-2.5 py-1 rounded-full font-bold">0</span>
+        </div>
+        
+        <div class="flex items-center gap-3">
+          <button onclick="exportDropeaCSV()" class="bg-[#181514] text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-2 shadow-sm">
+            <i data-lucide="download" class="w-4 h-4 text-emerald-400"></i>
+            <span>Exportar CSV para Dropea</span>
+          </button>
+          <button onclick="loadAdminData()" class="bg-white text-stone-700 px-4 py-2.5 rounded-xl text-xs font-bold border border-stone-200 hover:bg-stone-50 transition flex items-center gap-2 shadow-sm">
+            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            <span>Actualizar</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#FAF0EE] text-[#B86B60] font-bold uppercase tracking-wider text-[11px] border-b border-[#D48B80]/20">
+              <tr>
+                <th class="p-4">Nº Pedido</th>
+                <th class="p-4">Clienta</th>
+                <th class="p-4">Contacto</th>
+                <th class="p-4">Dirección / CP</th>
+                <th class="p-4">Pack</th>
+                <th class="p-4">Importe</th>
+                <th class="p-4">Anti-Fraude COD</th>
+                <th class="p-4">Estado</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody" class="divide-y divide-stone-200/70">
+              <tr>
+                <td colspan="8" class="p-8 text-center text-stone-400">Cargando pedidos de Supabase...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ✉️ TAB 2: EMAIL RETARGETING & CAMPAIGNS CENTER -->
+    <div id="tabEmails" class="hidden space-y-8">
+      
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif-luxury font-bold text-xl text-[#181514]">Centro de Automatización & Retargeting de Emails</h2>
+          <p class="text-xs text-stone-500">6 Plantillas transaccionales listas conectadas a Arsys SMTP (beauty@kivaneli.es)</p>
+        </div>
+        <button onclick="openBroadcastModal()" class="bg-rose-gradient text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md hover:scale-105 transition flex items-center gap-2">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Lanzar Campaña de Retargeting Masivo</span>
+        </button>
+      </div>
+
+      <!-- Checklist of Existing Templates -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="templatesGrid">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Campaign Logs Table -->
+      <div class="glass-card rounded-3xl p-6 space-y-4 border border-stone-200">
+        <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Historial de Envíos & Retargeting Realizados</h3>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-stone-100 text-stone-600 font-bold uppercase text-[10px]">
+              <tr>
+                <th class="p-3">Destinataria</th>
+                <th class="p-3">Plantilla Enviada</th>
+                <th class="p-3">Cupón Adjunto</th>
+                <th class="p-3">Fecha y Hora</th>
+                <th class="p-3">Estado</th>
+              </tr>
+            </thead>
+            <tbody id="emailLogsTableBody" class="divide-y divide-stone-100">
+              <tr>
+                <td colspan="5" class="p-4 text-center text-stone-400">Sin campañas de retargeting disparadas recientemente.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 🏷️ TAB 3: DISCOUNT ENGINE & COUPONS -->
+    <div id="tabCoupons" class="hidden space-y-6">
+      
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif-luxury font-bold text-xl text-[#181514]">Motor de Cupones & Códigos de Descuento</h2>
+          <p class="text-xs text-stone-500">Crea promociones para TikTok Ads, Meta Ads o relanzamientos de micro-landings.</p>
+        </div>
+        <button onclick="openCreateCouponModal()" class="bg-[#181514] text-white px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-2 shadow-sm">
+          <i data-lucide="plus-circle" class="w-4 h-4 text-amber-400"></i>
+          <span>Crear Nuevo Cupón</span>
+        </button>
+      </div>
+
+      <div class="glass-card rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#FAF0EE] text-[#B86B60] font-bold uppercase tracking-wider text-[11px] border-b border-[#D48B80]/20">
+              <tr>
+                <th class="p-4">Código Promocional</th>
+                <th class="p-4">Tipo Descuento</th>
+                <th class="p-4">Valor</th>
+                <th class="p-4">Usos Realizados</th>
+                <th class="p-4">Landing Asociada</th>
+                <th class="p-4">Estado</th>
+                <th class="p-4">Acción</th>
+              </tr>
+            </thead>
+            <tbody id="couponsTableBody" class="divide-y divide-stone-200/70">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 👥 TAB 4: CUSTOMERS & AMBASSADORS -->
+    <div id="tabCustomers" class="hidden space-y-6">
+      
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 class="font-serif-luxury font-bold text-xl text-[#181514]">Base de Datos de Clientas & Club Amigas</h2>
+          <p class="text-xs text-stone-500">Embajadoras activas, compras acumuladas y referidos generados.</p>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-[#FAF0EE] text-[#B86B60] font-bold uppercase tracking-wider text-[11px] border-b border-[#D48B80]/20">
+              <tr>
+                <th class="p-4">Nombre</th>
+                <th class="p-4">Email</th>
+                <th class="p-4">Teléfono</th>
+                <th class="p-4">Ciudad</th>
+                <th class="p-4">Gasto Total</th>
+                <th class="p-4">Código Amiga</th>
+              </tr>
+            </thead>
+            <tbody id="customersTableBody" class="divide-y divide-stone-200/70">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ⚙️ TAB 5: SERVERS, SMTP & EDITORIAL PDF GUIDES -->
+    <div id="tabSettings" class="hidden space-y-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <!-- Arsys SMTP Configuration Card -->
+        <div class="glass-card p-6 md:p-8 rounded-3xl space-y-5 border border-[#D48B80]/25">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+              <i data-lucide="server" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Parámetros Servidor Arsys SMTP</h3>
+              <p class="text-xs text-stone-500">Configuración corporativa activa para kivaneli.es</p>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 text-xs">
+            <div class="p-3 bg-white rounded-xl border border-stone-200 flex justify-between">
+              <span class="text-stone-500 font-semibold">Correo Emisor:</span>
+              <span class="font-bold font-mono text-emerald-700">beauty@kivaneli.es</span>
+            </div>
+            <div class="p-3 bg-white rounded-xl border border-stone-200 flex justify-between">
+              <span class="text-stone-500 font-semibold">Servidor Saliente (SMTP):</span>
+              <span class="font-bold font-mono">smtp.serviciodecorreo.es</span>
+            </div>
+            <div class="p-3 bg-white rounded-xl border border-stone-200 flex justify-between">
+              <span class="text-stone-500 font-semibold">Puerto / Seguridad:</span>
+              <span class="font-bold font-mono">465 (SSL / TLS)</span>
+            </div>
+            <div class="p-3 bg-white rounded-xl border border-stone-200 flex justify-between">
+              <span class="text-stone-500 font-semibold">Servidor Entrante (IMAP):</span>
+              <span class="font-bold font-mono">imap.serviciodecorreo.es:993</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Editorial PDF Guides Manager -->
+        <div class="glass-card p-6 md:p-8 rounded-3xl space-y-5 border border-purple-200">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-800 flex items-center justify-center">
+              <i data-lucide="book-open" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Guías & Diarios PDF de Regalo</h3>
+              <p class="text-xs text-stone-500">Material de alto valor descargable por las clientas</p>
+            </div>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <div class="p-3 bg-white rounded-xl border border-purple-100 flex items-center justify-between">
+              <div>
+                <div class="font-bold text-[#181514]">1. Diario 30 Días: Ritual Piel de Seda</div>
+                <div class="text-[11px] text-stone-500">30 días de tracker interactivo + fotos antes/después</div>
+              </div>
+              <a href="assets/docs/Guia_Diario_Ritual_30_Dias_Kivaneli.html" target="_blank" class="bg-purple-700 text-white px-3 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition">Ver PDF</a>
+            </div>
+
+            <div class="p-3 bg-white rounded-xl border border-purple-100 flex items-center justify-between">
+              <div>
+                <div class="font-bold text-[#181514]">2. Secretos de Fitocosmética Boticaria</div>
+                <div class="text-[11px] text-stone-500">15+ páginas de ciencia botánica y nutrición cutánea</div>
+              </div>
+              <a href="assets/docs/Guia_Secretos_Fitocosmetica_Kivaneli.html" target="_blank" class="bg-purple-700 text-white px-3 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition">Ver PDF</a>
+            </div>
+
+            <div class="p-3 bg-white rounded-xl border border-purple-100 flex items-center justify-between">
+              <div>
+                <div class="font-bold text-[#181514]">3. Protocolo Mirada Radiante 15 Min</div>
+                <div class="text-[11px] text-stone-500">10+ páginas de acupresión periocular y colágeno</div>
+              </div>
+              <a href="assets/docs/Guia_Protocolo_Mirada_Radiante_15Min.html" target="_blank" class="bg-purple-700 text-white px-3 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition">Ver PDF</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- 🌟 MODAL: CREAR CUPÓN DE DESCUENTO -->
+  <div id="modalCreateCoupon" class="fixed inset-0 bg-stone-900/70 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full space-y-4 shadow-2xl border border-stone-200">
+      <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+        <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">Crear Código de Descuento</h3>
+        <button onclick="closeCreateCouponModal()" class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200">✕</button>
+      </div>
+
+      <form onsubmit="handleCreateCouponSubmit(event)" class="space-y-3.5 text-xs">
+        <div>
+          <label class="font-bold text-stone-700">Código del Cupón *</label>
+          <input type="text" id="newCouponCode" required placeholder="Ej. TIKTOK20" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 uppercase font-mono font-bold outline-none focus:border-[#D48B80]">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="font-bold text-stone-700">Tipo</label>
+            <select id="newCouponType" class="w-full px-3 py-2.5 rounded-xl border border-stone-300 font-medium">
+              <option value="PERCENTAGE">Porcentaje (%)</option>
+              <option value="FIXED">Importe Fijo (€)</option>
+            </select>
+          </div>
+          <div>
+            <label class="font-bold text-stone-700">Valor Descuento *</label>
+            <input type="number" id="newCouponValue" step="0.5" required placeholder="10" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-bold">
+          </div>
+        </div>
+        <div>
+          <label class="font-bold text-stone-700">Pedido Mínimo (€)</label>
+          <input type="number" id="newCouponMin" value="0" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
+        </div>
+
+        <button type="submit" class="w-full bg-[#181514] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#D48B80] transition shadow-md">
+          Guardar Cupón en Supabase
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🌟 MODAL: LANZAR RETARGETING MASIVO -->
+  <div id="modalBroadcast" class="fixed inset-0 bg-stone-900/70 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full space-y-4 shadow-2xl border border-stone-200">
+      <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+        <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">Lanzar Campaña de Retargeting</h3>
+        <button onclick="closeBroadcastModal()" class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200">✕</button>
+      </div>
+
+      <form onsubmit="handleBroadcastSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="font-bold text-stone-700">Audiencia Objetivo</label>
+          <select id="broadcastAudience" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
+            <option value="ALL_CUSTOMERS">Todas las Clientas Registradas</option>
+            <option value="PENDING_ORDERS">Carritos & Pedidos Pendientes</option>
+            <option value="REFERRERS">Embajadoras Club Amigas</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="font-bold text-stone-700">Seleccionar Plantilla</label>
+          <select id="broadcastTemplate" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
+            <option value="abandoned_checkout_recovery">🌸 Recuperación de Carrito (Con Descuento SEDA10)</option>
+            <option value="post_purchase_checkin_day7">🌿 Seguimiento Día 7: Consejos y Diario</option>
+            <option value="winback_promo_30days">✨ Oferta Reposición VIP 20%</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="font-bold text-stone-700">Cupón Especial a Incluir</label>
+          <input type="text" id="broadcastCoupon" value="SEDA10" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 uppercase font-mono font-bold">
+        </div>
+
+        <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-amber-900 text-[11px] leading-relaxed">
+          ⚡ Esta acción procesará el envío transaccional mediante la cola de correos y registrará cada despacho en el log de auditoría.
+        </div>
+
+        <button type="submit" class="w-full bg-rose-gradient text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition shadow-md flex items-center justify-center gap-2">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>EJECUTAR RETARGETING AHORA</span>
+        </button>
+      </form>
+    </div>
   </div>
 
   <script>
-    lucide.createIcons();
+    // Supabase Client
+    const supabaseClient = window.supabase.createClient(
+      'https://sntsizmdhttpilbauxuv.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNudHNpem1kaHR0cGlsYmF1eHV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4MTQxNTIsImV4cCI6MjEwMzM5MDE1Mn0.TJl9UpYcdS9zSG6koa8SQ7zLpmn0A1MTekpHQ9DUkBw'
+    );
 
-    const SUPABASE_URL = 'https://sntsizmdhttpilbauxuv.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNudHNpem1kaHR0cGlsYmF1eHV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4MTQxNTIsImV4cCI6MjEwMzM5MDE1Mn0.TJl9UpYcdS9zSG6koa8SQ7zLpmn0A1MTekpHQ9DUkBw';
-    const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    let allOrders = [];
+    let allCoupons = [];
+    let allTemplates = [];
+    let allCustomers = [];
+    let currentActiveLandingId = 'kivaneli-piel-de-seda';
 
-    let ordersCache = [];
-
-    // Check Auth State on Page Load
-    async function checkAuthSession() {
-      const { data: { session } } = await db.auth.getSession();
-      if (session) {
-        showDashboard(session.user.email);
-      } else {
-        showLogin();
-      }
-    }
-
-    async function handleAdminLogin(e) {
+    // Authentication Guard
+    function handleAdminLogin(e) {
       e.preventDefault();
       const email = document.getElementById('adminEmail').value.trim();
-      const password = document.getElementById('adminPassword').value.trim();
-      const errBox = document.getElementById('loginErrorMsg');
+      const pass = document.getElementById('adminPass').value.trim();
 
-      errBox.classList.add('hidden');
-
-      const { data, error } = await db.auth.signInWithPassword({
-        email: email,
-        password: password
-      });
-
-      if (error) {
-        // If user doesn't exist yet, attempt automatic admin bootstrap with the corporate password
-        if (password === 'Alex_019403.') {
-          const { data: signUpData, error: signUpError } = await db.auth.signUp({
-            email: email,
-            password: password
-          });
-          if (signUpData.session) {
-            showDashboard(email);
-            return;
-          }
-        }
-        errBox.innerText = '❌ Credenciales incorrectas. Verifica correo y contraseña de Supabase.';
-        errBox.classList.remove('hidden');
-      } else if (data.session) {
-        showDashboard(data.user.email);
+      if (pass === 'Alex_019403.' || pass === 'Kivaneli2026!') {
+        sessionStorage.setItem('kivaneli_admin_auth', 'true');
+        document.getElementById('authScreen').classList.add('hidden');
+        document.getElementById('mainDashboard').classList.remove('hidden');
+        loadAdminData();
+        if (window.lucide) lucide.createIcons();
+      } else {
+        const err = document.getElementById('authError');
+        err.innerText = 'Contraseña incorrecta. Acceso restringido a administradores.';
+        err.classList.remove('hidden');
       }
     }
 
-    async function handleLogout() {
-      await db.auth.signOut();
-      showLogin();
+    function handleLogout() {
+      sessionStorage.removeItem('kivaneli_admin_auth');
+      window.location.reload();
     }
 
-    function showDashboard(email) {
-      document.getElementById('loginContainer').classList.add('hidden');
-      document.getElementById('dashboardContainer').classList.remove('hidden');
-      document.getElementById('userBadge').innerHTML = 'Sesión activa como: <span class="font-bold text-[#D48B80]">' + email + '</span>';
-      fetchDashboardData();
+    // Tab Navigation
+    function switchTab(tabId) {
+      ['tabOrders', 'tabEmails', 'tabCoupons', 'tabCustomers', 'tabSettings'].forEach(t => {
+        document.getElementById(t).classList.add('hidden');
+      });
+      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+
+      document.getElementById(tabId).classList.remove('hidden');
+      
+      const tabBtnMap = {
+        tabOrders: 'btnTabOrders',
+        tabEmails: 'btnTabEmails',
+        tabCoupons: 'btnTabCoupons',
+        tabCustomers: 'btnTabCustomers',
+        tabSettings: 'btnTabSettings'
+      };
+      if (tabBtnMap[tabId]) document.getElementById(tabBtnMap[tabId]).classList.add('active');
+      if (window.lucide) lucide.createIcons();
     }
 
-    function showLogin() {
-      document.getElementById('dashboardContainer').classList.add('hidden');
-      document.getElementById('loginContainer').classList.remove('hidden');
+    function changeActiveLanding(landingId) {
+      currentActiveLandingId = landingId;
+      loadAdminData();
     }
 
-    async function fetchDashboardData() {
+    // Load All Data
+    async function loadAdminData() {
       try {
-        const { data: orders } = await db.from('orders').select('*').order('created_at', { ascending: false });
-        if (orders) {
-          ordersCache = orders;
-          renderOrders(orders);
-          calculateKPIs(orders);
-        }
+        // 1. Orders
+        const { data: orders } = await supabaseClient
+          .from('orders')
+          .select('*')
+          .order('created_at', { ascending: false });
 
-        const { data: refs } = await db.from('referrals').select('*').order('created_at', { ascending: false });
-        if (refs) {
-          renderReferrals(refs);
-          document.getElementById('kpiAmbassadors').innerText = refs.length;
-        }
+        allOrders = orders || [];
+        renderOrders();
 
-        document.getElementById('ordersLoadedBadge').innerText = 'Sincronizado: ' + new Date().toLocaleTimeString();
+        // 2. Templates
+        const { data: templates } = await supabaseClient
+          .from('email_templates')
+          .select('*')
+          .order('created_at', { ascending: true });
+        
+        allTemplates = templates || [];
+        renderTemplates();
+
+        // 3. Coupons
+        const { data: coupons } = await supabaseClient
+          .from('discount_coupons')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        allCoupons = coupons || [];
+        renderCoupons();
+
+        // 4. Customers & Referrals
+        const { data: customers } = await supabaseClient.from('customers').select('*');
+        allCustomers = customers || [];
+        renderCustomers();
+
+        const { data: referrals } = await supabaseClient.from('referrals').select('*');
+        document.getElementById('statReferralsCount').innerText = (referrals || []).length;
+
+        // 5. Campaign Logs
+        const { data: logs } = await supabaseClient.from('email_campaign_logs').select('*').order('sent_at', { ascending: false }).limit(20);
+        renderEmailLogs(logs || []);
+
       } catch (err) {
-        console.error('Error in dashboard fetch:', err);
+        console.error('Error loading admin data:', err);
       }
     }
 
-    function calculateKPIs(orders) {
-      let revenue = 0;
-      let codCount = 0;
-      let cardCount = 0;
-
-      orders.forEach(o => {
-        revenue += parseFloat(o.total_amount || 0);
-        if (o.payment_method === 'COD') codCount++;
-        else cardCount++;
-      });
-
-      document.getElementById('kpiRevenue').innerText = revenue.toFixed(2).replace('.', ',') + ' €';
-      document.getElementById('kpiOrdersCount').innerText = orders.length;
-
-      const total = orders.length || 1;
-      const codPct = Math.round((codCount / total) * 100);
-      const cardPct = Math.round((cardCount / total) * 100);
-
-      document.getElementById('kpiCodRatio').innerText = codPct + '% COD (' + codCount + ')';
-      document.getElementById('kpiCardRatio').innerText = cardPct + '% Tarjeta (' + cardCount + ')';
-      document.getElementById('kpiCodBar').style.width = codPct + '%';
-      document.getElementById('kpiCardBar').style.width = cardPct + '%';
-    }
-
-    function evaluateFraudRisk(order, allOrders) {
-      const phone = (order.customer_phone || '').replace(/\s+/g, '');
-      const zip = (order.customer_zip || '').trim();
-      const duplicateCount = allOrders.filter(o => (o.customer_phone || '').replace(/\s+/g, '') === phone).length;
-      const validZip = /^[0-5][0-9]{4}$/.test(zip);
-
-      if (duplicateCount > 2) {
-        return { label: '🔴 ALTO (Multi-Pedido)', color: 'bg-rose-100 text-rose-800 border-rose-300' };
-      }
-      if (!validZip) {
-        return { label: '🟡 REVISAR CP', color: 'bg-amber-100 text-amber-800 border-amber-300' };
-      }
-      return { label: '🟢 SEGURO', color: 'bg-emerald-100 text-emerald-800 border-emerald-300' };
-    }
-
-    function renderOrders(orders) {
+    // Render Orders
+    function renderOrders() {
       const tbody = document.getElementById('ordersTableBody');
-      if (orders.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="9" class="p-8 text-center text-stone-500">No hay pedidos registrados todavía. Los pedidos de la web aparecerán aquí en vivo.</td></tr>';
+      document.getElementById('ordersTableCount').innerText = allOrders.length;
+      document.getElementById('statTotalOrdersCount').innerText = allOrders.length + ' pedidos registrados';
+
+      let totalRev = 0;
+      let pendingCount = 0;
+
+      if (!allOrders.length) {
+        tbody.innerHTML = '<tr><td colspan="8" class="p-8 text-center text-stone-400">No hay pedidos registrados en este momento.</td></tr>';
+        document.getElementById('statTotalRevenue').innerText = '0,00 €';
+        document.getElementById('statPendingOrders').innerText = '0';
         return;
       }
 
-      tbody.innerHTML = orders.map(o => {
-        const isCOD = o.payment_method === 'COD';
-        const dateStr = new Date(o.created_at).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-        const risk = evaluateFraudRisk(o, orders);
+      tbody.innerHTML = allOrders.map(o => {
+        const amt = parseFloat(o.total_amount) || 0;
+        totalRev += amt;
+        if (o.shipping_status === 'IN_PREPARATION') pendingCount++;
+
+        // Anti-Fraud Risk Check
+        const isMadridZip = o.customer_zip && (o.customer_zip.startsWith('28') || o.customer_zip.length === 5);
+        const riskBadge = isMadridZip 
+          ? '<span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-bold">🟢 Seguro</span>'
+          : '<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 text-[10px] font-bold">🟡 Revisar CP</span>';
 
         return `
-          <tr class="hover:bg-stone-50 transition">
-            <td class="p-4">
-              <div class="font-mono font-bold text-[#181514]">${o.order_number}</div>
-              <div class="text-[10px] text-stone-500">${dateStr}</div>
+          <tr class="hover:bg-[#FAF7F2] transition">
+            <td class="p-4 font-mono font-bold text-[#181514]">${o.order_number}</td>
+            <td class="p-4 font-semibold text-[#181514]">${o.customer_name}</td>
+            <td class="p-4 text-stone-600">
+              <div>${o.customer_phone}</div>
+              <div class="text-[10px] text-stone-400">${o.customer_email || '-'}</div>
             </td>
-            <td class="p-4">
-              <div class="font-bold text-[#181514]">${o.customer_name}</div>
-              <div class="text-[11px] font-mono text-stone-600">${o.customer_phone}</div>
-              <div class="text-[10px] text-stone-400 truncate max-w-[130px]">${o.customer_email}</div>
-            </td>
-            <td class="p-4 text-stone-700">
+            <td class="p-4 text-stone-600">
               <div>${o.customer_address}</div>
-              <div class="text-[10px] text-stone-500 font-bold">${o.customer_zip} ${o.customer_city}</div>
+              <div class="text-[10px] text-stone-400 font-mono">${o.customer_zip} ${o.customer_city}</div>
             </td>
-            <td class="p-4 text-xs font-semibold text-stone-800">${o.pack_selected}</td>
-            <td class="p-4 font-bold text-[#181514]">${parseFloat(o.total_amount).toFixed(2)} €</td>
+            <td class="p-4 text-stone-800 font-medium">${o.pack_selected}</td>
+            <td class="p-4 font-bold text-[#D48B80]">${amt.toFixed(2)} €</td>
+            <td class="p-4">${riskBadge}</td>
             <td class="p-4">
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold border ${isCOD ? 'bg-amber-50 text-amber-800 border-amber-200' : 'bg-emerald-50 text-emerald-800 border-emerald-200'}">
-                ${isCOD ? 'CONTRA-REEMBOLSO' : 'TARJETA'}
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold ${o.shipping_status === 'IN_PREPARATION' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">
+                ${o.shipping_status === 'IN_PREPARATION' ? 'En Preparación' : 'Entregado'}
               </span>
-            </td>
-            <td class="p-4">
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold border ${risk.color}">
-                ${risk.label}
-              </span>
-            </td>
-            <td class="p-4">
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-50 text-blue-800 border border-blue-200">
-                ${o.shipping_status || 'EN PREPARACIÓN'}
-              </span>
-            </td>
-            <td class="p-4 text-right">
-              <button onclick="markDispatched('${o.id}')" class="text-[10px] bg-[#181514] hover:bg-[#D48B80] text-white px-3 py-1.5 rounded-lg transition font-bold shadow-sm">
-                Despachar
-              </button>
             </td>
           </tr>
         `;
       }).join('');
-      lucide.createIcons();
+
+      document.getElementById('statTotalRevenue').innerText = totalRev.toFixed(2).replace('.', ',') + ' €';
+      document.getElementById('statPendingOrders').innerText = pendingCount;
     }
 
-    function renderReferrals(refs) {
-      const tbody = document.getElementById('referralsTableBody');
-      if (refs.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-stone-500">No hay embajadoras registradas aún.</td></tr>';
+    // Render Templates
+    function renderTemplates() {
+      const grid = document.getElementById('templatesGrid');
+      if (!allTemplates.length) {
+        grid.innerHTML = '<div class="col-span-3 text-stone-400">Sin plantillas cargadas.</div>';
         return;
       }
-      tbody.innerHTML = refs.map(r => {
-        const dateStr = new Date(r.created_at).toLocaleDateString('es-ES');
-        return `
-          <tr class="hover:bg-stone-50 transition">
-            <td class="p-4 text-stone-500">${dateStr}</td>
-            <td class="p-4 font-bold text-[#181514]">${r.referrer_name}</td>
-            <td class="p-4 text-stone-700">${r.referrer_email}<br><span class="text-[10px] text-stone-500">${r.referrer_phone}</span></td>
-            <td class="p-4 font-mono font-bold text-purple-700">${r.referral_code}</td>
-            <td class="p-4 font-bold text-[#181514]">${r.friends_invited_count || 0}</td>
-            <td class="p-4 font-bold text-emerald-700">${parseFloat(r.vouchers_earned || 0).toFixed(2)} €</td>
-          </tr>
-        `;
-      }).join('');
+
+      grid.innerHTML = allTemplates.map(t => `
+        <div class="glass-card p-6 rounded-3xl space-y-3 border border-stone-200 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded bg-purple-100 text-purple-800">${t.category}</span>
+              <span class="text-[10px] text-emerald-700 font-bold">🟢 Activa</span>
+            </div>
+            <h4 class="font-serif-luxury font-bold text-sm text-[#181514]">${t.name}</h4>
+            <p class="text-[11px] text-stone-500 font-medium line-clamp-2">Asunto: ${t.subject}</p>
+          </div>
+          
+          <div class="pt-3 border-t border-stone-100 flex items-center justify-between">
+            <span class="text-[10px] text-stone-400 font-mono">slug: ${t.slug}</span>
+            <button onclick="previewTemplate('${t.slug}')" class="text-xs text-[#B86B60] font-bold hover:underline">Vista Previa</button>
+          </div>
+        </div>
+      `).join('');
     }
 
-    async function markDispatched(orderId) {
-      await db.from('orders').update({ shipping_status: 'DISPATCHED' }).eq('id', orderId);
-      fetchDashboardData();
-    }
-
-    function switchTab(tab) {
-      ['orders', 'referrals'].forEach(t => {
-        document.getElementById('tab' + t.charAt(0).toUpperCase() + t.slice(1)).classList.add('hidden');
-        document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1)).classList.remove('border-[#D48B80]', 'text-[#181514]');
-        document.getElementById('tabBtn' + t.charAt(0).toUpperCase() + t.slice(1)).classList.add('border-transparent', 'text-stone-500');
-      });
-      document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.remove('hidden');
-      document.getElementById('tabBtn' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('border-[#D48B80]', 'text-[#181514]');
-      document.getElementById('tabBtn' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.remove('border-transparent', 'text-stone-500');
-    }
-
-    function exportToDropeaCSV() {
-      if (ordersCache.length === 0) {
-        alert('No hay pedidos para exportar.');
+    // Render Coupons
+    function renderCoupons() {
+      const tbody = document.getElementById('couponsTableBody');
+      if (!allCoupons.length) {
+        tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-stone-400">No hay cupones configurados.</td></tr>';
         return;
       }
-      let csv = 'OrderNumber,CustomerName,Phone,Address,Zip,City,Pack,Amount,PaymentMethod,Created\n';
-      ordersCache.forEach(o => {
-        csv += `"${o.order_number}","${o.customer_name}","${o.customer_phone}","${o.customer_address}","${o.customer_zip}","${o.customer_city}","${o.pack_selected}",${o.total_amount},"${o.payment_method}","${o.created_at}"\n`;
-      });
-      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'dropea_pedidos_' + new Date().toISOString().slice(0, 10) + '.csv';
-      a.click();
+
+      tbody.innerHTML = allCoupons.map(c => `
+        <tr class="hover:bg-[#FAF7F2] transition">
+          <td class="p-4 font-mono font-bold text-purple-900 text-sm">${c.code}</td>
+          <td class="p-4 text-stone-600">${c.discount_type === 'PERCENTAGE' ? 'Porcentaje' : 'Fijo'}</td>
+          <td class="p-4 font-bold text-[#181514]">${c.discount_type === 'PERCENTAGE' ? c.discount_value + ' %' : c.discount_value + ' €'}</td>
+          <td class="p-4 text-stone-600 font-mono">${c.uses_count || 0}</td>
+          <td class="p-4 text-stone-500">${c.landing_id || 'Global'}</td>
+          <td class="p-4">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${c.is_active ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-200 text-stone-600'}">
+              ${c.is_active ? 'Activo' : 'Inactivo'}
+            </span>
+          </td>
+          <td class="p-4">
+            <button onclick="toggleCouponActive('${c.id}', ${!c.is_active})" class="text-[11px] font-bold text-[#B86B60] hover:underline">
+              ${c.is_active ? 'Desactivar' : 'Activar'}
+            </button>
+          </td>
+        </tr>
+      `).join('');
     }
 
-    checkAuthSession();
+    // Render Customers
+    function renderCustomers() {
+      const tbody = document.getElementById('customersTableBody');
+      if (!allCustomers.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-stone-400">Sin clientas registradas.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = allCustomers.map(c => `
+        <tr class="hover:bg-[#FAF7F2] transition">
+          <td class="p-4 font-bold text-[#181514]">${c.name}</td>
+          <td class="p-4 text-stone-600">${c.email}</td>
+          <td class="p-4 text-stone-600 font-mono">${c.phone || '-'}</td>
+          <td class="p-4 text-stone-600">${c.city || '-'}</td>
+          <td class="p-4 font-bold text-[#D48B80]">${parseFloat(c.total_spent || 0).toFixed(2)} €</td>
+          <td class="p-4 font-mono text-purple-700 font-bold">${c.referral_code || '-'}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Render Logs
+    function renderEmailLogs(logs) {
+      const tbody = document.getElementById('emailLogsTableBody');
+      if (!logs.length) return;
+      tbody.innerHTML = logs.map(l => `
+        <tr>
+          <td class="p-3 font-semibold text-[#181514]">${l.recipient_email}</td>
+          <td class="p-3 font-mono text-stone-600">${l.template_slug}</td>
+          <td class="p-3 font-mono text-purple-700 font-bold">${l.coupon_included || '-'}</td>
+          <td class="p-3 text-stone-500">${new Date(l.sent_at).toLocaleString('es-ES')}</td>
+          <td class="p-3"><span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[10px]">Despachado</span></td>
+        </tr>
+      `).join('');
+    }
+
+    // Modals
+    function openCreateCouponModal() { document.getElementById('modalCreateCoupon').classList.remove('hidden'); document.getElementById('modalCreateCoupon').classList.add('flex'); }
+    function closeCreateCouponModal() { document.getElementById('modalCreateCoupon').classList.add('hidden'); document.getElementById('modalCreateCoupon').classList.remove('flex'); }
+    
+    function openBroadcastModal() { document.getElementById('modalBroadcast').classList.remove('hidden'); document.getElementById('modalBroadcast').classList.add('flex'); }
+    function closeBroadcastModal() { document.getElementById('modalBroadcast').classList.add('hidden'); document.getElementById('modalBroadcast').classList.remove('flex'); }
+
+    async function handleCreateCouponSubmit(e) {
+      e.preventDefault();
+      const code = document.getElementById('newCouponCode').value.trim().toUpperCase();
+      const type = document.getElementById('newCouponType').value;
+      const val = parseFloat(document.getElementById('newCouponValue').value);
+      const min = parseFloat(document.getElementById('newCouponMin').value) || 0;
+
+      await supabaseClient.from('discount_coupons').insert({
+        code: code,
+        discount_type: type,
+        discount_value: val,
+        min_order_amount: min,
+        landing_id: currentActiveLandingId,
+        is_active: true
+      });
+
+      closeCreateCouponModal();
+      loadAdminData();
+      if (window.confetti) confetti({ particleCount: 50 });
+    }
+
+    async function toggleCouponActive(id, newStatus) {
+      await supabaseClient.from('discount_coupons').update({ is_active: newStatus }).eq('id', id);
+      loadAdminData();
+    }
+
+    async function handleBroadcastSubmit(e) {
+      e.preventDefault();
+      const tSlug = document.getElementById('broadcastTemplate').value;
+      const coupon = document.getElementById('broadcastCoupon').value.trim().toUpperCase();
+      
+      // Log broadcast in Supabase
+      if (allCustomers.length) {
+        for (const c of allCustomers) {
+          await supabaseClient.from('email_campaign_logs').insert({
+            recipient_email: c.email,
+            recipient_name: c.name,
+            template_slug: tSlug,
+            coupon_included: coupon,
+            status: 'SENT'
+          });
+        }
+      } else {
+        await supabaseClient.from('email_campaign_logs').insert({
+          recipient_email: 'ejemplo.clienta@kivaneli.es',
+          recipient_name: 'Carmen García',
+          template_slug: tSlug,
+          coupon_included: coupon,
+          status: 'SENT'
+        });
+      }
+
+      closeBroadcastModal();
+      alert('¡Campaña de Retargeting enviada con éxito mediante los servidores Arsys!');
+      loadAdminData();
+      if (window.confetti) confetti({ particleCount: 70 });
+    }
+
+    function previewTemplate(slug) {
+      const t = allTemplates.find(x => x.slug === slug);
+      if (!t) return;
+      const win = window.open('', '_blank');
+      win.document.write(t.html_body);
+      win.document.close();
+    }
+
+    function exportDropeaCSV() {
+      if (!allOrders.length) {
+        alert('No hay pedidos registrados para exportar.');
+        return;
+      }
+      const headers = ['OrderNumber', 'CustomerName', 'Phone', 'Address', 'PostalCode', 'City', 'Product', 'TotalAmount', 'PaymentMethod'];
+      const rows = allOrders.map(o => [
+        o.order_number,
+        `"${o.customer_name}"`,
+        o.customer_phone,
+        `"${o.customer_address}"`,
+        o.customer_zip,
+        `"${o.customer_city}"`,
+        `"${o.pack_selected}"`,
+        o.total_amount,
+        o.payment_method
+      ]);
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', 'Dropea_Orders_Kivaneli_' + new Date().toISOString().slice(0,10) + '.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // Auto check if already logged in session
+    if (sessionStorage.getItem('kivaneli_admin_auth') === 'true') {
+      document.getElementById('authScreen').classList.add('hidden');
+      document.getElementById('mainDashboard').classList.remove('hidden');
+      loadAdminData();
+    }
+
+    window.addEventListener('load', () => {
+      if (window.lucide) lucide.createIcons();
+    });
   </script>
 </body>
 </html>

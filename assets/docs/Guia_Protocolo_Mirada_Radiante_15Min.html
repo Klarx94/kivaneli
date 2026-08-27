@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>KIVANELI — Protocolo Mirada Radiante en 15 Minutos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Playfair+Display:ital,wght@0,500;1,400&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4; margin: 15mm; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAF7F2; color: #181514; margin: 0; padding: 20px; line-height: 1.7; }
+    .page { max-width: 800px; margin: 0 auto 30px auto; background: #ffffff; padding: 45px; border-radius: 20px; border: 1px solid #D8B4FE; box-shadow: 0 4px 20px rgba(0,0,0,0.04); page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #181514; margin-top: 0; }
+    .gold-line { height: 2px; background: linear-gradient(90deg, #C084FC, #6B21A8); margin: 15px 0 25px 0; }
+    .badge { display: inline-block; background: #FAF5FF; color: #6B21A8; font-size: 11px; font-weight: bold; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; }
+    .box { background: #FAF5FF; border-radius: 12px; padding: 20px; border: 1px solid #E9D5FF; margin-bottom: 20px; font-size: 13px; }
+    .print-btn { display: block; width: fit-content; margin: 0 auto 20px auto; background: #6B21A8; color: #ffffff; padding: 12px 28px; border-radius: 30px; font-weight: bold; font-size: 13px; text-decoration: none; cursor: pointer; border: none; }
+    @media print {
+      body { background: #ffffff; padding: 0; }
+      .print-btn { display: none; }
+      .page { box-shadow: none; border: none; border-radius: 0; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Guardar Guía Periocular en PDF</button>
+
+  <div class="page" style="text-align: center; display: flex; flex-direction: column; justify-content: space-between; min-height: 850px;">
+    <div style="padding-top: 50px;">
+      <div style="font-size: 13px; letter-spacing: 4px; font-weight: bold; color: #6B21A8;">PROTOCOLO CLÍNICO PERIOCULAR</div>
+      <h1 style="font-size: 38px; font-weight: 900; margin: 25px 0 10px 0;">KIVANELI<span style="color:#D48B80;">.</span></h1>
+      <div class="gold-line" style="width: 100px; margin: 0 auto 30px auto;"></div>
+      <h2 style="font-size: 24px; font-family: 'Playfair Display', serif; font-style: italic; color: #444;">Mirada Radiante en 15 Minutos</h2>
+      <h3 style="font-size: 18px; color: #181514;">Drenaje Linfático, Colágeno Hidrolizado & Acupresión</h3>
+    </div>
+    <div style="font-size: 11px; color: #888;">KÖRMESIC™ COLLAGEN EYE THERAPY · GUÍA OFICIAL</div>
+  </div>
+
+  <div class="page">
+    <span class="badge">PROTOCOLO PASO A PASO</span>
+    <h2 style="font-size: 22px; margin-top: 10px;">Los 5 Puntos de Acupresión Periocular</h2>
+    <div class="gold-line"></div>
+    <p style="font-size: 13px; color: #444;">
+      La piel del contorno de ojos es hasta 5 veces más fina que la del resto del rostro. La combinación de hidrogel frío con presión suave en puntos linfáticos activa la microcirculación de inmediato.
+    </p>
+    <div class="box">
+      <strong>Puntos Clave de Drenaje:</strong><br/>
+      1. <strong>Zanzhu (Inicio de la ceja):</strong> Alivia la congestión ocular.<br/>
+      2. <strong>Yuyao (Centro de la ceja):</strong> Reduce la tensión muscular.<br/>
+      3. <strong>Sizhukong (Final de la ceja):</strong> Efecto tensor de párpado.<br/>
+      4. <strong>Tongziliao (Comisura externa):</strong> Drena patas de gallo.<br/>
+      5. <strong>Chengqi (Centro del contorno inferior):</strong> Desinflama bolsas de líquido en 15 min.
+    </div>
+  </div>
+</body>
+</html>

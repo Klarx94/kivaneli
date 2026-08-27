@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>KIVANELI — Diario Clínico & Planificador 30 Días Piel de Seda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4; margin: 15mm; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FAF7F2; color: #181514; margin: 0; padding: 20px; line-height: 1.5; }
+    .page { max-width: 800px; margin: 0 auto 30px auto; background: #ffffff; padding: 40px; border-radius: 20px; border: 1px solid #E8A598; box-shadow: 0 4px 20px rgba(0,0,0,0.04); page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+    h1, h2, h3, h4 { font-family: 'Cinzel', serif; color: #181514; margin-top: 0; }
+    .gold-line { height: 2px; background: linear-gradient(90deg, #D48B80, #B86B60); margin: 15px 0 25px 0; }
+    .badge { display: inline-block; background: #F6EAE7; color: #B86B60; font-size: 11px; font-weight: bold; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; }
+    .box { background: #FAF7F2; border-radius: 12px; padding: 15px; border: 1px solid #F6EAE7; margin-bottom: 15px; }
+    .input-line { border-bottom: 1px dashed #D48B80; height: 26px; margin-bottom: 8px; }
+    .checkbox-item { display: flex; items-center; gap: 8px; font-size: 12px; margin-bottom: 6px; }
+    .checkbox-box { width: 16px; height: 16px; border: 1.5px solid #B86B60; border-radius: 4px; display: inline-block; margin-right: 6px; }
+    .print-btn { display: block; width: fit-content; margin: 0 auto 20px auto; background: #181514; color: #ffffff; padding: 12px 28px; border-radius: 30px; font-weight: bold; font-size: 13px; text-decoration: none; cursor: pointer; border: none; }
+    @media print {
+      body { background: #ffffff; padding: 0; }
+      .print-btn { display: none; }
+      .page { box-shadow: none; border: none; border-radius: 0; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Guardar Diario en PDF (30 Días)</button>
+
+  <!-- COVER PAGE -->
+  <div class="page" style="text-align: center; display: flex; flex-direction: column; justify-content: space-between; min-height: 900px;">
+    <div style="padding-top: 40px;">
+      <div style="font-size: 14px; letter-spacing: 5px; font-weight: bold; color: #B86B60; text-transform: uppercase;">MAISON BOTANIQUE DE HAUTE GAMME</div>
+      <h1 style="font-size: 40px; font-weight: 900; margin: 25px 0 10px 0; letter-spacing: 3px;">KIVANELI<span style="color:#D48B80;">.</span></h1>
+      <div class="gold-line" style="width: 120px; margin: 0 auto 30px auto;"></div>
+      <h2 style="font-size: 26px; font-family: 'Playfair Display', serif; font-style: italic; color: #555;">Diario Clínico & Planificador 30 Días</h2>
+      <h3 style="font-size: 20px; font-weight: bold; color: #181514; margin-top: 10px;">EL RITUAL DE PIEL DE SEDA</h3>
+      <p style="max-width: 500px; margin: 20px auto; font-size: 13px; color: #666; line-height: 1.7;">
+        Este manual interactivo ha sido desarrollado bajo principios de fitocosmética regenerativa y hábitos de autocuidado. Acompáñate cada día anotando sensaciones, hidratación y evolución visual.
+      </p>
+    </div>
+
+    <div class="box" style="max-width: 400px; margin: 0 auto; text-align: left;">
+      <div style="font-size: 12px; font-weight: bold; color: #B86B60;">PROPIEDAD DE:</div>
+      <div class="input-line"></div>
+      <div style="display: flex; justify-content: space-between; font-size: 11px; color: #888; margin-top: 10px;">
+        <span>Fecha de Inicio: ___/___/2026</span>
+        <span>Peso/Medida Inicial: ______</span>
+      </div>
+    </div>
+
+    <div style="font-size: 11px; color: #999; padding-bottom: 20px;">
+      © 2026 KIVANELI COSMETICS · Todos los derechos reservados · Edición Exclusiva para Clientas
+    </div>
+  </div>
+
+  <!-- INTRODUCTION & HOW TO USE -->
+  <div class="page">
+    <span class="badge">MANUAL DE INSTRUCCIONES</span>
+    <h2 style="font-size: 24px; margin-top: 10px;">Cómo Utilizar tu Diario de Transformación</h2>
+    <div class="gold-line"></div>
+
+    <p style="font-size: 13px; color: #555; line-height: 1.7;">
+      La piel corporal tiene un ciclo de queratinización y renovación celular de aproximadamente 28 días. Para erradicar la piel de fresa, la constancia es el factor determinante.
+    </p>
+
+    <div class="box">
+      <h4 style="margin-bottom: 8px; color: #B86B60;">Las 4 Fases del Tratamiento ADEUS™:</h4>
+      <ul style="font-size: 12px; color: #444; padding-left: 20px; line-height: 1.8;">
+        <li><strong>Semana 1 (Días 1 a 7):</strong> Desobstrucción de los tapones de queratina y drenaje linfático con Centella Asiática.</li>
+        <li><strong>Semana 2 (Días 8 a 14):</strong> Renovación epitelial profunda. Desaparición de las asperezas al tacto.</li>
+        <li><strong>Semana 3 (Días 15 a 21):</strong> Sello lipídico con Omega 7 (Espino Amarillo) y unificación del tono con Jabón Kójico.</li>
+        <li><strong>Semana 4 (Días 22 a 30):</strong> Consolidación de la textura satinada de seda y prevención de nuevos brotes.</li>
+      </ul>
+    </div>
+
+    <div class="box" style="background: #FFFBEB; border-color: #FDE68A;">
+      <h4 style="margin-bottom: 6px; color: #92400E;">📸 Registro de Fotografía Inicial:</h4>
+      <p style="font-size: 12px; color: #78350F; margin: 0;">
+        Toma una fotografía con luz natural de tus piernas o brazos hoy (Día 1) y guárdala. Al llegar al Día 30, compararás la textura para ver el cambio clínico real.
+      </p>
+    </div>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 1 DE 30 · SEMANA 1</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción Folicular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 1
+    </div>
+  </div>
+  
+  <!-- DAY 2 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 2 DE 30 · SEMANA 1</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción Folicular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 2
+    </div>
+  </div>
+  
+  <!-- DAY 3 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 3 DE 30 · SEMANA 1</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción Folicular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 3
+    </div>
+  </div>
+  
+  <!-- DAY 4 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 4 DE 30 · SEMANA 1</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción Folicular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 4
+    </div>
+  </div>
+  
+  <!-- DAY 5 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 5 DE 30 · SEMANA 1</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción Folicular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 5
+    </div>
+  </div>
+  
+  <!-- DAY 6 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 6 DE 30 · SEMANA 1</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción Folicular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 6
+    </div>
+  </div>
+  
+  <!-- DAY 7 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 7 DE 30 · SEMANA 1</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 1: Desobstrucción Folicular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+    <!-- Weekly Milestone Assessment -->
+    <div class="box" style="background: #F0FDF4; border-color: #BBF7D0; margin-top: 15px;">
+      <h4 style="color: #166534; margin-bottom: 6px;">🏆 Evaluación de Cierre Semana 1</h4>
+      <p style="font-size: 12px; color: #15803D; margin: 0;">
+        ¡Enhorabuena por completar la Semana 1! Revisa tus poros y anota la disminución de rojeces.
+      </p>
+    </div>
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 7
+    </div>
+  </div>
+  
+  <!-- DAY 8 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 8 DE 30 · SEMANA 2</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación Celular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 8
+    </div>
+  </div>
+  
+  <!-- DAY 9 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 9 DE 30 · SEMANA 2</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación Celular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 9
+    </div>
+  </div>
+  
+  <!-- DAY 10 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 10 DE 30 · SEMANA 2</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación Celular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 10
+    </div>
+  </div>
+  
+  <!-- DAY 11 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 11 DE 30 · SEMANA 2</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación Celular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 11
+    </div>
+  </div>
+  
+  <!-- DAY 12 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 12 DE 30 · SEMANA 2</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación Celular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 12
+    </div>
+  </div>
+  
+  <!-- DAY 13 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 13 DE 30 · SEMANA 2</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación Celular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 13
+    </div>
+  </div>
+  
+  <!-- DAY 14 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 14 DE 30 · SEMANA 2</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 2: Renovación Celular</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+    <!-- Weekly Milestone Assessment -->
+    <div class="box" style="background: #F0FDF4; border-color: #BBF7D0; margin-top: 15px;">
+      <h4 style="color: #166534; margin-bottom: 6px;">🏆 Evaluación de Cierre Semana 2</h4>
+      <p style="font-size: 12px; color: #15803D; margin: 0;">
+        ¡Enhorabuena por completar la Semana 2! Revisa tus poros y anota la disminución de rojeces.
+      </p>
+    </div>
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 14
+    </div>
+  </div>
+  
+  <!-- DAY 15 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 15 DE 30 · SEMANA 3</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico & Glow</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 15
+    </div>
+  </div>
+  
+  <!-- DAY 16 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 16 DE 30 · SEMANA 3</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico & Glow</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 16
+    </div>
+  </div>
+  
+  <!-- DAY 17 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 17 DE 30 · SEMANA 3</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico & Glow</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 17
+    </div>
+  </div>
+  
+  <!-- DAY 18 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 18 DE 30 · SEMANA 3</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico & Glow</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 18
+    </div>
+  </div>
+  
+  <!-- DAY 19 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 19 DE 30 · SEMANA 3</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico & Glow</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 19
+    </div>
+  </div>
+  
+  <!-- DAY 20 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 20 DE 30 · SEMANA 3</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico & Glow</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 20
+    </div>
+  </div>
+  
+  <!-- DAY 21 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 21 DE 30 · SEMANA 3</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 3: Sello Lipídico & Glow</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+    <!-- Weekly Milestone Assessment -->
+    <div class="box" style="background: #F0FDF4; border-color: #BBF7D0; margin-top: 15px;">
+      <h4 style="color: #166534; margin-bottom: 6px;">🏆 Evaluación de Cierre Semana 3</h4>
+      <p style="font-size: 12px; color: #15803D; margin: 0;">
+        ¡Enhorabuena por completar la Semana 3! Revisa tus poros y anota la disminución de rojeces.
+      </p>
+    </div>
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 21
+    </div>
+  </div>
+  
+  <!-- DAY 22 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 22 DE 30 · SEMANA 4</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación Piel de Seda</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 22
+    </div>
+  </div>
+  
+  <!-- DAY 23 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 23 DE 30 · SEMANA 4</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación Piel de Seda</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 23
+    </div>
+  </div>
+  
+  <!-- DAY 24 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 24 DE 30 · SEMANA 4</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación Piel de Seda</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 24
+    </div>
+  </div>
+  
+  <!-- DAY 25 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 25 DE 30 · SEMANA 4</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación Piel de Seda</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 25
+    </div>
+  </div>
+  
+  <!-- DAY 26 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 26 DE 30 · SEMANA 4</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación Piel de Seda</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 26
+    </div>
+  </div>
+  
+  <!-- DAY 27 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 27 DE 30 · SEMANA 4</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación Piel de Seda</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 27
+    </div>
+  </div>
+  
+  <!-- DAY 28 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 28 DE 30 · SEMANA 4</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación Piel de Seda</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+    <!-- Weekly Milestone Assessment -->
+    <div class="box" style="background: #F0FDF4; border-color: #BBF7D0; margin-top: 15px;">
+      <h4 style="color: #166534; margin-bottom: 6px;">🏆 Evaluación de Cierre Semana 4</h4>
+      <p style="font-size: 12px; color: #15803D; margin: 0;">
+        ¡Enhorabuena por completar la Semana 4! Revisa tus poros y anota la disminución de rojeces.
+      </p>
+    </div>
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 28
+    </div>
+  </div>
+  
+  <!-- DAY 29 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 29 DE 30 · SEMANA 5</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación Piel de Seda</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 29
+    </div>
+  </div>
+  
+  <!-- DAY 30 -->
+  <div class="page">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="badge">DÍA 30 DE 30 · SEMANA 5</span>
+      <span style="font-size: 11px; font-weight: bold; color: #888;">Fase 4: Consolidación Piel de Seda</span>
+    </div>
+    
+    <h2 style="font-size: 24px; margin-top: 15px;">Ritual Diario de Cuidado Personal</h2>
+    <div class="gold-line"></div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      
+      <!-- Morning Ritual -->
+      <div class="box">
+        <h4 style="color: #6B21A8; margin-bottom: 8px;">☀️ Ritual de Mañana</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Vaso de agua templada al despertar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado facial con agua fresca</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Parches Körmesic (15 min si hay ojeras)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Hidratación ligera corporal</div>
+      </div>
+
+      <!-- Night Ritual -->
+      <div class="box">
+        <h4 style="color: #B86B60; margin-bottom: 8px;">🌙 Ritual de Noche</h4>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Ducha templada preparatoria</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Masaje circular ADEUS™ (2-3 min)</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aclarado suave sin frotar</div>
+        <div class="checkbox-item"><span class="checkbox-box"></span> Aplicación de crema selladora</div>
+      </div>
+
+    </div>
+
+    <!-- Tracker Box -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 10px;">💧 Control de Hidratación (2 Litros)</h4>
+      <div style="display: flex; gap: 10px; font-size: 12px; color: #555;">
+        <span>Vasos de agua:</span>
+        <span>[ ] 1</span> <span>[ ] 2</span> <span>[ ] 3</span> <span>[ ] 4</span> <span>[ ] 5</span> <span>[ ] 6</span> <span>[ ] 7</span> <span>[ ] 8</span>
+      </div>
+    </div>
+
+    <!-- Notes & Reflection -->
+    <div class="box">
+      <h4 style="color: #181514; margin-bottom: 8px;">📝 Sensaciones de mi Piel Hoy:</h4>
+      <div style="font-size: 11px; color: #888; margin-bottom: 6px;">Tacto al pasar la mano (1: Rugoso / 10: Seda Pura): [ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / 10 ]</div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+      <div class="input-line"></div>
+    </div>
+
+    
+
+    <div style="text-align: center; font-size: 10px; color: #aaa; margin-top: 20px;">
+      KIVANELI MAISON BOTANIQUE · DIARIO DÍA 30
+    </div>
+  </div>
+  </body></html>
