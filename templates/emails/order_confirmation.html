@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #FAF7F2; margin: 0; padding: 20px; color: #181514; }
+    .card { max-width: 600px; margin: 0 auto; background: #ffffff; border-radius: 24px; padding: 40px; border: 1px solid #E8A598; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+    .header { text-align: center; border-bottom: 1px solid #FAF0EE; padding-bottom: 20px; }
+    .brand { font-size: 24px; font-weight: bold; letter-spacing: 4px; color: #181514; }
+    .badge { background: #E8F5E9; color: #2E7D32; font-size: 11px; font-weight: bold; padding: 4px 12px; border-radius: 12px; display: inline-block; margin-top: 10px; }
+    .btn { display: block; width: 100%; text-align: center; background: linear-gradient(135deg, #D48B80, #B86B60); color: #ffffff !important; text-decoration: none; padding: 16px; border-radius: 16px; font-weight: bold; font-size: 14px; margin-top: 25px; }
+    .box { background: #FAF7F2; border-radius: 16px; padding: 20px; margin: 20px 0; border: 1px solid #F6EAE7; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div class="brand">KIVANELI<span style="color:#D48B80;">.</span></div>
+      <div class="badge">PEDIDO CONFIRMADO · EN PREPARACIÓN</div>
+    </div>
+    
+    <div style="padding-top: 20px;">
+      <h2 style="font-size: 20px; margin-bottom: 8px;">¡Gracias por tu compra, {{customer_name}}!</h2>
+      <p style="font-size: 13px; color: #666; line-height: 1.6;">
+        Tu pedido con número <strong>{{order_number}}</strong> ha entrado a nuestro centro logístico de Madrid y será entregado en <strong>24/48 horas laborables</strong>.
+      </p>
+
+      <div class="box">
+        <div style="font-size: 11px; font-weight: bold; color: #B86B60; text-transform: uppercase;">Detalles del Envío:</div>
+        <div style="font-size: 13px; margin-top: 8px;"><strong>Pack:</strong> {{pack_selected}}</div>
+        <div style="font-size: 13px; margin-top: 4px;"><strong>Importe Total:</strong> {{total_amount}} € ({{payment_method}})</div>
+        <div style="font-size: 13px; margin-top: 4px;"><strong>Dirección:</strong> {{customer_address}}, {{customer_zip}} {{customer_city}}</div>
+      </div>
+
+      <div style="background: #F3E8FF; border: 1px solid #E9D5FF; border-radius: 16px; padding: 20px; text-align: center;">
+        <div style="font-size: 16px; font-weight: bold; color: #6B21A8;">🎁 Tu Regalo Digital: Guía Maestra de Uso</div>
+        <p style="font-size: 12px; color: #581C87; margin-top: 6px;">
+          Descarga el protocolo clínico paso a paso para aplicar el tratamiento ADEUS™ y maximizar los resultados de piel de seda:
+        </p>
+        <a href="https://kivaneli.com/assets/docs/Guia_Protocolo_Piel_De_Seda.pdf" style="display:inline-block; background: #6B21A8; color: #ffffff !important; padding: 10px 24px; border-radius: 12px; font-size: 12px; font-weight: bold; text-decoration: none; margin-top: 10px;">
+          DESCARGAR GUÍA MAESTRA (PDF)
+        </a>
+      </div>
+
+      <p style="font-size: 11px; color: #999; text-align: center; margin-top: 30px;">
+        El repartidor de Correos Express / Dropea te contactará antes de la entrega. Para cualquier duda, contáctanos en soporte@kivaneli.com.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
