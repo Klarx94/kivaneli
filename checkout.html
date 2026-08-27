@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tramitar Pedido Seguro — KIVANELI Maison Botanique</title>
+  
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --color-ivory: #FAF7F2;
+      --color-obsidian: #181514;
+      --color-rose-silk: #D48B80;
+      --color-rose-deep: #B86B60;
+      --color-rose-light: #F6EAE7;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--color-ivory);
+      color: var(--color-obsidian);
+      margin: 0;
+    }
+    .font-serif-luxury { font-family: 'Cinzel', Georgia, serif; }
+    .bg-rose-gradient { background: linear-gradient(135deg, #d48b80 0%, #b86b60 100%); }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 139, 128, 0.22);
+      box-shadow: 0 10px 30px -5px rgba(24, 21, 20, 0.04);
+    }
+    .btn-shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-shimmer::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(60deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+      transform: rotate(30deg);
+      animation: shimmer-sweep 4s infinite linear;
+    }
+    @keyframes shimmer-sweep {
+      0% { transform: translate(-100%, -100%) rotate(30deg); }
+      100% { transform: translate(100%, 100%) rotate(30deg); }
+    }
+  </style>
+</head>
+<body class="selection:bg-[#D48B80] selection:text-white min-h-screen flex flex-col justify-between">
+
+  <!-- Top Urgency Bar -->
+  <div class="bg-[#181514] text-white py-2 px-4 text-center text-xs tracking-wider uppercase font-semibold flex items-center justify-center gap-2 border-b border-[#D48B80]/30">
+    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+    <span>Despacho Urgente 24/48h · Almacén Madrid · Pago en Efectivo al Recibir en Puerta</span>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-white/90 backdrop-blur-md border-b border-[#D48B80]/20 sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-sm sm:text-base shadow-md">K</div>
+        <span class="font-serif-luxury text-lg sm:text-xl font-black tracking-[0.22em] text-[#181514]">
+          KIVANELI<span class="text-[#D48B80]">.</span>
+        </span>
+      </a>
+
+      <div class="flex items-center gap-2 text-xs font-bold text-emerald-800 bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200">
+        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+        <span>Checkout 100% Seguro</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Checkout Container -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12 flex-1 w-full">
+    
+    <div class="text-center space-y-2 mb-8">
+      <h1 class="font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-black text-[#181514]">
+        Completa tu Pedido
+      </h1>
+      <p class="text-xs sm:text-sm text-stone-600">
+        Sin necesidad de tarjeta si prefieres pagar al repartidor en efectivo al recibir tu paquete.
+      </p>
+    </div>
+
+    <!-- Success Screen (Hidden by default) -->
+    <div id="checkoutSuccessState" class="hidden glass-card rounded-[2.5rem] p-8 md:p-14 text-center max-w-2xl mx-auto space-y-6 shadow-2xl border-2 border-emerald-300">
+      <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">
+        <i data-lucide="check" class="w-10 h-10"></i>
+      </div>
+      <div class="space-y-2">
+        <h2 class="font-serif-luxury text-3xl font-black text-[#181514]">¡Pedido Confirmado con Éxito!</h2>
+        <p class="text-xs sm:text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
+          Hemos transmitido tu orden a <strong>Dropea Logistics</strong> y el repartidor te llamará antes de la entrega en 24/48h.
+        </p>
+      </div>
+
+      <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-left max-w-md mx-auto space-y-2 text-xs">
+        <div class="flex items-center justify-between font-bold text-emerald-900">
+          <span>📦 Código de Seguimiento GLS:</span>
+          <span id="orderSuccessCodeDisplay" class="font-mono text-emerald-800 font-black">KIV-849201-ES</span>
+        </div>
+        <div class="border-t border-emerald-200/60 pt-2 text-[11px] text-stone-600">
+          🔒 Despachado desde nuestro centro logístico central en Madrid.
+        </div>
+      </div>
+
+      <div class="pt-4">
+        <a href="index.html" class="inline-block bg-[#181514] text-white px-8 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider hover:bg-[#D48B80] transition shadow-lg">
+          Volver a la Tienda Principal
+        </a>
+      </div>
+    </div>
+
+    <!-- Main 2-Column Checkout Layout -->
+    <div id="checkoutActiveState" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      
+      <!-- Left Column: Order Summary & Cart Items -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <div class="glass-card rounded-3xl p-6 space-y-5 border border-stone-200/80 shadow-md">
+          <div class="flex items-center justify-between border-b border-stone-200/80 pb-3">
+            <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Resumen de tu Cesta</h3>
+            <a href="catalogo.html" class="text-[11px] font-bold text-[#B86B60] hover:underline flex items-center gap-1">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              <span>Añadir más</span>
+            </a>
+          </div>
+
+          <!-- Cart Items Container -->
+          <div id="checkoutItemsList" class="space-y-3"></div>
+
+          <!-- Empty Cart Notice -->
+          <div id="checkoutEmptyNotice" class="text-center py-6 space-y-3 hidden">
+            <p class="text-xs text-stone-500">No tienes productos en tu cesta.</p>
+            <a href="catalogo.html" class="inline-block bg-[#181514] text-white px-4 py-2 rounded-xl text-xs font-bold">Ver Catálogo</a>
+          </div>
+
+          <!-- Impulse Cross-Sells in Checkout -->
+          <div id="checkoutCrossSells" class="pt-4 border-t border-stone-200/80 space-y-3">
+            <div class="text-[11px] font-black uppercase tracking-wider text-[#B86B60] flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D48B80]"></i>
+              <span>¿Añadir a tu pedido con descuento especial?</span>
+            </div>
+            <div id="checkoutCrossSellsList" class="space-y-2"></div>
+          </div>
+
+          <!-- Coupon Input -->
+          <div class="pt-4 border-t border-stone-200/80 space-y-2">
+            <label class="text-[11px] font-bold text-stone-600 uppercase tracking-wider">Código de Descuento:</label>
+            <div class="flex gap-2">
+              <input type="text" id="checkoutCouponInput" placeholder="Ej. SEDA10" class="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-300 uppercase font-mono text-xs outline-none focus:border-[#D48B80] bg-white">
+              <button type="button" onclick="applyCheckoutCoupon()" class="bg-stone-800 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition">Aplicar</button>
+            </div>
+            <p id="checkoutCouponMsg" class="text-xs font-bold hidden"></p>
+          </div>
+
+          <!-- Subtotal & Total Breakdown -->
+          <div class="pt-4 border-t border-stone-200/80 space-y-2 text-xs text-stone-600">
+            <div class="flex justify-between">
+              <span>Subtotal productos:</span>
+              <span id="summarySubtotal" class="font-bold text-[#181514]">0,00 €</span>
+            </div>
+            <div id="summaryDiscountRow" class="flex justify-between text-emerald-700 font-bold hidden">
+              <span>Descuento aplicado:</span>
+              <span id="summaryDiscount">-0,00 €</span>
+            </div>
+            <div class="flex justify-between text-emerald-800">
+              <span>Gastos de envío (GLS Express 24h):</span>
+              <span class="font-bold uppercase">GRATIS</span>
+            </div>
+            <div class="flex justify-between text-base font-black text-[#181514] pt-2 border-t border-stone-200">
+              <span>Total a pagar:</span>
+              <span id="summaryTotal" class="font-serif-luxury text-2xl text-[#D48B80]">0,00 €</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Right Column: Shipping & Payment Form -->
+      <div class="lg:col-span-7">
+        
+        <form id="checkoutForm" onsubmit="submitCheckoutOrder(event)" class="glass-card rounded-[2.5rem] p-6 sm:p-10 space-y-6 border-2 border-[#D48B80]/30 shadow-xl bg-white">
+          
+          <div class="border-b border-stone-200/80 pb-4">
+            <h3 class="font-serif-luxury font-black text-xl text-[#181514]">Datos de Envío & Destinatario</h3>
+            <p class="text-xs text-stone-500">Introduce la dirección exacta donde deseas recibir tu paquete.</p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-stone-700">Nombre y Apellidos *</label>
+              <input type="text" id="shipName" required placeholder="Ej. Carmen García" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-xs sm:text-sm outline-none bg-stone-50 font-medium">
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-stone-700">Teléfono Móvil (Para el repartidor) *</label>
+              <input type="tel" id="shipPhone" required placeholder="Ej. 612 345 678" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-xs sm:text-sm outline-none bg-stone-50 font-medium">
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-stone-700">Correo Electrónico *</label>
+            <input type="email" id="shipEmail" required placeholder="tu-email@ejemplo.com" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-xs sm:text-sm outline-none bg-stone-50 font-medium">
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-stone-700">Dirección Completa (Calle, Número, Piso/Puerta) *</label>
+            <input type="text" id="shipAddress" required placeholder="Ej. Calle Gran Vía 28, 4º B" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-xs sm:text-sm outline-none bg-stone-50 font-medium">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-stone-700">Código Postal *</label>
+              <input type="text" id="shipZip" required placeholder="Ej. 28013" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-xs sm:text-sm outline-none bg-stone-50 font-medium">
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-stone-700">Ciudad / Provincia *</label>
+              <input type="text" id="shipCity" required placeholder="Ej. Madrid" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-xs sm:text-sm outline-none bg-stone-50 font-medium">
+            </div>
+          </div>
+
+          <!-- Payment Method -->
+          <div class="space-y-3 pt-2">
+            <label class="text-xs font-bold text-stone-700">Selecciona Método de Pago:</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              
+              <label class="flex items-center gap-3 p-4 rounded-2xl border-2 border-[#D48B80] bg-[#F6EAE7]/60 cursor-pointer transition" id="chkLabelCOD">
+                <input type="radio" name="checkoutPayment" value="COD" checked onchange="handlePaymentModeChange('COD')" class="text-[#D48B80] focus:ring-[#D48B80]">
+                <div>
+                  <div class="text-xs font-bold text-[#181514]">Pago Contra-reembolso</div>
+                  <div class="text-[10.5px] text-stone-500">Pagas en efectivo en tu puerta</div>
+                </div>
+              </label>
+
+              <label class="flex items-center gap-3 p-4 rounded-2xl border border-stone-300 bg-white hover:border-emerald-500 cursor-pointer transition" id="chkLabelCard">
+                <input type="radio" name="checkoutPayment" value="CARD" onchange="handlePaymentModeChange('CARD')" class="text-emerald-600 focus:ring-emerald-500">
+                <div>
+                  <div class="text-xs font-bold text-emerald-700">Tarjeta / Revolut Pay</div>
+                  <div class="text-[10.5px] text-emerald-600 font-semibold">✨ 5% dto. extra automático</div>
+                </div>
+              </label>
+
+            </div>
+          </div>
+
+          <!-- Submit Order Button -->
+          <div class="pt-4 space-y-2">
+            <button type="submit" id="btnConfirmCheckout" class="btn-shimmer w-full bg-rose-gradient text-white py-4 sm:py-5 px-6 rounded-2xl font-black text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-[#D48B80]/40 hover:scale-[1.01] transition flex items-center justify-center gap-2">
+              <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+              <span id="btnConfirmText">CONFIRMAR PEDIDO CON PAGO SEGURO</span>
+            </button>
+            <p class="text-center text-[10.5px] text-stone-400">
+              Al confirmar, transmitimos tu pedido a preparación en nuestro almacén logístico de Madrid.
+            </p>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Comprehensive Luxury Footer -->
+  <footer class="w-full bg-[#181514] text-stone-400 pt-16 pb-12 text-xs border-t border-[#D48B80]/20 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-sm">K</div>
+            <span class="font-serif-luxury text-xl font-bold tracking-[0.2em] text-[#FAF7F2]">
+              KIVANELI<span class="text-[#D48B80]">.</span>
+            </span>
+          </div>
+          <p class="text-stone-500 leading-relaxed text-[11px]">
+            Maison Botanique de Cuidado Personal & Belleza de Alta Gama. Despacho logístico directo Dropea España.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-white font-serif-luxury font-bold text-xs uppercase tracking-wider">Navegación</h4>
+          <ul class="space-y-2 text-[11px]">
+            <li><a href="index.html" class="hover:text-[#D48B80] transition">Página Principal</a></li>
+            <li><a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-bold">Catálogo Completo</a></li>
+            <li><a href="producto.html?slug=adeus-crema-corporal" class="hover:text-[#D48B80] transition">Crema ADEUS™ (300 g)</a></li>
+            <li><a href="index.html#formula" class="hover:text-[#D48B80] transition">Fórmula Botánica</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-white font-serif-luxury font-bold text-xs uppercase tracking-wider">Garantía & Confianza</h4>
+          <ul class="space-y-2 text-[11px]">
+            <li><span class="text-emerald-400 font-semibold flex items-center gap-1"><i data-lucide="truck" class="w-3 h-3"></i> Envíos 24/48h GLS Express</span></li>
+            <li><span class="text-stone-400">Pago Contra-reembolso en Puerta</span></li>
+            <li><span class="text-stone-400">Stock Oficial Almacén Madrid</span></li>
+            <li><span class="text-stone-400">Fórmulas Dermatológicamente Testadas</span></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-white font-serif-luxury font-bold text-xs uppercase tracking-wider">Atención al Cliente</h4>
+          <p class="text-stone-500 text-[11px]">Soporte oficial boticario:</p>
+          <div class="space-y-1 text-[11px] text-stone-300">
+            <div><strong class="text-stone-400">Email:</strong> beauty@kivaneli.es</div>
+            <div><strong class="text-stone-400">Horario:</strong> Lunes a Viernes 09:00 - 19:00h</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-stone-800/80 flex flex-wrap items-center justify-between gap-4 text-[10px] text-stone-500">
+        <div>© 2026 KIVANELI COSMETICS. Todos los derechos reservados.</div>
+        <div class="flex items-center gap-4">
+          <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-500"></i> Calidad Garantizada</span>
+          <span class="flex items-center gap-1"><i data-lucide="lock" class="w-3.5 h-3.5 text-amber-400"></i> Despacho Seguro</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/kivaneli-cart.js"></script>
+  <script>
+    let checkoutCoupon = '';
+    let checkoutCouponDiscount = 0;
+    let checkoutPaymentMethod = 'COD';
+
+    function renderCheckoutPage() {
+      const itemsList = document.getElementById('checkoutItemsList');
+      const emptyNotice = document.getElementById('checkoutEmptyNotice');
+      const crossSellsList = document.getElementById('checkoutCrossSellsList');
+      const crossSellsBox = document.getElementById('checkoutCrossSells');
+
+      if (!window.kivaneliCart || !itemsList) return;
+
+      const items = window.kivaneliCart.items;
+
+      if (items.length === 0) {
+        itemsList.innerHTML = '';
+        if (emptyNotice) emptyNotice.classList.remove('hidden');
+        if (crossSellsBox) crossSellsBox.classList.add('hidden');
+        updateCheckoutSummary(0);
+        return;
+      }
+
+      if (emptyNotice) emptyNotice.classList.add('hidden');
+      if (crossSellsBox) crossSellsBox.classList.remove('hidden');
+
+      itemsList.innerHTML = items.map(item => `
+        <div class="flex items-center gap-3 p-3 rounded-2xl bg-stone-50 border border-stone-200">
+          <img src="${item.image}" alt="${item.name}" class="w-14 h-14 rounded-xl object-cover border border-stone-100 flex-shrink-0">
+          <div class="flex-1 min-w-0">
+            <div class="font-serif-luxury font-bold text-xs text-[#181514] truncate">${item.shortName || item.name}</div>
+            <div class="flex items-baseline gap-2 text-xs mt-0.5">
+              <span class="font-bold text-[#B86B60]">${(item.price * item.quantity).toFixed(2).replace('.', ',')} €</span>
+              <span class="text-stone-400 text-[10px]">(${item.quantity} ud${item.quantity > 1 ? 's' : ''})</span>
+            </div>
+          </div>
+          <button type="button" onclick="window.kivaneliCart.removeItem('${item.id}'); renderCheckoutPage();" class="text-stone-400 hover:text-rose-600 p-1">
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+          </button>
+        </div>
+      `).join('');
+
+      // Cross sells
+      const cartIds = items.map(i => i.id);
+      const availableUpsells = Object.values(KIVANELI_PRODUCTS).filter(p => p.id !== 'pack-ritual-completo' && !cartIds.includes(p.id));
+
+      if (availableUpsells.length === 0) {
+        if (crossSellsBox) crossSellsBox.classList.add('hidden');
+      } else {
+        if (crossSellsBox) crossSellsBox.classList.remove('hidden');
+        crossSellsList.innerHTML = availableUpsells.map(up => `
+          <div class="flex items-center justify-between gap-3 p-2.5 rounded-xl bg-white border border-[#D48B80]/30 shadow-2xs">
+            <img src="${up.image}" alt="${up.name}" class="w-10 h-10 rounded-lg object-cover flex-shrink-0">
+            <div class="flex-1 min-w-0">
+              <div class="font-bold text-xs text-[#181514] truncate">${up.shortName}</div>
+              <div class="text-[11px] text-[#B86B60] font-bold">+${up.impulsePrice.toFixed(2).replace('.', ',')} € <span class="text-[9px] text-stone-400 line-through">${up.price.toFixed(2).replace('.', ',')} €</span></div>
+            </div>
+            <button type="button" onclick="window.kivaneliCart.addItem('${up.id}', 1, true); renderCheckoutPage();" class="bg-[#181514] text-white px-3 py-1 rounded-lg text-[10px] font-bold uppercase hover:bg-[#D48B80] transition flex items-center gap-1">
+              <i data-lucide="plus" class="w-3 h-3"></i> Añadir
+            </button>
+          </div>
+        `).join('');
+      }
+
+      updateCheckoutSummary();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function updateCheckoutSummary() {
+      if (!window.kivaneliCart) return;
+      let subtotal = window.kivaneliCart.getTotal();
+      let discount = checkoutCouponDiscount;
+      let total = Math.max(0, subtotal - discount);
+
+      if (checkoutPaymentMethod === 'CARD') {
+        total *= 0.95; // 5% discount for card payment
+      }
+
+      document.getElementById('summarySubtotal').innerText = subtotal.toFixed(2).replace('.', ',') + ' €';
+      document.getElementById('summaryTotal').innerText = total.toFixed(2).replace('.', ',') + ' €';
+
+      const discountRow = document.getElementById('summaryDiscountRow');
+      if (discount > 0) {
+        discountRow.classList.remove('hidden');
+        document.getElementById('summaryDiscount').innerText = '-' + discount.toFixed(2).replace('.', ',') + ' €';
+      } else {
+        discountRow.classList.add('hidden');
+      }
+
+      document.getElementById('btnConfirmText').innerText = checkoutPaymentMethod === 'CARD' ? 'PAGAR CON TARJETA / REVOLUT PAY' : 'CONFIRMAR PEDIDO CONTRA-REEMBOLSO';
+    }
+
+    function handlePaymentModeChange(mode) {
+      checkoutPaymentMethod = mode;
+      const lCOD = document.getElementById('chkLabelCOD');
+      const lCard = document.getElementById('chkLabelCard');
+
+      if (mode === 'CARD') {
+        lCard.classList.add('border-emerald-500', 'bg-emerald-50/50');
+        lCard.classList.remove('border-stone-300', 'bg-white');
+        lCOD.classList.remove('border-[#D48B80]', 'bg-[#F6EAE7]/60');
+        lCOD.classList.add('border-stone-300', 'bg-white');
+      } else {
+        lCOD.classList.add('border-[#D48B80]', 'bg-[#F6EAE7]/60');
+        lCOD.classList.remove('border-stone-300', 'bg-white');
+        lCard.classList.remove('border-emerald-500', 'bg-emerald-50/50');
+        lCard.classList.add('border-stone-300', 'bg-white');
+      }
+
+      updateCheckoutSummary();
+    }
+
+    function applyCheckoutCoupon() {
+      const code = document.getElementById('checkoutCouponInput').value.trim().toUpperCase();
+      const msg = document.getElementById('checkoutCouponMsg');
+      if (!code) return;
+
+      if (code === 'SEDA10') {
+        checkoutCoupon = 'SEDA10';
+        checkoutCouponDiscount = window.kivaneliCart.getTotal() * 0.10;
+        msg.innerText = '✨ ¡Cupón SEDA10 aplicado: 10% de descuento!';
+        msg.className = 'text-xs font-bold text-emerald-700';
+        msg.classList.remove('hidden');
+      } else if (code.startsWith('KIV-')) {
+        checkoutCoupon = code;
+        checkoutCouponDiscount = 5.00;
+        msg.innerText = '🎁 ¡Pase de Invitación Club Amigas aplicado (5€ dto)!';
+        msg.className = 'text-xs font-bold text-purple-700';
+        msg.classList.remove('hidden');
+      } else {
+        msg.innerText = '❌ Código no válido.';
+        msg.className = 'text-xs font-bold text-rose-600';
+        msg.classList.remove('hidden');
+      }
+
+      updateCheckoutSummary();
+    }
+
+    async function submitCheckoutOrder(e) {
+      e.preventDefault();
+      if (!window.kivaneliCart || window.kivaneliCart.items.length === 0) {
+        alert('Tu cesta está vacía. Añade al menos un producto.');
+        return;
+      }
+
+      const btn = document.getElementById('btnConfirmCheckout');
+      btn.disabled = true;
+      btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Despachando a Dropea Logistics...</span>';
+      if (window.lucide) lucide.createIcons();
+
+      const name = document.getElementById('shipName').value.trim();
+      const phone = document.getElementById('shipPhone').value.trim();
+      const email = document.getElementById('shipEmail').value.trim();
+      const address = document.getElementById('shipAddress').value.trim();
+      const zip = document.getElementById('shipZip').value.trim();
+      const city = document.getElementById('shipCity').value.trim();
+
+      const items = window.kivaneliCart.items;
+      const orderNumber = 'KIV-' + Math.floor(100000 + Math.random() * 900000) + '-ES';
+      const total = parseFloat(document.getElementById('summaryTotal').innerText.replace(' €', '').replace(',', '.'));
+
+      const payload = {
+        order_number: orderNumber,
+        customer_name: name,
+        customer_phone: phone,
+        customer_email: email,
+        customer_address: address,
+        customer_zip: zip,
+        customer_city: city,
+        pack_selected: items.map(i => `${i.quantity}x ${i.shortName}`).join(' + '),
+        items_count: items.reduce((acc, i) => acc + i.quantity, 0),
+        total_amount: total,
+        payment_method: checkoutPaymentMethod,
+        coupon_applied: checkoutCoupon || null
+      };
+
+      try {
+        await fetch('/api/dropea-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch(err) {
+        console.error('Dropea API fetch error:', err);
+      }
+
+      // Show success
+      document.getElementById('orderSuccessCodeDisplay').innerText = orderNumber;
+      document.getElementById('checkoutActiveState').classList.add('hidden');
+      document.getElementById('checkoutSuccessState').classList.remove('hidden');
+      if (window.confetti) confetti({ particleCount: 100, spread: 70 });
+
+      // Clear Cart
+      window.kivaneliCart.items = [];
+      window.kivaneliCart.saveCart();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        renderCheckoutPage();
+      }, 100);
+    });
+  </script>
+</body>
+</html>

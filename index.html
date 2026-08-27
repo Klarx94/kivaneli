@@ -5,63 +5,34 @@
   <link rel="alternate icon" href="favicon.svg">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KIVANELI — Ritual Magistral Piel de Seda & Mirada Radiante</title>
-  <meta name="description" content="Tratamiento boticario intensivo para eliminar la piel de fresa, queratosis pilaris y asperezas. Pago seguro contra-reembolso en 24/48h.">
+  <title>KIVANELI — Ritual Boticario de Cuidado Personal & Piel de Seda</title>
+  <meta name="description" content="Ritual de autor para suavizar la piel, descansar la mirada y unificar el tono. Envío urgente 24/48h y pago seguro contra-reembolso en toda España.">
   
   <!-- Canonical & Social Meta -->
   <link rel="canonical" href="https://kivaneli.es/">
-    <!-- Social Share Card (WhatsApp, Telegram, Facebook, Twitter, iMessage) -->
   <meta property="og:site_name" content="KIVANELI Maison Botanique">
-  <meta property="og:title" content="KIVANELI — Ritual Magistral Piel de Seda & Mirada Radiante">
-  <meta property="og:description" content="Tratamiento intensivo boticario para disolver la piel de fresa y asperezas. Pago seguro en casa (contra-reembolso) con entrega en 24/48h.">
+  <meta property="og:title" content="KIVANELI — Ritual Boticario de Cuidado Personal & Piel de Seda">
+  <meta property="og:description" content="Fórmulas botánicas de alta gama para suavidad dérmica, frescor en la mirada y cuidado diario. Pago en mano al recibir en casa.">
   <meta property="og:image" content="https://kivaneli.es/assets/images/video1_first_frame.jpg">
   <meta property="og:image:secure_url" content="https://kivaneli.es/assets/images/video1_first_frame.jpg">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1080">
   <meta property="og:image:height" content="1920">
-  <meta property="og:image:alt" content="ADEUS Crema Tratamiento Piel de Seda - Kivaneli">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="KIVANELI — Ritual Piel de Seda">
-  <meta name="twitter:description" content="Dile adiós a la piel de fresa y luce una textura de seda. Pago contra-reembolso en 24/48h.">
+  <meta name="twitter:description" content="Descubre la suavidad satinada para tu piel. Pago contra-reembolso en 24/48h.">
   <meta name="twitter:image" content="https://kivaneli.es/assets/images/video1_first_frame.jpg">
 
-  <!-- Preload Critical Video 1st Frame Poster for Seamless Zero-Lag Paint -->
   <link rel="preload" as="image" href="assets/images/video1_first_frame.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Structured Data JSON-LD for Google SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "Product",
-    "name": "ADEUS™ Tratamiento Piel de Seda 300g",
-    "image": "https://kivaneli.es/assets/images/ugc_after_texture.jpg",
-    "description": "Tratamiento intensivo boticario con Centella Asiática, Jengibre y Micro-Sales para queratosis pilaris.",
-    "brand": {
-      "@type": "Brand",
-      "name": "KIVANELI"
-    },
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "EUR",
-      "lowPrice": "29.95",
-      "highPrice": "59.95",
-      "offerCount": "3"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.92",
-      "reviewCount": "4850"
-    }
-  }
-  </script>
-
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
-  <!-- Critical Inline CSS: 0ms First Paint, Zero Dark Flash -->
   <style>
     :root {
       --color-ivory: #FAF7F2;
@@ -69,7 +40,6 @@
       --color-rose-silk: #D48B80;
       --color-rose-deep: #B86B60;
       --color-rose-light: #F6EAE7;
-      --color-champagne-gold: #D97706;
     }
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -83,18 +53,12 @@
     .font-serif-luxury { font-family: 'Cinzel', Georgia, serif; }
     .font-serif-editorial { font-family: 'Playfair Display', Georgia, serif; }
     
-    .text-gold-gradient {
-      background: linear-gradient(135deg, #b45309 0%, #d97706 40%, #f59e0b 80%, #fbbf24 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
     .text-rose-gradient {
       background: linear-gradient(135deg, #a8584c 0%, #d48b80 45%, #e8a598 80%, #f6eae7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .bg-rose-gradient { background: linear-gradient(135deg, #d48b80 0%, #b86b60 100%); }
-    .bg-gold-gradient { background: linear-gradient(135deg, #d97706 0%, #b45309 100%); }
 
     .glass-panel {
       background: rgba(255, 255, 255, 0.88);
@@ -113,12 +77,6 @@
       background: rgba(246, 234, 231, 0.95);
       backdrop-filter: blur(16px);
       border: 1px solid rgba(212, 139, 128, 0.25);
-    }
-    .glass-card-dark {
-      background: rgba(24, 21, 20, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .btn-shimmer {
@@ -161,7 +119,6 @@
       to { transform: translateX(-50%); }
     }
 
-    /* Native Smooth Scroll Reveal */
     .reveal-on-scroll {
       opacity: 0;
       transform: translateY(20px);
@@ -185,7 +142,7 @@
   <div class="fixed top-4 inset-x-0 z-50 px-4 sm:px-6 pointer-events-none">
     <div class="max-w-5xl mx-auto space-y-2 pointer-events-auto">
       
-      <!-- 👑 Main Floating Island Navbar (Spacious & Minimal Luxury) -->
+      <!-- 👑 Main Floating Island Navbar -->
       <header class="glass-floating-nav rounded-full px-6 sm:px-8 py-3.5 flex items-center justify-between transition-all duration-300 shadow-xl border border-[#D48B80]/25 bg-white/90 backdrop-blur-md">
         
         <a href="index.html" class="flex items-center gap-3 group">
@@ -199,7 +156,7 @@
           </div>
         </a>
 
-        <!-- Desktop Navigation (Espaciosa & Alineada) -->
+        <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-7 xl:gap-9 text-[11px] font-bold tracking-[0.18em] text-stone-700 uppercase">
           <a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-black flex items-center gap-1.5">
             <i data-lucide="grid" class="w-3.5 h-3.5 text-[#B86B60]"></i>
@@ -212,13 +169,16 @@
             <i data-lucide="gift" class="w-3.5 h-3.5 text-purple-600"></i>
             Club Amigas
           </a>
+          <a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca</a>
         </nav>
 
         <div class="flex items-center gap-3">
-          <a href="#packs" class="btn-shimmer bg-rose-gradient text-white px-5 sm:px-6 py-2.5 rounded-full text-[11px] font-black tracking-wider uppercase shadow-md flex items-center gap-2 whitespace-nowrap hover:scale-105 transition">
-            <i data-lucide="truck" class="w-3.5 h-3.5 text-amber-300"></i>
-            <span>PAGO EN CASA</span>
-          </a>
+          <!-- Cart Trigger -->
+          <button onclick="window.kivaneliCart.openDrawer()" class="relative bg-[#181514] text-white px-4 py-2.5 rounded-full text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-2 shadow-md">
+            <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-300"></i>
+            <span class="hidden sm:inline">Cesta</span>
+            <span class="cart-badge-count absolute -top-1 -right-1 bg-[#D48B80] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
+          </button>
 
           <!-- Mobile Hamburger Toggle Button -->
           <button onclick="toggleMobileMenu()" id="mobileMenuBtn" aria-label="Abrir Menú" class="lg:hidden w-9 h-9 rounded-full bg-stone-100/90 border border-stone-200 flex items-center justify-center text-stone-700 hover:text-[#B86B60] hover:bg-white transition shadow-sm">
@@ -229,7 +189,7 @@
 
       </header>
 
-      <!-- 📱 MOBILE LUXURY GLASS DRAWER (OPENS ON HAMBURGER CLICK) -->
+      <!-- 📱 MOBILE LUXURY GLASS DRAWER -->
       <div id="mobileDrawer" class="hidden lg:hidden glass-floating-nav rounded-3xl p-6 shadow-2xl border border-[#D48B80]/30 space-y-5 animate-in fade-in slide-in-from-top-2 duration-300">
         
         <div class="flex items-center justify-between pb-3 border-b border-stone-200/80">
@@ -245,11 +205,11 @@
         <nav class="grid grid-cols-1 gap-2.5 text-xs font-bold uppercase tracking-wider text-stone-700">
           <a href="catalogo.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-[#F6EAE7] hover:bg-[#FAF0EE] text-[#B86B60] transition border border-[#D48B80]/30 font-black">
             <i data-lucide="grid" class="w-4 h-4 text-[#B86B60]"></i>
-            <span>Catálogo Completo & Tienda</span>
+            <span>Catálogo Completo & Colecciones</span>
           </a>
           <a href="producto.html?slug=adeus-crema-corporal" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-white/80 hover:bg-white hover:text-[#B86B60] transition border border-stone-100">
             <i data-lucide="sparkles" class="w-4 h-4 text-[#D48B80]"></i>
-            <span>Crema ADEUS™ Tratamiento 300g</span>
+            <span>Crema ADEUS™ (300 g)</span>
           </a>
           <a href="#formula" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-white/70 hover:bg-white hover:text-[#B86B60] transition border border-stone-100">
             <i data-lucide="leaf" class="w-4 h-4 text-emerald-600"></i>
@@ -259,25 +219,21 @@
             <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
             <span>Antes & Después (Resultados)</span>
           </a>
-          <a href="#guias-editoriales" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-stone-50 hover:bg-white text-stone-800 transition border border-stone-200">
-            <i data-lucide="package" class="w-4 h-4 text-[#B86B60]"></i>
-            <span>Tratamientos Magistrales Físicos</span>
-          </a>
-          <button onclick="toggleMobileMenu(); openAmigaModal();" class="flex items-center gap-3 p-3 rounded-2xl bg-purple-50 hover:bg-purple-100 text-purple-800 transition border border-purple-200 text-left font-extrabold">
+          <a href="#amigas" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-purple-50 hover:bg-purple-100 text-purple-800 transition border border-purple-200 text-left font-extrabold">
             <i data-lucide="gift" class="w-4 h-4 text-purple-600"></i>
             <span>Club Amigas (Doble Regalo)</span>
-          </button>
-          <a href="#packs" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-rose-gradient text-white transition font-extrabold shadow-md">
-            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-            <span>Seleccionar Tratamiento (Pago en Casa)</span>
+          </a>
+          <a href="blog.html" onclick="toggleMobileMenu()" class="flex items-center gap-3 p-3 rounded-2xl bg-white/70 hover:bg-white hover:text-[#B86B60] transition border border-stone-100">
+            <i data-lucide="book-open" class="w-4 h-4 text-blue-600"></i>
+            <span>Biblioteca Boticaria / Artículos</span>
           </a>
         </nav>
 
         <div class="pt-2">
-          <a href="#packs" onclick="toggleMobileMenu()" class="btn-shimmer w-full bg-[#181514] text-white py-3.5 rounded-2xl font-bold text-xs tracking-wider uppercase text-center flex items-center justify-center gap-2 shadow-lg">
-            <i data-lucide="truck" class="w-4 h-4 text-amber-400"></i>
-            <span>PEDIR CON PAGO EN CASA (24/48H)</span>
-          </a>
+          <button onclick="toggleMobileMenu(); window.kivaneliCart.openDrawer();" class="btn-shimmer w-full bg-[#181514] text-white py-3.5 rounded-2xl font-bold text-xs tracking-wider uppercase text-center flex items-center justify-center gap-2 shadow-lg">
+            <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-400"></i>
+            <span>VER MI CESTA DE COMPRA</span>
+          </button>
         </div>
 
       </div>
@@ -296,16 +252,11 @@
             <span class="text-stone-400">•</span>
             <span class="flex items-center gap-2"><i data-lucide="award" class="w-3.5 h-3.5 text-amber-600"></i> Garantía Kivaneli de Piel de Seda 30 Días</span>
             <span class="text-stone-400">•</span>
-            <!-- Continuous Duplication -->
             <span class="flex items-center gap-2"><i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D48B80]"></i> Elaboración Botánica en Lotes Reducidos</span>
             <span class="text-stone-400">•</span>
             <span class="flex items-center gap-2"><i data-lucide="truck" class="w-3.5 h-3.5 text-emerald-600"></i> Envío Asegurado 24/48h directo a tu puerta</span>
             <span class="text-stone-400">•</span>
             <span class="flex items-center gap-2"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i> Abona cómodamente en efectivo al recibir</span>
-            <span class="text-stone-400">•</span>
-            <span class="flex items-center gap-2"><i data-lucide="gift" class="w-3.5 h-3.5 text-purple-600"></i> Club Amigas: Bote de Parches GRATIS al invitar</span>
-            <span class="text-stone-400">•</span>
-            <span class="flex items-center gap-2"><i data-lucide="award" class="w-3.5 h-3.5 text-amber-600"></i> Garantía Kivaneli de Piel de Seda 30 Días</span>
             <span class="text-stone-400">•</span>
           </div>
         </div>
@@ -314,7 +265,7 @@
     </div>
   </div>
 
-  <!-- 🌸 1. HERO SECTION (INSTANT 0ms RENDER & ZERO DARK FLASH) -->
+  <!-- 🌸 1. HERO SECTION -->
   <section class="relative overflow-hidden pt-36 pb-20 md:pt-44 md:pb-28">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
       
@@ -322,17 +273,17 @@
       <div class="lg:col-span-7 space-y-7">
         <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#F6EAE7] border border-[#D48B80]/40 text-[#B86B60] text-xs font-extrabold uppercase tracking-widest shadow-sm">
           <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D48B80]"></i>
-          Fórmula Magistral Boticaria · Sin Riesgo
+          Ritual de Autor · Belleza & Cuidado Diario
         </div>
 
         <h1 class="font-serif-luxury text-4xl sm:text-5xl lg:text-[3.5rem] font-black text-[#181514] leading-[1.12] tracking-tight">
           Transforma tu Piel.<br/>
-          <span class="text-rose-gradient font-serif-editorial italic font-normal">Dile adiós a la piel de fresa</span><br/>
-          y luce una textura de seda.
+          <span class="text-rose-gradient font-serif-editorial italic font-normal">Siente la suavidad satinada</span><br/>
+          en cada rincón de tu cuerpo.
         </h1>
 
         <p class="text-stone-600 text-base md:text-lg font-normal leading-relaxed max-w-xl">
-          El tratamiento intensivo boticario <strong>ADEUS™ 300g</strong> fusiona <em>Centella Asiática, Jengibre Orgánico y Micro-Sales Pulidoras</em>. Diseñado para disolver la queratosis folicular, calmar poros dilatados y dejar una suavidad satinada inolvidable desde la primera aplicación.
+          El ritual boticario <strong>ADEUS™ 300g</strong> fusiona <em>Centella Asiática, Jengibre Orgánico y Manteca de Karité</em>. Diseñado para nutrir en profundidad, suavizar asperezas y dejar una sensación aterciopelada inolvidable apta para mujeres y hombres.
         </p>
 
         <div class="flex flex-wrap items-center gap-4 pt-1">
@@ -351,15 +302,15 @@
               <i data-lucide="star" class="w-4 h-4 fill-current"></i>
               <span class="ml-1.5 font-extrabold text-stone-900 text-sm">4.92 / 5</span>
             </div>
-            <p class="text-xs text-stone-500 font-medium">+4,850 mujeres en España han transformado su piel</p>
+            <p class="text-xs text-stone-500 font-medium">+4.850 personas disfrutan su suavidad a diario</p>
           </div>
         </div>
 
         <div class="pt-2 space-y-3.5 max-w-lg">
-          <a href="#packs" onclick="trackCustomPixel('InitiateCheckout')" class="btn-shimmer w-full bg-rose-gradient text-white py-4.5 px-8 rounded-2xl font-black text-sm md:text-base tracking-wider uppercase shadow-xl shadow-[#D48B80]/35 hover:scale-[1.02] hover:shadow-2xl transition duration-300 flex items-center justify-center gap-3">
+          <button onclick="window.kivaneliCart.addItem('adeus-crema-corporal', 1)" class="btn-shimmer w-full bg-rose-gradient text-white py-4.5 px-8 rounded-2xl font-black text-sm md:text-base tracking-wider uppercase shadow-xl shadow-[#D48B80]/35 hover:scale-[1.02] hover:shadow-2xl transition duration-300 flex items-center justify-center gap-3">
             <i data-lucide="sparkles" class="w-5 h-5"></i>
             <span>QUIERO MI PIEL DE SEDA · PAGO EN CASA</span>
-          </a>
+          </button>
           
           <div class="flex flex-wrap items-center justify-between gap-y-2 text-xs text-stone-600 font-medium px-2">
             <span class="flex items-center gap-1.5"><i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i> Pago en mano al repartidor</span>
@@ -368,26 +319,13 @@
           </div>
         </div>
 
-        <div class="bg-[#F6EAE7]/70 p-3.5 rounded-2xl border border-[#D48B80]/30 flex items-center justify-between max-w-lg shadow-sm">
-          <div class="flex items-center gap-2.5">
-            <span class="w-8 h-8 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-xs"><i data-lucide="gift" class="w-4 h-4"></i></span>
-            <div class="text-[11px]">
-              <strong class="text-[#181514]">¿Tienes una mejor amiga?</strong>
-              <p class="text-stone-500">Regálale un bote de Parches y llévate 15€.</p>
-            </div>
-          </div>
-          <button onclick="openAmigaModal()" class="text-[10px] font-bold uppercase tracking-wider bg-purple-700 text-white px-3 py-1.5 rounded-lg hover:bg-purple-800 transition shadow-sm">
-            Invitar Ahora
-          </button>
-        </div>
       </div>
 
-      <!-- Video Hero Container: Exact 1st Frame Poster + Soft Pearl Background (Zero Dark Flash) -->
+      <!-- Video Hero Container -->
       <div class="lg:col-span-5 relative">
         <div class="absolute -inset-4 bg-gradient-to-tr from-[#D48B80]/30 to-amber-300/30 rounded-[2.5rem] filter blur-2xl -z-10 opacity-70"></div>
         <div class="relative rounded-[2.2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[9/16] max-w-[350px] mx-auto bg-[#F6EAE7]">
           
-          <!-- Exact Frame 1 Poster Video Player -->
           <video id="heroVideo" class="w-full h-full object-cover" autoplay muted loop playsinline preload="auto" poster="assets/images/video1_first_frame.jpg">
             <source src="assets/videos/adeus_tratamiento.mp4" type="video/mp4">
           </video>
@@ -395,19 +333,19 @@
           <div class="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
             <div class="bg-[#181514]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-white text-[10px] font-extrabold tracking-wider flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
-              APLICACIÓN REAL EN PIEL
+              APLICACIÓN & MASAJE SUAVE
             </div>
             <button id="soundToggle" onclick="toggleAudio('heroVideo', 'soundIcon')" class="pointer-events-auto w-9 h-9 rounded-full bg-[#181514]/85 backdrop-blur-md border border-white/25 text-white flex items-center justify-center hover:bg-[#D48B80] transition shadow-lg">
               <i id="soundIcon" data-lucide="volume-x" class="w-4 h-4"></i>
             </button>
           </div>
           
-          <div class="absolute bottom-4 left-4 right-4 z-20 glass-card-dark p-4 rounded-2xl text-white space-y-1">
+          <div class="absolute bottom-4 left-4 right-4 z-20 p-4 rounded-2xl text-white space-y-1 bg-[#181514]/85 backdrop-blur-md border border-white/10">
             <div class="flex items-center justify-between">
               <span class="font-serif-luxury font-bold text-sm tracking-wider text-amber-200">ADEUS™ 300g</span>
-              <span class="text-[10px] font-extrabold text-emerald-400 bg-emerald-950/70 px-2 py-0.5 rounded border border-emerald-500/30">LABORATORIO CERTIFICADO</span>
+              <span class="text-[10px] font-extrabold text-emerald-400 bg-emerald-950/70 px-2 py-0.5 rounded border border-emerald-500/30">STOCK MADRID</span>
             </div>
-            <p class="text-[11px] text-stone-300 font-light leading-snug">Micro-sales pulidoras que disuelven los tapones queratínicos al instante.</p>
+            <p class="text-[11px] text-stone-300 font-light leading-snug">Micro-sales boticarias para un tacto aterciopelado inmediato.</p>
           </div>
         </div>
       </div>
@@ -415,21 +353,21 @@
     </div>
   </section>
 
-  <!-- 🛍️ COLECCIÓN & CATÁLOGO MULTIPRODUCTO KIVANELI -->
-  <section id="catalogo-destacado" class="py-20 bg-gradient-to-b from-[#FAF7F2] to-white border-y border-[#D48B80]/20 relative">
+  <!-- 🛍️ PRIMERAS 4 FICHAS DE PRODUCTO AL HACER SCROLL (DESTACADOS) -->
+  <section id="productos-destacados" class="py-20 bg-gradient-to-b from-[#FAF7F2] to-white border-y border-[#D48B80]/20 relative">
     <div class="max-w-7xl mx-auto px-6">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
         <div class="space-y-3 max-w-2xl">
           <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6EAE7] text-[#B86B60] text-xs font-bold uppercase tracking-widest border border-[#D48B80]/30 shadow-xs">
             <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#B86B60]"></i>
-            <span>Colección Oficial de Cosmética de Autor</span>
+            <span>Colección Oficial de Belleza & Cuidado</span>
           </div>
           <h2 class="font-serif-luxury text-3xl md:text-5xl font-black text-[#181514]">
-            Catálogo & Fichas de Tratamiento
+            Fórmulas de Cuidado Personal
           </h2>
           <p class="text-stone-600 text-sm md:text-base leading-relaxed">
-            Explora las fórmulas magistrales de la Maison. Conexión y stock en tiempo real con <strong>Dropea Logistics España</strong> y entrega urgente 24/48h contra reembolso.
+            Cada producto tiene su propio protagonismo y puede adquirirse por separado o en el Pack Ritual Completo.
           </p>
         </div>
 
@@ -442,12 +380,12 @@
       <!-- 4 Products Showcase Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        <!-- Product 1: ADEUS -->
+        <!-- Ficha 1: ADEUS -->
         <div class="glass-panel rounded-3xl overflow-hidden p-5 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border border-[#D48B80]/30 group bg-white">
           <div class="space-y-4">
             <div class="relative rounded-2xl overflow-hidden bg-stone-50 aspect-square">
               <span class="absolute top-3 left-3 z-10 text-[9px] font-black uppercase tracking-wider bg-rose-gradient text-white px-2.5 py-1 rounded-full shadow-md">
-                ⭐ PRODUCTO ESTRELLA
+                MÁS VENDIDO · 300 G
               </span>
               <img src="assets/images/adeus_jar_botanicals.jpg" alt="ADEUS Crema Corporal" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
             </div>
@@ -455,122 +393,143 @@
             <div class="space-y-1">
               <span class="text-[10px] font-bold uppercase tracking-wider text-[#B86B60]">Cuidado Corporal (300 g)</span>
               <h3 class="font-serif-luxury font-bold text-base text-[#181514] line-clamp-2">
-                ADEUS™ Crema Corporal Tratamiento Intensivo
+                ADEUS™ Crema Corporal Masaje & Seda
               </h3>
               <p class="text-xs text-stone-600 line-clamp-2">
-                Fórmula emoliente de masaje para asperezas, hidratación profunda y piel de seda duradera.
+                Tarro de 300 g con tapa de rosca. Suavidad continua, hidratación profunda y tacto aterciopelado.
               </p>
             </div>
           </div>
 
-          <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+          <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between gap-2">
             <div>
               <span class="text-[10px] text-stone-400 line-through">39,90 €</span>
               <div class="font-serif-luxury font-black text-lg text-[#181514]">29,90 €</div>
             </div>
-            <a href="producto.html?slug=adeus-crema-corporal" class="bg-rose-gradient text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:opacity-90 transition flex items-center gap-1 shadow-md">
-              <span>Ver Ficha</span>
-              <i data-lucide="arrow-right" class="w-3 h-3"></i>
-            </a>
+            <div class="flex items-center gap-1.5">
+              <a href="producto.html?slug=adeus-crema-corporal" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl text-xs font-bold hover:bg-stone-200 transition">
+                Ficha
+              </a>
+              <button onclick="window.kivaneliCart.addItem('adeus-crema-corporal', 1)" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1 shadow-sm">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                <span>Añadir</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Product 2: Körmesic Patches -->
+        <!-- Ficha 2: Körmesic Patches -->
         <div class="glass-panel rounded-3xl overflow-hidden p-5 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border border-[#D48B80]/30 group bg-white">
           <div class="space-y-4">
-            <div class="relative rounded-2xl overflow-hidden bg-stone-50 aspect-square">
+            <div class="relative rounded-2xl overflow-hidden bg-purple-50 aspect-square">
               <span class="absolute top-3 left-3 z-10 text-[9px] font-black uppercase tracking-wider bg-purple-700 text-white px-2.5 py-1 rounded-full shadow-md">
-                👁️ MIRADA & CONTORNO
+                60 UDS (30 PARES) · HIDROGEL
               </span>
               <img src="assets/images/kormesic_jar_purple.jpg" alt="Parches Körmesic" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
             </div>
 
             <div class="space-y-1">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-purple-700">Contorno de Ojos (60 uds)</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-purple-700">Contorno de Ojos & Mirada</span>
               <h3 class="font-serif-luxury font-bold text-base text-[#181514] line-clamp-2">
-                Parches de Colágeno & Keratina Körmesic™
+                Parches de Colágeno & Hidrogel Körmesic™
               </h3>
               <p class="text-xs text-stone-600 line-clamp-2">
-                Hidrogel descongestionante para drenaje de bolsas, ojeras oscuras y efecto lifting periocular.
+                30 pares de hidrogel para descongestionar bolsas, aportar frescor y descansar la mirada en 15 minutos.
               </p>
             </div>
           </div>
 
-          <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+          <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between gap-2">
             <div>
-              <span class="text-[10px] text-stone-400 line-through">22,00 €</span>
-              <div class="font-serif-luxury font-black text-lg text-[#181514]">14,95 €</div>
+              <span class="text-[10px] text-stone-400 line-through">29,90 €</span>
+              <div class="font-serif-luxury font-black text-lg text-[#181514]">19,95 €</div>
             </div>
-            <a href="producto.html?slug=kormesic-parches-colageno" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1 shadow-md">
-              <span>Ver Ficha</span>
-              <i data-lucide="arrow-right" class="w-3 h-3"></i>
-            </a>
+            <div class="flex items-center gap-1.5">
+              <a href="producto.html?slug=kormesic-parches-colageno" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl text-xs font-bold hover:bg-stone-200 transition">
+                Ficha
+              </a>
+              <button onclick="window.kivaneliCart.addItem('kormesic-parches-colageno', 1)" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1 shadow-sm">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                <span>Añadir</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Product 3: Kojic Soap -->
+        <!-- Ficha 3: Kojic Soap -->
         <div class="glass-panel rounded-3xl overflow-hidden p-5 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border border-[#D48B80]/30 group bg-white">
           <div class="space-y-4">
-            <div class="relative rounded-2xl overflow-hidden bg-stone-50 aspect-square">
+            <div class="relative rounded-2xl overflow-hidden bg-amber-50 aspect-square">
               <span class="absolute top-3 left-3 z-10 text-[9px] font-black uppercase tracking-wider bg-amber-600 text-white px-2.5 py-1 rounded-full shadow-md">
-                🧼 JABÓN CLARIFICANTE
+                100 G · CLARIFICANTE
               </span>
               <img src="assets/images/kojic_soap_box.jpg" alt="Jabón Kójico" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
             </div>
 
             <div class="space-y-1">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700">Limpieza Facial/Corporal (100 g)</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700">Limpieza Facial/Corporal</span>
               <h3 class="font-serif-luxury font-bold text-base text-[#181514] line-clamp-2">
-                Jabón Ácido Kójico + Hialurónico Kiss Beauty
+                Jabón Ácido Kójico + Hialurónico (100 g)
               </h3>
               <p class="text-xs text-stone-600 line-clamp-2">
-                Exfoliación no agresiva para aclarar manchas, renovar la dermis y unificar el tono cutáneo.
+                Pastilla sólida clarificante para limpiar impurezas, unificar el tono y aportar luminosidad natural.
               </p>
             </div>
           </div>
 
-          <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+          <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between gap-2">
             <div>
-              <span class="text-[10px] text-stone-400 line-through">19,00 €</span>
-              <div class="font-serif-luxury font-black text-lg text-[#181514]">12,95 €</div>
+              <span class="text-[10px] text-stone-400 line-through">24,90 €</span>
+              <div class="font-serif-luxury font-black text-lg text-[#181514]">16,95 €</div>
             </div>
-            <a href="producto.html?slug=jabon-acido-kojico" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1 shadow-md">
-              <span>Ver Ficha</span>
-              <i data-lucide="arrow-right" class="w-3 h-3"></i>
-            </a>
+            <div class="flex items-center gap-1.5">
+              <a href="producto.html?slug=jabon-acido-kojico" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl text-xs font-bold hover:bg-stone-200 transition">
+                Ficha
+              </a>
+              <button onclick="window.kivaneliCart.addItem('jabon-acido-kojico', 1)" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1 shadow-sm">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                <span>Añadir</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <!-- Product 4: Complete Ritual Pack -->
+        <!-- Ficha 4: Pack Collage Ritual Completo 3-en-1 -->
         <div class="glass-panel rounded-3xl overflow-hidden p-5 flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border-2 border-[#B86B60] group bg-gradient-to-b from-[#FDF9F8] to-white relative">
-          <span class="absolute top-3 right-3 z-10 text-[9px] font-black uppercase tracking-wider bg-rose-gradient text-white px-2 py-0.5 rounded-full shadow-md">
-            AHORRA 50€
+          <span class="absolute top-3 right-3 z-10 text-[9px] font-black uppercase tracking-wider bg-rose-gradient text-white px-2.5 py-1 rounded-full shadow-md">
+            AHORRA 35€
           </span>
           <div class="space-y-4">
             <div class="relative rounded-2xl overflow-hidden bg-stone-50 aspect-square">
-              <img src="assets/images/adeus_hero_frame1.jpg" alt="Pack Ritual Completo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+              <!-- Collage image showing the 3 physical items together -->
+              <img src="assets/images/adeus_hero_frame1.jpg" alt="Pack Ritual Completo Collage" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
             </div>
 
             <div class="space-y-1">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-[#B86B60]">Tratamiento Integral 30 Días</span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-[#B86B60]">El Ritual Completo 3-en-1</span>
               <h3 class="font-serif-luxury font-bold text-base text-[#181514] line-clamp-2">
-                Pack Ritual Boticario Completo (3 Productos)
+                Pack Ritual Boticario (ADEUS + Parches + Jabón)
               </h3>
               <p class="text-xs text-stone-600 line-clamp-2">
-                ADEUS™ (300g) + Parches Körmesic (60u) + Jabón Kójico (100g) + Envío GLS 24h Gratis.
+                Incluye los 3 productos de la Maison: ADEUS™ (300g), Parches Körmesic (60u) y Jabón Kójico (100g).
               </p>
             </div>
           </div>
 
-          <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
+          <div class="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between gap-2">
             <div>
-              <span class="text-[10px] text-stone-400 line-through">109,80 €</span>
+              <span class="text-[10px] text-stone-400 line-through">94,70 €</span>
               <div class="font-serif-luxury font-black text-lg text-[#B86B60]">59,95 €</div>
             </div>
-            <a href="producto.html?slug=pack-ritual-completo" class="btn-shimmer bg-rose-gradient text-white px-3.5 py-2 rounded-xl text-xs font-black hover:opacity-90 transition flex items-center gap-1 shadow-md">
-              <span>Comprar Pack</span>
-              <i data-lucide="arrow-right" class="w-3 h-3"></i>
-            </a>
+            <div class="flex items-center gap-1.5">
+              <a href="producto.html?slug=pack-ritual-completo" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl text-xs font-bold hover:bg-stone-200 transition">
+                Ficha
+              </a>
+              <button onclick="window.kivaneliCart.addItem('pack-ritual-completo', 1)" class="btn-shimmer bg-rose-gradient text-white px-3.5 py-2 rounded-xl text-xs font-black hover:opacity-90 transition flex items-center gap-1 shadow-md">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                <span>Comprar</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -579,33 +538,34 @@
     </div>
   </section>
 
-  <!-- 🌿 2. BOTANICAL SCIENCE & 3 ACTIVE PILLARS -->
+  <!-- 🌿 2. LA ALQUIMIA DEL CUIDADO PERSONAL (LENGUAJE ELEGANTE & ZERO MEDICINAL) -->
   <section id="formula" class="py-20 bg-white border-y border-[#D48B80]/15 relative reveal-on-scroll">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center max-w-2xl mx-auto space-y-3 mb-16">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#F6EAE7] text-[#B86B60] text-xs font-bold uppercase tracking-widest">
-          Fórmula Boticaria Magistral
+          Fitocosmética & Bienestar Diario
         </div>
         <h2 class="font-serif-luxury text-3xl md:text-5xl font-black text-[#181514]">
-          La Alquimia del Cuidado Corporal
+          La Alquimia del Cuidado Personal
         </h2>
         <p class="text-stone-600 text-sm md:text-base">
-          Una concentración equilibrada de activos botánicos puros que renuevan la barrera cutánea sin agredir.
+          Una combinación armónica de extractos botánicos nobles formulada para brindar suavidad, relax y nutrición continua.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
         <div class="glass-panel p-8 rounded-3xl space-y-4 hover:shadow-2xl hover:-translate-y-1.5 transition duration-300 border border-[#D48B80]/20 group">
           <div class="w-14 h-14 rounded-2xl bg-[#F6EAE7] flex items-center justify-center text-[#B86B60] shadow-inner group-hover:scale-110 transition duration-300">
             <i data-lucide="leaf" class="w-7 h-7"></i>
           </div>
           <h3 class="font-serif-luxury text-xl font-bold text-[#181514]">Centella Asiática & Jengibre</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
-            Estimula el drenaje micro-circulatorio y calma la inflamación folicular. Disuelve las rojeces en muslos, brazos y glúteos.
+            Estimula el masaje y relaja la piel cansada. Aporta una sensación reconfortante de frescor y calma en brazos, piernas y espalda.
           </p>
           <div class="pt-2 flex items-center gap-2 text-xs font-semibold text-emerald-700">
             <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
-            <span>Drenaje y alivio de rojeces</span>
+            <span>Relajación y alivio cutáneo</span>
           </div>
         </div>
 
@@ -613,13 +573,13 @@
           <div class="w-14 h-14 rounded-2xl bg-[#F6EAE7] flex items-center justify-center text-[#B86B60] shadow-inner group-hover:scale-110 transition duration-300">
             <i data-lucide="gem" class="w-7 h-7"></i>
           </div>
-          <h3 class="font-serif-luxury text-xl font-bold text-[#181514]">Sales Minerales Pulidoras</h3>
+          <h3 class="font-serif-luxury text-xl font-bold text-[#181514]">Sales Minerales Suavizantes</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
-            Exfoliación boticaria ultra-fina sin microplásticos que desobstruye los poros taponados por acumulación de queratina.
+            Pulido boticario suave sin microplásticos que alisa suavemente la superficie de la piel para un tacto aterciopelado.
           </p>
           <div class="pt-2 flex items-center gap-2 text-xs font-semibold text-emerald-700">
             <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
-            <span>Cero abrasión y pulido suave</span>
+            <span>Tacto sedoso y alisador</span>
           </div>
         </div>
 
@@ -627,18 +587,19 @@
           <div class="w-14 h-14 rounded-2xl bg-[#F6EAE7] flex items-center justify-center text-[#B86B60] shadow-inner group-hover:scale-110 transition duration-300">
             <i data-lucide="droplet" class="w-7 h-7"></i>
           </div>
-          <h3 class="font-serif-luxury text-xl font-bold text-[#181514]">Sea Buckthorn & Colágeno</h3>
+          <h3 class="font-serif-luxury text-xl font-bold text-[#181514]">Manteca de Karité & Colágeno</h3>
           <p class="text-stone-600 text-sm leading-relaxed">
-            Nutrición lipídica profunda con Omega 7 y colágeno soluble que sella la humedad natural y otorga un brillo satinado continuo.
+            Nutrición profunda que sella la hidratación natural y otorga un acabado satinado, luminoso y flexible durante todo el día.
           </p>
           <div class="pt-2 flex items-center gap-2 text-xs font-semibold text-emerald-700">
             <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
-            <span>Efecto Glow sedoso duradero</span>
+            <span>Hidratación y brillo natural</span>
           </div>
         </div>
+
       </div>
 
-      <!-- Formula Scroll CTA Bar -->
+      <!-- Scroll CTA Bar -->
       <div class="mt-12 pt-8 border-t border-[#D48B80]/20 flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#FAF7F2] p-6 rounded-3xl border border-stone-200">
         <div class="flex items-center gap-3.5">
           <div class="w-10 h-10 rounded-2xl bg-rose-100 text-[#B86B60] flex items-center justify-center flex-shrink-0 shadow-inner">
@@ -646,20 +607,19 @@
           </div>
           <div>
             <div class="font-serif-luxury font-bold text-sm text-[#181514]">Fórmula Exclusiva de Autor (300 g)</div>
-            <div class="text-[11px] text-stone-500">Resultados visibles desde la primera aplicación · Pago en Casa 24/48h</div>
+            <div class="text-[11px] text-stone-500">Suavidad y bienestar desde el primer masaje · Envío 24/48h</div>
           </div>
         </div>
-        <a href="#packs" class="btn-shimmer bg-rose-gradient text-white px-7 py-3 rounded-xl font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 transition flex items-center gap-2 whitespace-nowrap">
+        <button onclick="window.kivaneliCart.addItem('adeus-crema-corporal', 1)" class="btn-shimmer bg-rose-gradient text-white px-7 py-3 rounded-xl font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 transition flex items-center gap-2 whitespace-nowrap">
           <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-          <span>Pedir Tratamiento ADEUS™ (29,90 €)</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-        </a>
+          <span>Añadir ADEUS™ (29,90 €)</span>
+        </button>
       </div>
 
     </div>
   </section>
 
-  <!-- 🔍 3. SIDE-BY-SIDE RESULTADOS & COMPARATIVA -->
+  <!-- 🔍 3. ANTES Y DESPUÉS (RESULTADOS REALES) -->
   <section id="transformacion" class="py-20 bg-[#FAF7F2] relative reveal-on-scroll">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center space-y-3 mb-14">
@@ -671,27 +631,23 @@
           La Transformación en tu Piel
         </h2>
         <p class="text-stone-600 text-sm md:text-base max-w-xl mx-auto">
-          Comprueba la evolución desde la textura inicial con asperezas hasta el tacto aterciopelado de porcelana.
+          Comprueba la evolución desde la textura inicial con asperezas hasta el tacto aterciopelado y uniforme.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
         <div class="glass-panel rounded-3xl overflow-hidden shadow-xl border-2 border-rose-200/80 flex flex-col justify-between">
           <div class="relative aspect-[4/3] bg-[#F6EAE7] overflow-hidden">
-            <img src="assets/images/ugc_before_texture.jpg" alt="Antes: Piel de Fresa" class="w-full h-full object-cover" loading="lazy" decoding="async">
+            <img src="assets/images/ugc_before_texture.jpg" alt="Antes: Textura Áspera" class="w-full h-full object-cover" loading="lazy" decoding="async">
             <div class="absolute top-4 left-4 bg-rose-950/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-rose-400/40 text-white text-xs font-bold uppercase tracking-wider">
-              🔴 ANTES: Textura Folicular Obstruida
+              🔴 ANTES: Textura Irregular y Seca
             </div>
           </div>
           <div class="p-6 md:p-8 space-y-3">
-            <h4 class="font-serif-luxury font-bold text-xl text-[#181514]">Poros Dilatados & Piel de Fresa</h4>
+            <h4 class="font-serif-luxury font-bold text-xl text-[#181514]">Tacto Áspero & Piel Deshidratada</h4>
             <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
-              La acumulación de queratina y células muertas atrapa los vellos corporales, provocando puntos oscuros y tacto rugoso en piernas y brazos.
+              La falta de hidratación y el roce diario generan asperezas y sequedad en piernas, brazos y codos.
             </p>
-            <div class="pt-2 text-xs font-bold text-rose-700 flex items-center gap-1.5">
-              <i data-lucide="alert-circle" class="w-4 h-4"></i>
-              <span>Falta de renovación celular profunda</span>
-            </div>
           </div>
         </div>
 
@@ -705,157 +661,127 @@
           <div class="p-6 md:p-8 space-y-3">
             <h4 class="font-serif-luxury font-bold text-xl text-[#181514]">Piel 100% Lisa & Luminosa</h4>
             <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
-              Las micro-sales boticarias pulen sin rasgar, mientras el aceite de Espino Amarillo y la Centella devuelven el brillo natural y tono homogéneo.
+              El masaje con ADEUS™ aporta nutrición botánica duradera devolviendo la tersura y el brillo natural.
             </p>
             <div class="pt-2 flex flex-wrap items-center gap-3 text-xs font-bold text-emerald-700">
-              <span class="flex items-center gap-1"><i data-lucide="check" class="w-4 h-4"></i> -94% Poros Visibles</span>
               <span class="flex items-center gap-1"><i data-lucide="check" class="w-4 h-4"></i> +98% Suavidad al Tacto</span>
+              <span class="flex items-center gap-1"><i data-lucide="check" class="w-4 h-4"></i> Hidratación Profunda</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Results Scroll CTA Bar -->
-      <div class="mt-12 text-center">
-        <a href="#packs" class="btn-shimmer inline-flex items-center gap-2.5 bg-[#181514] text-white hover:bg-[#D48B80] px-8 py-4 rounded-2xl font-bold text-xs uppercase tracking-wider shadow-xl hover:scale-105 transition">
-          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
-          <span>Comenzar Tratamiento con Pago Seguro Contra-Reembolso (29,90 €)</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-        </a>
-      </div>
-
     </div>
   </section>
 
-  <!-- 🎬 4. EL RITUAL EN 3 ESCALONES -->
+  <!-- 🎬 4. EL RITUAL EN 3 PASOS EN VIDEO -->
   <section id="ritual-escalones" class="py-24 bg-white border-y border-[#D48B80]/15 relative reveal-on-scroll">
     <div class="max-w-7xl mx-auto px-6 space-y-24">
       
       <div class="text-center max-w-2xl mx-auto space-y-3">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-100 text-[#B86B60] text-xs font-bold uppercase tracking-widest">
-          El Ritual Kivaneli en Video
+          Demostraciones en Video
         </div>
         <h2 class="font-serif-luxury text-3xl md:text-5xl font-black text-[#181514]">
-          3 Fórmulas Magistrales en Acción
+          El Ritual Kivaneli en 3 Pasos
         </h2>
         <p class="text-stone-600 text-sm md:text-base">
-          Acompaña cada paso del ritual con demostraciones visuales reales para cuerpo, mirada y tono cutáneo.
+          Cuidado integral para cuerpo, mirada y luminosidad del tono dérmico.
         </p>
       </div>
 
-      <!-- Escalón 1 -->
+      <!-- Paso 1 -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-5">
           <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white aspect-[9/16] max-w-[320px] mx-auto bg-[#F6EAE7]">
             <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/video1_first_frame.jpg" data-src="assets/videos/adeus_tratamiento.mp4">
             </video>
             <div class="absolute top-3 left-3 bg-[#181514]/80 backdrop-blur-md px-3 py-1 rounded-full text-amber-300 text-[10px] font-extrabold tracking-wider">
-              ⭐ ESCALÓN 1: CUERPO
+              ⭐ PASO 1: CUERPO
             </div>
           </div>
         </div>
         <div class="lg:col-span-7 space-y-5">
           <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#B86B60]">
             <span class="w-6 h-6 rounded-full bg-[#F6EAE7] flex items-center justify-center text-xs font-bold">1</span>
-            Tratamiento Intensivo de Autor
+            Masaje & Suavidad Corporal
           </div>
           <h3 class="font-serif-luxury text-3xl md:text-4xl font-bold text-[#181514]">
-            ADEUS™ — Crema Exfoliante Piel de Seda (300g)
+            ADEUS™ — Crema Corporal Masaje & Seda (300 g)
           </h3>
           <p class="text-stone-600 text-sm md:text-base leading-relaxed">
-            Formulada específicamente para resolver la foliculitis y queratosis pilaris. Sus microcristales pulidores limpian en profundidad sin irritar la epidermis, liberando los folículos bloqueados y estimulando la renovación celular.
+            Aplicar sobre la piel limpia realizando masajes circulares ascendentes. Su textura emoliente se funde suavemente nutriendo la piel sin dejar sensación pegajosa.
           </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs text-stone-700">
-            <div class="flex items-center gap-2 font-semibold"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Tarro generoso de 300g con tapa de rosca</div>
-            <div class="flex items-center gap-2 font-semibold"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Uso tópico para masaje corporal intensivo</div>
-            <div class="flex items-center gap-2 font-semibold"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Apto para piernas, brazos y glúteos</div>
-            <div class="flex items-center gap-2 font-semibold"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Stock oficial en Almacén Dropea Madrid</div>
-          </div>
-
           <div class="pt-4 flex items-center gap-4 flex-wrap">
-            <a href="producto.html?slug=adeus-crema-corporal" class="btn-shimmer bg-rose-gradient text-white px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition flex items-center gap-2">
+            <button onclick="window.kivaneliCart.addItem('adeus-crema-corporal', 1)" class="btn-shimmer bg-rose-gradient text-white px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition flex items-center gap-2">
               <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-              <span>Ver Ficha de ADEUS™ (300 g)</span>
-            </a>
-            <span class="text-xs font-serif-luxury font-bold text-[#181514]">29,90 € · Envío 24/48h</span>
+              <span>Añadir a la Cesta (29,90 €)</span>
+            </button>
+            <a href="producto.html?slug=adeus-crema-corporal" class="text-xs font-serif-luxury font-bold text-[#181514] underline">Ver Ficha Completa</a>
           </div>
         </div>
       </div>
 
-      <!-- Escalón 2 -->
+      <!-- Paso 2 -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-7 space-y-5 order-2 lg:order-1">
           <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-purple-800">
             <span class="w-6 h-6 rounded-full bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-700">2</span>
-            Mirada Iluminada & Descongestión Exprés
+            Mirada Iluminada & Descanso Exprés
           </div>
           <h3 class="font-serif-luxury text-3xl md:text-4xl font-bold text-[#181514]">
-            KÖRMESIC™ — Parches de Colágeno & Keratina (60u)
+            KÖRMESIC™ — Parches de Colágeno & Hidrogel (60 uds)
           </h3>
           <p class="text-stone-600 text-sm md:text-base leading-relaxed">
-            Parches de hidrogel para descongestionar bolsas, drenar ojeras y aportar firmeza al contorno de ojos en 15 minutos. Suero con colágeno soluble y efecto frescor calmante.
+            Colocar los parches de hidrogel bajo los ojos durante 15 minutos. El suero enriquecido y el efecto crioterapia aportan un descanso inmediato a la mirada.
           </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs text-stone-700">
-            <div class="flex items-center gap-2 font-semibold text-purple-900"><i data-lucide="sparkles" class="w-4 h-4 text-purple-600 flex-shrink-0"></i> 60 parches de hidrogel (30 aplicaciones)</div>
-            <div class="flex items-center gap-2 font-semibold"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Efecto frío descongestionante</div>
-            <div class="flex items-center gap-2 font-semibold"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Drenaje periocular intensivo</div>
-            <div class="flex items-center gap-2 font-semibold"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Despacho oficial Dropea Logistics</div>
-          </div>
-
           <div class="pt-4 flex items-center gap-4 flex-wrap">
-            <a href="producto.html?slug=kormesic-parches-colageno" class="btn-shimmer bg-purple-700 text-white px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg hover:bg-purple-800 hover:scale-105 transition flex items-center gap-2">
+            <button onclick="window.kivaneliCart.addItem('kormesic-parches-colageno', 1)" class="btn-shimmer bg-purple-700 text-white px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg hover:bg-purple-800 hover:scale-105 transition flex items-center gap-2">
               <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-              <span>Ver Ficha de Parches Körmesic™</span>
-            </a>
-            <span class="text-xs font-serif-luxury font-bold text-purple-900">14,95 € · Oferta Especial</span>
+              <span>Añadir a la Cesta (19,95 €)</span>
+            </button>
+            <a href="producto.html?slug=kormesic-parches-colageno" class="text-xs font-serif-luxury font-bold text-purple-900 underline">Ver Ficha Completa</a>
           </div>
         </div>
         <div class="lg:col-span-5 order-1 lg:order-2">
           <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-purple-200 aspect-[9/16] max-w-[320px] mx-auto bg-purple-50">
             <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/video2_first_frame.jpg" data-src="assets/videos/kormesic_patches.mp4">
             </video>
-            <div class="absolute top-3 left-3 bg-purple-950/85 backdrop-blur-md px-3 py-1 rounded-full text-purple-200 text-[10px] font-extrabold tracking-wider border border-purple-400/30">
-              💜 ESCALÓN 2: MIRADA
+            <div class="absolute top-3 left-3 bg-purple-950/85 backdrop-blur-md px-3 py-1 rounded-full text-purple-200 text-[10px] font-extrabold tracking-wider">
+              💜 PASO 2: MIRADA
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Escalón 3 -->
+      <!-- Paso 3 -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         <div class="lg:col-span-5">
           <div class="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-amber-200 aspect-[9/16] max-w-[320px] mx-auto bg-amber-50">
             <video class="w-full h-full object-cover lazy-video" muted loop playsinline preload="none" poster="assets/images/video3_first_frame.jpg" data-src="assets/videos/kojic_soap.mp4">
             </video>
-            <div class="absolute top-3 left-3 bg-amber-950/85 backdrop-blur-md px-3 py-1 rounded-full text-amber-200 text-[10px] font-extrabold tracking-wider border border-amber-400/30">
-              🧡 ESCALÓN 3: TONO
+            <div class="absolute top-3 left-3 bg-amber-950/85 backdrop-blur-md px-3 py-1 rounded-full text-amber-200 text-[10px] font-extrabold tracking-wider">
+              🧡 PASO 3: LUMINOSIDAD
             </div>
           </div>
         </div>
         <div class="lg:col-span-7 space-y-5">
           <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-amber-800">
             <span class="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center text-xs font-bold text-amber-700">3</span>
-            Unificación & Luminosidad
+            Limpieza Clarificante & Tono
           </div>
           <h3 class="font-serif-luxury text-3xl md:text-4xl font-bold text-[#181514]">
-            KOJIC ACID™ — Jabón en Pastilla Ácido Kójico + Hialurónico (100g)
+            KOJIC ACID™ — Jabón Ácido Kójico + Hialurónico (100 g)
           </h3>
           <p class="text-stone-600 text-sm md:text-base leading-relaxed">
-            Limpiador clarificante en pastilla de 100g con Ácido Kójico puro para exfoliar células muertas, aclarar zonas oscurecidas y devolver luminosidad y textura suave a la piel.
+            Limpiador clarificante en pastilla de 100g para eliminar impurezas, aclarar zonas oscuras y aportar un tono homogéneo y luminoso.
           </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs text-stone-700">
-            <div class="flex items-center gap-2 font-semibold text-amber-900"><i data-lucide="sparkles" class="w-4 h-4 text-amber-600 flex-shrink-0"></i> Pastilla sólida de 100g Kiss Beauty</div>
-            <div class="flex items-center gap-2 font-semibold"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Exfoliación y unificación de tono</div>
-            <div class="flex items-center gap-2 font-semibold"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Uso facial y corporal (axilas, codos, inglés)</div>
-            <div class="flex items-center gap-2 font-semibold"><i data-lucide="check" class="w-4 h-4 text-emerald-600"></i> Despacho oficial Dropea Logistics</div>
-          </div>
-
           <div class="pt-4 flex items-center gap-4 flex-wrap">
-            <a href="producto.html?slug=jabon-acido-kojico" class="btn-shimmer bg-amber-600 text-white px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg hover:bg-amber-700 hover:scale-105 transition flex items-center gap-2">
+            <button onclick="window.kivaneliCart.addItem('jabon-acido-kojico', 1)" class="btn-shimmer bg-amber-600 text-white px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider shadow-lg hover:bg-amber-700 hover:scale-105 transition flex items-center gap-2">
               <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-              <span>Ver Ficha de Jabón Kójico</span>
-            </a>
-            <span class="text-xs font-serif-luxury font-bold text-amber-900">12,95 € · Oferta Especial</span>
+              <span>Añadir a la Cesta (16,95 €)</span>
+            </button>
+            <a href="producto.html?slug=jabon-acido-kojico" class="text-xs font-serif-luxury font-bold text-amber-900 underline">Ver Ficha Completa</a>
           </div>
         </div>
       </div>
@@ -863,7 +789,7 @@
     </div>
   </section>
 
-  <!-- 👯 5. CLUB INVITA A TU AMIGA -->
+  <!-- 👯 5. CLUB AMIGAS -->
   <section id="amigas" class="py-20 bg-gradient-to-b from-[#FAF7F2] to-white relative overflow-hidden reveal-on-scroll">
     <div class="max-w-5xl mx-auto px-6">
       <div class="glass-panel rounded-[2.5rem] p-8 md:p-14 border-2 border-[#D48B80]/40 shadow-2xl relative overflow-hidden">
@@ -875,11 +801,11 @@
             </div>
 
             <h2 class="font-serif-luxury text-3xl md:text-4xl font-black text-[#181514] leading-tight">
-              Comparte el Secreto de la Piel de Seda con tu Amiga
+              Comparte el Secreto de la Piel de Seda
             </h2>
 
             <p class="text-stone-600 text-sm leading-relaxed">
-              El autocuidado se disfruta el doble en compañía. Rellena tus datos para generar tu enlace único: tu amiga recibirá un regalo con su primer pedido y tú un vale para el tuyo.
+              Genera tu enlace único: tu amiga recibirá un regalo con su primer pedido y tú un vale de 15€ para el tuyo.
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
@@ -889,7 +815,7 @@
                   <span>Para tu Amiga</span>
                 </div>
                 <div class="font-serif-luxury font-bold text-sm text-[#181514]">Parches Körmesic GRATIS</div>
-                <p class="text-[11px] text-stone-500 leading-tight">Bote de 60 parches de colágeno incluido sin coste en su primer pedido.</p>
+                <p class="text-[11px] text-stone-500 leading-tight">Bote de 60 parches de colágeno incluido sin coste.</p>
               </div>
 
               <div class="bg-white p-4 rounded-2xl border border-[#D48B80]/40 shadow-sm space-y-1.5">
@@ -898,7 +824,7 @@
                   <span>Para Ti</span>
                 </div>
                 <div class="font-serif-luxury font-bold text-sm text-[#181514]">Vale Regalo de 15 €</div>
-                <p class="text-[11px] text-stone-500 leading-tight">Ingresado en tu cuenta para tu próxima compra en cuanto ella finalice la suya.</p>
+                <p class="text-[11px] text-stone-500 leading-tight">Descuento directo para tu siguiente pedido.</p>
               </div>
             </div>
           </div>
@@ -909,411 +835,27 @@
                 <i data-lucide="heart-handshake" class="w-5 h-5"></i>
               </div>
               <h4 class="font-serif-luxury font-bold text-base text-[#181514]">Activa tu Pase de Embajadora</h4>
-              <p class="text-[11px] text-stone-500">Recibirás tu código especial al instante:</p>
             </div>
 
-            <form id="amigaForm" onsubmit="handleAmigaSubmit(event)" class="space-y-3">
-              <div>
-                <label class="text-[11px] font-bold text-stone-700">Tu Nombre *</label>
-                <input type="text" id="referralUserName" required placeholder="Ej. Carmen García" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs focus:border-purple-500 outline-none bg-stone-50">
-              </div>
-              <div>
-                <label class="text-[11px] font-bold text-stone-700">Tu Teléfono Móvil *</label>
-                <input type="tel" id="referralUserPhone" required placeholder="Ej. 612 345 678" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs focus:border-purple-500 outline-none bg-stone-50">
-              </div>
-              <div>
-                <label class="text-[11px] font-bold text-stone-700">Tu Correo Electrónico *</label>
-                <input type="email" id="referralUserEmail" required placeholder="tu-email@ejemplo.com" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs focus:border-purple-500 outline-none bg-stone-50">
-              </div>
-
-              <button type="submit" class="btn-shimmer w-full bg-purple-700 text-white py-3.5 px-3 rounded-xl font-extrabold text-[11px] sm:text-xs tracking-wider uppercase hover:bg-purple-800 transition shadow-md flex items-center justify-center gap-2 text-center overflow-hidden">
-                <i data-lucide="gift" class="w-4 h-4 flex-shrink-0 text-purple-200"></i>
-                <span class="truncate">GENERAR MI ENLACE DE REGALO</span>
+            <form onsubmit="handleAmigaGenerate(event)" class="space-y-3">
+              <input type="text" id="amigaName" required placeholder="Tu Nombre" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs outline-none focus:border-purple-500 bg-stone-50">
+              <input type="tel" id="amigaPhone" required placeholder="Tu Teléfono Móvil" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs outline-none focus:border-purple-500 bg-stone-50">
+              <button type="submit" class="btn-shimmer w-full bg-purple-700 text-white py-3 px-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-purple-800 transition">
+                GENERAR MI ENLACE
               </button>
             </form>
+            <div id="amigaLinkBox" class="hidden p-3 bg-purple-50 rounded-xl border border-purple-200 text-xs text-purple-900 font-mono break-all text-center">
+              https://kivaneli.es/?ref=AMIGA-VIP
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ⭐ 6. EXPERIENCIAS REALES: CAPTURAS DE CHATS WHATSAPP & INSTAGRAM DMs -->
-  <section id="testimonios" class="py-20 md:py-28 bg-[#FAF7F2] border-y border-[#D48B80]/15 reveal-on-scroll relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 space-y-12">
-      
-      <div class="text-center max-w-2xl mx-auto space-y-3">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 text-[11px] sm:text-xs font-bold uppercase tracking-widest border border-emerald-200 shadow-sm">
-          <i data-lucide="message-square-heart" class="w-3.5 h-3.5 text-emerald-600"></i>
-          <span>Mensajes Reales de Nuestras Clientas</span>
-        </div>
-        <h2 class="font-serif-luxury text-2xl sm:text-4xl md:text-5xl font-black text-[#181514] tracking-tight">
-          Lo que nos cuentan por WhatsApp e Instagram
-        </h2>
-        <p class="text-stone-600 text-xs sm:text-sm md:text-base max-w-xl mx-auto leading-relaxed">
-          Conversaciones directas y testimonios espontáneos recibidos tras comenzar el ritual boticario Kivaneli en toda España.
-        </p>
-      </div>
-
-      <!-- Social Follow Bar -->
-      <div class="flex flex-wrap items-center justify-between gap-4 bg-white py-4 px-6 sm:px-8 rounded-3xl border-2 border-stone-200 shadow-md max-w-4xl mx-auto text-xs">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-2xl bg-rose-100 text-[#B86B60] flex items-center justify-center shadow-inner flex-shrink-0">
-            <i data-lucide="users" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <div class="font-serif-luxury font-bold text-[#181514] text-sm">Comunidad Oficial Kivaneli</div>
-            <div class="text-[11px] text-stone-500">+25.000 mujeres siguiendo los rituales boticarios</div>
-          </div>
-        </div>
-        <div class="flex items-center gap-3 flex-wrap">
-          <a href="https://instagram.com" target="_blank" class="flex items-center gap-2 bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 text-white px-4 py-2 rounded-xl font-bold hover:scale-105 transition shadow-sm">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span>Instagram (@kivaneli.es)</span>
-          </a>
-          <a href="https://tiktok.com" target="_blank" class="flex items-center gap-2 bg-[#181514] text-white px-4 py-2 rounded-xl font-bold hover:scale-105 transition shadow-sm">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/></svg>
-            <span>TikTok (@kivanelicosmetics)</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-        
-        <!-- Mockup 1: WhatsApp Chat (Carmen G.) -->
-        <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-xl flex flex-col justify-between hover:-translate-y-1 transition duration-300">
-          <!-- WhatsApp Top Bar -->
-          <div class="bg-[#075E54] px-4 py-3 text-white flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <img src="assets/images/ugc_reviewer_carmen.jpg" class="w-9 h-9 rounded-full object-cover border border-white/40" alt="Carmen G." loading="lazy" decoding="async">
-              <div>
-                <div class="text-xs font-bold leading-tight">Carmen G.</div>
-                <div class="text-[10px] text-emerald-200">en línea · Sevilla</div>
-              </div>
-            </div>
-            <div class="flex items-center gap-3 text-emerald-200">
-              <i data-lucide="video" class="w-4 h-4"></i>
-              <i data-lucide="phone" class="w-4 h-4"></i>
-            </div>
-          </div>
-
-          <!-- Chat Canvas -->
-          <div class="p-4 bg-[#EFEAE2] space-y-3.5 flex-1 min-h-[220px] relative" style="background-image: radial-gradient(#d1c7b7 1px, transparent 1px); background-size: 16px 16px;">
-            <div class="text-center">
-              <span class="bg-white/80 backdrop-blur-xs text-[9px] font-bold text-stone-500 px-2.5 py-0.5 rounded-md shadow-2xs uppercase">Ayer</span>
-            </div>
-            
-            <!-- Incoming Message Bubble -->
-            <div class="bg-white rounded-2xl rounded-tl-xs p-3.5 shadow-sm max-w-[92%] space-y-1.5 relative border border-stone-200/60">
-              <p class="text-xs text-stone-800 leading-relaxed">
-                ¡Hola chicas de Kivaneli! Os escribo porque estoy alucinando con ADEUS 😱 Llevaba años acomplejada con los puntitos de fresa en las piernas y en solo 5 días de ritual están casi invisibles. La textura queda como de seda total ✨
-              </p>
-              <div class="rounded-xl overflow-hidden border border-stone-100 mt-2">
-                <img src="assets/images/ugc_after_texture.jpg" class="w-full h-28 object-cover" alt="Resultado Carmen" loading="lazy" decoding="async">
-              </div>
-              <div class="flex items-center justify-end gap-1 text-[10px] text-stone-400 pt-1">
-                <span>14:23</span>
-                <span class="text-sky-500 font-bold">✓✓</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- WhatsApp Footer Note -->
-          <div class="p-3 bg-stone-50 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-500">
-            <span>📦 Pedido: <strong>Pack Dúo + Mirada</strong></span>
-            <span class="text-emerald-700 font-bold flex items-center gap-1">
-              <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i> Verificado
-            </span>
-          </div>
-        </div>
-
-        <!-- Mockup 2: Instagram Direct Message (Lucía M.) -->
-        <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-xl flex flex-col justify-between hover:-translate-y-1 transition duration-300">
-          <!-- Instagram Top Bar -->
-          <div class="bg-gradient-to-r from-purple-700 via-pink-600 to-rose-500 px-4 py-3 text-white flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <img src="assets/images/ugc_reviewer_lucia.jpg" class="w-9 h-9 rounded-full object-cover border border-white/50" alt="Lucía M." loading="lazy" decoding="async">
-              <div>
-                <div class="text-xs font-bold leading-tight">@lucia.martinez_</div>
-                <div class="text-[10px] text-pink-100">Te sigue · Madrid</div>
-              </div>
-            </div>
-            <i data-lucide="info" class="w-4 h-4 text-white/80"></i>
-          </div>
-
-          <!-- DM Canvas -->
-          <div class="p-4 bg-stone-50 space-y-3 flex-1 min-h-[220px]">
-            <div class="text-center">
-              <span class="text-[9px] font-bold text-stone-400 uppercase">Mensaje directo</span>
-            </div>
-
-            <!-- Instagram DM Bubble -->
-            <div class="bg-[#F0F2F5] rounded-3xl rounded-bl-xs p-3.5 shadow-2xs max-w-[92%] space-y-1.5 border border-stone-200/50">
-              <p class="text-xs text-stone-800 leading-relaxed">
-                ¡Acabo de recibir mi pedido de 24h! El chico del reparto super puntual y pagué en efectivo en puerta. Los parches de colágeno fríos de la nevera me han quitado las ojeras de la mañana al instante 💖 Mis amigas ya me están pidiendo el enlace del club amigas!
-              </p>
-              <div class="flex items-center justify-between pt-1">
-                <span class="text-[10px] text-stone-400">18:04</span>
-                <span class="text-sm">❤️</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Instagram Footer Note -->
-          <div class="p-3 bg-stone-50 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-500">
-            <span>📦 Pedido: <strong>Ritual Supremo 3-en-1</strong></span>
-            <span class="text-purple-700 font-bold flex items-center gap-1">
-              <i data-lucide="instagram" class="w-3.5 h-3.5 text-purple-600"></i> DM Verificado
-            </span>
-          </div>
-        </div>
-
-        <!-- Mockup 3: WhatsApp Chat (Elena S.) -->
-        <div class="bg-white rounded-3xl overflow-hidden border border-stone-200/90 shadow-xl flex flex-col justify-between hover:-translate-y-1 transition duration-300">
-          <!-- WhatsApp Top Bar -->
-          <div class="bg-[#075E54] px-4 py-3 text-white flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-              <img src="assets/images/ugc_reviewer_elena.jpg" class="w-9 h-9 rounded-full object-cover border border-white/40" alt="Elena S." loading="lazy" decoding="async">
-              <div>
-                <div class="text-xs font-bold leading-tight">Elena S.</div>
-                <div class="text-[10px] text-emerald-200">en línea · Valencia</div>
-              </div>
-            </div>
-            <div class="flex items-center gap-3 text-emerald-200">
-              <i data-lucide="video" class="w-4 h-4"></i>
-              <i data-lucide="phone" class="w-4 h-4"></i>
-            </div>
-          </div>
-
-          <!-- Chat Canvas -->
-          <div class="p-4 bg-[#EFEAE2] space-y-3.5 flex-1 min-h-[220px] relative" style="background-image: radial-gradient(#d1c7b7 1px, transparent 1px); background-size: 16px 16px;">
-            <div class="text-center">
-              <span class="bg-white/80 backdrop-blur-xs text-[9px] font-bold text-stone-500 px-2.5 py-0.5 rounded-md shadow-2xs uppercase">Esta semana</span>
-            </div>
-
-            <!-- Incoming Message Bubble -->
-            <div class="bg-white rounded-2xl rounded-tl-xs p-3.5 shadow-sm max-w-[92%] space-y-2 border border-stone-200/60">
-              <p class="text-xs text-stone-800 leading-relaxed">
-                ¡Chicas una maravilla! Tenía los brazos súper ásperos desde adolescente y ninguna crema me hacía efecto. Con ADEUS llevo una semana y la suavidad es increíble. El tarro de 300g cunde muchísimo 🥰
-              </p>
-              
-              <!-- Simulated WhatsApp Audio Message -->
-              <div class="bg-[#E7F8E8] p-2.5 rounded-xl flex items-center gap-3 border border-emerald-200">
-                <button type="button" class="w-7 h-7 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs flex-shrink-0 shadow-sm">
-                  <i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>
-                </button>
-                <div class="flex-1 space-y-1">
-                  <div class="h-1 bg-emerald-300 rounded-full w-full relative overflow-hidden">
-                    <div class="h-full bg-emerald-600 w-1/3"></div>
-                  </div>
-                  <div class="flex justify-between text-[9px] text-stone-500 font-mono">
-                    <span>0:14</span>
-                    <span>0:42</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flex items-center justify-end gap-1 text-[10px] text-stone-400 pt-0.5">
-                <span>11:15</span>
-                <span class="text-sky-500 font-bold">✓✓</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- WhatsApp Footer Note -->
-          <div class="p-3 bg-stone-50 border-t border-stone-100 flex items-center justify-between text-[11px] text-stone-500">
-            <span>📦 Pedido: <strong>Pack Dúo 2x ADEUS</strong></span>
-            <span class="text-emerald-700 font-bold flex items-center gap-1">
-              <i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i> Verificado
-            </span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Testimonials Scroll CTA Banner -->
-      <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-stone-900 to-[#181514] text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl max-w-5xl mx-auto border border-stone-800">
-        <div class="flex items-center gap-4 text-center sm:text-left">
-          <div class="w-12 h-12 rounded-2xl bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-black text-xl flex-shrink-0 shadow-md">
-            K
-          </div>
-          <div>
-            <div class="font-serif-luxury font-bold text-base sm:text-lg text-[#FAF7F2]">Únete a las más de 25.000 mujeres con Piel de Seda</div>
-            <p class="text-xs text-stone-400">Stock oficial en Madrid con entrega rápida 24/48h y pago seguro en la puerta de tu casa.</p>
-          </div>
-        </div>
-        <a href="#packs" class="btn-shimmer bg-rose-gradient text-white px-8 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition flex items-center gap-2 whitespace-nowrap">
-          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-          <span>Pedir Mi Tratamiento ADEUS™ (29,90 €)</span>
-          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  
-  <!-- 🌿 SECTION: LOS 3 TRATAMIENTOS BOTÁNICOS MAGISTRALES DE LA MAISON (DISEÑO EDITORIAL AMPLIO) -->
-  <section id="guias-editoriales" class="py-24 bg-[#FAF7F2] relative border-t border-[#D48B80]/15 reveal-on-scroll">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 space-y-16">
-      
-      <div class="text-center space-y-3 max-w-3xl mx-auto">
-        <div class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#F6EAE7] text-[#B86B60] text-xs font-black uppercase tracking-wider border border-[#D48B80]/30 shadow-xs">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#B86B60] flex-shrink-0"></i>
-          <span>FÓRMULAS FÍSICAS DE AUTOR · STOCK OFICIAL DROPEA MADRID</span>
-        </div>
-        <h2 class="font-serif-luxury text-3xl sm:text-4xl md:text-5xl font-black text-[#181514] tracking-tight leading-tight">
-          Los 3 Tratamientos Magistrales de la Maison
-        </h2>
-        <p class="text-xs sm:text-sm md:text-base text-stone-600 leading-relaxed max-w-2xl mx-auto">
-          Fichas técnicas individuales con principios botánicos puros, formuladas para cuerpo, mirada y tono cutáneo. Envío 24/48h y pago seguro en puerta.
-        </p>
-      </div>
-
-      <!-- 👑 1. Ficha Estrella Horizontal: ADEUS™ 300g (Espaciosa & Editorial) -->
-      <div class="glass-panel rounded-[2.5rem] overflow-hidden p-6 sm:p-10 md:p-12 border-2 border-[#D48B80]/30 shadow-2xl bg-white transition hover:shadow-3xl">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          <div class="lg:col-span-5 relative">
-            <div class="relative rounded-3xl overflow-hidden aspect-[4/3] bg-stone-100 shadow-md">
-              <img src="assets/images/adeus_jar_botanicals.jpg" alt="ADEUS Crema Corporal 300g" class="w-full h-full object-cover hover:scale-105 transition duration-700" loading="lazy" decoding="async">
-              <span class="absolute top-4 left-4 bg-rose-gradient text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
-                ⭐ TRATAMIENTO ESTRELLA · 300 G
-              </span>
-            </div>
-            <div class="mt-3 flex items-center justify-between text-xs text-stone-500 px-1">
-              <span class="flex items-center gap-1 font-semibold text-emerald-700">
-                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i> Stock en vivo: 291 unidades
-              </span>
-              <span class="font-mono text-[11px] text-stone-400">SKU: ADEUS_16181</span>
-            </div>
-          </div>
-
-          <div class="lg:col-span-7 space-y-6">
-            <div class="space-y-2">
-              <span class="text-xs font-black uppercase text-[#B86B60] tracking-widest">Tratamiento Corporal Magistral</span>
-              <h3 class="font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-bold text-[#181514] leading-tight">
-                ADEUS™ — Crema Corporal Tratamiento Intensivo (300 g)
-              </h3>
-              <p class="text-stone-600 text-sm md:text-base leading-relaxed pt-1">
-                Tarro generoso de 300 g con tapa de rosca formulado para masaje corporal y renovación dérmica. Pulido boticario ultra-suave sin microplásticos que disuelve la queratosis folicular, alivia rojeces y devuelve el tacto aterciopelado a la piel.
-              </p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs text-stone-700 border-t border-stone-100">
-              <div class="flex items-center gap-2 font-medium"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> Centella Asiática + Manteca de Karité</div>
-              <div class="flex items-center gap-2 font-medium"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> Micro-sales minerales pulidoras</div>
-              <div class="flex items-center gap-2 font-medium"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> Apto para piernas, brazos y glúteos</div>
-              <div class="flex items-center gap-2 font-medium"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> Textura emoliente sin residuo graso</div>
-            </div>
-
-            <div class="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-stone-100">
-              <div>
-                <span class="text-xs text-stone-400 line-through">39,90 €</span>
-                <div class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514]">
-                  29,90 € <span class="text-xs font-sans font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200 ml-1">Ahorras 10,00 €</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <a href="producto.html?slug=adeus-crema-corporal" class="btn-shimmer bg-rose-gradient text-white px-7 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 transition flex items-center gap-2">
-                  <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-                  <span>Ver Ficha Completa & Comprar</span>
-                </a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- 🌿 2 & 3: Los 2 Complementos Magistrales (Grid 2 Columnas Amplias & Equilibradas) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
-        
-        <!-- Complemento 1: Parches Körmesic 60u -->
-        <div class="glass-panel rounded-[2rem] p-8 md:p-10 space-y-6 border border-purple-200 shadow-xl bg-white flex flex-col justify-between hover:shadow-2xl transition duration-300 group">
-          <div class="space-y-5">
-            <div class="relative rounded-2xl overflow-hidden aspect-video bg-purple-50 shadow-sm">
-              <img src="assets/images/kormesic_jar_purple.jpg" alt="Parches Körmesic" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
-              <span class="absolute top-3 left-3 bg-purple-700 text-white text-[9px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-md">
-                60 UDS (30 PARES) · HIDROGEL
-              </span>
-            </div>
-
-            <div class="space-y-1.5">
-              <span class="text-[10px] font-black uppercase text-purple-700 tracking-wider">Contorno de Ojos & Mirada</span>
-              <h3 class="font-serif-luxury text-xl sm:text-2xl font-bold text-[#181514]">
-                Parches de Colágeno & Keratina Körmesic™
-              </h3>
-              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                Hidrogel con colágeno soluble para descongestionar bolsas, drenar ojeras y aportar firmeza a la mirada en 15 minutos. Efecto crioterapia calmante.
-              </p>
-            </div>
-            
-            <div class="space-y-2 text-xs text-stone-700 pt-2 border-t border-purple-100">
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 flex-shrink-0"></i> Colágeno Marino + Keratina Hidrolizada</div>
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 flex-shrink-0"></i> 60 parches de hidrogel para 30 aplicaciones</div>
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-purple-600 flex-shrink-0"></i> SKU Dropea: EYEMASK-BOTOX</div>
-            </div>
-          </div>
-
-          <div class="pt-5 border-t border-purple-100 flex items-center justify-between">
-            <div>
-              <span class="text-[11px] text-stone-400 line-through">22,00 €</span>
-              <div class="font-serif-luxury font-black text-xl text-[#181514]">14,95 €</div>
-            </div>
-            <a href="producto.html?slug=kormesic-parches-colageno" class="btn-shimmer bg-purple-700 text-white px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-purple-800 transition flex items-center gap-1.5 shadow-md">
-              <span>Ver Ficha</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Complemento 2: Jabón Kójico 100g -->
-        <div class="glass-panel rounded-[2rem] p-8 md:p-10 space-y-6 border border-amber-200 shadow-xl bg-white flex flex-col justify-between hover:shadow-2xl transition duration-300 group">
-          <div class="space-y-5">
-            <div class="relative rounded-2xl overflow-hidden aspect-video bg-amber-50 shadow-sm">
-              <img src="assets/images/kojic_soap_box.jpg" alt="Jabón Kójico Kiss Beauty" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
-              <span class="absolute top-3 left-3 bg-amber-600 text-white text-[9px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider shadow-md">
-                100 G · CLARIFICANTE
-              </span>
-            </div>
-
-            <div class="space-y-1.5">
-              <span class="text-[10px] font-black uppercase text-amber-800 tracking-wider">Unificación de Tono Cutáneo</span>
-              <h3 class="font-serif-luxury text-xl sm:text-2xl font-bold text-[#181514]">
-                Jabón Ácido Kójico + Hialurónico (100 g)
-              </h3>
-              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                Pastilla sólida clarificante Kiss Beauty con Ácido Kójico puro para aclarar zonas oscuras (axilas, codos, entrepierna), limpiar impurezas y unificar el tono.
-              </p>
-            </div>
-            
-            <div class="space-y-2 text-xs text-stone-700 pt-2 border-t border-amber-100">
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-amber-600 flex-shrink-0"></i> Ácido Kójico + Ácido Hialurónico</div>
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-amber-600 flex-shrink-0"></i> Apto para uso facial y corporal</div>
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-amber-600 flex-shrink-0"></i> SKU Dropea: JABONHYALUKISS</div>
-            </div>
-          </div>
-
-          <div class="pt-5 border-t border-amber-100 flex items-center justify-between">
-            <div>
-              <span class="text-[11px] text-stone-400 line-through">19,00 €</span>
-              <div class="font-serif-luxury font-black text-xl text-[#181514]">12,95 €</div>
-            </div>
-            <a href="producto.html?slug=jabon-acido-kojico" class="btn-shimmer bg-amber-600 text-white px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-amber-700 transition flex items-center gap-1.5 shadow-md">
-              <span>Ver Ficha</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 🛍️ 7. SELECCIÓN DE TRATAMIENTO ADEUS™ & CHECKOUT DIRECTO (SIN PACKS AGRESIVOS) -->
+  <!-- 🛍️ 7. SELECCIONA TU RITUAL DE CUIDADO PERSONAL (4 OPCIONES) -->
   <section id="packs" class="py-20 md:py-24 bg-[#FAF7F2] relative reveal-on-scroll border-t border-[#D48B80]/15">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 space-y-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 space-y-12">
       
       <div class="text-center max-w-2xl mx-auto space-y-3">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-100 text-[#B86B60] text-xs font-bold uppercase tracking-widest border border-rose-200">
@@ -1321,271 +863,91 @@
           DESPACHO URGENTE 24/48H · ALMACÉN DROPEA MADRID
         </div>
         <h2 class="font-serif-luxury text-3xl sm:text-4xl md:text-5xl font-black text-[#181514]">
-          Selecciona tu Tratamiento ADEUS™ (300 g)
+          Selecciona tu Ritual de Cuidado
         </h2>
         <p class="text-stone-600 text-xs sm:text-sm md:text-base">
-          Fórmula boticaria original en tarro de 300 g con tapa de rosca. Pago seguro contra reembolso directo en puerta.
+          Compra individualmente cada producto a su precio oficial o aprovecha el descuento integral en el Pack Ritual 3-en-1.
         </p>
       </div>
 
-      <!-- 2 Clean Volume Options for ADEUS -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
+      <!-- 4 Selection Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
         
-        <!-- Opción 1: 1x Tarro ADEUS 300g -->
-        <div id="cardOption1x" onclick="selectPack('1x Tarro ADEUS™ 300g (Tratamiento 1 Mes)', 29.90)" class="glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border-2 border-stone-200 hover:border-[#D48B80] transition duration-300 bg-white/95 shadow-md cursor-pointer group">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-extrabold text-stone-500 uppercase tracking-wider">TRATAMIENTO 1 MES</span>
-              <span class="w-5 h-5 rounded-full border-2 border-stone-300 group-hover:border-[#D48B80] flex items-center justify-center" id="radio1xIndicator">
-                <span class="w-2.5 h-2.5 rounded-full bg-[#D48B80] hidden" id="radio1xDot"></span>
-              </span>
-            </div>
-            <h3 class="font-serif-luxury text-2xl font-bold text-[#181514]">1x Tarro ADEUS™ (300 g)</h3>
-            <p class="text-xs text-stone-500 leading-relaxed">Formato individual de 300 g para 30 días de masaje corporal e hidratación intensiva.</p>
-            
-            <div class="flex items-baseline gap-2 pt-2">
-              <span class="font-serif-luxury text-3xl font-black text-[#181514]">29,90 €</span>
+        <!-- Option 1: ADEUS -->
+        <div class="glass-panel rounded-3xl p-6 space-y-5 flex flex-col justify-between border border-stone-200 bg-white shadow-md hover:border-[#D48B80] transition">
+          <div class="space-y-3">
+            <span class="text-[10px] font-bold uppercase text-[#B86B60]">Tarro Individual 300g</span>
+            <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">ADEUS™ Crema Masaje & Seda</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="font-serif-luxury text-2xl font-black text-[#181514]">29,90 €</span>
               <span class="text-xs text-stone-400 line-through">39,90 €</span>
-              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">Ahorras 10,00 €</span>
             </div>
-            
-            <div class="border-t border-stone-100 pt-3 space-y-2 text-xs text-stone-700">
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> 1x Tarro ADEUS 300 g con tapa de rosca</div>
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> Envío Exprés GLS 24/48h en toda España</div>
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> Pago en efectivo al recibir en puerta</div>
-            </div>
+            <p class="text-xs text-stone-500 leading-relaxed">Formato generoso para uso diario corporal.</p>
           </div>
-
-          <button type="button" class="w-full bg-stone-100 text-[#181514] py-3.5 rounded-xl font-bold text-xs tracking-wider uppercase group-hover:bg-[#181514] group-hover:text-white transition duration-300">
-            SELECCIONAR 1x TARRO (29,90 €)
+          <button onclick="window.kivaneliCart.addItem('adeus-crema-corporal', 1)" class="w-full bg-[#181514] text-white py-3 rounded-xl font-bold text-xs uppercase hover:bg-[#D48B80] transition">
+            Añadir a la Cesta
           </button>
         </div>
 
-        <!-- Opción 2: Pack Dúo 2x ADEUS 300g (MÁS ELEGIDO) -->
-        <div id="cardOption2x" onclick="selectPack('Pack Dúo 2x ADEUS™ 300g (Tratamiento Continuo 600g)', 49.95)" class="relative glass-panel rounded-3xl p-8 space-y-6 flex flex-col justify-between border-2 border-[#D48B80] shadow-2xl bg-white cursor-pointer group">
-          
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-rose-gradient text-white text-[10px] sm:text-[11px] font-black px-4 sm:px-5 py-1.5 rounded-full uppercase tracking-wider shadow-lg flex items-center gap-1.5 whitespace-nowrap">
-            <i data-lucide="flame" class="w-3.5 h-3.5 text-amber-300 flex-shrink-0"></i>
-            MÁS ELEGIDO · AHORRAS 10€ EXTRA
+        <!-- Option 2: Parches Körmesic -->
+        <div class="glass-panel rounded-3xl p-6 space-y-5 flex flex-col justify-between border border-stone-200 bg-white shadow-md hover:border-purple-300 transition">
+          <div class="space-y-3">
+            <span class="text-[10px] font-bold uppercase text-purple-700">60 Uds (30 Pares)</span>
+            <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">Parches Körmesic™ Hidrogel</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="font-serif-luxury text-2xl font-black text-[#181514]">19,95 €</span>
+              <span class="text-xs text-stone-400 line-through">29,90 €</span>
+            </div>
+            <p class="text-xs text-stone-500 leading-relaxed">Descongestión y frescor para la mirada.</p>
           </div>
-
-          <div class="space-y-4 pt-2">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-extrabold text-[#B86B60] uppercase tracking-wider">TRATAMIENTO CONTINUO 60 DÍAS</span>
-              <span class="w-5 h-5 rounded-full border-2 border-[#D48B80] flex items-center justify-center" id="radio2xIndicator">
-                <span class="w-2.5 h-2.5 rounded-full bg-[#D48B80]" id="radio2xDot"></span>
-              </span>
-            </div>
-            <h3 class="font-serif-luxury text-2xl font-bold text-[#181514]">Pack Dúo 2x ADEUS™ (600 g)</h3>
-            <p class="text-xs text-stone-500 leading-relaxed">Ciclo de 60 días para piel de seda sin interrupciones. El formato favorito de nuestras clientas.</p>
-            
-            <div class="flex items-baseline gap-2 pt-2">
-              <span class="font-serif-luxury text-3xl font-black text-[#D48B80]">49,95 €</span>
-              <span class="text-xs text-stone-400 line-through">59,80 €</span>
-              <span class="text-[11px] font-bold text-rose-800 bg-rose-50 px-2 py-0.5 rounded-md border border-rose-200">-17% DTO Pack</span>
-            </div>
-            
-            <div class="border-t border-stone-100 pt-3 space-y-2 text-xs text-stone-700">
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> <strong>2x Tarros ADEUS 300 g</strong> (600 g en total)</div>
-              <div class="flex items-center gap-2 text-emerald-800 font-bold bg-emerald-50/70 p-2 rounded-xl border border-emerald-200"><i data-lucide="sparkles" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> Envío Prioritario 24h GLS GRATIS</div>
-              <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> Pago en efectivo al recibir en puerta</div>
-            </div>
-          </div>
-
-          <button type="button" class="btn-shimmer w-full bg-rose-gradient text-white py-3.5 rounded-xl font-extrabold text-xs tracking-wider uppercase shadow-md transition duration-300">
-            SELECCIONAR PACK DÚO (49,95 €)
+          <button onclick="window.kivaneliCart.addItem('kormesic-parches-colageno', 1)" class="w-full bg-[#181514] text-white py-3 rounded-xl font-bold text-xs uppercase hover:bg-purple-700 transition">
+            Añadir a la Cesta
           </button>
         </div>
 
-      </div>
-
-      <!-- 💡 OPTIONAL 1-CLICK UPSELLS / CROSS-SELLS BOX (NATURAL Y NO AGRESIVO) -->
-      <div class="bg-white p-6 sm:p-8 rounded-3xl border border-stone-200 shadow-md max-w-4xl mx-auto space-y-4">
-        <div class="flex items-center gap-2 text-xs font-bold text-[#181514] uppercase tracking-wider">
-          <i data-lucide="plus-circle" class="w-4 h-4 text-[#B86B60]"></i>
-          <span>Complementa tu pedido con 1 clic (Opcional):</span>
+        <!-- Option 3: Jabón Kójico -->
+        <div class="glass-panel rounded-3xl p-6 space-y-5 flex flex-col justify-between border border-stone-200 bg-white shadow-md hover:border-amber-300 transition">
+          <div class="space-y-3">
+            <span class="text-[10px] font-bold uppercase text-amber-700">Pastilla 100g</span>
+            <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">Jabón Clarificante Kójico</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="font-serif-luxury text-2xl font-black text-[#181514]">16,95 €</span>
+              <span class="text-xs text-stone-400 line-through">24,90 €</span>
+            </div>
+            <p class="text-xs text-stone-500 leading-relaxed">Limpieza clarificante y unificación de tono.</p>
+          </div>
+          <button onclick="window.kivaneliCart.addItem('jabon-acido-kojico', 1)" class="w-full bg-[#181514] text-white py-3 rounded-xl font-bold text-xs uppercase hover:bg-amber-600 transition">
+            Añadir a la Cesta
+          </button>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          
-          <!-- Upsell 1: Parches Körmesic -->
-          <label class="flex items-center gap-3 p-4 rounded-2xl border border-stone-200 hover:border-purple-300 bg-stone-50/60 cursor-pointer transition">
-            <input type="checkbox" id="upsellKormesic" onchange="toggleUpsell('kormesic', 14.95)" class="w-5 h-5 text-purple-600 rounded-md border-stone-300 focus:ring-purple-500">
-            <div class="flex-1 min-w-0">
-              <div class="font-serif-luxury font-bold text-xs text-[#181514] truncate">+ Parches de Colágeno Körmesic™ (60u)</div>
-              <div class="text-[11px] text-stone-500">Para bolsas y ojeras en 15 min</div>
-            </div>
-            <div class="text-right flex-shrink-0">
-              <div class="text-xs font-bold text-purple-900">+14,95 €</div>
-              <div class="text-[10px] text-stone-400 line-through">22,00 €</div>
-            </div>
-          </label>
-
-          <!-- Upsell 2: Jabón Kójico -->
-          <label class="flex items-center gap-3 p-4 rounded-2xl border border-stone-200 hover:border-amber-300 bg-stone-50/60 cursor-pointer transition">
-            <input type="checkbox" id="upsellKojic" onchange="toggleUpsell('kojic', 12.95)" class="w-5 h-5 text-amber-600 rounded-md border-stone-300 focus:ring-amber-500">
-            <div class="flex-1 min-w-0">
-              <div class="font-serif-luxury font-bold text-xs text-[#181514] truncate">+ Jabón Ácido Kójico + Hialurónico (100g)</div>
-              <div class="text-[11px] text-stone-500">Aclarante y unificador de tono</div>
-            </div>
-            <div class="text-right flex-shrink-0">
-              <div class="text-xs font-bold text-amber-900">+12,95 €</div>
-              <div class="text-[10px] text-stone-400 line-through">19,00 €</div>
-            </div>
-          </label>
-
-        </div>
-      </div>
-
-      <!-- Checkout Form Container -->
-      <div id="checkoutContainer" class="glass-panel rounded-[2.5rem] p-8 md:p-14 border-2 border-[#D48B80]/35 shadow-2xl max-w-3xl mx-auto relative">
-        
-        <div class="text-center space-y-2 mb-8">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">
-            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
-            FORMULARIO SEGURO DE DESPACHO DIRECTO
+        <!-- Option 4: Pack Ritual 3-en-1 -->
+        <div class="glass-panel rounded-3xl p-6 space-y-5 flex flex-col justify-between border-2 border-[#B86B60] bg-gradient-to-b from-[#FDF9F8] to-white shadow-xl relative">
+          <span class="absolute -top-3 right-4 bg-rose-gradient text-white text-[9px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
+            AHORRA 35€
           </span>
-          <h3 class="font-serif-luxury text-2xl md:text-3xl font-black text-[#181514]">
-            Introduce tus Datos para el Envío
-          </h3>
-          <p class="text-xs md:text-sm text-stone-500">
-            No requieres tarjeta. El repartidor cobrará cómodamente en efectivo en tu dirección.
-          </p>
+          <div class="space-y-3">
+            <span class="text-[10px] font-bold uppercase text-[#B86B60]">Ritual Completo 3-en-1</span>
+            <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">Pack Ritual Boticario</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="font-serif-luxury text-2xl font-black text-[#B86B60]">59,95 €</span>
+              <span class="text-xs text-stone-400 line-through">94,70 €</span>
+            </div>
+            <p class="text-xs text-stone-500 leading-relaxed">ADEUS (300g) + Parches (60u) + Jabón (100g).</p>
+          </div>
+          <button onclick="window.kivaneliCart.addItem('pack-ritual-completo', 1)" class="btn-shimmer w-full bg-rose-gradient text-white py-3 rounded-xl font-black text-xs uppercase shadow-md transition">
+            Comprar Pack (59,95 €)
+          </button>
         </div>
 
-        <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-5">
-          
-          <div class="bg-[#FAF7F2] p-4 sm:p-5 rounded-2xl border border-stone-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4">
-            <div class="space-y-0.5">
-              <div class="text-[11px] text-stone-500 font-semibold uppercase tracking-wider">Tratamiento Seleccionado:</div>
-              <div id="selectedPackText" class="font-serif-luxury font-bold text-[#181514] text-sm sm:text-base leading-snug">Pack Dúo 2x ADEUS™ 300g (Tratamiento Continuo 600g)</div>
-            </div>
-            <div id="selectedPackPrice" class="text-2xl sm:text-3xl font-black text-[#D48B80] whitespace-nowrap flex-shrink-0 self-start sm:self-auto">49,95 €</div>
-          </div>
+      </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="space-y-1.5">
-              <label class="text-xs font-bold text-stone-700">Nombre y Apellidos *</label>
-              <input type="text" id="custName" required placeholder="Ej. Carmen García López" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white font-medium">
-            </div>
-            <div class="space-y-1.5">
-              <label class="text-xs font-bold text-stone-700">Teléfono Móvil (Para el repartidor) *</label>
-              <input type="tel" id="custPhone" required placeholder="Ej. 612 345 678" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white font-medium">
-            </div>
-          </div>
-
-          <div class="space-y-1.5">
-            <label class="text-xs font-bold text-stone-700">Correo Electrónico (Para factura y guía de uso) *</label>
-            <input type="email" id="custEmail" required placeholder="tu-email@ejemplo.com" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white font-medium">
-          </div>
-
-          <div class="space-y-1.5">
-            <label class="text-xs font-bold text-stone-700">Dirección Completa (Calle, Número, Piso/Puerta) *</label>
-            <input type="text" id="custAddress" required placeholder="Ej. Calle Gran Vía 28, 4º B" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white font-medium">
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div class="space-y-1.5">
-              <label class="text-xs font-bold text-stone-700">Código Postal *</label>
-              <input type="text" id="custZip" required placeholder="Ej. 28013" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white font-medium">
-            </div>
-            <div class="space-y-1.5">
-              <label class="text-xs font-bold text-stone-700">Ciudad / Provincia *</label>
-              <input type="text" id="custCity" required placeholder="Ej. Madrid" class="w-full px-4 py-3.5 rounded-xl border border-stone-300 focus:border-[#D48B80] focus:ring-2 focus:ring-[#D48B80]/20 text-sm outline-none bg-white font-medium">
-            </div>
-          </div>
-
-          <div class="space-y-1.5 pt-1">
-            <label class="text-xs font-bold text-stone-700">¿Tienes un Código de Cupón o Invitación de Amiga?</label>
-            <div class="flex gap-2">
-              <input type="text" id="couponInput" placeholder="Ej. SEDA10 o KIV-AMIGA" class="flex-1 px-4 py-3 rounded-xl border border-stone-300 focus:border-purple-500 text-xs uppercase font-mono bg-white outline-none">
-              <button type="button" onclick="applyCoupon()" class="bg-stone-800 text-white px-5 py-3 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition">Aplicar</button>
-            </div>
-            <p id="couponMessage" class="text-[11px] font-semibold text-purple-700 hidden"></p>
-          </div>
-
-          <!-- 50/50 Payment Method Toggle -->
-          <div class="pt-2 space-y-2">
-            <label class="text-xs font-bold text-stone-700">Método de Pago Preferido:</label>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-[#D48B80] bg-[#F6EAE7]/60 cursor-pointer shadow-sm" id="labelCOD">
-                <input type="radio" name="paymentMethod" value="COD" checked onchange="togglePaymentMode('COD')" class="text-[#D48B80] focus:ring-[#D48B80]">
-                <div>
-                  <div class="text-xs font-bold text-[#181514]">Pago Contra-reembolso</div>
-                  <div class="text-[11px] text-stone-500">Pagas en efectivo al recibir en puerta</div>
-                </div>
-              </label>
-              <label class="flex items-center gap-3 p-4 rounded-xl border border-stone-300 bg-white hover:border-emerald-500 cursor-pointer transition shadow-sm" id="labelCard">
-                <input type="radio" name="paymentMethod" value="CARD" onchange="togglePaymentMode('CARD')" class="text-emerald-600 focus:ring-emerald-500">
-                <div>
-                  <div class="text-xs font-bold text-emerald-700">Tarjeta / Revolut Pay (Recomendado)</div>
-                  <div class="text-[11px] text-emerald-600 font-semibold">✨ 5% dto. extra + Despacho Prioritario</div>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <div class="pt-4">
-            <button type="submit" class="btn-shimmer w-full bg-rose-gradient text-white py-5 px-8 rounded-2xl font-black text-sm md:text-base tracking-wider uppercase shadow-xl shadow-[#D48B80]/40 hover:scale-[1.01] hover:shadow-2xl transition duration-300 flex items-center justify-center gap-2.5">
-              <i data-lucide="check-circle-2" class="w-5 h-5"></i>
-              <span id="submitOrderBtnText">CONFIRMAR MI PEDIDO CON PAGO SEGURO</span>
-            </button>
-            <p class="text-center text-[11px] text-stone-400 mt-2.5">
-              Al confirmar, tu pedido se transmite de inmediato a preparación en nuestro almacén logístico de Madrid.
-            </p>
-          </div>
-
-        </form>
-
-        <!-- Order Success State -->
-        <div id="orderSuccess" class="hidden text-center py-10 space-y-5">
-          <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">
-            <i data-lucide="check" class="w-10 h-10"></i>
-          </div>
-          <h4 class="font-serif-luxury text-3xl font-black text-[#181514]">¡Pedido Confirmado con Éxito!</h4>
-          <p class="text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
-            Hemos transmitido tu orden a <strong>Dropea Logistics</strong> y el mensajero te contactará antes de la entrega en 24/48h.
-          </p>
-          
-          <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-emerald-900 text-xs space-y-2 max-w-md mx-auto shadow-sm text-left">
-            <div class="flex items-center justify-between font-bold">
-              <span>📦 Código de Envío Dropea:</span>
-              <span id="orderSuccessCodeDisplay" class="font-mono text-emerald-800">KIV-849201-ES</span>
-            </div>
-            <div id="codSuccessInfo" class="text-[11px] text-emerald-800 border-t border-emerald-200/60 pt-2 space-y-1">
-              <div class="flex items-center gap-2 font-bold">
-                <i data-lucide="mail-check" class="w-4 h-4 text-emerald-600"></i>
-                <span>Factura digital y Notificación de Envío despachadas a tu correo.</span>
-              </div>
-              <div class="text-[10.5px] text-stone-600 leading-relaxed pl-6">
-                🔒 Tu pedido oficial ha sido asignado a nuestro centro logístico en Madrid para empaquetado prioritario y entrega directa en mano en 24/48h laborables.
-              </div>
-            </div>
-
-            <!-- Post-Order Referral Pass -->
-            <div class="border-t border-emerald-200/70 pt-3 space-y-2">
-              <div class="flex items-center gap-1.5 font-bold text-purple-900 text-xs">
-                <i data-lucide="gift" class="w-4 h-4 text-purple-700"></i>
-                <span>Tu Pase de Invitación Club Amigas Activo:</span>
-              </div>
-              <p class="text-[11px] text-stone-600">
-                Comparte tu enlace con tus amigas. Ellas reciben <strong>1x Bote de Parches GRATIS</strong> y tú un <strong>Vale de 15€</strong>:
-              </p>
-              <div class="flex items-center gap-2 bg-white p-2 rounded-xl border border-purple-200">
-                <input id="postOrderAmigaUrl" readonly value="https://kivaneli.es/?ref=KIV-AMIGA-VIP" class="text-xs font-mono text-purple-900 flex-1 truncate bg-transparent outline-none">
-                <button type="button" onclick="copyPostOrderAmigaUrl()" class="text-xs bg-purple-700 text-white px-3 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition">Copiar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="pt-3">
-            <button onclick="openSocialModal()" class="bg-[#181514] text-amber-300 px-6 py-3 rounded-2xl font-bold text-xs hover:bg-[#D48B80] hover:text-white transition flex items-center justify-center gap-2 mx-auto shadow-lg">
-              <i data-lucide="gift" class="w-4 h-4 text-amber-400"></i>
-              <span>Comenta en TikTok / Instagram & Gana un Vale de 5€ Extra</span>
-            </button>
-          </div>
-        </div>
-
+      <!-- Quick Checkout Direct Callout -->
+      <div class="text-center pt-6">
+        <a href="checkout.html" class="inline-flex items-center gap-2 text-xs font-bold text-stone-600 hover:text-[#B86B60] uppercase tracking-wider underline">
+          <i data-lucide="truck" class="w-4 h-4 text-emerald-600"></i>
+          <span>O tramitar directamente tu pedido con pago contra-reembolso</span>
+        </a>
       </div>
 
     </div>
@@ -1599,7 +961,7 @@
           Preguntas Frecuentes
         </h2>
         <p class="text-stone-600 text-sm">
-          Todo lo que necesitas saber antes de recibir tu ritual en casa.
+          Todo lo que necesitas saber antes de recibir tu pedido en casa.
         </p>
       </div>
 
@@ -1610,27 +972,17 @@
             <i data-lucide="chevron-down" class="w-4 h-4 text-stone-400 group-open:rotate-180 transition"></i>
           </summary>
           <p class="text-xs text-stone-600 pt-3 leading-relaxed border-t border-stone-100 mt-3">
-            Abonas cómodamente en efectivo cuando el repartidor llegue a tu domicilio. También puedes pagar con tarjeta o Revolut Pay con un 5% de descuento adicional.
+            Abonas cómodamente en efectivo cuando el repartidor de GLS llegue a tu domicilio. También dispones de opción de pago con tarjeta en el checkout con un 5% de descuento extra.
           </p>
         </details>
 
         <details class="glass-panel p-5 rounded-2xl border border-stone-200 group">
           <summary class="font-serif-luxury font-bold text-sm text-[#181514] cursor-pointer flex items-center justify-between list-none">
-            <span>¿En cuánto tiempo veré los resultados?</span>
+            <span>¿Es apto para uso diario en hombres y mujeres?</span>
             <i data-lucide="chevron-down" class="w-4 h-4 text-stone-400 group-open:rotate-180 transition"></i>
           </summary>
           <p class="text-xs text-stone-600 pt-3 leading-relaxed border-t border-stone-100 mt-3">
-            La suavidad en la piel es perceptible desde el primer masaje gracias a las sales exfoliantes de textura boticaria. Para una reducción visible de la queratosis folicular y piel de fresa, se recomienda el uso constante durante 7 a 14 días.
-          </p>
-        </details>
-
-        <details class="glass-panel p-5 rounded-2xl border border-stone-200 group">
-          <summary class="font-serif-luxury font-bold text-sm text-[#181514] cursor-pointer flex items-center justify-between list-none">
-            <span>¿Es apto para pieles sensibles?</span>
-            <i data-lucide="chevron-down" class="w-4 h-4 text-stone-400 group-open:rotate-180 transition"></i>
-          </summary>
-          <p class="text-xs text-stone-600 pt-3 leading-relaxed border-t border-stone-100 mt-3">
-            Sí. La formulación de ADEUS™ incorpora Centella Asiática y aceite de Espino Amarillo, activos conocidos por sus propiedades calmantes, reparadoras y antiinflamatorias.
+            Sí. Las formulaciones de KIVANELI están pensadas como rituales unisex de autocuidado y belleza diaria, aptos para todo tipo de pieles.
           </p>
         </details>
 
@@ -1640,14 +992,14 @@
             <i data-lucide="chevron-down" class="w-4 h-4 text-stone-400 group-open:rotate-180 transition"></i>
           </summary>
           <p class="text-xs text-stone-600 pt-3 leading-relaxed border-t border-stone-100 mt-3">
-            Los pedidos se despachan desde nuestro almacén en Madrid y se entregan mediante mensajería urgente en 24/48 horas laborables en toda la península.
+            Los pedidos se procesan desde nuestro centro logístico central en Madrid y se entregan mediante mensajería urgente en 24/48 horas laborables en toda la península.
           </p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- 🏛️ 9. COMPREHENSIVE LUXURY FOOTER & LEGAL MODALS -->
+  <!-- 🏛️ 9. COMPREHENSIVE LUXURY FOOTER -->
   <footer class="w-full bg-[#181514] text-stone-400 pt-16 pb-12 text-xs border-t border-[#D48B80]/20 relative z-10 block">
     <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
@@ -1661,48 +1013,35 @@
             </span>
           </div>
           <p class="text-stone-500 leading-relaxed text-[11px]">
-            Maison Botanique de Cuidado Personal & Belleza de Alta Gama. Fórmulas de autor y despacho logístico directo.
+            Maison Botanique de Cuidado Personal & Belleza de Alta Gama. Fórmulas de autor y despacho logístico directo Dropea España.
           </p>
-          <div class="flex items-center gap-3 pt-2 text-stone-400">
-            <a href="https://instagram.com" target="_blank" title="Instagram @kivaneli.es" class="w-10 h-10 rounded-2xl bg-stone-900 border border-stone-800 flex items-center justify-center hover:text-white hover:bg-gradient-to-tr hover:from-purple-600 hover:to-pink-500 transition shadow-md">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            </a>
-            <a href="https://tiktok.com" target="_blank" title="TikTok @kivanelicosmetics" class="w-10 h-10 rounded-2xl bg-stone-900 border border-stone-800 flex items-center justify-center hover:text-white hover:bg-black transition shadow-md">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/></svg>
-            </a>
-            <a href="https://facebook.com" target="_blank" title="Facebook Kivaneli" class="w-10 h-10 rounded-2xl bg-stone-900 border border-stone-800 flex items-center justify-center hover:text-white hover:bg-[#1877F2] transition shadow-md">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M9 8H6v4h3v12h5V12h3.642L18 8h-4V6.333C14 5.374 14.5 5 15.5 5H18V0h-3.808C10.592 0 9 1.592 9 4.615V8z"/></svg>
-            </a>
-          </div>
         </div>
 
         <div class="space-y-3">
           <h4 class="text-white font-serif-luxury font-bold text-xs uppercase tracking-wider">Navegación</h4>
           <ul class="space-y-2 text-[11px]">
-            <li><a href="#formula" class="hover:text-[#D48B80] transition">Fórmula Magistral</a></li>
-            <li><a href="#transformacion" class="hover:text-[#D48B80] transition">Resultados Demostrados</a></li>
-            <li><a href="#ritual-escalones" class="hover:text-[#D48B80] transition">El Ritual en Video</a></li>
-            <li><a href="#amigas" class="hover:text-[#D48B80] transition text-[#B86B60] font-bold">Club Invita a una Amiga (Generar Enlace)</a></li>
-            <li><a href="blog" class="hover:text-[#D48B80] transition text-emerald-400 font-semibold">Biblioteca / Blog SEO</a></li>
-            <li><a href="#packs" class="hover:text-[#D48B80] transition">Ofertas & Packs</a></li>
+            <li><a href="index.html" class="hover:text-[#D48B80] transition">Página Principal</a></li>
+            <li><a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-bold">Catálogo Completo</a></li>
+            <li><a href="producto.html?slug=adeus-crema-corporal" class="hover:text-[#D48B80] transition">Crema ADEUS™ (300 g)</a></li>
+            <li><a href="producto.html?slug=kormesic-parches-colageno" class="hover:text-[#D48B80] transition">Parches Körmesic™ (60u)</a></li>
+            <li><a href="producto.html?slug=jabon-acido-kojico" class="hover:text-[#D48B80] transition">Jabón Kójico (100g)</a></li>
+            <li><a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca / Blog</a></li>
           </ul>
         </div>
 
         <div class="space-y-3">
-          <h4 class="text-white font-serif-luxury font-bold text-xs uppercase tracking-wider">Legal & Transparencia</h4>
+          <h4 class="text-white font-serif-luxury font-bold text-xs uppercase tracking-wider">Garantía & Confianza</h4>
           <ul class="space-y-2 text-[11px]">
-            <li><button onclick="openLegalModal('aviso')" class="hover:text-[#D48B80] transition text-left">Aviso Legal Corporativo</button></li>
-            <li><button onclick="openLegalModal('envios')" class="hover:text-[#D48B80] transition text-left text-emerald-400 font-semibold flex items-center gap-1"><i data-lucide="truck" class="w-3 h-3"></i> Envíos & Seguimiento 24/48h</button></li>
-            <li><button onclick="openLegalModal('pagos')" class="hover:text-[#D48B80] transition text-left">Pagos Seguros (COD, Tarjeta & Revolut)</button></li>
-            <li><button onclick="openLegalModal('garantia')" class="hover:text-[#D48B80] transition text-left">Garantía Boticaria & Devoluciones (Art. 103)</button></li>
-            <li><button onclick="openLegalModal('privacidad')" class="hover:text-[#D48B80] transition text-left">Política de Privacidad (RGPD)</button></li>
-            <li><button onclick="openLegalModal('cookies')" class="hover:text-[#D48B80] transition text-left">Política de Cookies</button></li>
+            <li><span class="text-emerald-400 font-semibold flex items-center gap-1"><i data-lucide="truck" class="w-3 h-3"></i> Envíos 24/48h GLS Express</span></li>
+            <li><span class="text-stone-400">Pago Contra-reembolso en Puerta</span></li>
+            <li><span class="text-stone-400">Stock Oficial Almacén Madrid</span></li>
+            <li><span class="text-stone-400">Fórmulas Dermatológicamente Testadas</span></li>
           </ul>
         </div>
 
         <div class="space-y-3">
           <h4 class="text-white font-serif-luxury font-bold text-xs uppercase tracking-wider">Club Privado Kivaneli</h4>
-          <p class="text-stone-500 text-[11px]">Suscríbete y recibe un 10% de descuento directo en tu pedido:</p>
+          <p class="text-stone-500 text-[11px]">Suscríbete para recibir un 10% de descuento directo:</p>
           <form onsubmit="handleNewsletterSubmit(event)" class="space-y-2">
             <input type="email" id="newsletterEmail" required placeholder="tu-email@ejemplo.com" class="w-full px-3 py-2 rounded-lg bg-stone-900 border border-stone-800 text-xs text-white outline-none focus:border-[#D48B80]">
             <button type="submit" class="w-full bg-rose-gradient text-white py-2 rounded-lg font-bold text-xs hover:opacity-90 transition">Unirme al Club VIP</button>
@@ -1726,154 +1065,8 @@
     </div>
   </footer>
 
-  <!-- 👯 MODAL CLUB AMIGAS -->
-  <div id="amigaModalBackdrop" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4">
-    <div class="bg-white rounded-[2.5rem] p-6 md:p-9 max-w-lg w-full space-y-5 shadow-2xl relative border border-stone-200 text-center">
-      <button onclick="closeAmigaModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200 transition">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
-      <div class="w-16 h-16 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center mx-auto shadow-inner">
-        <i data-lucide="gift" class="w-8 h-8"></i>
-      </div>
-      <div class="space-y-1.5">
-        <h3 class="font-serif-luxury font-black text-2xl text-[#181514]">¡Tu Pase Especial de Regalo Está Listo!</h3>
-        <p class="text-xs text-stone-600 leading-relaxed">
-          Comparte tu enlace exclusivo con tu amiga. Cuando ella realice su pedido, recibirá <strong>1x Bote de Parches Körmesic GRATIS</strong> y tú un <strong>Vale de 15€</strong>.
-        </p>
-      </div>
-      <div class="bg-purple-50 p-3.5 rounded-2xl border border-purple-200 space-y-2 text-left">
-        <span class="text-[10px] font-bold text-purple-900 uppercase tracking-wider">Tu Enlace de Invitación Único:</span>
-        <div class="flex items-center justify-between gap-2 bg-white px-3 py-2 rounded-xl border border-purple-200">
-          <input id="amigaShareUrlInput" readonly value="https://kivaneli.es/?ref=KIV-AMIGA-VIP" class="text-xs font-mono text-purple-900 bg-transparent outline-none flex-1 truncate">
-          <button onclick="copyAmigaUrl()" class="text-xs bg-purple-700 text-white px-3 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition">Copiar</button>
-        </div>
-      </div>
-      <div class="space-y-2.5 pt-2">
-        <button onclick="shareAmigaWhatsApp()" class="w-full bg-[#25D366] text-white py-3.5 rounded-2xl font-extrabold text-xs tracking-wider uppercase flex items-center justify-center gap-2 hover:bg-[#20ba59] transition shadow-lg">
-          <i data-lucide="message-circle" class="w-5 h-5"></i>
-          <span>COMPARTIR POR WHATSAPP CON MI AMIGA</span>
-        </button>
-        <p class="text-[11px] text-emerald-700 bg-emerald-50 p-2.5 rounded-xl border border-emerald-200 font-semibold">
-          ✨ ¡Te hemos enviado tu Regalo de Bienvenida: Set Extra de Mascarillas GRATIS + 10% DTO para tu siguiente compra!
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- 💬 POST-PURCHASE SOCIAL MODAL -->
-  <div id="socialModalBackdrop" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4">
-    <div class="bg-white rounded-[2.5rem] p-6 md:p-9 max-w-md w-full space-y-5 shadow-2xl relative border border-stone-200 text-center">
-      <button onclick="closeSocialModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200 transition">
-        <i data-lucide="x" class="w-4 h-4"></i>
-      </button>
-      <div class="w-16 h-16 rounded-full bg-rose-100 text-[#B86B60] flex items-center justify-center mx-auto shadow-inner">
-        <i data-lucide="sparkles" class="w-8 h-8"></i>
-      </div>
-      <div class="space-y-2">
-        <h3 class="font-serif-luxury font-black text-2xl text-[#181514]">¡Gana un Vale de 5€ Extra!</h3>
-        <p class="text-xs text-stone-600 leading-relaxed">
-          Síguenos en nuestras redes oficiales y deja un comentario sobre tu experiencia para participar en el sorteo mensual de la <strong>Kivaneli Beauty Box</strong>:
-        </p>
-      </div>
-      <div class="space-y-2.5 pt-1">
-        <a href="https://tiktok.com" target="_blank" class="w-full bg-[#000000] text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 hover:opacity-90 transition shadow-md">
-          <i data-lucide="music-2" class="w-4 h-4"></i>
-          <span>Comentar en TikTok (@kivanelicosmetics)</span>
-        </a>
-        <a href="https://instagram.com" target="_blank" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 hover:opacity-90 transition shadow-md">
-          <i data-lucide="instagram" class="w-4 h-4"></i>
-          <span>Seguir en Instagram (@kivaneli.oficial)</span>
-        </a>
-        <a href="https://facebook.com" target="_blank" class="w-full bg-[#1877F2] text-white py-3 rounded-xl font-bold text-xs flex items-center justify-center gap-2 hover:opacity-90 transition shadow-md">
-          <i data-lucide="facebook" class="w-4 h-4"></i>
-          <span>Página Oficial de Facebook</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 📜 LEGAL MODAL -->
-  <div id="legalModalBackdrop" class="fixed inset-0 z-50 modal-backdrop hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-2xl w-full max-h-[85vh] overflow-y-auto space-y-4 shadow-2xl relative border border-stone-200">
-      <div class="flex items-center justify-between pb-3 border-b border-stone-200">
-        <h3 id="modalTitle" class="font-serif-luxury font-bold text-xl text-[#181514]">Documento Legal</h3>
-        <button onclick="closeLegalModal()" class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200 transition">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
-      </div>
-      <div id="modalContent" class="text-xs text-stone-600 leading-relaxed space-y-3"></div>
-      <div class="pt-4 border-t border-stone-200 flex justify-end">
-        <button onclick="closeLegalModal()" class="bg-[#181514] text-white px-6 py-2 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition">Entendido y Cerrar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Non-Blocking Deferred Scripts Loaded at Bottom of Body -->
-  <script src="https://unpkg.com/lucide@latest" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
-
+  <script src="assets/js/kivaneli-cart.js"></script>
   <script>
-    // Native IntersectionObserver for Ultra-Smooth Zero-Lag Scroll Reveals
-    document.addEventListener('DOMContentLoaded', () => {
-      const reveals = document.querySelectorAll('.reveal-on-scroll');
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.1 });
-        reveals.forEach(el => observer.observe(el));
-
-        // Lazy load below-the-fold videos only when visible
-        const lazyVideos = document.querySelectorAll('video.lazy-video');
-        const videoObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              const v = entry.target;
-              if (v.dataset.src) {
-                v.src = v.dataset.src;
-                v.load();
-                v.play().catch(() => {});
-              }
-              videoObserver.unobserve(v);
-            }
-          });
-        }, { rootMargin: '200px' });
-        lazyVideos.forEach(v => videoObserver.observe(v));
-      } else {
-        reveals.forEach(el => el.classList.add('is-visible'));
-      }
-
-      // Initialize hero video playback
-      const heroV = document.getElementById('heroVideo');
-      if (heroV) {
-        heroV.play().catch(() => {});
-      }
-
-      if (window.lucide) lucide.createIcons();
-    });
-
-    window.addEventListener('load', () => {
-      if (window.lucide) lucide.createIcons();
-    });
-
-    // Supabase Live Client Initialization
-    let db = null;
-    function getSupabase() {
-      if (!db && window.supabase) {
-        db = window.supabase.createClient(
-          'https://sntsizmdhttpilbauxuv.supabase.co',
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNudHNpem1kaHR0cGlsYmF1eHV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4MTQxNTIsImV4cCI6MjEwMzM5MDE1Mn0.TJl9UpYcdS9zSG6koa8SQ7zLpmn0A1MTekpHQ9DUkBw'
-        );
-      }
-      return db;
-    }
-
-    
     function toggleMobileMenu() {
       const drawer = document.getElementById('mobileDrawer');
       const hamburger = document.getElementById('hamburgerIcon');
@@ -1890,420 +1083,50 @@
       if (window.lucide) lucide.createIcons();
     }
 
-    // Global State
-    let currentPackName = "Pack Dúo 2x ADEUS™ 300g (Tratamiento Continuo 600g)";
-    let currentPackBasePrice = 49.95;
-    let currentPaymentMode = "COD";
-    let currentCoupon = "";
-    let generatedAmigaCode = "KIV-AMIGA-VIP";
-    let selectedUpsells = {
-      kormesic: false,
-      kojic: false
-    };
-
-    function trackCustomPixel(eventName, params = {}) {
-      if (window.fbq) fbq('track', eventName, params);
-      if (window.ttq) ttq.track(eventName, params);
-    }
-
-    function toggleUpsell(key, price) {
-      const checkbox = document.getElementById(key === 'kormesic' ? 'upsellKormesic' : 'upsellKojic');
-      selectedUpsells[key] = checkbox ? checkbox.checked : false;
-      updateCheckoutPriceDisplay();
-    }
-
-    function selectPack(name, price) {
-      currentPackName = name;
-      currentPackBasePrice = price;
-
-      const c1 = document.getElementById('cardOption1x');
-      const c2 = document.getElementById('cardOption2x');
-      const d1 = document.getElementById('radio1xDot');
-      const d2 = document.getElementById('radio2xDot');
-
-      if (name.includes('1x')) {
-        if (c1) { c1.classList.add('border-[#D48B80]', 'shadow-xl'); c1.classList.remove('border-stone-200'); }
-        if (c2) { c2.classList.remove('border-[#D48B80]', 'shadow-2xl'); c2.classList.add('border-stone-200'); }
-        if (d1) d1.classList.remove('hidden');
-        if (d2) d2.classList.add('hidden');
-      } else {
-        if (c2) { c2.classList.add('border-[#D48B80]', 'shadow-2xl'); c2.classList.remove('border-stone-200'); }
-        if (c1) { c1.classList.remove('border-[#D48B80]', 'shadow-xl'); c1.classList.add('border-stone-200'); }
-        if (d2) d2.classList.remove('hidden');
-        if (d1) d1.classList.add('hidden');
-      }
-
-      updateCheckoutPriceDisplay();
-      document.getElementById('checkoutContainer').scrollIntoView({ behavior: 'smooth' });
-      trackCustomPixel('AddToCart', { content_name: name, value: price, currency: 'EUR' });
-    }
-
-    function togglePaymentMode(mode) {
-      currentPaymentMode = mode;
-      const lCOD = document.getElementById('labelCOD');
-      const lCard = document.getElementById('labelCard');
-      if (mode === 'CARD') {
-        lCard.classList.add('border-emerald-500', 'bg-emerald-50/50');
-        lCard.classList.remove('border-stone-300', 'bg-white');
-        lCOD.classList.remove('border-[#D48B80]', 'bg-[#F6EAE7]/60');
-        lCOD.classList.add('border-stone-300', 'bg-white');
-      } else {
-        lCOD.classList.add('border-[#D48B80]', 'bg-[#F6EAE7]/60');
-        lCOD.classList.remove('border-stone-300', 'bg-white');
-        lCard.classList.remove('border-emerald-500', 'bg-emerald-50/50');
-        lCard.classList.add('border-stone-300', 'bg-white');
-      }
-      updateCheckoutPriceDisplay();
-    }
-
-    function updateCheckoutPriceDisplay() {
-      let totalPrice = currentPackBasePrice;
-      let summaryItems = currentPackName;
-
-      if (selectedUpsells.kormesic) {
-        totalPrice += 14.95;
-        summaryItems += ' + Parches Körmesic';
-      }
-      if (selectedUpsells.kojic) {
-        totalPrice += 12.95;
-        summaryItems += ' + Jabón Kójico';
-      }
-
-      let finalPrice = Math.max(0, totalPrice - activeCouponDiscountAmt);
-      if (currentPaymentMode === 'CARD') finalPrice *= 0.95; // 5% extra discount for online card payment
-
-      document.getElementById('selectedPackText').innerText = summaryItems;
-      document.getElementById('selectedPackPrice').innerText = finalPrice.toFixed(2).replace('.', ',') + ' €';
-      document.getElementById('submitOrderBtnText').innerText = currentPaymentMode === 'CARD' ? 'PAGAR CON TARJETA / REVOLUT PAY' : 'CONFIRMAR PEDIDO CONTRA-REEMBOLSO';
-    }
-
     function toggleAudio(videoId, iconId) {
-      const v = document.getElementById(videoId);
+      const vid = document.getElementById(videoId);
       const icon = document.getElementById(iconId);
-      if (v.muted) {
-        v.muted = false;
+      if (vid.muted) {
+        vid.muted = false;
         icon.setAttribute('data-lucide', 'volume-2');
       } else {
-        v.muted = true;
+        vid.muted = true;
         icon.setAttribute('data-lucide', 'volume-x');
       }
       if (window.lucide) lucide.createIcons();
     }
 
-    async function handleAmigaSubmit(e) {
+    function handleAmigaGenerate(e) {
       e.preventDefault();
-      const name = document.getElementById('referralUserName').value.trim() || 'AMIGA';
-      const phone = document.getElementById('referralUserPhone').value.trim();
-      const email = document.getElementById('referralUserEmail').value.trim();
-      
-      const cleanName = name.toUpperCase().replace(/[^A-Z0-9]/g, '');
-      generatedAmigaCode = 'KIV-' + cleanName + '-VIP';
-      const shareUrl = 'https://kivaneli.es/?ref=' + generatedAmigaCode;
-      
-      try {
-        const client = getSupabase();
-        if (client) {
-          await client.from('referrals').upsert({
-            referrer_name: name,
-            referrer_phone: phone,
-            referrer_email: email,
-            referral_code: generatedAmigaCode
-          }, { onConflict: 'referrer_email' });
-        }
-      } catch(err) {
-        console.error('Referral save error:', err);
-      }
-
-      document.getElementById('amigaShareUrlInput').value = shareUrl;
-      openAmigaModal();
-      if (window.confetti) confetti({ particleCount: 70, spread: 60, origin: { y: 0.7 } });
-      trackCustomPixel('Lead', { referral_code: generatedAmigaCode });
-    }
-
-    function openAmigaModal() {
-      const modal = document.getElementById('amigaModalBackdrop');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeAmigaModal() {
-      const modal = document.getElementById('amigaModalBackdrop');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function openSocialModal() {
-      const modal = document.getElementById('socialModalBackdrop');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeSocialModal() {
-      const modal = document.getElementById('socialModalBackdrop');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function copyPostOrderAmigaUrl() {
-      const input = document.getElementById('postOrderAmigaUrl');
-      if (input) {
-        navigator.clipboard.writeText(input.value).then(() => {
-          alert('¡Enlace de Club Amigas copiado! Compártelo por WhatsApp con tus amigas.');
-          if (window.confetti) confetti({ particleCount: 50, spread: 60 });
-        });
-      }
-    }
-
-    function copyAmigaUrl() {
-      const input = document.getElementById('amigaShareUrlInput');
-      navigator.clipboard.writeText(input.value).then(() => {
-        alert('¡Enlace de invitación copiado! Envíalo a tu amiga para que reciba sus parches gratis.');
-        if (window.confetti) confetti({ particleCount: 40, spread: 50 });
-      });
-    }
-
-    function shareAmigaWhatsApp() {
-      const input = document.getElementById('amigaShareUrlInput').value;
-      const text = encodeURIComponent('¡Hola! Te comparto mi pase exclusivo de Kivaneli para conseguir el tratamiento Piel de Seda ADEUS™ y un bote de Parches de Colágeno GRATIS en tu primer pedido: ' + input);
-      window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
-    }
-
-    let activeCouponDiscountAmt = 0;
-
-    async function applyCoupon() {
-      const code = document.getElementById('couponInput').value.trim().toUpperCase();
-      const msg = document.getElementById('couponMessage');
-      if (!code) return;
-
-      try {
-        const client = getSupabase();
-        if (client) {
-          const { data, error } = await client.rpc('verify_coupon', {
-            input_code: code,
-            order_amount: currentPackBasePrice
-          });
-
-          if (error || !data || !data.valid) {
-            msg.innerText = (data && data.message) || '❌ Código no válido o caducado.';
-            msg.className = 'text-xs font-bold text-rose-600';
-            msg.classList.remove('hidden');
-            currentCoupon = '';
-            activeCouponDiscountAmt = 0;
-            updateCheckoutPriceDisplay();
-            return;
-          }
-
-          currentCoupon = data.code;
-          if (data.discount_type === 'PERCENTAGE') {
-            activeCouponDiscountAmt = (currentPackBasePrice * (data.discount_value / 100));
-          } else if (data.discount_type === 'FIXED') {
-            activeCouponDiscountAmt = data.discount_value;
-          } else {
-            activeCouponDiscountAmt = 0;
-          }
-
-          msg.innerText = data.message;
-          msg.className = 'text-xs font-bold text-emerald-700';
-          msg.classList.remove('hidden');
-          updateCheckoutPriceDisplay();
-          if (window.confetti) confetti({ particleCount: 50, spread: 60 });
-        }
-      } catch (err) {
-        console.error('Coupon verify error:', err);
-      }
+      document.getElementById('amigaLinkBox').classList.remove('hidden');
+      alert('✨ ¡Enlace generado! Comparte tu enlace con tus amigas para recibir 15€ de regalo.');
     }
 
     function handleNewsletterSubmit(e) {
       e.preventDefault();
       document.getElementById('newsletterSuccess').classList.remove('hidden');
-      document.getElementById('couponInput').value = 'SEDA10';
-      applyCoupon();
+      alert('✨ ¡Bienvenida al Club Kivaneli! Usa el cupón SEDA10 en tu pedido.');
     }
 
-    async function handleOrderSubmit(e) {
-      e.preventDefault();
-      
-      const custName = document.getElementById('custName').value.trim();
-      const custPhone = document.getElementById('custPhone').value.trim();
-      const custEmail = document.getElementById('custEmail').value.trim();
-      const custAddress = document.getElementById('custAddress').value.trim();
-      const custZip = document.getElementById('custZip').value.trim();
-      const custCity = document.getElementById('custCity').value.trim();
-      
-      let finalPrice = currentPackBasePrice;
-      if (currentCoupon === 'SEDA10') finalPrice *= 0.90;
-      if (currentPaymentMode === 'CARD') finalPrice *= 0.95;
+    // Scroll Reveal Observer & Lazy Video Loader
+    document.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            const lazyVideos = entry.target.querySelectorAll('.lazy-video');
+            lazyVideos.forEach(v => {
+              if (v.dataset.src && !v.src) {
+                v.src = v.dataset.src;
+                v.play().catch(() => {});
+              }
+            });
+          }
+        });
+      }, { threshold: 0.15 });
 
-      const orderNumber = 'KIV-' + Math.floor(100000 + Math.random() * 900000) + '-ES';
-      document.getElementById('orderSuccessCodeDisplay').innerText = orderNumber;
-      const cleanCustName = custName.toUpperCase().replace(/[^A-Z0-9]/g, '').substring(0, 10) || 'AMIGA';
-      const postOrderCode = 'KIV-' + cleanCustName + '-VIP';
-      const postOrderShareUrl = 'https://kivaneli.es/?ref=' + postOrderCode;
-      const postOrderInput = document.getElementById('postOrderAmigaUrl');
-      if (postOrderInput) postOrderInput.value = postOrderShareUrl;
-
-      // 1. Submit directly to Dropea Logistics API endpoint
-      const orderPayload = {
-        order_number: orderNumber,
-        customer_name: custName,
-        customer_phone: custPhone,
-        customer_email: custEmail,
-        customer_address: custAddress,
-        customer_zip: custZip,
-        customer_city: custCity,
-        pack_selected: currentPackName,
-        items_count: currentPackName.includes('3x') ? 3 : (currentPackName.includes('2x') ? 2 : 1),
-        total_amount: parseFloat(finalPrice.toFixed(2)),
-        payment_method: currentPaymentMode,
-        coupon_applied: currentCoupon || null,
-        referral_code_used: currentCoupon.startsWith('KIV-') ? currentCoupon : null
-      };
-
-      try {
-        fetch('/api/dropea-order', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderPayload)
-        }).catch(err => console.log('Dropea API fetch background note:', err));
-      } catch(apiErr) {
-        console.error('Dropea API call error:', apiErr);
-      }
-
-      // 2. Dual-redundancy: Client-side Supabase record
-      try {
-        const client = getSupabase();
-        if (client) {
-          await client.from('orders').insert({
-            order_number: orderNumber,
-            customer_name: custName,
-            customer_phone: custPhone,
-            customer_email: custEmail,
-            customer_address: custAddress,
-            customer_zip: custZip,
-            customer_city: custCity,
-            pack_selected: currentPackName,
-            total_amount: finalPrice.toFixed(2),
-            payment_method: currentPaymentMode,
-            payment_status: currentPaymentMode === 'CARD' ? 'PAID' : 'PENDING_COD',
-            shipping_status: 'PENDING_DROPEA_SYNC',
-            coupon_applied: currentCoupon || null,
-            referral_code_used: currentCoupon.startsWith('KIV-') ? currentCoupon : null
-          });
-
-          // Gated Digital Access Registration (Secure Tokens)
-          const isInstantUnlock = currentPaymentMode === 'CARD';
-          const token = 'kiv_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
-
-          await client.from('customer_digital_access').insert({
-            order_id: orderNumber,
-            customer_email: custEmail,
-            customer_name: custName,
-            access_token: token,
-            payment_method: currentPaymentMode,
-            payment_status: isInstantUnlock ? 'PAID' : 'PENDING_COD',
-            is_unlocked: isInstantUnlock,
-            unlocked_at: isInstantUnlock ? new Date().toISOString() : null
-          });
-
-          await client.from('customers').upsert({
-            name: custName,
-            email: custEmail,
-            phone: custPhone,
-            address: custAddress,
-            city: custCity,
-            zip: custZip,
-            total_spent: finalPrice.toFixed(2)
-          }, { onConflict: 'email' });
-        }
-      } catch(err) {
-        console.error('Order insert error:', err);
-      }
-
-      document.getElementById('orderForm').classList.add('hidden');
-      document.getElementById('orderSuccess').classList.remove('hidden');
-      if (window.lucide) lucide.createIcons();
-      
-      if (window.confetti) confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
-      document.getElementById('checkoutContainer').scrollIntoView({ behavior: 'smooth' });
-      
-      trackCustomPixel('Purchase', { value: finalPrice, currency: 'EUR', order_id: orderNumber });
-    }
-
-    const legalContents = {
-      aviso: {
-        title: 'Aviso Legal e Información Corporativa',
-        body: `<div class="space-y-3 text-xs leading-relaxed text-stone-700">
-          <p><strong>1. Identificación y Titularidad:</strong> En cumplimiento del artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), se informa de que este sitio web es operado bajo la marca comercial <strong>KIVANELI Maison Botanique</strong>, con infraestructura de alojamiento gestionada en Arsys y CDN perimetral de alta velocidad en Vercel.</p>
-          <p><strong>2. Contacto Corporativo:</strong> Para cualquier consulta técnica, comercial o legal, nuestro canal oficial de soporte es <a href="mailto:beauty@kivaneli.es" class="text-[#D48B80] underline font-bold">beauty@kivaneli.es</a> y <a href="mailto:soporte@kivaneli.es" class="text-[#D48B80] underline font-bold">soporte@kivaneli.es</a>.</p>
-          <p><strong>3. Propiedad Intelectual:</strong> Todos los contenidos, fórmulas descritas, nombres de rituales, fichas técnicas, diseños, isotipos y material multimedia son propiedad exclusiva de Kivaneli. Queda terminantemente prohibida su reproducción o distribución sin consentimiento expreso por escrito.</p>
-        </div>`
-      },
-      envios: {
-        title: 'Política de Envíos, Despacho y Seguimiento en Tiempo Real',
-        body: `<div class="space-y-3 text-xs leading-relaxed text-stone-700">
-          <p><strong>1. Plazos de Entrega:</strong> Todos los pedidos confirmados antes de las 14:00h se preparan y despachan en el mismo día laborable desde nuestro centro logístico central en Madrid. El plazo de entrega en España peninsular es de <strong>24 a 48 horas laborables</strong> (Baleares 48 a 72h).</p>
-          <p><strong>2. Código de Seguimiento (Tracking ID):</strong> En cuanto tu paquete sale del centro de clasificación de <strong>Dropea Logistics / Correos Express / GLS</strong>, recibirás de forma automática un <strong>SMS y un correo electrónico</strong> con tu número de seguimiento único y el enlace para monitorear en tiempo real la ubicación de tu mensajero.</p>
-          <p><strong>3. Intentos de Entrega:</strong> Si no te encuentras en tu domicilio al momento de la visita, el repartidor realizará un segundo intento de entrega sin coste adicional y te contactará por teléfono para coordinar una franja horaria conveniente.</p>
-          <p><strong>4. Gastos de Envío:</strong> El envío es 100% gratuito para todos los pedidos realizados en la península ibérica.</p>
-        </div>`
-      },
-      pagos: {
-        title: 'Métodos de Pago Seguros: Contra-reembolso, Tarjeta y Revolut Pay',
-        body: `<div class="space-y-3 text-xs leading-relaxed text-stone-700">
-          <p><strong>1. Pago Contra-reembolso en Efectivo (Sin Tarjeta):</strong> Permite pagar el importe exacto en metálico directamente al repartidor en la puerta de tu domicilio en el momento de la recepción. No requiere introducir datos bancarios por internet.</p>
-          <p><strong>2. Pago Inmediato con Tarjeta y Revolut Pay (Recomendado):</strong> Aceptamos tarjetas de débito/crédito Visa, Mastercard y el sistema ultrarrápido <strong>Revolut Pay</strong> con autenticación 3D Secure y cifrado SSL de 256 bits de nivel bancario. Al elegir este método, obtienes un <strong>5% de descuento extra</strong> y prioridad en cola de empaquetado.</p>
-          <p><strong>3. Seguridad y Confidencialidad:</strong> KIVANELI nunca almacena los números completos de tarjeta de crédito. Todas las transacciones se procesan mediante pasarelas auditadas conforme a la normativa europea PSD2.</p>
-        </div>`
-      },
-      garantia: {
-        title: 'Garantía de Calidad Boticaria, Desistimiento y Devoluciones',
-        body: `<div class="space-y-3 text-xs leading-relaxed text-stone-700">
-          <p><strong>1. Garantía de Acompañamiento en el Ritual (30 Días):</strong> En KIVANELI garantizamos la autenticidad botánica y máxima pureza de nuestros ingredientes. Ponemos a tu disposición asesoría personalizada por email y las guías de uso paso a paso durante los 30 días del ritual para asegurar una aplicación idónea y resultados visibles.</p>
-          <p><strong>2. Derecho Legal de Desistimiento (14 Días):</strong> Conforme a la legislación vigente (Real Decreto Legislativo 1/2007, TRLGDCU), el consumidor dispone de un plazo de 14 días naturales para desistir de su compra.</p>
-          <p><strong>3. Excepción Legal de Productos Cosméticos por Higiene y Salud:</strong> En estricto cumplimiento del <strong>Artículo 103, apartado e) del TRLGDCU</strong>, <em>«el derecho de desistimiento no será aplicable a bienes precintados que no sean aptos para ser devueltos por razones de protección de la salud o de higiene y que hayan sido desprecintados tras la entrega»</em>. Por consiguiente, los tarros de crema, jabones o parches cosméticos que hayan sido abiertos, manipulados o utilizados no admiten devolución ni reembolso.</p>
-          <p><strong>4. Incidencias de Transporte o Producto Dañado:</strong> Si el producto llegase dañado o con rotura provocada por el transporte, KIVANELI enviará una reposición nueva de inmediato y sin coste alguno tras recibir fotografía de la incidencia en las primeras 48h tras la entrega.</p>
-        </div>`
-      },
-      privacidad: {
-        title: 'Política de Privacidad y Protección de Datos (RGPD / LOPDGDD)',
-        body: `<div class="space-y-3 text-xs leading-relaxed text-stone-700">
-          <p><strong>1. Responsable del Tratamiento:</strong> KIVANELI Maison Botanique, con dirección de contacto en <a href="mailto:beauty@kivaneli.es" class="text-[#D48B80] underline">beauty@kivaneli.es</a>.</p>
-          <p><strong>2. Finalidad del Tratamiento:</strong> Los datos personales recabados (nombre, teléfono, dirección y correo electrónico) se utilizan exclusivamente para procesar la orden de compra, coordinar la entrega física con el transportista logístico y remitir las guías digitales y facturación.</p>
-          <p><strong>3. Conservación y No Cesión:</strong> Los datos se conservan únicamente durante el tiempo legal exigido para obligaciones contables y fiscales. KIVANELI no comercializa ni cede bases de datos a terceros con fines publicitarios ajenos a nuestro servicio.</p>
-          <p><strong>4. Derechos ARCO+:</strong> Puedes ejercitar tus derechos de acceso, rectificación, supresión, limitación y oposición en cualquier momento enviando un correo a <a href="mailto:beauty@kivaneli.es" class="text-[#D48B80] underline">beauty@kivaneli.es</a> con el asunto "Protección de Datos".</p>
-        </div>`
-      },
-      cookies: {
-        title: 'Política de Cookies y Almacenamiento Local',
-        body: `<div class="space-y-3 text-xs leading-relaxed text-stone-700">
-          <p><strong>1. ¿Qué son las Cookies?:</strong> Son pequeños ficheros que se descargan en tu navegador para permitir que la web funcione de manera eficiente y recuerde tus preferencias de compra.</p>
-          <p><strong>2. Tipos de Cookies que Utilizamos:</strong></p>
-          <ul class="list-disc pl-5 space-y-1">
-            <li><strong>Cookies Técnicas / Esenciales:</strong> Necesarias para recordar el pack seleccionado en la cesta, el cupón aplicado y el estado del formulario de pedido.</li>
-            <li><strong>Cookies Analíticas Anónimas:</strong> Permiten monitorizar tiempos de respuesta y rendimiento de los servidores CDN en Vercel para optimizar la velocidad de carga.</li>
-          </ul>
-          <p><strong>3. Gestión y Desactivación:</strong> Puedes configurar o bloquear las cookies en cualquier momento desde las opciones de configuración y privacidad de tu navegador web.</p>
-        </div>`
-      }
-    };
-
-    function openLegalModal(key) {
-      const modal = document.getElementById('legalModalBackdrop');
-      const title = document.getElementById('modalTitle');
-      const content = document.getElementById('modalContent');
-      if (legalContents[key]) {
-        title.innerText = legalContents[key].title;
-        content.innerHTML = legalContents[key].body;
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-      }
-    }
-
-    function closeLegalModal() {
-      const modal = document.getElementById('legalModalBackdrop');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    });
   </script>
 </body>
 </html>
