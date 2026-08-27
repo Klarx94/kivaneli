@@ -5,3 +5,4 @@ extracted_frames/
 __pycache__/
 setup_db.js
 *.txt
+.vercel
