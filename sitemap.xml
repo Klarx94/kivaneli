@@ -10,6 +10,30 @@
     <loc>https://klarx94.github.io/kivaneli/blog.html</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://klarx94.github.io/kivaneli/articulo-piel-de-fresa.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://klarx94.github.io/kivaneli/articulo-centella-espino.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://klarx94.github.io/kivaneli/articulo-parches-ojeras.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://klarx94.github.io/kivaneli/articulo-acido-kojico.html</loc>
+    <lastmod>2026-08-27</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>
