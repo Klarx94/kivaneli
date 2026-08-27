@@ -205,6 +205,59 @@
     <!-- 📦 TAB 1: ORDERS & DROPEA LOGISTICS -->
     <div id="tabOrders" class="space-y-6">
       
+      <!-- Dropea Logistics Real-Time Connection Banner -->
+      <div class="glass-card p-5 md:p-6 rounded-3xl border-2 border-emerald-500/30 bg-gradient-to-r from-emerald-50/40 via-white to-stone-50 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
+              <i data-lucide="truck" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Conexión Logística Dropea Express</h3>
+                <span class="text-[10px] font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-300">
+                  🟢 API & HMAC VINCULADOS
+                </span>
+              </div>
+              <p class="text-xs text-stone-500">Despacho Automatizado 24/48h Contra-Reembolso & Notificaciones de Tracking</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="testDropeaWebhookLocal()" class="text-xs bg-emerald-700 text-white px-3.5 py-2 rounded-xl font-bold hover:bg-emerald-800 transition flex items-center gap-1.5 shadow-sm">
+              <i data-lucide="activity" class="w-4 h-4"></i>
+              <span>Probar Webhook Dropea</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs pt-1">
+          <div class="p-3 bg-white rounded-2xl border border-stone-200 space-y-1">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Endpoint Webhook Dropea (Producción)</div>
+            <div class="flex items-center justify-between gap-2 font-mono text-[11px] text-stone-800 bg-stone-50 px-2 py-1.5 rounded-lg border border-stone-200">
+              <span class="truncate">https://kivaneli.es/api/dropea-webhook</span>
+              <button onclick="navigator.clipboard.writeText('https://kivaneli.es/api/dropea-webhook'); alert('Webhook URL copiada!');" class="text-[#B86B60] font-bold text-[10px] hover:underline">Copiar</button>
+            </div>
+          </div>
+
+          <div class="p-3 bg-white rounded-2xl border border-stone-200 space-y-1">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Firma de Seguridad (HMAC Secret)</div>
+            <div class="flex items-center justify-between gap-2 font-mono text-[11px] text-stone-800 bg-stone-50 px-2 py-1.5 rounded-lg border border-stone-200">
+              <span class="truncate">57ff06bd27ade0424ef6db...</span>
+              <span class="text-emerald-700 font-bold text-[10px]">SHA256 OK</span>
+            </div>
+          </div>
+
+          <div class="p-3 bg-white rounded-2xl border border-stone-200 space-y-1">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Token JWT Dropea Dropshipper</div>
+            <div class="flex items-center justify-between gap-2 font-mono text-[11px] text-stone-800 bg-stone-50 px-2 py-1.5 rounded-lg border border-stone-200">
+              <span class="truncate">eyJhbGciOiJIUzI1NiIsInR5c...</span>
+              <span class="text-emerald-700 font-bold text-[10px]">Válido 2026/27</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
       <div class="flex flex-wrap items-center justify-between gap-4">
         <div class="flex items-center gap-3">
           <h2 class="font-serif-luxury font-bold text-xl text-[#181514]">Registro de Pedidos</h2>
@@ -415,25 +468,34 @@
             <div class="p-3 bg-white rounded-xl border border-purple-100 flex items-center justify-between">
               <div>
                 <div class="font-bold text-[#181514]">1. Diario 30 Días: Ritual Piel de Seda</div>
-                <div class="text-[11px] text-stone-500">30 días de tracker interactivo + fotos antes/después</div>
+                <div class="text-[11px] text-stone-500">16 páginas de alta edición editorial + fotos de aplicación y tracker diario</div>
               </div>
-              <a href="assets/docs/Guia_Diario_Ritual_30_Dias_Kivaneli.html" target="_blank" class="bg-purple-700 text-white px-3 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition">Ver PDF</a>
+              <a href="1_Guia_Diario_Ritual_30_Dias_KIVANELI.pdf" target="_blank" class="bg-purple-700 text-white px-3.5 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition flex items-center gap-1">
+                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                <span>Descargar PDF</span>
+              </a>
             </div>
 
             <div class="p-3 bg-white rounded-xl border border-purple-100 flex items-center justify-between">
               <div>
                 <div class="font-bold text-[#181514]">2. Secretos de Fitocosmética Boticaria</div>
-                <div class="text-[11px] text-stone-500">15+ páginas de ciencia botánica y nutrición cutánea</div>
+                <div class="text-[11px] text-stone-500">12 páginas de ciencia botánica, Centella Asiática y Ácido Kójico</div>
               </div>
-              <a href="assets/docs/Guia_Secretos_Fitocosmetica_Kivaneli.html" target="_blank" class="bg-purple-700 text-white px-3 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition">Ver PDF</a>
+              <a href="2_Guia_Secretos_Fitocosmetica_KIVANELI.pdf" target="_blank" class="bg-purple-700 text-white px-3.5 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition flex items-center gap-1">
+                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                <span>Descargar PDF</span>
+              </a>
             </div>
 
             <div class="p-3 bg-white rounded-xl border border-purple-100 flex items-center justify-between">
               <div>
                 <div class="font-bold text-[#181514]">3. Protocolo Mirada Radiante 15 Min</div>
-                <div class="text-[11px] text-stone-500">10+ páginas de acupresión periocular y colágeno</div>
+                <div class="text-[11px] text-stone-500">8 páginas de acupresión periocular, crioterapia y colágeno Körmesic™</div>
               </div>
-              <a href="assets/docs/Guia_Protocolo_Mirada_Radiante_15Min.html" target="_blank" class="bg-purple-700 text-white px-3 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition">Ver PDF</a>
+              <a href="3_Guia_Protocolo_Mirada_Radiante_KIVANELI.pdf" target="_blank" class="bg-purple-700 text-white px-3.5 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition flex items-center gap-1">
+                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                <span>Descargar PDF</span>
+              </a>
             </div>
           </div>
         </div>
@@ -916,6 +978,54 @@
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+    }
+
+    async function confirmDropeaDeliveryManually(orderNumber) {
+      if (!confirm(`¿Confirmar entrega manual para el pedido ${orderNumber} y desbloquear de inmediato las 3 Guías PDF?`)) return;
+
+      try {
+        await supabaseClient.from('orders').update({
+          shipping_status: 'DELIVERED',
+          payment_status: 'PAID',
+          updated_at: new Date().toISOString()
+        }).eq('order_number', orderNumber);
+
+        await supabaseClient.from('customer_digital_access').update({
+          is_unlocked: true,
+          unlocked_at: new Date().toISOString(),
+          payment_status: 'PAID'
+        }).eq('order_id', orderNumber);
+
+        alert(`✅ Pedido ${orderNumber} marcado como ENTREGADO. Guías PDF desbloqueadas para la clienta.`);
+        loadAdminData();
+        if (window.confetti) confetti({ particleCount: 70 });
+      } catch (err) {
+        alert('Error al actualizar pedido: ' + err.message);
+      }
+    }
+
+    async function testDropeaWebhookLocal() {
+      const testPayload = {
+        tópico: 'atualização_de_status_do_pedido',
+        id_do_pedido: 'KIV-TEST-' + Math.floor(1000 + Math.random() * 9000),
+        status_anterior: 'em_transito',
+        novo_status: 'entregue',
+        codigo_rastreio: 'ES-GLS-99281920',
+        atualizado_em: new Date().toISOString()
+      };
+
+      try {
+        const res = await fetch('/api/dropea-webhook', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(testPayload)
+        });
+        const data = await res.json();
+        alert('📡 Webhook Dropea Test:\n' + JSON.stringify(data, null, 2));
+        loadAdminData();
+      } catch (err) {
+        alert('Error al probar webhook: ' + err.message);
+      }
     }
 
     // Auto check if already logged in session

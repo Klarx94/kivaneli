@@ -1921,6 +1921,34 @@
       const postOrderInput = document.getElementById('postOrderAmigaUrl');
       if (postOrderInput) postOrderInput.value = postOrderShareUrl;
 
+      // 1. Submit directly to Dropea Logistics API endpoint
+      const orderPayload = {
+        order_number: orderNumber,
+        customer_name: custName,
+        customer_phone: custPhone,
+        customer_email: custEmail,
+        customer_address: custAddress,
+        customer_zip: custZip,
+        customer_city: custCity,
+        pack_selected: currentPackName,
+        items_count: currentPackName.includes('3x') ? 3 : (currentPackName.includes('2x') ? 2 : 1),
+        total_amount: parseFloat(finalPrice.toFixed(2)),
+        payment_method: currentPaymentMode,
+        coupon_applied: currentCoupon || null,
+        referral_code_used: currentCoupon.startsWith('KIV-') ? currentCoupon : null
+      };
+
+      try {
+        fetch('/api/dropea-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderPayload)
+        }).catch(err => console.log('Dropea API fetch background note:', err));
+      } catch(apiErr) {
+        console.error('Dropea API call error:', apiErr);
+      }
+
+      // 2. Dual-redundancy: Client-side Supabase record
       try {
         const client = getSupabase();
         if (client) {
@@ -1935,8 +1963,8 @@
             pack_selected: currentPackName,
             total_amount: finalPrice.toFixed(2),
             payment_method: currentPaymentMode,
-            payment_status: currentPaymentMode === 'CARD' ? 'PAID' : 'PENDING',
-            shipping_status: 'IN_PREPARATION',
+            payment_status: currentPaymentMode === 'CARD' ? 'PAID' : 'PENDING_COD',
+            shipping_status: 'PENDING_DROPEA_SYNC',
             coupon_applied: currentCoupon || null,
             referral_code_used: currentCoupon.startsWith('KIV-') ? currentCoupon : null
           });
