@@ -66,8 +66,6 @@
 </head>
 <body class="selection:bg-[#D48B80] selection:text-white min-h-screen flex flex-col justify-between">
 
-  
-
   <!-- 👑 Clean Unified Luxury Floating Header -->
   <div class="fixed top-4 inset-x-0 z-40 px-4 sm:px-6 pointer-events-none">
     <div class="max-w-4xl mx-auto pointer-events-auto">
@@ -87,6 +85,10 @@
           <a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-black">Catálogo</a>
           <a href="index.html#formula" class="hover:text-[#D48B80] transition">El Ritual</a>
           <a href="index.html#testimonios" class="hover:text-[#D48B80] transition">Opiniones</a>
+          <a href="index.html#amigas" class="hover:text-[#D48B80] transition text-purple-800 font-extrabold flex items-center gap-1">
+            <i data-lucide="gift" class="w-3.5 h-3.5 text-purple-600"></i>
+            Club Amigas
+          </a>
           <a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca</a>
         </nav>
 
@@ -114,6 +116,7 @@
           <a href="catalogo.html" class="p-2.5 rounded-xl bg-purple-50 text-purple-900 font-extrabold">Catálogo Completo</a>
           <a href="index.html#formula" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">El Ritual</a>
           <a href="index.html#testimonios" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Opiniones Reales</a>
+          <a href="index.html#amigas" class="p-2.5 rounded-xl bg-purple-50 text-purple-800 font-extrabold">Club Amigas (Doble Regalo)</a>
           <a href="blog.html" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Biblioteca Boticaria</a>
         </nav>
       </div>
@@ -121,129 +124,152 @@
   </div>
 
   <!-- 🛍️ MAIN PRODUCT STAGE -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-36 sm:pt-40 pb-12 flex-1 w-full">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-36 sm:pt-40 pb-12 flex-1 w-full space-y-16">
     
-    <!-- Breadcrumb -->
-    <nav class="flex items-center gap-2 text-xs text-stone-500 mb-6 font-medium">
-      <a href="index.html" class="hover:text-[#D48B80]">Inicio</a>
-      <span>/</span>
-      <a href="catalogo.html" class="hover:text-[#D48B80]">Catálogo</a>
-      <span>/</span>
-      <span id="breadcrumbCategory" class="text-[#B86B60] font-bold">Cuidado Personal</span>
-      <span>/</span>
-      <span id="breadcrumbTitle" class="text-[#181514] truncate font-semibold">Producto</span>
-    </nav>
+    <!-- Product Grid Column -->
+    <div>
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-stone-500 mb-6 font-medium">
+        <a href="index.html" class="hover:text-[#D48B80]">Inicio</a>
+        <span>/</span>
+        <a href="catalogo.html" class="hover:text-[#D48B80]">Catálogo</a>
+        <span>/</span>
+        <span id="breadcrumbCategory" class="text-[#B86B60] font-bold">Cuidado Personal</span>
+        <span>/</span>
+        <span id="breadcrumbTitle" class="text-[#181514] truncate font-semibold">Producto</span>
+      </nav>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-      
-      <!-- 📸 Left Column: Product Gallery -->
-      <div class="lg:col-span-6 space-y-4">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         
-        <!-- Main Hero Image Showcase -->
-        <div class="glass-card rounded-[2rem] p-3 sm:p-4 overflow-hidden border border-[#D48B80]/30 shadow-lg relative bg-white">
-          <span id="productBadge" class="absolute top-5 left-5 z-10 text-[10px] font-extrabold uppercase tracking-wider bg-emerald-700 text-white px-3 py-1 rounded-full shadow-md flex items-center gap-1.5">
-            <i data-lucide="check-circle" class="w-3 h-3"></i>
-            <span>STOCK EN MADRID (ENTREGA 24/48H)</span>
-          </span>
-
-          <img id="mainProductImage" src="assets/images/adeus_jar_botanicals.jpg" alt="Producto Kivaneli" class="w-full h-[340px] sm:h-[420px] object-cover rounded-2xl transition duration-500" loading="eager" decoding="async">
-        </div>
-
-        <!-- Gallery Thumbnails -->
-        <div id="galleryThumbnails" class="grid grid-cols-4 gap-2.5"></div>
-
-        <!-- Trust Badges Row -->
-        <div class="grid grid-cols-3 gap-2.5 pt-2">
-          <div class="p-3 bg-white rounded-2xl border border-stone-200 text-center space-y-1">
-            <i data-lucide="truck" class="w-4 h-4 text-[#B86B60] mx-auto"></i>
-            <div class="text-[11px] font-bold text-[#181514]">Envío 24/48h</div>
-            <div class="text-[9.5px] text-stone-500">GLS Express</div>
-          </div>
-          <div class="p-3 bg-white rounded-2xl border border-stone-200 text-center space-y-1">
-            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 mx-auto"></i>
-            <div class="text-[11px] font-bold text-[#181514]">Pago en Mano</div>
-            <div class="text-[9.5px] text-stone-500">Contra Reembolso</div>
-          </div>
-          <div class="p-3 bg-white rounded-2xl border border-stone-200 text-center space-y-1">
-            <i data-lucide="sparkles" class="w-4 h-4 text-purple-600 mx-auto"></i>
-            <div class="text-[11px] font-bold text-[#181514]">Fórmula Unisex</div>
-            <div class="text-[9.5px] text-stone-500">Belleza de Autor</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- 🏷️ Right Column: Product Purchasing Engine -->
-      <div class="lg:col-span-6 space-y-5">
-        
-        <!-- Title & Claims -->
-        <div class="space-y-2">
-          <div class="flex items-center gap-2">
-            <span id="productCategoryTag" class="text-[10px] font-extrabold uppercase tracking-widest text-[#B86B60] bg-[#F6EAE7] px-3 py-0.5 rounded-full">
-              Cuidado Personal de Autor
-            </span>
-            <div class="flex items-center text-amber-400 text-xs">
-              ★★★★★ <span class="text-stone-500 text-[11px] ml-1 font-semibold">(1.420 valoraciones)</span>
-            </div>
-          </div>
-
-          <h1 id="productTitle" class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514] leading-tight">
-            ADEUS™ Crema Corporal Masaje & Seda (300 g)
-          </h1>
-
-          <p id="productSubtitle" class="text-xs sm:text-sm text-stone-600 leading-relaxed font-medium">
-            Fórmula de uso diario y masaje para hidratación profunda, suavidad duradera y efecto aterciopelado.
-          </p>
-        </div>
-
-        <!-- Pricing Card -->
-        <div class="p-4 sm:p-5 rounded-2xl bg-white border-2 border-[#D48B80]/30 shadow-xs space-y-2.5">
-          <div class="flex items-baseline justify-between">
-            <div class="flex items-baseline gap-2.5">
-              <span id="productPriceDisplay" class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514] whitespace-nowrap">29,90&nbsp;€</span>
-              <span id="productRegularPriceDisplay" class="text-xs sm:text-sm text-stone-400 line-through whitespace-nowrap">39,90&nbsp;€</span>
-            </div>
-            <span id="productDiscountPill" class="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Ahorras 10,00&nbsp;€</span>
-          </div>
-          <div class="text-[11px] text-stone-500 flex items-center gap-1.5">
-            <i data-lucide="package-check" class="w-3.5 h-3.5 text-emerald-600"></i>
-            <span>Envío Gratuito 24/48h · Despacho directo desde almacén de Madrid</span>
-          </div>
-        </div>
-
-        <!-- 🎁 1-Click Impulse Cross-Sells for this PDP -->
-        <div id="pdpCrossSellsBox" class="space-y-2 bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200">
-          <div class="text-[10.5px] font-black uppercase tracking-wider text-[#B86B60] flex items-center gap-1.5">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D48B80]"></i>
-            <span>Completa tu rutina con descuento exclusivo:</span>
-          </div>
-          <div id="pdpCrossSellsList" class="space-y-2"></div>
-        </div>
-
-        <!-- Action Buttons -->
-        <div class="space-y-2.5 pt-1">
+        <!-- 📸 Left Column: Product Gallery -->
+        <div class="lg:col-span-6 space-y-4">
           
-          <button id="btnAddToCart" onclick="addProductToCart()" class="w-full bg-[#181514] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#D48B80] transition shadow-sm flex items-center justify-center gap-2">
-            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-            <span>Añadir a la Cesta</span>
-          </button>
+          <!-- Main Hero Image Showcase -->
+          <div class="glass-card rounded-[2rem] p-3 sm:p-4 overflow-hidden border border-[#D48B80]/30 shadow-lg relative bg-white">
+            <span id="productBadge" class="absolute top-5 left-5 z-10 text-[10px] font-extrabold uppercase tracking-wider bg-emerald-700 text-white px-3 py-1 rounded-full shadow-md flex items-center gap-1.5">
+              <i data-lucide="check-circle" class="w-3 h-3"></i>
+              <span>STOCK EN MADRID (ENTREGA 24/48H)</span>
+            </span>
 
-          <button id="btnBuyNow" onclick="buyProductNow()" class="btn-shimmer w-full bg-rose-gradient text-white py-4 rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-[#D48B80]/30 hover:scale-[1.01] transition flex items-center justify-center gap-2">
-            <i data-lucide="truck" class="w-4 h-4 text-amber-300"></i>
-            <span>COMPRAR AHORA (PAGO EN PUERTA)</span>
-          </button>
+            <img id="mainProductImage" src="assets/images/adeus_jar_botanicals.jpg" alt="Producto Kivaneli" class="w-full h-[340px] sm:h-[420px] object-cover rounded-2xl transition duration-500" loading="eager" decoding="async">
+          </div>
+
+          <!-- Gallery Thumbnails -->
+          <div id="galleryThumbnails" class="grid grid-cols-4 gap-2.5"></div>
+
+          <!-- Trust Badges Row -->
+          <div class="grid grid-cols-3 gap-2.5 pt-2">
+            <div class="p-3 bg-white rounded-2xl border border-stone-200 text-center space-y-1">
+              <i data-lucide="truck" class="w-4 h-4 text-[#B86B60] mx-auto"></i>
+              <div class="text-[11px] font-bold text-[#181514]">Envío 24/48h</div>
+              <div class="text-[9.5px] text-stone-500">GLS Express</div>
+            </div>
+            <div class="p-3 bg-white rounded-2xl border border-stone-200 text-center space-y-1">
+              <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 mx-auto"></i>
+              <div class="text-[11px] font-bold text-[#181514]">Pago en Mano</div>
+              <div class="text-[9.5px] text-stone-500">Contra Reembolso</div>
+            </div>
+            <div class="p-3 bg-white rounded-2xl border border-stone-200 text-center space-y-1">
+              <i data-lucide="sparkles" class="w-4 h-4 text-purple-600 mx-auto"></i>
+              <div class="text-[11px] font-bold text-[#181514]">Fórmula Unisex</div>
+              <div class="text-[9.5px] text-stone-500">Belleza de Autor</div>
+            </div>
+          </div>
 
         </div>
 
-        <!-- Key Specs Accordion / Bullet List -->
-        <div class="space-y-2 pt-1 text-xs text-stone-700">
-          <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> <span id="specPoint1">Apto para uso diario en hombres y mujeres (Unisex)</span></div>
-          <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> <span id="specPoint2">Textura suave de rápida absorción sin residuo graso</span></div>
-          <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> <span id="specPoint3">Pago seguro contra-reembolso en efectivo al cartero</span></div>
+        <!-- 🏷️ Right Column: Product Purchasing Engine -->
+        <div class="lg:col-span-6 space-y-5">
+          
+          <!-- Title & Claims -->
+          <div class="space-y-2">
+            <div class="flex items-center gap-2">
+              <span id="productCategoryTag" class="text-[10px] font-extrabold uppercase tracking-widest text-[#B86B60] bg-[#F6EAE7] px-3 py-0.5 rounded-full">
+                Cuidado Personal de Autor
+              </span>
+              <div class="flex items-center text-amber-400 text-xs">
+                ★★★★★ <span class="text-stone-500 text-[11px] ml-1 font-semibold">(1.420 valoraciones)</span>
+              </div>
+            </div>
+
+            <h1 id="productTitle" class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514] leading-tight">
+              ADEUS™ Crema Corporal Masaje & Seda (300 g)
+            </h1>
+
+            <p id="productSubtitle" class="text-xs sm:text-sm text-stone-600 leading-relaxed font-medium">
+              Fórmula de uso diario y masaje para hidratación profunda, suavidad duradera y efecto aterciopelado.
+            </p>
+          </div>
+
+          <!-- Pricing Card -->
+          <div class="p-4 sm:p-5 rounded-2xl bg-white border-2 border-[#D48B80]/30 shadow-xs space-y-2.5">
+            <div class="flex items-baseline justify-between">
+              <div class="flex items-baseline gap-2.5">
+                <span id="productPriceDisplay" class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514] whitespace-nowrap">29,90&nbsp;€</span>
+                <span id="productRegularPriceDisplay" class="text-xs sm:text-sm text-stone-400 line-through whitespace-nowrap">39,90&nbsp;€</span>
+              </div>
+              <span id="productDiscountPill" class="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Ahorras 10,00&nbsp;€</span>
+            </div>
+            <div class="text-[11px] text-stone-500 flex items-center gap-1.5">
+              <i data-lucide="package-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <span>Envío Gratuito 24/48h · Despacho directo desde almacén de Madrid</span>
+            </div>
+          </div>
+
+          <!-- 🎁 1-Click Impulse Cross-Sells for this PDP -->
+          <div id="pdpCrossSellsBox" class="space-y-2 bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200">
+            <div class="text-[10.5px] font-black uppercase tracking-wider text-[#B86B60] flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D48B80]"></i>
+              <span>Completa tu rutina con descuento exclusivo:</span>
+            </div>
+            <div id="pdpCrossSellsList" class="space-y-2"></div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="space-y-2.5 pt-1">
+            
+            <button id="btnAddToCart" onclick="addProductToCart()" class="w-full bg-[#181514] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#D48B80] transition shadow-sm flex items-center justify-center gap-2">
+              <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+              <span>Añadir a la Cesta</span>
+            </button>
+
+            <button id="btnBuyNow" onclick="buyProductNow()" class="btn-shimmer w-full bg-rose-gradient text-white py-4 rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-[#D48B80]/30 hover:scale-[1.01] transition flex items-center justify-center gap-2">
+              <i data-lucide="truck" class="w-4 h-4 text-amber-300"></i>
+              <span>COMPRAR AHORA (PAGO EN PUERTA)</span>
+            </button>
+
+          </div>
+
+          <!-- Key Specs Accordion / Bullet List -->
+          <div class="space-y-2 pt-1 text-xs text-stone-700">
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> <span id="specPoint1">Apto para uso diario en hombres y mujeres (Unisex)</span></div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> <span id="specPoint2">Textura suave de rápida absorción sin residuo graso</span></div>
+            <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> <span id="specPoint3">Pago seguro contra-reembolso en efectivo al cartero</span></div>
+          </div>
+
         </div>
 
       </div>
+    </div>
 
+    <!-- 🔄 BOTTOM SECTION: QUICK SWITCH TO OTHER PRODUCTS -->
+    <div class="pt-12 border-t border-[#D48B80]/20 space-y-6">
+      <div class="flex items-end justify-between gap-4">
+        <div class="space-y-1">
+          <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#B86B60] bg-[#F6EAE7] px-3 py-0.5 rounded-full inline-block">
+            EXPLORA LA COLECCIÓN
+          </span>
+          <h2 class="font-serif-luxury font-black text-xl sm:text-2xl text-[#181514]">
+            Descubre los Otros Rituales de la Maison
+          </h2>
+        </div>
+        <a href="catalogo.html" class="text-xs font-bold text-stone-600 hover:text-[#B86B60] underline whitespace-nowrap">
+          Ver Catálogo Completo →
+        </a>
+      </div>
+
+      <!-- Quick Switch Cards Grid -->
+      <div id="quickSwitchGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-5"></div>
     </div>
 
   </main>
@@ -271,6 +297,7 @@
             <li><a href="index.html" class="hover:text-[#D48B80] transition">Página Principal</a></li>
             <li><a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-bold">Catálogo Completo</a></li>
             <li><a href="index.html#formula" class="hover:text-[#D48B80] transition">El Ritual</a></li>
+            <li><a href="index.html#testimonios" class="hover:text-[#D48B80] transition">Opiniones Reales</a></li>
             <li><a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca / Blog</a></li>
           </ul>
         </div>
@@ -338,13 +365,13 @@
         badge: '60 UDS (30 PARES) · HIDROGEL',
         images: [
           'assets/images/kormesic_jar_purple.jpg',
-          'assets/images/kormesic_first_frame.jpg',
-          'assets/images/video2_first_frame.jpg',
-          'assets/images/ugc_reviewer_lucia.jpg'
+          'assets/images/kormesic_patch_face.jpg',
+          'assets/images/ugc_patches_eyes.jpg',
+          'assets/images/ugc_patches_box.jpg'
         ],
         spec1: 'Bote con 60 parches de hidrogel para 30 aplicaciones relajantes',
         spec2: 'Efecto frío y drenaje en bolsas y ojeras en solo 15 minutos',
-        spec3: 'Fórmula hidratante con colágeno marino y keratina soluble'
+        spec3: 'Fórmula hidratante con colágeno soluble y suero calmante'
       },
       'jabon-acido-kojico': {
         title: 'Jabón Clarificante Ácido Kójico + Hialurónico (100 g Kiss Beauty)',
@@ -432,7 +459,7 @@
             <img src="${other.image}" alt="${other.name}" class="w-10 h-10 rounded-lg object-cover flex-shrink-0">
             <div class="flex-1 min-w-0">
               <div class="font-serif-luxury font-bold text-xs text-[#181514] truncate">${other.shortName}</div>
-              <div class="text-[10.5px] text-[#B86B60] font-bold">+${other.impulsePrice.toFixed(2).replace('.', ',')}&nbsp;€ <span class="text-[9px] text-stone-400 line-through whitespace-nowrap">${other.price.toFixed(2).replace('.', ',')}&nbsp;€</span></div>
+              <div class="text-[10.5px] text-[#B86B60] font-bold whitespace-nowrap">+${other.impulsePrice.toFixed(2).replace('.', ',')}&nbsp;€ <span class="text-[9px] text-stone-400 line-through">${other.price.toFixed(2).replace('.', ',')}&nbsp;€</span></div>
             </div>
             <button onclick="window.kivaneliCart.addItem('${other.id}', 1, true)" class="bg-[#181514] text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs whitespace-nowrap">
               <i data-lucide="plus" class="w-3 h-3"></i>
@@ -440,6 +467,48 @@
             </button>
           </div>
         `).join('');
+      }
+
+      // Render Quick Switch Cards to other products
+      const quickSwitchGrid = document.getElementById('quickSwitchGrid');
+      const otherAllProducts = Object.values(PDP_DETAILS).filter((_, idx) => Object.keys(PDP_DETAILS)[idx] !== currentSlug);
+      const otherSlugs = Object.keys(PDP_DETAILS).filter(s => s !== currentSlug);
+
+      if (quickSwitchGrid) {
+        quickSwitchGrid.innerHTML = otherSlugs.map(slug => {
+          const item = PDP_DETAILS[slug];
+          return `
+            <div class="glass-card rounded-2xl p-4 border border-stone-200 hover:border-[#D48B80] transition flex flex-col justify-between space-y-3 bg-white shadow-xs group">
+              <div class="space-y-2">
+                <a href="producto.html?slug=${slug}" class="block relative rounded-xl overflow-hidden aspect-video bg-stone-100">
+                  <img src="${item.images[0]}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+                  <span class="absolute top-2 left-2 text-[9px] font-extrabold uppercase tracking-wider bg-[#181514]/80 text-white px-2 py-0.5 rounded-full backdrop-blur-xs">
+                    ${item.category}
+                  </span>
+                </a>
+                <div>
+                  <h4 class="font-serif-luxury font-bold text-xs sm:text-sm text-[#181514] line-clamp-1 group-hover:text-[#B86B60] transition">
+                    <a href="producto.html?slug=${slug}">${item.title}</a>
+                  </h4>
+                  <div class="flex items-baseline gap-2 mt-1">
+                    <span class="font-serif-luxury font-black text-sm text-[#181514] whitespace-nowrap">${item.price.toFixed(2).replace('.', ',')}&nbsp;€</span>
+                    <span class="text-[10px] text-stone-400 line-through whitespace-nowrap">${item.regularPrice.toFixed(2).replace('.', ',')}&nbsp;€</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 pt-2 border-t border-stone-100">
+                <a href="producto.html?slug=${slug}" class="flex-1 bg-stone-100 text-stone-700 py-2 rounded-xl text-center font-bold text-[11px] hover:bg-stone-200 transition">
+                  Ver Ficha
+                </a>
+                <button onclick="window.kivaneliCart.addItem('${slug}', 1)" class="bg-[#181514] text-white px-3 py-2 rounded-xl font-bold text-[11px] hover:bg-[#D48B80] transition flex items-center justify-center gap-1 shadow-2xs whitespace-nowrap">
+                  <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                  <span>Añadir</span>
+                </button>
+              </div>
+            </div>
+          `;
+        }).join('');
       }
 
       if (window.lucide) lucide.createIcons();

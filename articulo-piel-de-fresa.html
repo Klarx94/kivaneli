@@ -23,36 +23,78 @@
 </head>
 <body class="selection:bg-[#D48B80] selection:text-white min-h-screen flex flex-col justify-between">
 
-  <!-- Header -->
-  <div class="fixed top-4 inset-x-0 z-50 px-4 sm:px-6 pointer-events-none">
-    <div class="max-w-5xl mx-auto space-y-2 pointer-events-auto">
-      <header class="bg-white/90 backdrop-blur-md rounded-full px-6 sm:px-8 py-3.5 flex items-center justify-between border border-[#D48B80]/25 shadow-xl transition-all duration-300">
-        <a href="index.html" class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif font-bold text-sm shadow-md">K</div>
-          <span class="font-serif text-lg sm:text-xl font-black tracking-[0.22em] text-[#181514]">
+    <!-- 👑 Clean Unified Luxury Floating Header -->
+  <div class="fixed top-4 inset-x-0 z-40 px-4 sm:px-6 pointer-events-none">
+    <div class="max-w-4xl mx-auto pointer-events-auto">
+      <header class="glass-floating-nav rounded-full px-5 sm:px-7 py-3 flex items-center justify-between transition-all duration-300 shadow-xl border border-[#D48B80]/25 bg-white/90 backdrop-blur-md">
+        
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-xs sm:text-sm shadow-xs group-hover:scale-105 transition duration-300">
+            K
+          </div>
+          <span class="font-serif-luxury text-base sm:text-lg font-black tracking-[0.2em] text-[#181514] leading-none">
             KIVANELI<span class="text-[#D48B80]">.</span>
           </span>
         </a>
 
-        <nav class="hidden lg:flex items-center gap-7 text-[11px] font-bold tracking-[0.18em] text-stone-700 uppercase">
-          <a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-black">Catálogo</a>
-          <a href="producto.html?slug=adeus-crema-corporal" class="hover:text-[#D48B80] transition">Crema ADEUS™</a>
+        <!-- Desktop Navigation (Clean, Elegant & Centered) -->
+        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-[11px] font-bold tracking-[0.16em] text-stone-700 uppercase">
+          <a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-black flex items-center gap-1">
+            <i data-lucide="grid" class="w-3.5 h-3.5 text-[#B86B60]"></i>
+            Catálogo
+          </a>
+          <a href="index.html#formula" class="hover:text-[#D48B80] transition">El Ritual</a>
+          <a href="index.html#testimonios" class="hover:text-[#D48B80] transition">Opiniones</a>
+          <a href="index.html#amigas" class="hover:text-[#D48B80] transition text-purple-800 font-extrabold flex items-center gap-1">
+            <i data-lucide="gift" class="w-3.5 h-3.5 text-purple-600"></i>
+            Club Amigas
+          </a>
           <a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca</a>
         </nav>
 
-        <div class="flex items-center gap-3">
-          <button onclick="window.kivaneliCart.openDrawer()" class="relative bg-[#181514] text-white px-4 py-2.5 rounded-full text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-2 shadow-md">
-            <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-300"></i>
+        <div class="flex items-center gap-2.5">
+          <!-- Cart Trigger -->
+          <button onclick="window.kivaneliCart.openDrawer()" class="relative bg-[#181514] text-white px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1.5 shadow-xs">
+            <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-amber-300"></i>
             <span class="hidden sm:inline">Cesta</span>
-            <span class="cart-badge-count absolute -top-1 -right-1 bg-[#D48B80] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
+            <span class="cart-badge-count absolute -top-1 -right-1 bg-[#D48B80] text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center border border-white hidden">0</span>
+          </button>
+
+          <!-- Mobile Hamburger Toggle Button -->
+          <button onclick="toggleMobileMenu()" id="mobileMenuBtn" aria-label="Abrir Menú" class="md:hidden w-8 h-8 rounded-full bg-stone-100/90 border border-stone-200 flex items-center justify-center text-stone-700 hover:text-[#B86B60] hover:bg-white transition shadow-xs">
+            <i data-lucide="menu" id="hamburgerIcon" class="w-4 h-4"></i>
+            <i data-lucide="x" id="closeMenuIcon" class="w-4 h-4 hidden"></i>
           </button>
         </div>
+
       </header>
+
+      <!-- 📱 MOBILE LUXURY GLASS DRAWER -->
+      <div id="mobileDrawer" class="hidden md:hidden glass-floating-nav rounded-3xl p-5 shadow-2xl border border-[#D48B80]/30 space-y-4 animate-in fade-in slide-in-from-top-2 duration-300 mt-2 bg-white/95">
+        <div class="flex items-center justify-between pb-2.5 border-b border-stone-200/80">
+          <div class="flex items-center gap-2">
+            <div class="w-6 h-6 rounded-full bg-rose-gradient text-white flex items-center justify-center font-serif-luxury font-bold text-xs">K</div>
+            <span class="font-serif-luxury font-bold text-xs text-[#181514] tracking-wider">MENÚ PRINCIPAL</span>
+          </div>
+          <button onclick="toggleMobileMenu()" class="w-6 h-6 rounded-full bg-stone-200/60 flex items-center justify-center text-stone-500 hover:bg-stone-200">
+            <i data-lucide="x" class="w-3 h-3"></i>
+          </button>
+        </div>
+
+        <nav class="grid grid-cols-1 gap-2 text-xs font-bold uppercase tracking-wider text-stone-700">
+          <a href="index.html" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Página Principal</a>
+          <a href="catalogo.html" class="p-2.5 rounded-xl bg-purple-50 text-purple-900 font-extrabold">Catálogo Completo</a>
+          <a href="index.html#formula" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">El Ritual</a>
+          <a href="index.html#testimonios" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Opiniones Reales</a>
+          <a href="index.html#amigas" class="p-2.5 rounded-xl bg-purple-50 text-purple-800 font-extrabold">Club Amigas (Doble Regalo)</a>
+          <a href="blog.html" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Biblioteca Boticaria</a>
+        </nav>
+      </div>
     </div>
   </div>
 
   <!-- Main Article Content -->
-  <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-32 pb-16 flex-1 w-full space-y-8">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-36 sm:pt-40 pb-16 flex-1 w-full space-y-8">
     
     <nav class="flex items-center gap-2 text-xs text-stone-500 font-medium">
       <a href="index.html" class="hover:text-[#D48B80]">Inicio</a>
@@ -109,7 +151,7 @@
           <div class="text-xs text-stone-500">Tarro generoso de uso diario · Envío 24/48h directo a tu puerta</div>
         </div>
         <button onclick="window.kivaneliCart.addItem('adeus-crema-corporal', 1)" class="btn-shimmer bg-rose-gradient text-white px-6 py-3 rounded-xl font-bold text-xs uppercase shadow-md whitespace-nowrap">
-          Añadir a la Cesta (29,90 €)
+          Añadir a la Cesta (29,90&nbsp;€)
         </button>
       </div>
     
@@ -176,5 +218,22 @@
   </footer>
 
   <script src="assets/js/kivaneli-cart.js"></script>
+  <script>
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      const hamburger = document.getElementById('hamburgerIcon');
+      const close = document.getElementById('closeMenuIcon');
+      if (drawer.classList.contains('hidden')) {
+        drawer.classList.remove('hidden');
+        hamburger.classList.add('hidden');
+        close.classList.remove('hidden');
+      } else {
+        drawer.classList.add('hidden');
+        hamburger.classList.remove('hidden');
+        close.classList.add('hidden');
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+  </script>
 </body>
 </html>

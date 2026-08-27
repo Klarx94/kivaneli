@@ -750,7 +750,184 @@
     </div>
   </section>
 
-  <!-- 👯 5. CLUB AMIGAS -->
+  <!-- 💬 5. OPINIONES REALES & VALORACIONES DE CLIENTAS -->
+  <section id="testimonios" class="py-20 md:py-24 bg-white border-t border-[#D48B80]/15 relative reveal-on-scroll">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
+      
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-widest border border-amber-200">
+          <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-500 text-amber-500"></i>
+          <span>VALORACIONES VERIFICADAS · 4.92 / 5</span>
+        </div>
+        <h2 class="font-serif-luxury text-3xl sm:text-4xl md:text-5xl font-black text-[#181514]">
+          Lo que Dicen Quienes Ya Cuidan su Piel
+        </h2>
+        <p class="text-stone-600 text-xs sm:text-sm md:text-base">
+          Más de 1.420 personas en toda España han transformado su ritual diario con nuestras fórmulas de autor.
+        </p>
+
+        <!-- Interactive Filter Pills -->
+        <div class="flex flex-wrap items-center justify-center gap-2 pt-4">
+          <button onclick="filterTestimonials('ALL', this)" class="review-filter active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#181514] text-white border border-[#181514] transition">Todas (1.420)</button>
+          <button onclick="filterTestimonials('ADEUS', this)" class="review-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-stone-700 border border-stone-300 hover:border-[#D48B80] transition">ADEUS™ 300g (890)</button>
+          <button onclick="filterTestimonials('PARCHES', this)" class="review-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-stone-700 border border-stone-300 hover:border-[#D48B80] transition">Parches Körmesic (340)</button>
+          <button onclick="filterTestimonials('JABON', this)" class="review-filter px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-stone-700 border border-stone-300 hover:border-[#D48B80] transition">Jabón Kójico (190)</button>
+        </div>
+      </div>
+
+      <!-- Testimonials Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="testimonialsGrid">
+        
+        <!-- Review 1: Carmen -->
+        <div class="testimonial-card glass-panel rounded-3xl p-6 space-y-4 border border-stone-200/90 shadow-sm flex flex-col justify-between bg-white" data-product="ADEUS">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="assets/images/ugc_reviewer_carmen.jpg" alt="Carmen R." class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-xs">
+                <div>
+                  <h4 class="font-serif-luxury font-bold text-xs sm:text-sm text-[#181514]">Carmen R.</h4>
+                  <div class="text-[10px] text-stone-500 font-medium">Madrid · Compra Verificada</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-extrabold bg-[#F6EAE7] text-[#B86B60] px-2.5 py-0.5 rounded-full">ADEUS™ 300g</span>
+            </div>
+            <div class="flex text-amber-400 text-xs">★★★★★</div>
+            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed italic font-serif-editorial">
+              "Llevaba meses buscando algo que no me dejara la piel pegajosa y que realmente quitara la textura áspera de los brazos. El tarro de 300g cunde muchísimo y el olor a limpio es increíble. Un 10."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-[10px] text-stone-400">
+            <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3 h-3 text-emerald-600"></i> Pedido entregado por GLS</span>
+            <span>Hace 3 días</span>
+          </div>
+        </div>
+
+        <!-- Review 2: Lucía -->
+        <div class="testimonial-card glass-panel rounded-3xl p-6 space-y-4 border border-purple-200/90 shadow-sm flex flex-col justify-between bg-white" data-product="PARCHES">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="assets/images/ugc_reviewer_lucia.jpg" alt="Lucía M." class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-xs">
+                <div>
+                  <h4 class="font-serif-luxury font-bold text-xs sm:text-sm text-[#181514]">Lucía M.</h4>
+                  <div class="text-[10px] text-stone-500 font-medium">Valencia · Compra Verificada</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-extrabold bg-purple-100 text-purple-800 px-2.5 py-0.5 rounded-full">Parches 60u</span>
+            </div>
+            <div class="flex text-amber-400 text-xs">★★★★★</div>
+            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed italic font-serif-editorial">
+              "Los guardo en la nevera y ponérmelos por la mañana es como un spa en casa. Te quita las bolsas y la cara de cansancio en 15 minutos. Además vienen 60 parches, super generoso."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-[10px] text-stone-400">
+            <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3 h-3 text-emerald-600"></i> Pago contra-reembolso</span>
+            <span>Hace 5 días</span>
+          </div>
+        </div>
+
+        <!-- Review 3: Elena -->
+        <div class="testimonial-card glass-panel rounded-3xl p-6 space-y-4 border border-amber-200/90 shadow-sm flex flex-col justify-between bg-white" data-product="JABON">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="assets/images/ugc_reviewer_elena.jpg" alt="Elena S." class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-xs">
+                <div>
+                  <h4 class="font-serif-luxury font-bold text-xs sm:text-sm text-[#181514]">Elena S.</h4>
+                  <div class="text-[10px] text-stone-500 font-medium">Sevilla · Compra Verificada</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-extrabold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">Jabón Kójico</span>
+            </div>
+            <div class="flex text-amber-400 text-xs">★★★★★</div>
+            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed italic font-serif-editorial">
+              "Tenía la zona de las axilas oscurecida por la depilación continua. En dos semanas usándolo a diario en la ducha el tono se ha aclarado muchísimo y no reseca nada."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-[10px] text-stone-400">
+            <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3 h-3 text-emerald-600"></i> Pedido entregado por GLS</span>
+            <span>Hace 1 semana</span>
+          </div>
+        </div>
+
+        <!-- Review 4: Sofía -->
+        <div class="testimonial-card glass-panel rounded-3xl p-6 space-y-4 border border-stone-200/90 shadow-sm flex flex-col justify-between bg-white" data-product="ADEUS">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="assets/images/ugc_reviewer_sofia.jpg" alt="Sofía P." class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-xs">
+                <div>
+                  <h4 class="font-serif-luxury font-bold text-xs sm:text-sm text-[#181514]">Sofía P.</h4>
+                  <div class="text-[10px] text-stone-500 font-medium">Barcelona · Compra Verificada</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-extrabold bg-[#F6EAE7] text-[#B86B60] px-2.5 py-0.5 rounded-full">Pack Ritual 3-en-1</span>
+            </div>
+            <div class="flex text-amber-400 text-xs">★★★★★</div>
+            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed italic font-serif-editorial">
+              "Compré el pack 3 en 1 para probar la rutina completa y ha sido la mejor compra. Los tres productos se complementan perfecto y pagar al cartero me dio total tranquilidad."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-[10px] text-stone-400">
+            <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3 h-3 text-emerald-600"></i> Pago en efectivo en puerta</span>
+            <span>Hace 1 semana</span>
+          </div>
+        </div>
+
+        <!-- Review 5: Marta -->
+        <div class="testimonial-card glass-panel rounded-3xl p-6 space-y-4 border border-stone-200/90 shadow-sm flex flex-col justify-between bg-white" data-product="ADEUS">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="assets/images/ugc_reviewer_marta.jpg" alt="Marta G." class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-xs">
+                <div>
+                  <h4 class="font-serif-luxury font-bold text-xs sm:text-sm text-[#181514]">Marta G.</h4>
+                  <div class="text-[10px] text-stone-500 font-medium">Bilbao · Compra Verificada</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-extrabold bg-[#F6EAE7] text-[#B86B60] px-2.5 py-0.5 rounded-full">ADEUS™ 300g</span>
+            </div>
+            <div class="flex text-amber-400 text-xs">★★★★★</div>
+            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed italic font-serif-editorial">
+              "Increíble cómo suaviza las piernas después de la ducha. No es nada grasa, se absorbe rápido y te puedes vestir enseguida. Mi pareja también la usa a diario."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-[10px] text-stone-400">
+            <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3 h-3 text-emerald-600"></i> Pedido entregado por GLS</span>
+            <span>Hace 2 semanas</span>
+          </div>
+        </div>
+
+        <!-- Review 6: Laura -->
+        <div class="testimonial-card glass-panel rounded-3xl p-6 space-y-4 border border-purple-200/90 shadow-sm flex flex-col justify-between bg-white" data-product="PARCHES">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <img src="assets/images/ugc_patches_eyes.jpg" alt="Laura V." class="w-11 h-11 rounded-full object-cover border-2 border-white shadow-xs">
+                <div>
+                  <h4 class="font-serif-luxury font-bold text-xs sm:text-sm text-[#181514]">Laura V.</h4>
+                  <div class="text-[10px] text-stone-500 font-medium">Málaga · Compra Verificada</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-extrabold bg-purple-100 text-purple-800 px-2.5 py-0.5 rounded-full">Parches 60u</span>
+            </div>
+            <div class="flex text-amber-400 text-xs">★★★★★</div>
+            <p class="text-xs sm:text-sm text-stone-700 leading-relaxed italic font-serif-editorial">
+              "Trabajo muchas horas frente al ordenador y se me hinchaban los ojos. Estos parches me han salvado. Calman muchísimo y la mirada queda super luminosa."
+            </p>
+          </div>
+          <div class="pt-3 border-t border-stone-100 flex items-center justify-between text-[10px] text-stone-400">
+            <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3 h-3 text-emerald-600"></i> Pago contra-reembolso</span>
+            <span>Hace 2 semanas</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 👯 6. CLUB AMIGAS -->
   <section id="amigas" class="py-20 bg-gradient-to-b from-[#FAF7F2] to-white relative overflow-hidden reveal-on-scroll">
     <div class="max-w-5xl mx-auto px-6">
       <div class="glass-panel rounded-[2.5rem] p-8 md:p-14 border-2 border-[#D48B80]/40 shadow-2xl relative overflow-hidden">
@@ -1067,6 +1244,24 @@
       e.preventDefault();
       document.getElementById('newsletterSuccess').classList.remove('hidden');
       alert('✨ ¡Bienvenida al Club Kivaneli! Usa el cupón SEDA10 en tu pedido.');
+    }
+
+    function filterTestimonials(prod, btn) {
+      document.querySelectorAll('.review-filter').forEach(b => {
+        b.classList.remove('active', 'bg-[#181514]', 'text-white');
+        b.classList.add('bg-white', 'text-stone-700');
+      });
+      btn.classList.add('active', 'bg-[#181514]', 'text-white');
+      btn.classList.remove('bg-white', 'text-stone-700');
+
+      const cards = document.querySelectorAll('.testimonial-card');
+      cards.forEach(c => {
+        if (prod === 'ALL' || c.dataset.product === prod) {
+          c.classList.remove('hidden');
+        } else {
+          c.classList.add('hidden');
+        }
+      });
     }
 
     // Scroll Reveal Observer & Lazy Video Loader
