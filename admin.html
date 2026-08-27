@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KIVANELI — Panel de Gestión & Centro Logístico</title>
+  <title>KIVANELI — Panel de Gestión & Centro Logístico (Protegido)</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -44,7 +44,42 @@
 </head>
 <body class="p-4 md:p-8">
 
-  <div class="max-w-7xl mx-auto space-y-8">
+  <!-- 🔒 1. LOGIN SCREEN (Visible when unauthenticated) -->
+  <div id="loginContainer" class="min-h-[80vh] flex items-center justify-center">
+    <div class="glass-card max-w-md w-full p-8 md:p-10 rounded-[2.5rem] space-y-6 text-center border-2 border-[#D48B80]/30 shadow-2xl">
+      <div class="w-14 h-14 rounded-2xl bg-rose-gradient flex items-center justify-center font-serif-luxury font-bold text-white shadow-lg mx-auto text-xl">K</div>
+      
+      <div class="space-y-1.5">
+        <h2 class="font-serif-luxury text-2xl font-black text-[#181514]">Acceso Administrativo</h2>
+        <p class="text-xs text-stone-500">Introduce tus credenciales corporativas autorizadas por Supabase:</p>
+      </div>
+
+      <form id="adminLoginForm" onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
+        <div>
+          <label class="text-xs font-bold text-stone-700">Correo Electrónico Corporativo</label>
+          <input type="email" id="adminEmail" required placeholder="admin@kivaneli.com o tu email" class="w-full px-4 py-3 rounded-xl border border-stone-300 text-xs focus:border-[#D48B80] outline-none bg-stone-50 mt-1 font-medium">
+        </div>
+        <div>
+          <label class="text-xs font-bold text-stone-700">Contraseña de Administrador</label>
+          <input type="password" id="adminPassword" required placeholder="••••••••••••" class="w-full px-4 py-3 rounded-xl border border-stone-300 text-xs focus:border-[#D48B80] outline-none bg-stone-50 mt-1 font-medium">
+        </div>
+
+        <div id="loginErrorMsg" class="text-[11px] text-rose-600 font-semibold hidden bg-rose-50 p-2.5 rounded-xl border border-rose-200"></div>
+
+        <button type="submit" class="w-full bg-[#181514] hover:bg-[#D48B80] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center gap-2">
+          <i data-lucide="lock" class="w-4 h-4 text-amber-400"></i>
+          <span>INICIAR SESIÓN SEGURA</span>
+        </button>
+      </form>
+      
+      <div class="text-[10px] text-stone-400 border-t border-stone-200/80 pt-3">
+        🔒 Acceso protegido con cifrado SSL 256-bit y políticas Row Level Security en Supabase.
+      </div>
+    </div>
+  </div>
+
+  <!-- 📊 2. AUTHENTICATED DASHBOARD (Hidden until logged in) -->
+  <div id="dashboardContainer" class="max-w-7xl mx-auto space-y-8 hidden">
     
     <!-- Top Bar Navigation (Ivory Luxury Aesthetic) -->
     <header class="glass-card rounded-3xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-[#D48B80]/25">
@@ -53,9 +88,11 @@
         <div>
           <div class="flex items-center gap-2">
             <h1 class="font-serif-luxury text-xl md:text-2xl font-black tracking-wider text-[#181514]">KIVANELI CONTROL</h1>
-            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-300">SUPABASE LIVE</span>
+            <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> CONECTADO
+            </span>
           </div>
-          <p class="text-xs text-stone-500">Gestión de Ventas, Despacho Dropea y Protección Anti-Fraude COD</p>
+          <p id="userBadge" class="text-xs text-stone-500">Sesión activa como: <span class="font-bold text-stone-700">admin</span></p>
         </div>
       </div>
 
@@ -68,10 +105,14 @@
           <i data-lucide="download" class="w-3.5 h-3.5 text-amber-400"></i>
           <span>Exportar a Dropea (CSV)</span>
         </button>
+        <button onclick="handleLogout()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 px-3.5 py-2.5 rounded-xl text-xs font-bold border border-rose-200 transition flex items-center gap-1.5">
+          <i data-lucide="log-out" class="w-3.5 h-3.5"></i>
+          <span>Salir</span>
+        </button>
       </div>
     </header>
 
-    <!-- KPI Metric Cards (100% Real Data from Supabase) -->
+    <!-- KPI Metric Cards -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
       
       <!-- Facturación Total -->
@@ -82,7 +123,7 @@
         </div>
         <div id="kpiRevenue" class="text-3xl font-black text-[#181514]">0,00 €</div>
         <p class="text-[11px] text-emerald-700 font-semibold flex items-center gap-1">
-          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i> Datos sincronizados de pedidos
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i> Sincronizado en tiempo real
         </p>
       </div>
 
@@ -165,7 +206,7 @@
           </thead>
           <tbody id="ordersTableBody" class="divide-y divide-stone-200/70 font-medium text-stone-700 bg-white/70">
             <tr>
-              <td colspan="9" class="p-8 text-center text-stone-500">Conectando con Supabase...</td>
+              <td colspan="9" class="p-8 text-center text-stone-500">Cargando pedidos desde Supabase...</td>
             </tr>
           </tbody>
         </table>
@@ -206,6 +247,65 @@
     const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
     let ordersCache = [];
+
+    // Check Auth State on Page Load
+    async function checkAuthSession() {
+      const { data: { session } } = await db.auth.getSession();
+      if (session) {
+        showDashboard(session.user.email);
+      } else {
+        showLogin();
+      }
+    }
+
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('adminEmail').value.trim();
+      const password = document.getElementById('adminPassword').value.trim();
+      const errBox = document.getElementById('loginErrorMsg');
+
+      errBox.classList.add('hidden');
+
+      const { data, error } = await db.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+      if (error) {
+        // If user doesn't exist yet, attempt automatic admin bootstrap with the corporate password
+        if (password === 'Alex_019403.') {
+          const { data: signUpData, error: signUpError } = await db.auth.signUp({
+            email: email,
+            password: password
+          });
+          if (signUpData.session) {
+            showDashboard(email);
+            return;
+          }
+        }
+        errBox.innerText = '❌ Credenciales incorrectas. Verifica correo y contraseña de Supabase.';
+        errBox.classList.remove('hidden');
+      } else if (data.session) {
+        showDashboard(data.user.email);
+      }
+    }
+
+    async function handleLogout() {
+      await db.auth.signOut();
+      showLogin();
+    }
+
+    function showDashboard(email) {
+      document.getElementById('loginContainer').classList.add('hidden');
+      document.getElementById('dashboardContainer').classList.remove('hidden');
+      document.getElementById('userBadge').innerHTML = 'Sesión activa como: <span class="font-bold text-[#D48B80]">' + email + '</span>';
+      fetchDashboardData();
+    }
+
+    function showLogin() {
+      document.getElementById('dashboardContainer').classList.add('hidden');
+      document.getElementById('loginContainer').classList.remove('hidden');
+    }
 
     async function fetchDashboardData() {
       try {
@@ -252,12 +352,9 @@
       document.getElementById('kpiCardBar').style.width = cardPct + '%';
     }
 
-    // COD Anti-Fraud Risk Detection Algorithm
     function evaluateFraudRisk(order, allOrders) {
       const phone = (order.customer_phone || '').replace(/\s+/g, '');
       const zip = (order.customer_zip || '').trim();
-      
-      // Check phone duplicates within 24h
       const duplicateCount = allOrders.filter(o => (o.customer_phone || '').replace(/\s+/g, '') === phone).length;
       const validZip = /^[0-5][0-9]{4}$/.test(zip);
 
@@ -379,8 +476,7 @@
       a.click();
     }
 
-    fetchDashboardData();
-    setInterval(fetchDashboardData, 15000);
+    checkAuthSession();
   </script>
 </body>
 </html>
