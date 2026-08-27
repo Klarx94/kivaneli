@@ -37,6 +37,12 @@
       border: 1px solid rgba(212, 139, 128, 0.22);
       box-shadow: 0 10px 30px -5px rgba(24, 21, 20, 0.04);
     }
+    .glass-floating-nav {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 139, 128, 0.22);
+      box-shadow: 0 15px 35px -10px rgba(24, 21, 20, 0.07);
+    }
     .btn-shimmer {
       position: relative;
       overflow: hidden;
@@ -61,53 +67,65 @@
 <body class="selection:bg-[#D48B80] selection:text-white min-h-screen flex flex-col justify-between">
 
   <!-- 📢 Top Urgency Bar -->
-  <div class="bg-[#181514] text-white py-2.5 px-4 text-center text-xs tracking-wider uppercase font-semibold flex items-center justify-center gap-2 border-b border-[#D48B80]/30">
+  <div class="bg-[#181514] text-white py-2 px-4 text-center text-xs tracking-wider uppercase font-semibold flex items-center justify-center gap-2 border-b border-[#D48B80]/30">
     <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
     <span>Envío Urgente 24/48h desde Madrid · Pago Contra-Reembolso en Puerta (Sin Tarjeta)</span>
   </div>
 
-  <!-- 🏛️ Luxury Navigation Header -->
-  <header class="sticky top-0 z-40 bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#D48B80]/20">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-      
-      <a href="index.html" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-lg shadow-md group-hover:scale-105 transition">
-          K
-        </div>
-        <div class="flex flex-col">
-          <span class="font-serif-luxury text-xl md:text-2xl font-black tracking-[0.2em] text-[#181514]">
+  <!-- 👑 Clean Unified Luxury Floating Header -->
+  <div class="fixed top-4 inset-x-0 z-40 px-4 sm:px-6 pointer-events-none">
+    <div class="max-w-4xl mx-auto pointer-events-auto">
+      <header class="glass-floating-nav rounded-full px-5 sm:px-7 py-3 flex items-center justify-between transition-all duration-300">
+        
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-xs sm:text-sm shadow-xs group-hover:scale-105 transition">
+            K
+          </div>
+          <span class="font-serif-luxury text-base sm:text-lg font-black tracking-[0.2em] text-[#181514]">
             KIVANELI<span class="text-[#D48B80]">.</span>
           </span>
-          <span class="text-[9px] uppercase tracking-[0.3em] text-[#B86B60] font-bold">Maison Botanique</span>
-        </div>
-      </a>
-
-      <nav class="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest font-bold text-[#181514]">
-        <a href="index.html" class="hover:text-[#D48B80] transition">Inicio</a>
-        <a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60]">Catálogo & Tienda</a>
-        <a href="index.html#formula" class="hover:text-[#D48B80] transition">Fórmula Botánica</a>
-        <a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca</a>
-      </nav>
-
-      <div class="flex items-center gap-3">
-        <a href="catalogo.html" class="hidden sm:flex text-xs font-bold bg-white text-[#181514] px-4 py-2.5 rounded-xl border border-stone-300 hover:border-[#D48B80] transition items-center gap-2 shadow-sm">
-          <i data-lucide="grid" class="w-4 h-4 text-[#B86B60]"></i>
-          <span>Catálogo</span>
         </a>
 
-        <!-- Cart Button in Header -->
-        <button onclick="window.kivaneliCart.openDrawer()" class="relative bg-[#181514] text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-2 shadow-sm">
-          <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-300"></i>
-          <span class="hidden sm:inline">Cesta</span>
-          <span class="cart-badge-count absolute -top-2 -right-2 bg-[#D48B80] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
-        </button>
-      </div>
+        <!-- Desktop Links -->
+        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-[11px] font-bold tracking-[0.16em] text-stone-700 uppercase">
+          <a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-black">Catálogo</a>
+          <a href="index.html#formula" class="hover:text-[#D48B80] transition">El Ritual</a>
+          <a href="index.html#testimonios" class="hover:text-[#D48B80] transition">Opiniones</a>
+          <a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca</a>
+        </nav>
 
+        <div class="flex items-center gap-2.5">
+          <!-- Cart Button -->
+          <button onclick="window.kivaneliCart.openDrawer()" class="relative bg-[#181514] text-white px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1.5 shadow-xs">
+            <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-amber-300"></i>
+            <span class="hidden sm:inline">Cesta</span>
+            <span class="cart-badge-count absolute -top-1 -right-1 bg-[#D48B80] text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center border border-white hidden">0</span>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button onclick="toggleMobileMenu()" id="mobileMenuBtn" aria-label="Abrir Menú" class="md:hidden w-8 h-8 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-700 hover:text-[#B86B60] transition">
+            <i data-lucide="menu" id="hamburgerIcon" class="w-4 h-4"></i>
+            <i data-lucide="x" id="closeMenuIcon" class="w-4 h-4 hidden"></i>
+          </button>
+        </div>
+
+      </header>
+
+      <!-- Mobile Drawer -->
+      <div id="mobileDrawer" class="hidden md:hidden glass-floating-nav rounded-3xl p-5 shadow-2xl border border-[#D48B80]/30 space-y-4 mt-2">
+        <nav class="grid grid-cols-1 gap-2 text-xs font-bold uppercase tracking-wider text-stone-700">
+          <a href="index.html" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Página Principal</a>
+          <a href="catalogo.html" class="p-2.5 rounded-xl bg-purple-50 text-purple-900 font-extrabold">Catálogo Completo</a>
+          <a href="index.html#formula" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">El Ritual</a>
+          <a href="index.html#testimonios" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Opiniones Reales</a>
+          <a href="blog.html" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Biblioteca Boticaria</a>
+        </nav>
+      </div>
     </div>
-  </header>
+  </div>
 
   <!-- 🛍️ MAIN PRODUCT STAGE -->
-  <main class="max-w-7xl mx-auto px-4 md:px-8 py-10 flex-1 w-full">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-32 pb-12 flex-1 w-full">
     
     <!-- Breadcrumb -->
     <nav class="flex items-center gap-2 text-xs text-stone-500 mb-6 font-medium">
@@ -120,52 +138,52 @@
       <span id="breadcrumbTitle" class="text-[#181514] truncate font-semibold">Producto</span>
     </nav>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
       
       <!-- 📸 Left Column: Product Gallery -->
-      <div class="lg:col-span-7 space-y-4">
+      <div class="lg:col-span-6 space-y-4">
         
         <!-- Main Hero Image Showcase -->
-        <div class="glass-card rounded-[2.5rem] p-4 md:p-6 overflow-hidden border border-[#D48B80]/30 shadow-xl relative bg-white">
-          <span id="productBadge" class="absolute top-6 left-6 z-10 text-[10px] font-extrabold uppercase tracking-wider bg-emerald-700 text-white px-3 py-1.5 rounded-full shadow-md flex items-center gap-1.5">
+        <div class="glass-card rounded-[2rem] p-3 sm:p-4 overflow-hidden border border-[#D48B80]/30 shadow-lg relative bg-white">
+          <span id="productBadge" class="absolute top-5 left-5 z-10 text-[10px] font-extrabold uppercase tracking-wider bg-emerald-700 text-white px-3 py-1 rounded-full shadow-md flex items-center gap-1.5">
             <i data-lucide="check-circle" class="w-3 h-3"></i>
             <span>STOCK EN MADRID (ENTREGA 24/48H)</span>
           </span>
 
-          <img id="mainProductImage" src="assets/images/adeus_jar_botanicals.jpg" alt="Producto Kivaneli" class="w-full h-[380px] sm:h-[450px] md:h-[500px] object-cover rounded-3xl transition duration-500 hover:scale-105" loading="lazy" decoding="async">
+          <img id="mainProductImage" src="assets/images/adeus_jar_botanicals.jpg" alt="Producto Kivaneli" class="w-full h-[340px] sm:h-[420px] object-cover rounded-2xl transition duration-500" loading="eager" decoding="async">
         </div>
 
         <!-- Gallery Thumbnails -->
-        <div id="galleryThumbnails" class="grid grid-cols-4 gap-3"></div>
+        <div id="galleryThumbnails" class="grid grid-cols-4 gap-2.5"></div>
 
         <!-- Trust Badges Row -->
-        <div class="grid grid-cols-3 gap-3 pt-4">
+        <div class="grid grid-cols-3 gap-2.5 pt-2">
           <div class="p-3 bg-white rounded-2xl border border-stone-200 text-center space-y-1">
-            <i data-lucide="truck" class="w-5 h-5 text-[#B86B60] mx-auto"></i>
+            <i data-lucide="truck" class="w-4 h-4 text-[#B86B60] mx-auto"></i>
             <div class="text-[11px] font-bold text-[#181514]">Envío 24/48h</div>
-            <div class="text-[10px] text-stone-500">GLS Express España</div>
+            <div class="text-[9.5px] text-stone-500">GLS Express</div>
           </div>
           <div class="p-3 bg-white rounded-2xl border border-stone-200 text-center space-y-1">
-            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600 mx-auto"></i>
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 mx-auto"></i>
             <div class="text-[11px] font-bold text-[#181514]">Pago en Mano</div>
-            <div class="text-[10px] text-stone-500">Contra Reembolso</div>
+            <div class="text-[9.5px] text-stone-500">Contra Reembolso</div>
           </div>
           <div class="p-3 bg-white rounded-2xl border border-stone-200 text-center space-y-1">
-            <i data-lucide="sparkles" class="w-5 h-5 text-purple-600 mx-auto"></i>
+            <i data-lucide="sparkles" class="w-4 h-4 text-purple-600 mx-auto"></i>
             <div class="text-[11px] font-bold text-[#181514]">Fórmula Unisex</div>
-            <div class="text-[10px] text-stone-500">Fitocosmética de Autor</div>
+            <div class="text-[9.5px] text-stone-500">Belleza de Autor</div>
           </div>
         </div>
 
       </div>
 
       <!-- 🏷️ Right Column: Product Purchasing Engine -->
-      <div class="lg:col-span-5 space-y-6">
+      <div class="lg:col-span-6 space-y-5">
         
         <!-- Title & Claims -->
         <div class="space-y-2">
           <div class="flex items-center gap-2">
-            <span id="productCategoryTag" class="text-[10px] font-extrabold uppercase tracking-widest text-[#B86B60] bg-[#F6EAE7] px-3 py-1 rounded-full">
+            <span id="productCategoryTag" class="text-[10px] font-extrabold uppercase tracking-widest text-[#B86B60] bg-[#F6EAE7] px-3 py-0.5 rounded-full">
               Cuidado Personal de Autor
             </span>
             <div class="flex items-center text-amber-400 text-xs">
@@ -173,33 +191,33 @@
             </div>
           </div>
 
-          <h1 id="productTitle" class="font-serif-luxury font-black text-2xl md:text-3xl text-[#181514] leading-tight">
-            Cargando producto...
+          <h1 id="productTitle" class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514] leading-tight">
+            ADEUS™ Crema Corporal Masaje & Seda (300 g)
           </h1>
 
           <p id="productSubtitle" class="text-xs sm:text-sm text-stone-600 leading-relaxed font-medium">
-            Fórmula de uso diario y masaje para hidratación intensiva, suavidad duradera y efecto satinado en la piel.
+            Fórmula de uso diario y masaje para hidratación profunda, suavidad duradera y efecto aterciopelado.
           </p>
         </div>
 
         <!-- Pricing Card -->
-        <div class="p-5 rounded-2xl bg-white border-2 border-[#D48B80]/30 shadow-sm space-y-3">
+        <div class="p-4 sm:p-5 rounded-2xl bg-white border-2 border-[#D48B80]/30 shadow-xs space-y-2.5">
           <div class="flex items-baseline justify-between">
             <div class="flex items-baseline gap-2.5">
-              <span id="productPriceDisplay" class="font-serif-luxury font-black text-3xl text-[#181514]">29,90 €</span>
-              <span id="productRegularPriceDisplay" class="text-sm text-stone-400 line-through">39,90 €</span>
+              <span id="productPriceDisplay" class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514]">29,90 €</span>
+              <span id="productRegularPriceDisplay" class="text-xs sm:text-sm text-stone-400 line-through">39,90 €</span>
             </div>
             <span id="productDiscountPill" class="text-[11px] font-bold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">Ahorras 10,00 €</span>
           </div>
           <div class="text-[11px] text-stone-500 flex items-center gap-1.5">
-            <i data-lucide="package-check" class="w-4 h-4 text-emerald-600"></i>
+            <i data-lucide="package-check" class="w-3.5 h-3.5 text-emerald-600"></i>
             <span>Envío Gratuito 24/48h · Despacho directo desde almacén de Madrid</span>
           </div>
         </div>
 
         <!-- 🎁 1-Click Impulse Cross-Sells for this PDP -->
-        <div id="pdpCrossSellsBox" class="space-y-2.5 bg-[#FAF7F2] p-5 rounded-3xl border border-stone-200">
-          <div class="text-[11px] font-black uppercase tracking-wider text-[#B86B60] flex items-center gap-1.5">
+        <div id="pdpCrossSellsBox" class="space-y-2 bg-[#FAF7F2] p-4 rounded-2xl border border-stone-200">
+          <div class="text-[10.5px] font-black uppercase tracking-wider text-[#B86B60] flex items-center gap-1.5">
             <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#D48B80]"></i>
             <span>Completa tu rutina con descuento exclusivo:</span>
           </div>
@@ -207,14 +225,14 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="space-y-3 pt-2">
+        <div class="space-y-2.5 pt-1">
           
-          <button id="btnAddToCart" onclick="addProductToCart()" class="w-full bg-[#181514] text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-wider hover:bg-[#D48B80] transition shadow-md flex items-center justify-center gap-2">
+          <button id="btnAddToCart" onclick="addProductToCart()" class="w-full bg-[#181514] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#D48B80] transition shadow-sm flex items-center justify-center gap-2">
             <i data-lucide="shopping-bag" class="w-4 h-4"></i>
             <span>Añadir a la Cesta</span>
           </button>
 
-          <button id="btnBuyNow" onclick="buyProductNow()" class="btn-shimmer w-full bg-rose-gradient text-white py-4 sm:py-4.5 rounded-2xl font-black text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-[#D48B80]/40 hover:scale-[1.01] transition flex items-center justify-center gap-2">
+          <button id="btnBuyNow" onclick="buyProductNow()" class="btn-shimmer w-full bg-rose-gradient text-white py-4 rounded-xl font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-[#D48B80]/30 hover:scale-[1.01] transition flex items-center justify-center gap-2">
             <i data-lucide="truck" class="w-4 h-4 text-amber-300"></i>
             <span>COMPRAR AHORA (PAGO EN PUERTA)</span>
           </button>
@@ -222,7 +240,7 @@
         </div>
 
         <!-- Key Specs Accordion / Bullet List -->
-        <div class="space-y-2.5 pt-2 text-xs text-stone-700">
+        <div class="space-y-2 pt-1 text-xs text-stone-700">
           <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> <span id="specPoint1">Apto para uso diario en hombres y mujeres (Unisex)</span></div>
           <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> <span id="specPoint2">Textura suave de rápida absorción sin residuo graso</span></div>
           <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-600 flex-shrink-0"></i> <span id="specPoint3">Pago seguro contra-reembolso en efectivo al cartero</span></div>
@@ -237,11 +255,11 @@
   <!-- Comprehensive Luxury Footer -->
   <footer class="w-full bg-[#181514] text-stone-400 pt-16 pb-12 text-xs border-t border-[#D48B80]/20 mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left">
         
         <div class="space-y-4">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-sm">K</div>
+            <div class="w-8 h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-sm shadow-md">K</div>
             <span class="font-serif-luxury text-xl font-bold tracking-[0.2em] text-[#FAF7F2]">
               KIVANELI<span class="text-[#D48B80]">.</span>
             </span>
@@ -256,8 +274,7 @@
           <ul class="space-y-2 text-[11px]">
             <li><a href="index.html" class="hover:text-[#D48B80] transition">Página Principal</a></li>
             <li><a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-bold">Catálogo Completo</a></li>
-            <li><a href="producto.html?slug=adeus-crema-corporal" class="hover:text-[#D48B80] transition">Crema ADEUS™ (300 g)</a></li>
-            <li><a href="index.html#formula" class="hover:text-[#D48B80] transition">Fórmula Botánica</a></li>
+            <li><a href="index.html#formula" class="hover:text-[#D48B80] transition">El Ritual</a></li>
             <li><a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca / Blog</a></li>
           </ul>
         </div>
@@ -298,8 +315,8 @@
     // Detailed PDP Data for all 4 products
     const PDP_DETAILS = {
       'adeus-crema-corporal': {
-        title: 'ADEUS™ Crema Corporal Masaje & Piel de Seda (300 g)',
-        subtitle: 'Fórmula enriquecida en tarro de 300 g con tapa de rosca. Pulido boticario suave, masaje corporal diario e hidratación profunda con Centella Asiática y Manteca de Karité para un tacto aterciopelado.',
+        title: 'ADEUS™ Crema Corporal Masaje & Seda (300 g)',
+        subtitle: 'Tarro generoso de 300 g con tapa de rosca. Suavidad continua, masaje corporal diario e hidratación profunda con Centella Asiática y Manteca de Karité para un tacto aterciopelado.',
         category: 'Cuidado Corporal',
         categoryTag: 'Cuidado Corporal · ADEUS™ 300g',
         price: 29.90,
@@ -360,7 +377,7 @@
         regularPrice: 94.70,
         badge: 'OFERTA COMPLETA · AHORRAS 35€',
         images: [
-          'assets/images/adeus_hero_frame1.jpg',
+          'assets/images/pack_ritual_3in1_collage.svg',
           'assets/images/adeus_jar_botanicals.jpg',
           'assets/images/kormesic_jar_purple.jpg',
           'assets/images/kojic_soap_box.jpg'
@@ -371,15 +388,15 @@
       }
     };
 
+    // Instant Zero-Lag Renderer
     let currentSlug = 'adeus-crema-corporal';
+    const params = new URLSearchParams(window.location.search);
+    const requestedSlug = params.get('slug');
+    if (requestedSlug && PDP_DETAILS[requestedSlug]) {
+      currentSlug = requestedSlug;
+    }
 
-    function initProductPage() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const slug = urlParams.get('slug');
-      if (slug && PDP_DETAILS[slug]) {
-        currentSlug = slug;
-      }
-
+    function renderPDP() {
       const p = PDP_DETAILS[currentSlug];
       document.title = p.title + ' — KIVANELI';
       document.getElementById('breadcrumbCategory').innerText = p.category;
@@ -400,8 +417,8 @@
       // Thumbnails
       const thumbContainer = document.getElementById('galleryThumbnails');
       thumbContainer.innerHTML = p.images.map((img, idx) => `
-        <button onclick="changeMainImage('${img}', this)" class="thumbnail-btn rounded-2xl overflow-hidden ${idx === 0 ? 'border-2 border-[#D48B80]' : 'border border-stone-200'} p-1 bg-white hover:border-[#D48B80] transition shadow-xs">
-          <img src="${img}" class="w-full h-16 sm:h-20 object-cover rounded-xl" loading="lazy" decoding="async">
+        <button onclick="changeMainImage('${img}', this)" class="thumbnail-btn rounded-xl overflow-hidden ${idx === 0 ? 'border-2 border-[#D48B80]' : 'border border-stone-200'} p-1 bg-white hover:border-[#D48B80] transition shadow-2xs">
+          <img src="${img}" class="w-full h-14 sm:h-16 object-cover rounded-lg" loading="lazy" decoding="async">
         </button>
       `).join('');
 
@@ -415,13 +432,13 @@
       } else {
         crossSellsBox.classList.remove('hidden');
         crossSellsList.innerHTML = otherProducts.map(other => `
-          <div class="flex items-center justify-between gap-3 p-3 rounded-2xl bg-white border border-[#D48B80]/30 shadow-2xs">
-            <img src="${other.image}" alt="${other.name}" class="w-11 h-11 rounded-xl object-cover flex-shrink-0">
+          <div class="flex items-center justify-between gap-3 p-2.5 rounded-xl bg-white border border-[#D48B80]/30 shadow-2xs">
+            <img src="${other.image}" alt="${other.name}" class="w-10 h-10 rounded-lg object-cover flex-shrink-0">
             <div class="flex-1 min-w-0">
               <div class="font-serif-luxury font-bold text-xs text-[#181514] truncate">${other.shortName}</div>
-              <div class="text-[11px] text-[#B86B60] font-bold">+${other.impulsePrice.toFixed(2).replace('.', ',')} € <span class="text-[9px] text-stone-400 line-through">${other.price.toFixed(2).replace('.', ',')} €</span></div>
+              <div class="text-[10.5px] text-[#B86B60] font-bold">+${other.impulsePrice.toFixed(2).replace('.', ',')} € <span class="text-[9px] text-stone-400 line-through">${other.price.toFixed(2).replace('.', ',')} €</span></div>
             </div>
-            <button onclick="window.kivaneliCart.addItem('${other.id}', 1, true)" class="bg-[#181514] text-white px-3 py-1.5 rounded-xl text-[10px] font-black uppercase hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs whitespace-nowrap">
+            <button onclick="window.kivaneliCart.addItem('${other.id}', 1, true)" class="bg-[#181514] text-white px-3 py-1.5 rounded-lg text-[10px] font-black uppercase hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs whitespace-nowrap">
               <i data-lucide="plus" class="w-3 h-3"></i>
               <span>Añadir</span>
             </button>
@@ -455,9 +472,24 @@
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      initProductPage();
-    });
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      const hamburger = document.getElementById('hamburgerIcon');
+      const close = document.getElementById('closeMenuIcon');
+      if (drawer.classList.contains('hidden')) {
+        drawer.classList.remove('hidden');
+        hamburger.classList.add('hidden');
+        close.classList.remove('hidden');
+      } else {
+        drawer.classList.add('hidden');
+        hamburger.classList.remove('hidden');
+        close.classList.add('hidden');
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Run Immediately on load
+    renderPDP();
   </script>
 </body>
 </html>

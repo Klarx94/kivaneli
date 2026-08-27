@@ -55,7 +55,7 @@ const KIVANELI_PRODUCTS = {
     price: 59.95,
     regularPrice: 94.70,
     impulsePrice: 59.95,
-    image: 'assets/images/adeus_hero_frame1.jpg',
+    image: 'assets/images/pack_ritual_3in1_collage.svg',
     category: 'Ritual Completo',
     badge: 'AHORRA 35€ · RITUAL COMPLETO',
     dropeaVariantId: 32674,

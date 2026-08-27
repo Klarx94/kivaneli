@@ -37,6 +37,12 @@
       border: 1px solid rgba(212, 139, 128, 0.22);
       box-shadow: 0 10px 30px -5px rgba(24, 21, 20, 0.04);
     }
+    .glass-floating-nav {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(212, 139, 128, 0.22);
+      box-shadow: 0 15px 35px -10px rgba(24, 21, 20, 0.07);
+    }
     .cat-filter.active {
       background-color: #181514;
       color: #ffffff;
@@ -71,45 +77,62 @@
     <span>Envío Urgente 24/48h directo desde Centro Logístico Dropea Madrid · Pago Contra-Reembolso</span>
   </div>
 
-  <!-- Header -->
-  <header class="sticky top-0 z-40 bg-[#FAF7F2]/90 backdrop-blur-md border-b border-[#D48B80]/20">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
-      
-      <a href="index.html" class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-lg shadow-md">
-          K
-        </div>
-        <div>
-          <span class="font-serif-luxury text-xl md:text-2xl font-black tracking-[0.2em] text-[#181514]">
+  <!-- 👑 Clean Unified Luxury Floating Header -->
+  <div class="fixed top-4 inset-x-0 z-40 px-4 sm:px-6 pointer-events-none">
+    <div class="max-w-4xl mx-auto pointer-events-auto">
+      <header class="glass-floating-nav rounded-full px-5 sm:px-7 py-3 flex items-center justify-between transition-all duration-300">
+        
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-xs sm:text-sm shadow-xs group-hover:scale-105 transition">
+            K
+          </div>
+          <span class="font-serif-luxury text-base sm:text-lg font-black tracking-[0.2em] text-[#181514]">
             KIVANELI<span class="text-[#D48B80]">.</span>
           </span>
-          <span class="block text-[9px] uppercase tracking-[0.3em] text-[#B86B60] font-bold">Maison Botanique</span>
+        </a>
+
+        <!-- Desktop Links -->
+        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-[11px] font-bold tracking-[0.16em] text-stone-700 uppercase">
+          <a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-black">Catálogo</a>
+          <a href="index.html#formula" class="hover:text-[#D48B80] transition">El Ritual</a>
+          <a href="index.html#testimonios" class="hover:text-[#D48B80] transition">Opiniones</a>
+          <a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca</a>
+        </nav>
+
+        <div class="flex items-center gap-2.5">
+          <!-- Cart Button -->
+          <button onclick="window.kivaneliCart.openDrawer()" class="relative bg-[#181514] text-white px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1.5 shadow-xs">
+            <i data-lucide="shopping-bag" class="w-3.5 h-3.5 text-amber-300"></i>
+            <span class="hidden sm:inline">Cesta</span>
+            <span class="cart-badge-count absolute -top-1 -right-1 bg-[#D48B80] text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center border border-white hidden">0</span>
+          </button>
+
+          <!-- Mobile Hamburger -->
+          <button onclick="toggleMobileMenu()" id="mobileMenuBtn" aria-label="Abrir Menú" class="md:hidden w-8 h-8 rounded-full bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-700 hover:text-[#B86B60] transition">
+            <i data-lucide="menu" id="hamburgerIcon" class="w-4 h-4"></i>
+            <i data-lucide="x" id="closeMenuIcon" class="w-4 h-4 hidden"></i>
+          </button>
         </div>
-      </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest font-bold text-[#181514]">
-        <a href="index.html" class="hover:text-[#D48B80] transition">Inicio</a>
-        <a href="catalogo.html" class="text-[#B86B60]">Catálogo & Colección</a>
-        <a href="index.html#formula" class="hover:text-[#D48B80] transition">Fórmula Botánica</a>
-        <a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca</a>
-      </nav>
+      </header>
 
-      <div class="flex items-center gap-3">
-        <!-- Cart Trigger Button -->
-        <button onclick="window.kivaneliCart.openDrawer()" class="relative bg-[#181514] text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-2 shadow-sm">
-          <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-300"></i>
-          <span>Cesta</span>
-          <span class="cart-badge-count absolute -top-2 -right-2 bg-[#D48B80] text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white hidden">0</span>
-        </button>
+      <!-- Mobile Drawer -->
+      <div id="mobileDrawer" class="hidden md:hidden glass-floating-nav rounded-3xl p-5 shadow-2xl border border-[#D48B80]/30 space-y-4 mt-2">
+        <nav class="grid grid-cols-1 gap-2 text-xs font-bold uppercase tracking-wider text-stone-700">
+          <a href="index.html" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Página Principal</a>
+          <a href="catalogo.html" class="p-2.5 rounded-xl bg-purple-50 text-purple-900 font-extrabold">Catálogo Completo</a>
+          <a href="index.html#formula" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">El Ritual</a>
+          <a href="index.html#testimonios" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Opiniones Reales</a>
+          <a href="blog.html" class="p-2.5 rounded-xl bg-white hover:text-[#B86B60] transition">Biblioteca Boticaria</a>
+        </nav>
       </div>
-
     </div>
-  </header>
+  </div>
 
   <!-- Hero Header -->
-  <section class="py-12 bg-gradient-to-b from-[#F6EAE7]/60 to-[#FAF7F2] border-b border-[#D48B80]/15">
-    <div class="max-w-7xl mx-auto px-4 md:px-8 text-center space-y-3">
-      <span class="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#B86B60] bg-white px-4 py-1.5 rounded-full border border-[#D48B80]/30 shadow-sm inline-block">
+  <section class="pt-32 pb-10 bg-gradient-to-b from-[#F6EAE7]/60 to-[#FAF7F2] border-b border-[#D48B80]/15">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center space-y-3">
+      <span class="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#B86B60] bg-white px-4 py-1.5 rounded-full border border-[#D48B80]/30 shadow-xs inline-block">
         COLECCIÓN OFICIAL DE CUIDADO PERSONAL
       </span>
       <h1 class="font-serif-luxury font-black text-3xl md:text-5xl text-[#181514]">
@@ -120,37 +143,37 @@
       </p>
 
       <!-- Category Filter Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2 pt-6">
-        <button onclick="filterCategory('ALL', this)" class="cat-filter active px-5 py-2 rounded-xl text-xs font-bold border border-stone-300 transition shadow-sm">Todos los Productos</button>
-        <button onclick="filterCategory('CORPORAL', this)" class="cat-filter px-5 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-sm">Cuidado Corporal (ADEUS™)</button>
-        <button onclick="filterCategory('OJOS', this)" class="cat-filter px-5 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-sm">Mirada & Ojos (Körmesic™)</button>
-        <button onclick="filterCategory('JABONES', this)" class="cat-filter px-5 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-sm">Limpieza & Tono (Kójico)</button>
-        <button onclick="filterCategory('PACKS', this)" class="cat-filter px-5 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-sm">Ritual Completo 3-en-1</button>
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-5">
+        <button onclick="filterCategory('ALL', this)" class="cat-filter active px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 transition shadow-xs">Todos los Productos</button>
+        <button onclick="filterCategory('CORPORAL', this)" class="cat-filter px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-xs">Cuidado Corporal</button>
+        <button onclick="filterCategory('OJOS', this)" class="cat-filter px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-xs">Mirada & Ojos</button>
+        <button onclick="filterCategory('JABONES', this)" class="cat-filter px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-xs">Limpieza & Tono</button>
+        <button onclick="filterCategory('PACKS', this)" class="cat-filter px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-xs">Ritual Completo 3-en-1</button>
       </div>
     </div>
   </section>
 
   <!-- Product Catalog Grid -->
-  <main class="max-w-7xl mx-auto px-4 md:px-8 py-12 flex-1 w-full">
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full">
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="productsGrid">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="productsGrid">
       
       <!-- Product Card 1: ADEUS -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-md flex flex-col justify-between" data-cat="CORPORAL">
+      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="CORPORAL">
         <div class="relative overflow-hidden bg-white">
           <span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-[#B86B60] text-white px-3 py-1 rounded-full shadow-md">
             MÁS VENDIDO · 300 G
           </span>
-          <img src="assets/images/adeus_jar_botanicals.jpg" alt="ADEUS Crema Corporal" class="w-full h-64 object-cover hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+          <img src="assets/images/adeus_jar_botanicals.jpg" alt="ADEUS Crema Corporal" class="w-full h-60 object-cover hover:scale-105 transition duration-500" loading="lazy" decoding="async">
         </div>
-        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-          <div class="space-y-2">
+        <div class="p-5 sm:p-6 space-y-4 flex-1 flex flex-col justify-between">
+          <div class="space-y-1.5">
             <span class="text-[10px] font-bold uppercase tracking-wider text-[#B86B60]">Cuidado Corporal & Masaje</span>
-            <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">
+            <h3 class="font-serif-luxury font-bold text-base sm:text-lg text-[#181514]">
               ADEUS™ Crema Corporal Masaje & Seda (300 g)
             </h3>
             <p class="text-xs text-stone-600 line-clamp-3 leading-relaxed">
-              Tarro generoso de 300 g con tapa de rosca. Suavidad continua, pulido boticario suave e hidratación profunda para un tacto aterciopelado.
+              Tarro generoso de 300 g con tapa de rosca. Suavidad continua, pulido boticario suave e hidratación profunda.
             </p>
           </div>
 
@@ -159,11 +182,11 @@
               <span class="text-[10px] text-stone-400 line-through">39,90 €</span>
               <div class="font-serif-luxury font-black text-xl text-[#181514]">29,90 €</div>
             </div>
-            <div class="flex items-center gap-2">
-              <a href="producto.html?slug=adeus-crema-corporal" class="bg-stone-100 text-stone-700 px-3.5 py-2 rounded-xl font-bold text-xs hover:bg-stone-200 transition">
+            <div class="flex items-center gap-1.5">
+              <a href="producto.html?slug=adeus-crema-corporal" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl font-bold text-xs hover:bg-stone-200 transition">
                 Ficha
               </a>
-              <button onclick="window.kivaneliCart.addItem('adeus-crema-corporal', 1)" class="bg-[#181514] text-white px-4 py-2 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-1 shadow-sm">
+              <button onclick="window.kivaneliCart.addItem('adeus-crema-corporal', 1)" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs">
                 <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
                 <span>Añadir</span>
               </button>
@@ -173,21 +196,21 @@
       </div>
 
       <!-- Product Card 2: Parches Körmesic -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-md flex flex-col justify-between" data-cat="OJOS">
+      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="OJOS">
         <div class="relative overflow-hidden bg-purple-50">
           <span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-purple-800 text-white px-3 py-1 rounded-full shadow-md">
             60 UDS (30 PARES) · HIDROGEL
           </span>
-          <img src="assets/images/kormesic_jar_purple.jpg" alt="Parches Körmesic" class="w-full h-64 object-cover hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+          <img src="assets/images/kormesic_jar_purple.jpg" alt="Parches Körmesic" class="w-full h-60 object-cover hover:scale-105 transition duration-500" loading="lazy" decoding="async">
         </div>
-        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-          <div class="space-y-2">
+        <div class="p-5 sm:p-6 space-y-4 flex-1 flex flex-col justify-between">
+          <div class="space-y-1.5">
             <span class="text-[10px] font-bold uppercase tracking-wider text-purple-700">Mirada & Contorno de Ojos</span>
-            <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">
+            <h3 class="font-serif-luxury font-bold text-base sm:text-lg text-[#181514]">
               Parches de Colágeno & Hidrogel Körmesic™
             </h3>
             <p class="text-xs text-stone-600 line-clamp-3 leading-relaxed">
-              30 pares de hidrogel violeta con colágeno soluble y efecto crioterapia calmante. Descongestiona bolsas y relaja la mirada en 15 minutos.
+              30 pares de hidrogel violeta con colágeno soluble y efecto crioterapia calmante. Descongestiona y relaja en 15 minutos.
             </p>
           </div>
 
@@ -196,11 +219,11 @@
               <span class="text-[10px] text-stone-400 line-through">29,90 €</span>
               <div class="font-serif-luxury font-black text-xl text-[#181514]">19,95 €</div>
             </div>
-            <div class="flex items-center gap-2">
-              <a href="producto.html?slug=kormesic-parches-colageno" class="bg-stone-100 text-stone-700 px-3.5 py-2 rounded-xl font-bold text-xs hover:bg-stone-200 transition">
+            <div class="flex items-center gap-1.5">
+              <a href="producto.html?slug=kormesic-parches-colageno" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl font-bold text-xs hover:bg-stone-200 transition">
                 Ficha
               </a>
-              <button onclick="window.kivaneliCart.addItem('kormesic-parches-colageno', 1)" class="bg-[#181514] text-white px-4 py-2 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-1 shadow-sm">
+              <button onclick="window.kivaneliCart.addItem('kormesic-parches-colageno', 1)" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs">
                 <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
                 <span>Añadir</span>
               </button>
@@ -210,21 +233,21 @@
       </div>
 
       <!-- Product Card 3: Jabón Kójico -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-md flex flex-col justify-between" data-cat="JABONES">
+      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="JABONES">
         <div class="relative overflow-hidden bg-amber-50">
           <span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-amber-700 text-white px-3 py-1 rounded-full shadow-md">
             100 G · CLARIFICANTE
           </span>
-          <img src="assets/images/kojic_soap_box.jpg" alt="Jabón Kójico" class="w-full h-64 object-cover hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+          <img src="assets/images/kojic_soap_box.jpg" alt="Jabón Kójico" class="w-full h-60 object-cover hover:scale-105 transition duration-500" loading="lazy" decoding="async">
         </div>
-        <div class="p-6 space-y-4 flex-1 flex flex-col justify-between">
-          <div class="space-y-2">
+        <div class="p-5 sm:p-6 space-y-4 flex-1 flex flex-col justify-between">
+          <div class="space-y-1.5">
             <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800">Limpieza & Unificación de Tono</span>
-            <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">
+            <h3 class="font-serif-luxury font-bold text-base sm:text-lg text-[#181514]">
               Jabón Clarificante Ácido Kójico + Hialurónico (100 g)
             </h3>
             <p class="text-xs text-stone-600 line-clamp-3 leading-relaxed">
-              Pastilla sólida clarificante Kiss Beauty con Ácido Kójico puro para unificar el tono dérmico, limpiar impurezas y renovar la luminosidad natural.
+              Pastilla sólida clarificante Kiss Beauty con Ácido Kójico puro para unificar el tono dérmico y renovar la luminosidad.
             </p>
           </div>
 
@@ -233,11 +256,11 @@
               <span class="text-[10px] text-stone-400 line-through">24,90 €</span>
               <div class="font-serif-luxury font-black text-xl text-[#181514]">16,95 €</div>
             </div>
-            <div class="flex items-center gap-2">
-              <a href="producto.html?slug=jabon-acido-kojico" class="bg-stone-100 text-stone-700 px-3.5 py-2 rounded-xl font-bold text-xs hover:bg-stone-200 transition">
+            <div class="flex items-center gap-1.5">
+              <a href="producto.html?slug=jabon-acido-kojico" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl font-bold text-xs hover:bg-stone-200 transition">
                 Ficha
               </a>
-              <button onclick="window.kivaneliCart.addItem('jabon-acido-kojico', 1)" class="bg-[#181514] text-white px-4 py-2 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-1 shadow-sm">
+              <button onclick="window.kivaneliCart.addItem('jabon-acido-kojico', 1)" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs">
                 <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
                 <span>Añadir</span>
               </button>
@@ -246,42 +269,42 @@
         </div>
       </div>
 
-      <!-- Product Card 4: Pack Ritual Completo 3-en-1 -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border-2 border-[#B86B60] shadow-xl flex flex-col justify-between relative bg-gradient-to-b from-[#FDF9F8] to-white md:col-span-2 lg:col-span-3" data-cat="PACKS">
-        <span class="absolute top-4 right-4 z-10 text-[10px] font-black uppercase tracking-wider bg-rose-gradient text-white px-4 py-1.5 rounded-full shadow-lg">
+      <!-- Product Card 4: Pack Ritual Completo 3-en-1 con Collage -->
+      <div class="product-item glass-card rounded-[2rem] overflow-hidden border-2 border-[#B86B60] shadow-md flex flex-col justify-between relative bg-gradient-to-b from-[#FDF9F8] to-white md:col-span-2 lg:col-span-3" data-cat="PACKS">
+        <span class="absolute top-4 right-4 z-10 text-[10px] font-black uppercase tracking-wider bg-rose-gradient text-white px-3.5 py-1 rounded-full shadow-md">
           OFERTA RITUAL COMPLETO · AHORRAS 35€
         </span>
-        <div class="p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 justify-between">
+        <div class="p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 sm:gap-8 justify-between">
           
-          <div class="w-full md:w-1/3 rounded-2xl overflow-hidden shadow-md">
-            <img src="assets/images/adeus_hero_frame1.jpg" alt="Pack Ritual Completo" class="w-full h-56 object-cover" loading="lazy" decoding="async">
+          <div class="w-full md:w-5/12 rounded-2xl overflow-hidden shadow-xs border border-[#D48B80]/30 bg-white">
+            <img src="assets/images/pack_ritual_3in1_collage.svg" alt="Pack Ritual Completo Collage" class="w-full h-56 sm:h-64 object-contain p-2" loading="lazy" decoding="async">
           </div>
 
-          <div class="space-y-3 max-w-xl flex-1">
+          <div class="space-y-3 max-w-lg flex-1">
             <span class="text-xs font-bold uppercase tracking-widest text-[#B86B60]">El Ritual Definitivo de la Maison</span>
-            <h2 class="font-serif-luxury font-black text-2xl md:text-3xl text-[#181514]">
+            <h2 class="font-serif-luxury font-black text-xl sm:text-2xl text-[#181514]">
               Pack Ritual Boticario 3-en-1 (ADEUS™ + Parches Körmesic™ + Jabón Kójico)
             </h2>
-            <p class="text-xs md:text-sm text-stone-600 leading-relaxed">
+            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
               La experiencia integral de belleza: Limpieza clarificante con el Jabón Kójico, masaje y nutrición profunda con la Crema ADEUS™ (300 g), y descanso relajante para la mirada con los Parches de Colágeno.
             </p>
-            <div class="flex flex-wrap gap-2 pt-2">
-              <span class="text-[11px] bg-white border border-stone-200 px-3 py-1 rounded-lg font-semibold text-stone-700">🌿 1x Tarro ADEUS 300g</span>
-              <span class="text-[11px] bg-white border border-stone-200 px-3 py-1 rounded-lg font-semibold text-stone-700">👁️ 1x Bote Parches 60 uds</span>
-              <span class="text-[11px] bg-white border border-stone-200 px-3 py-1 rounded-lg font-semibold text-stone-700">🧼 1x Jabón Kójico 100g</span>
-              <span class="text-[11px] bg-emerald-100 text-emerald-800 px-3 py-1 rounded-lg font-bold">✨ Envío 24/48h GLS Gratis</span>
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="text-[10.5px] bg-white border border-stone-200 px-2.5 py-1 rounded-lg font-semibold text-stone-700">🌿 1x Tarro ADEUS 300g</span>
+              <span class="text-[10.5px] bg-white border border-stone-200 px-2.5 py-1 rounded-lg font-semibold text-stone-700">👁️ 1x Bote Parches 60u</span>
+              <span class="text-[10.5px] bg-white border border-stone-200 px-2.5 py-1 rounded-lg font-semibold text-stone-700">🧼 1x Jabón Kójico 100g</span>
+              <span class="text-[10.5px] bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-lg font-bold">✨ Envío 24/48h GLS Gratis</span>
             </div>
           </div>
 
-          <div class="text-center md:text-right space-y-3 shrink-0">
+          <div class="text-center md:text-right space-y-2.5 shrink-0">
             <div class="text-xs text-stone-400 line-through">94,70 €</div>
-            <div class="font-serif-luxury font-black text-3xl md:text-4xl text-[#B86B60]">59,95 €</div>
+            <div class="font-serif-luxury font-black text-3xl sm:text-4xl text-[#B86B60]">59,95 €</div>
             <div class="flex flex-col gap-2">
-              <button onclick="window.kivaneliCart.addItem('pack-ritual-completo', 1)" class="btn-shimmer inline-block bg-rose-gradient text-white px-8 py-3.5 rounded-2xl font-black text-xs uppercase tracking-wider shadow-xl shadow-[#D48B80]/40 hover:scale-105 transition">
+              <button onclick="window.kivaneliCart.addItem('pack-ritual-completo', 1)" class="btn-shimmer bg-rose-gradient text-white px-6 py-3 rounded-xl font-black text-xs uppercase tracking-wider shadow-md hover:scale-105 transition">
                 Añadir Pack a la Cesta
               </button>
               <a href="producto.html?slug=pack-ritual-completo" class="text-xs font-bold text-stone-600 hover:text-[#B86B60] underline">
-                Ver Detalles del Pack
+                Ver Ficha del Pack
               </a>
             </div>
           </div>
@@ -295,11 +318,11 @@
   <!-- Comprehensive Luxury Footer -->
   <footer class="w-full bg-[#181514] text-stone-400 pt-16 pb-12 text-xs border-t border-[#D48B80]/20 mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-left">
         
         <div class="space-y-4">
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-sm">K</div>
+            <div class="w-8 h-8 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-sm shadow-md">K</div>
             <span class="font-serif-luxury text-xl font-bold tracking-[0.2em] text-[#FAF7F2]">
               KIVANELI<span class="text-[#D48B80]">.</span>
             </span>
@@ -314,8 +337,7 @@
           <ul class="space-y-2 text-[11px]">
             <li><a href="index.html" class="hover:text-[#D48B80] transition">Página Principal</a></li>
             <li><a href="catalogo.html" class="hover:text-[#D48B80] transition text-[#B86B60] font-bold">Catálogo Completo</a></li>
-            <li><a href="producto.html?slug=adeus-crema-corporal" class="hover:text-[#D48B80] transition">Crema ADEUS™ (300 g)</a></li>
-            <li><a href="index.html#formula" class="hover:text-[#D48B80] transition">Fórmula Botánica</a></li>
+            <li><a href="index.html#formula" class="hover:text-[#D48B80] transition">El Ritual</a></li>
             <li><a href="blog.html" class="hover:text-[#D48B80] transition">Biblioteca / Blog</a></li>
           </ul>
         </div>
@@ -365,6 +387,22 @@
           item.classList.add('hidden');
         }
       });
+    }
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobileDrawer');
+      const hamburger = document.getElementById('hamburgerIcon');
+      const close = document.getElementById('closeMenuIcon');
+      if (drawer.classList.contains('hidden')) {
+        drawer.classList.remove('hidden');
+        hamburger.classList.add('hidden');
+        close.classList.remove('hidden');
+      } else {
+        drawer.classList.add('hidden');
+        hamburger.classList.remove('hidden');
+        close.classList.add('hidden');
+      }
+      if (window.lucide) lucide.createIcons();
     }
   </script>
 </body>
