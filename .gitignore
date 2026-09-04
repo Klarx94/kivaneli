@@ -6,3 +6,6 @@ __pycache__/
 setup_db.js
 *.txt
 .vercel
+.env
+.env.*
+Doc operativos/

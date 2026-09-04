@@ -4,9 +4,13 @@
 const crypto = require('crypto');
 const https = require('https');
 
-const SUPABASE_URL = 'sntsizmdhttpilbauxuv.supabase.co';
-const SUPABASE_SERVICE_KEY = 'SUPABASE_SERVICE_KEY_REDACTED';
-const DROPEA_HMAC_SECRET = 'DROPEA_HMAC_SECRET_REDACTED';
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
+const DROPEA_HMAC_SECRET = process.env.DROPEA_HMAC_SECRET;
+
+if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY || !DROPEA_HMAC_SECRET) {
+  throw new Error('Missing required env vars: SUPABASE_URL, SUPABASE_SERVICE_KEY, DROPEA_HMAC_SECRET');
+}
 
 async function supabaseRest(path, method = 'GET', body = null) {
   return new Promise((resolve, reject) => {
@@ -51,19 +55,22 @@ module.exports = async (req, res) => {
     const rawBody = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
     const payload = typeof req.body === 'object' ? req.body : JSON.parse(rawBody || '{}');
 
-    // 1. HMAC Signature Verification
+    // 1. HMAC Signature Verification (enforced — requests without a valid signature are rejected)
     const incomingSignature = req.headers['x-dropea-hmac-sha256'] || req.headers['x-dropea-signature'] || '';
     let isSignatureValid = false;
 
-    if (incomingSignature && DROPEA_HMAC_SECRET) {
+    if (incomingSignature) {
       const calculatedHex = crypto.createHmac('sha256', DROPEA_HMAC_SECRET).update(rawBody).digest('hex');
       const calculatedBase64 = crypto.createHmac('sha256', DROPEA_HMAC_SECRET).update(rawBody).digest('base64');
-      
-      if (incomingSignature === calculatedHex || incomingSignature === calculatedBase64) {
-        isSignatureValid = true;
-      }
-    } else {
-      isSignatureValid = true;
+      const incomingBuf = Buffer.from(incomingSignature);
+
+      isSignatureValid =
+        (incomingBuf.length === calculatedHex.length && crypto.timingSafeEqual(incomingBuf, Buffer.from(calculatedHex))) ||
+        (incomingBuf.length === calculatedBase64.length && crypto.timingSafeEqual(incomingBuf, Buffer.from(calculatedBase64)));
+    }
+
+    if (!isSignatureValid) {
+      return res.status(401).json({ success: false, error: 'Invalid or missing Dropea webhook signature' });
     }
 
     // 2. Extract multilingual Dropea fields

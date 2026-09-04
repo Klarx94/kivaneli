@@ -3,8 +3,12 @@
 
 const https = require('https');
 
-const DROPEA_API_TOKEN = 'DROPEA_API_TOKEN_REDACTED';
-const DROPEA_STORE_ID = 18516;
+const DROPEA_API_TOKEN = process.env.DROPEA_API_TOKEN;
+const DROPEA_STORE_ID = process.env.DROPEA_STORE_ID || 18516;
+
+if (!DROPEA_API_TOKEN) {
+  throw new Error('Missing required env var DROPEA_API_TOKEN');
+}
 
 function requestDropea(method, path, body = null) {
   return new Promise((resolve) => {

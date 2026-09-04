@@ -4,11 +4,15 @@
 const https = require('https');
 const crypto = require('crypto');
 
-const SUPABASE_URL = 'sntsizmdhttpilbauxuv.supabase.co';
-const SUPABASE_SERVICE_KEY = 'SUPABASE_SERVICE_KEY_REDACTED';
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 
-const DROPEA_API_TOKEN = 'DROPEA_API_TOKEN_REDACTED';
-const DROPEA_STORE_ID = 18516; // Kivaneli Store ID in Dropea
+const DROPEA_API_TOKEN = process.env.DROPEA_API_TOKEN;
+const DROPEA_STORE_ID = process.env.DROPEA_STORE_ID || 18516; // Kivaneli Store ID in Dropea
+
+if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY || !DROPEA_API_TOKEN) {
+  throw new Error('Missing required env vars: SUPABASE_URL, SUPABASE_SERVICE_KEY, DROPEA_API_TOKEN');
+}
 
 async function supabaseRest(path, method = 'GET', body = null) {
   return new Promise((resolve, reject) => {
