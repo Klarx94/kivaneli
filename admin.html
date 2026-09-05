@@ -209,16 +209,6 @@
 
     </div>
 
-    <!-- Alerta visible en cualquier pestaña: productos importados de Dropea que siguen sin
-         revisar y publicar — así nunca pasa desapercibido que algo quedó a medio configurar. -->
-    <div id="pendingReviewAlert" class="hidden glass-card p-4 rounded-2xl border-2 border-amber-300 bg-amber-50/60 flex flex-wrap items-center justify-between gap-3">
-      <div class="flex items-center gap-2.5 text-amber-900 text-xs font-bold">
-        <i data-lucide="alert-triangle" class="w-4 h-4 shrink-0"></i>
-        <span id="pendingReviewAlertText"></span>
-      </div>
-      <button onclick="switchTab('tabCatalog')" class="text-xs font-bold bg-amber-600 text-white px-3.5 py-2 rounded-xl hover:bg-amber-700 transition">Ir a revisarlos</button>
-    </div>
-
     <!-- 📦 TAB 1: ORDERS & DROPEA LOGISTICS -->
     <div id="tabOrders" class="space-y-6">
 
@@ -539,7 +529,14 @@
 
     <!-- 🏪 TAB 6: CATALOG & DROPEA PRODUCTS MANAGER -->
     <div id="tabCatalog" class="space-y-6 hidden">
-      
+
+      <!-- Alerta puntual, solo aquí — productos importados de Dropea que siguen sin
+           revisar y publicar. No tiene sentido en pedidos, emails o cupones. -->
+      <div id="pendingReviewAlert" class="hidden glass-card p-4 rounded-2xl border-2 border-amber-300 bg-amber-50/60 flex items-center gap-2.5 text-amber-900 text-xs font-bold">
+        <i data-lucide="alert-triangle" class="w-4 h-4 shrink-0"></i>
+        <span id="pendingReviewAlertText"></span>
+      </div>
+
       <div class="glass-card p-6 rounded-3xl border-2 border-purple-500/30 bg-gradient-to-r from-purple-50/40 via-white to-stone-50 space-y-4">
         <div class="flex flex-wrap items-center justify-between gap-4">
           <div class="flex items-center gap-3">
