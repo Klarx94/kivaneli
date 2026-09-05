@@ -127,17 +127,49 @@ module.exports = async (req, res) => {
         return res.status(400).json({ success: false, error: 'template_slug es requerido' });
       }
 
-      const list = Array.isArray(recipients) && recipients.length
-        ? recipients
-        : [{ email: 'ejemplo.clienta@kivaneli.es', name: 'Carmen García' }];
+      const list = Array.isArray(recipients) ? recipients.filter(r => r && r.email) : [];
+      if (!list.length) {
+        return res.status(400).json({ success: false, error: 'No hay destinatarias reales todavía (la base de clientas está vacía).' });
+      }
+
+      const [template] = await sql`SELECT subject, html_body FROM email_templates WHERE slug = ${template_slug} AND is_active = true`;
+      if (!template) {
+        return res.status(400).json({ success: false, error: `Plantilla "${template_slug}" no encontrada o inactiva` });
+      }
+
+      let sent = 0;
+      let failed = 0;
 
       for (const r of list) {
+        // Generic substitution — a manual broadcast only ever knows the recipient's name and
+        // an optional coupon, never order-specific fields (those templates fire automatically
+        // from the order flow instead, not from here).
+        const html = template.html_body
+          .replace(/\{\{customer_name\}\}/g, r.name || 'clienta')
+          .replace(/\{\{referrer_name\}\}/g, r.name || 'clienta')
+          .replace(/\{\{recovery_discount_code\}\}/g, coupon_included || '')
+          .replace(/\{\{voucher_code\}\}/g, coupon_included || '')
+          .replace(/\{\{vip_code\}\}/g, coupon_included || '')
+          .replace(/\{\{referral_code\}\}/g, coupon_included || '')
+          .replace(/\{\{[a-z_]+\}\}/gi, '');
+        const subject = (template.subject || '').replace(/\{\{customer_name\}\}/g, r.name || 'clienta').replace(/\{\{[a-z_]+\}\}/gi, '');
+
+        let status = 'SENT';
+        try {
+          await sendEmail({ to: r.email, subject, html });
+          sent++;
+        } catch (e) {
+          status = 'FAILED';
+          failed++;
+          console.error('Broadcast send error (non-fatal) for', r.email, ':', e.message);
+        }
+
         await sql`
           INSERT INTO email_campaign_logs (recipient_email, recipient_name, template_slug, coupon_included, status)
-          VALUES (${r.email}, ${r.name || null}, ${template_slug}, ${coupon_included || null}, 'SENT')
+          VALUES (${r.email}, ${r.name || null}, ${template_slug}, ${coupon_included || null}, ${status})
         `;
       }
-      return res.status(200).json({ success: true, sent: list.length });
+      return res.status(200).json({ success: true, sent, failed });
     }
 
     if (action === 'mark_delivered') {

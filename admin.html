@@ -262,7 +262,7 @@
       <div class="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 class="font-serif-luxury font-bold text-xl text-[#181514]">Centro de Automatización & Retargeting de Emails</h2>
-          <p class="text-xs text-stone-500">6 Plantillas transaccionales listas conectadas a Arsys SMTP (beauty@kivaneli.es)</p>
+          <p class="text-xs text-stone-500">Plantillas listas para enviar a tu base de clientas reales (beauty@kivaneli.es)</p>
         </div>
         <button onclick="openBroadcastModal()" class="bg-rose-gradient text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-md hover:scale-105 transition flex items-center gap-2">
           <i data-lucide="send" class="w-4 h-4"></i>
@@ -1550,21 +1550,23 @@
       e.preventDefault();
       const tSlug = document.getElementById('broadcastTemplate').value;
       const coupon = document.getElementById('broadcastCoupon').value.trim().toUpperCase();
+      const recipients = allCustomers.map(c => ({ email: c.email, name: c.name }));
 
-      // Log broadcast via the consolidated /api/admin-actions endpoint
-      const recipients = allCustomers.length
-        ? allCustomers.map(c => ({ email: c.email, name: c.name }))
-        : [{ email: 'ejemplo.clienta@kivaneli.es', name: 'Carmen García' }];
+      try {
+        const res = await adminFetch('/api/admin-actions', {
+          method: 'POST',
+          body: JSON.stringify({ action: 'broadcast', template_slug: tSlug, coupon_included: coupon, recipients })
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Error al enviar la campaña');
 
-      await adminFetch('/api/admin-actions', {
-        method: 'POST',
-        body: JSON.stringify({ action: 'broadcast', template_slug: tSlug, coupon_included: coupon, recipients })
-      });
-
-      closeBroadcastModal();
-      alert('¡Campaña de Retargeting enviada con éxito mediante los servidores Arsys!');
-      loadAdminData();
-      if (window.confetti) confetti({ particleCount: 70 });
+        closeBroadcastModal();
+        alert(`✅ Campaña enviada: ${data.sent} correo(s) entregados${data.failed ? `, ${data.failed} con error` : ''}.`);
+        loadAdminData();
+        if (window.confetti) confetti({ particleCount: 70 });
+      } catch (err) {
+        alert('Error al lanzar la campaña: ' + err.message);
+      }
     }
 
     function previewTemplate(slug) {
