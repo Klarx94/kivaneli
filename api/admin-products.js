@@ -102,10 +102,13 @@ module.exports = async (req, res) => {
       return res.status(200).json({ success: true, product });
     }
 
+    // Real, permanent deletion — distinct from setting a product to "Oculto" (is_active =
+    // false), which stays recoverable. Delete is for content that should never have existed
+    // (wrong product, test data), not for pausing a real one.
     if (req.method === 'DELETE') {
       const { id } = req.body || {};
       if (!id) return res.status(400).json({ success: false, error: 'id es requerido' });
-      await sql`UPDATE products SET is_active = false, updated_at = now() WHERE id = ${id}`;
+      await sql`DELETE FROM products WHERE id = ${id}`;
       return res.status(200).json({ success: true });
     }
 
