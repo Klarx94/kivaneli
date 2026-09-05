@@ -2,7 +2,7 @@
 // Read by catalogo.html, producto.html and assets/js/kivaneli-cart.js so the storefront
 // reflects whatever the admin panel configures — no more hand-edited HTML per product.
 
-const { sql } = require('./_db');
+const { sql } = require('../lib/_db');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

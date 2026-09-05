@@ -4,7 +4,7 @@
 // only ever creates a PENDING order, it never marks anything as paid.
 
 const Stripe = require('stripe');
-const { sql } = require('./_db');
+const { sql } = require('../lib/_db');
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 const SITE_URL = process.env.SITE_URL || 'https://kivaneli.es';

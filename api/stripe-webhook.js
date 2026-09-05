@@ -4,8 +4,8 @@
 // as real and unlock anything.
 
 const Stripe = require('stripe');
-const { sql } = require('./_db');
-const { dispatchOrderToDropea } = require('./_dropea');
+const { sql } = require('../lib/_db');
+const { dispatchOrderToDropea } = require('../lib/_dropea');
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;

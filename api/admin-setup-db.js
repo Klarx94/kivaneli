@@ -3,7 +3,7 @@
 // Safe to call more than once: every statement is idempotent (IF NOT EXISTS / ON CONFLICT DO NOTHING).
 // Delete this file once the migration has been run and verified against production.
 
-const { sql } = require('./_db');
+const { sql } = require('../lib/_db');
 const emailTemplates = require('../db/seed-email-templates.json');
 const discountCoupons = require('../db/seed-discount-coupons.json');
 const products = require('../db/seed-products.json');

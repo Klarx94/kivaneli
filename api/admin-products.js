@@ -2,8 +2,8 @@
 // This is what makes the catalog independent of a developer — the client links a Dropea
 // product, then edits every commercial detail here and it goes live immediately.
 
-const { sql } = require('./_db');
-const { requireAdmin } = require('./_auth');
+const { sql } = require('../lib/_db');
+const { requireAdmin } = require('../lib/_auth');
 
 function slugify(text) {
   return String(text)

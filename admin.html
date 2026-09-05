@@ -1281,9 +1281,10 @@
       const val = parseFloat(document.getElementById('newCouponValue').value);
       const min = parseFloat(document.getElementById('newCouponMin').value) || 0;
 
-      await adminFetch('/api/admin-coupons', {
+      await adminFetch('/api/admin-actions', {
         method: 'POST',
         body: JSON.stringify({
+          action: 'create_coupon',
           code: code,
           discount_type: type,
           discount_value: val,
@@ -1298,9 +1299,9 @@
     }
 
     async function toggleCouponActive(id, newStatus) {
-      await adminFetch('/api/admin-coupons', {
-        method: 'PATCH',
-        body: JSON.stringify({ id, is_active: newStatus })
+      await adminFetch('/api/admin-actions', {
+        method: 'POST',
+        body: JSON.stringify({ action: 'toggle_coupon', id, is_active: newStatus })
       });
       loadAdminData();
     }
@@ -1309,15 +1310,15 @@
       e.preventDefault();
       const tSlug = document.getElementById('broadcastTemplate').value;
       const coupon = document.getElementById('broadcastCoupon').value.trim().toUpperCase();
-      
-      // Log broadcast via the Neon-backed /api/admin-broadcast endpoint
+
+      // Log broadcast via the consolidated /api/admin-actions endpoint
       const recipients = allCustomers.length
         ? allCustomers.map(c => ({ email: c.email, name: c.name }))
         : [{ email: 'ejemplo.clienta@kivaneli.es', name: 'Carmen García' }];
 
-      await adminFetch('/api/admin-broadcast', {
+      await adminFetch('/api/admin-actions', {
         method: 'POST',
-        body: JSON.stringify({ template_slug: tSlug, coupon_included: coupon, recipients })
+        body: JSON.stringify({ action: 'broadcast', template_slug: tSlug, coupon_included: coupon, recipients })
       });
 
       closeBroadcastModal();
@@ -1365,9 +1366,9 @@
       if (!confirm(`¿Confirmar entrega manual para el pedido ${orderNumber} y desbloquear de inmediato las 3 Guías PDF?`)) return;
 
       try {
-        const res = await adminFetch('/api/admin-mark-delivered', {
+        const res = await adminFetch('/api/admin-actions', {
           method: 'POST',
-          body: JSON.stringify({ order_number: orderNumber })
+          body: JSON.stringify({ action: 'mark_delivered', order_number: orderNumber })
         });
         const data = await res.json();
         if (!data.success) throw new Error(data.error || 'Error al actualizar pedido');

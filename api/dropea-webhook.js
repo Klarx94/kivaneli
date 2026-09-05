@@ -2,7 +2,7 @@
 // Handles HMAC Signature Verification, Real-Time Status Mapping & Gated Digital Guide Dispatch
 
 const crypto = require('crypto');
-const { sql } = require('./_db');
+const { sql } = require('../lib/_db');
 
 const DROPEA_HMAC_SECRET = process.env.DROPEA_HMAC_SECRET;
 

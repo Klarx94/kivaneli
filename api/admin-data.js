@@ -1,8 +1,8 @@
 // Vercel Serverless Function: Aggregated admin dashboard data
 // Replaces the 6 separate direct-from-browser Supabase queries in admin.html's loadAdminData().
 
-const { sql } = require('./_db');
-const { requireAdmin } = require('./_auth');
+const { sql } = require('../lib/_db');
+const { requireAdmin } = require('../lib/_auth');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');

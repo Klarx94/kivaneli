@@ -2,8 +2,8 @@
 // api/create-checkout-session.js + api/stripe-webhook.js instead).
 
 const crypto = require('crypto');
-const { sql } = require('./_db');
-const { resolveDropeaLineItems, sendOrderToDropeaPublicApi } = require('./_dropea');
+const { sql } = require('../lib/_db');
+const { resolveDropeaLineItems, sendOrderToDropeaPublicApi } = require('../lib/_dropea');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
