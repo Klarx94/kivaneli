@@ -5,7 +5,7 @@
 const { sql } = require('../lib/_db');
 const { requireAdmin } = require('../lib/_auth');
 const { cancelDropeaOrder, getShopStockLevels } = require('../lib/_dropea');
-const { sendViaResend } = require('../lib/_email');
+const { sendEmail } = require('../lib/_email');
 
 const ADMIN_ALERT_EMAIL = process.env.ADMIN_ALERT_EMAIL || 'beauty@kivaneli.es';
 const LOW_STOCK_THRESHOLD = 15;
@@ -45,7 +45,7 @@ async function runStockAlertCheck() {
     const rows = [...outOfStock.map(p => `<li><strong>${p.name}</strong> — AGOTADO (marcado automáticamente como no disponible)</li>`),
                   ...lowStock.map(p => `<li><strong>${p.name}</strong> — quedan ${p.stock} unidades</li>`)].join('');
     try {
-      await sendViaResend({
+      await sendEmail({
         to: ADMIN_ALERT_EMAIL,
         subject: `⚠️ Alerta de stock KIVANELI (${outOfStock.length} agotados, ${lowStock.length} bajos)`,
         html: `<div style="font-family:Arial,sans-serif;"><h3>Revisión diaria de stock Dropea</h3><ul>${rows}</ul></div>`
