@@ -248,6 +248,17 @@ module.exports = async (req, res) => {
       return res.status(200).json({ success: true, order_number });
     }
 
+    if (action === 'delete_customer') {
+      const { email } = body;
+      if (!email) {
+        return res.status(400).json({ success: false, error: 'email es requerido' });
+      }
+      // Permanent removal — for test/debug customer rows only. A real customer's history
+      // stays intact even if their orders get cancelled.
+      await sql`DELETE FROM customers WHERE email = ${String(email).toLowerCase().trim()}`;
+      return res.status(200).json({ success: true, email });
+    }
+
     if (action === 'save_pixel_config') {
       const { meta_pixel_id, tiktok_pixel_id, google_ads_id, ga4_measurement_id } = body;
       const config = {
