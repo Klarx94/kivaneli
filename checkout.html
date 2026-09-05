@@ -334,7 +334,7 @@
     </div>
   </footer>
 
-  <script src="assets/js/kivaneli-cart.js"></script>
+  <script src="assets/js/kivaneli-cart.js?v=2"></script>
   <script>
     let checkoutCoupon = '';
     let checkoutCouponDiscount = 0;
@@ -616,9 +616,24 @@
       return false;
     }
 
-    document.addEventListener('kivaneli:cart-ready', () => {
+    let checkoutRenderStarted = false;
+    function startCheckoutRenderOnce() {
+      if (checkoutRenderStarted) return;
+      checkoutRenderStarted = true;
       if (!handleStripeRedirectReturn()) renderCheckoutPage();
-    });
+    }
+
+    document.addEventListener('kivaneli:cart-ready', startCheckoutRenderOnce);
+
+    // Safety net: if a cached older cart.js never dispatches kivaneli:cart-ready, don't
+    // leave the checkout page stuck blank — window.kivaneliCart itself is set synchronously
+    // in every version of the script, so it's safe to render from as soon as it exists.
+    (function waitForCartFallback(attempts) {
+      if (checkoutRenderStarted) return;
+      if (window.kivaneliCart) { startCheckoutRenderOnce(); return; }
+      if (attempts <= 0) { startCheckoutRenderOnce(); return; }
+      setTimeout(() => waitForCartFallback(attempts - 1), 100);
+    })(30);
   </script>
 </body>
 </html>
