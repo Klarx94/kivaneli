@@ -595,8 +595,8 @@
             <i data-lucide="book-open" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Guías & Diarios PDF de Regalo</h3>
-            <p class="text-xs text-stone-500">Material descargable — vista previa para revisar contenido</p>
+            <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Guías PDF (material interno, no se envía a clientas todavía)</h3>
+            <p class="text-xs text-stone-500">Vista previa del contenido — no hay ninguna promesa de "regalo" activa en la web ni en los emails</p>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
@@ -1335,15 +1335,15 @@
           : '<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 text-[10px] font-bold">🟡 Revisar CP</span>';
 
         const isDelivered = o.shipping_status === 'DELIVERED' || o.payment_status === 'PAID';
-        const digitalBadge = isDelivered
-          ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">🔓 Guías Despachadas</span>'
-          : '<span class="px-2 py-0.5 rounded bg-stone-100 text-stone-600 text-[10px] font-bold">🔒 Guías Retenidas (COD)</span>';
+        const paymentBadge = o.payment_status === 'PAID' || o.payment_status === 'COMPLETED'
+          ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">✅ Pagado</span>'
+          : '<span class="px-2 py-0.5 rounded bg-stone-100 text-stone-600 text-[10px] font-bold">💶 Cobro pendiente (COD)</span>';
 
         return `
           <tr class="hover:bg-[#FAF7F2] transition">
             <td class="p-4 font-mono font-bold text-[#181514]">
               ${o.order_number}
-              <div class="mt-1">${digitalBadge}</div>
+              <div class="mt-1">${paymentBadge}</div>
             </td>
             <td class="p-4 font-semibold text-[#181514]">${o.customer_name}</td>
             <td class="p-4 text-stone-600">
@@ -1363,7 +1363,7 @@
               </span>
               ${!isDelivered ? `
                 <button onclick="confirmDropeaDeliveryManually('${o.order_number}')" class="block text-[10px] font-bold text-emerald-700 hover:underline">
-                  ⚡ Marcar Entregado & Desbloquear Guías
+                  ⚡ Marcar Entregado
                 </button>
               ` : ''}
             </td>
@@ -1605,7 +1605,7 @@
     }
 
     async function confirmDropeaDeliveryManually(orderNumber) {
-      if (!confirm(`¿Confirmar entrega manual para el pedido ${orderNumber} y desbloquear de inmediato las 3 Guías PDF?`)) return;
+      if (!confirm(`¿Confirmar entrega manual para el pedido ${orderNumber}?`)) return;
 
       try {
         const res = await adminFetch('/api/admin-actions', {
@@ -1615,7 +1615,7 @@
         const data = await res.json();
         if (!data.success) throw new Error(data.error || 'Error al actualizar pedido');
 
-        alert(`✅ Pedido ${orderNumber} marcado como ENTREGADO. Guías PDF desbloqueadas para la clienta.`);
+        alert(`✅ Pedido ${orderNumber} marcado como ENTREGADO.`);
         loadAdminData();
         if (window.confetti) confetti({ particleCount: 70 });
       } catch (err) {
