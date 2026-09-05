@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS discount_coupons (
   max_uses            INTEGER DEFAULT 999999,
   is_active           BOOLEAN DEFAULT true,
   landing_id          TEXT,
+  description         TEXT, -- para qué es / dónde se usa este cupón (visible en el admin)
   expires_at          TIMESTAMPTZ,
   created_at          TIMESTAMPTZ NOT NULL DEFAULT now()
 );

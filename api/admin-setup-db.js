@@ -114,6 +114,7 @@ module.exports = async (req, res) => {
         created_at          TIMESTAMPTZ NOT NULL DEFAULT now()
       )
     `;
+    await sql`ALTER TABLE discount_coupons ADD COLUMN IF NOT EXISTS description TEXT`;
     steps.push('discount_coupons');
 
     await sql`

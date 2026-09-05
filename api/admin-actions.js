@@ -90,19 +90,23 @@ module.exports = async (req, res) => {
 
   try {
     if (action === 'create_coupon') {
-      const { code, discount_type, discount_value, min_order_amount, landing_id } = body;
+      const { code, discount_type, discount_value, min_order_amount, landing_id, description } = body;
       if (!code || !discount_type || discount_value == null) {
         return res.status(400).json({ success: false, error: 'code, discount_type y discount_value son requeridos' });
       }
+      if (!description || !description.trim()) {
+        return res.status(400).json({ success: false, error: 'La descripción (para qué es este cupón) es obligatoria' });
+      }
 
       const [coupon] = await sql`
-        INSERT INTO discount_coupons (code, discount_type, discount_value, min_order_amount, landing_id, is_active)
-        VALUES (${code.toUpperCase()}, ${discount_type}, ${discount_value}, ${min_order_amount || 0}, ${landing_id || null}, true)
+        INSERT INTO discount_coupons (code, discount_type, discount_value, min_order_amount, landing_id, description, is_active)
+        VALUES (${code.toUpperCase()}, ${discount_type}, ${discount_value}, ${min_order_amount || 0}, ${landing_id || null}, ${description.trim()}, true)
         ON CONFLICT (code) DO UPDATE SET
           discount_type = excluded.discount_type,
           discount_value = excluded.discount_value,
           min_order_amount = excluded.min_order_amount,
           landing_id = excluded.landing_id,
+          description = excluded.description,
           is_active = true
         RETURNING *
       `;
@@ -192,6 +196,17 @@ module.exports = async (req, res) => {
         WHERE order_id = ${order_number}
       `;
 
+      return res.status(200).json({ success: true, order_number });
+    }
+
+    if (action === 'delete_order') {
+      const { order_number } = body;
+      if (!order_number) {
+        return res.status(400).json({ success: false, error: 'order_number es requerido' });
+      }
+      // Real, permanent removal — for test/debug orders that should never have counted as
+      // real activity. A genuine order that just didn't work out stays as CANCELLED instead.
+      await sql`DELETE FROM orders WHERE order_number = ${order_number}`;
       return res.status(200).json({ success: true, order_number });
     }
 

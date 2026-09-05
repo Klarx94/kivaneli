@@ -323,7 +323,7 @@
                 <th class="p-4">Tipo Descuento</th>
                 <th class="p-4">Valor</th>
                 <th class="p-4">Usos Realizados</th>
-                <th class="p-4">Landing Asociada</th>
+                <th class="p-4">¿Para qué es?</th>
                 <th class="p-4">Estado</th>
                 <th class="p-4">Acción</th>
               </tr>
@@ -776,11 +776,27 @@
           <label class="font-bold text-stone-700">Pedido Mínimo (€)</label>
           <input type="number" id="newCouponMin" value="0" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
         </div>
+        <div>
+          <label class="font-bold text-stone-700">¿Para qué es este cupón? *</label>
+          <input type="text" id="newCouponDescription" required placeholder="Ej. Campaña TikTok Ads agosto 2026" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
+          <p class="text-[10.5px] text-stone-400 mt-1">Obligatorio — así siempre sabrás para qué se creó cada cupón al verlo en la tabla.</p>
+        </div>
 
         <button type="submit" class="w-full bg-[#181514] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#D48B80] transition shadow-md">
           Guardar Cupón
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- 🌟 MODAL: VISTA PREVIA DE PLANTILLA DE EMAIL -->
+  <div id="modalTemplatePreview" class="fixed inset-0 bg-stone-900/70 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl p-4 md:p-6 max-w-2xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-stone-200">
+      <div class="flex items-center justify-between pb-3 border-b border-stone-100 shrink-0">
+        <h3 id="templatePreviewTitle" class="font-serif-luxury font-bold text-base text-[#181514]">Vista Previa</h3>
+        <button onclick="closeTemplatePreview()" class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200">✕</button>
+      </div>
+      <iframe id="templatePreviewFrame" class="w-full flex-1 border-0 rounded-2xl mt-3" style="min-height:60vh;" sandbox=""></iframe>
     </div>
   </div>
 
@@ -797,27 +813,32 @@
           <label class="font-bold text-stone-700">Audiencia Objetivo</label>
           <select id="broadcastAudience" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
             <option value="ALL_CUSTOMERS">Todas las Clientas Registradas</option>
-            <option value="PENDING_ORDERS">Carritos & Pedidos Pendientes</option>
-            <option value="REFERRERS">Embajadoras Club Amigas</option>
+            <option value="PENDING_ORDERS">Pagos con tarjeta iniciados y no completados</option>
+            <option value="REFERRERS">Embajadoras Club Amigas (opt-in confirmado)</option>
           </select>
+          <p class="text-[10.5px] text-stone-400 mt-1 leading-relaxed">
+            "Todas las clientas" = cualquiera que haya comprado o dejado su email (tabla Clientas). "Pagos iniciados y no completados" = empezó a pagar con tarjeta pero no terminó — el único tipo de "carrito abandonado" que el sistema puede detectar hoy, ya que un pedido a contrareembolso solo se guarda si se confirma. "Embajadoras" = quienes pulsaron el botón de invitar a una amiga tras su compra.
+          </p>
         </div>
 
         <div>
           <label class="font-bold text-stone-700">Seleccionar Plantilla</label>
           <select id="broadcastTemplate" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
-            <option value="abandoned_checkout_recovery">🌸 Recuperación de Carrito (Con Descuento SEDA10)</option>
+            <option value="abandoned_checkout_recovery">🌸 Recuperación de Carrito</option>
             <option value="post_purchase_checkin_day7">🌿 Seguimiento Día 7: Consejos y Diario</option>
-            <option value="winback_promo_30days">✨ Oferta Reposición VIP 20%</option>
+            <option value="winback_promo_30days">✨ Oferta de Reposición</option>
           </select>
+          <p class="text-[10.5px] text-stone-400 mt-1">Puedes ver el diseño exacto de cada una con "Vista Previa" en la pestaña de Emails antes de enviar.</p>
         </div>
 
         <div>
-          <label class="font-bold text-stone-700">Cupón Especial a Incluir</label>
+          <label class="font-bold text-stone-700">Código de Cupón a Incluir</label>
           <input type="text" id="broadcastCoupon" value="SEDA10" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 uppercase font-mono font-bold">
+          <p class="text-[10.5px] text-stone-400 mt-1">Debe ser un cupón que ya exista y esté activo en la pestaña Cupones — este campo no crea uno nuevo, solo indica cuál mencionar en el email.</p>
         </div>
 
         <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-amber-900 text-[11px] leading-relaxed">
-          ⚡ Esta acción procesará el envío transaccional mediante la cola de correos y registrará cada despacho en el log de auditoría.
+          ⚡ Esto envía un email real, ahora mismo, a cada destinataria de la audiencia elegida.
         </div>
 
         <button type="submit" class="w-full bg-rose-gradient text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition shadow-md flex items-center justify-center gap-2">
@@ -1323,24 +1344,43 @@
         return;
       }
 
+      // Estados reales — nunca se cuenta como venta ni se muestra como "Entregado" un pedido
+      // cancelado. Antes cualquier estado que no fuera IN_PREPARATION caía por defecto en
+      // "Entregado", así que un pedido cancelado o de prueba inflaba las ventas totales.
+      const STATUS_MAP = {
+        CANCELLED: { label: 'Cancelado', cls: 'bg-rose-100 text-rose-700' },
+        DELIVERED: { label: 'Entregado', cls: 'bg-emerald-100 text-emerald-800' },
+        CONFIRMED: { label: 'En Preparación', cls: 'bg-amber-100 text-amber-800' },
+        IN_PREPARATION: { label: 'En Preparación', cls: 'bg-amber-100 text-amber-800' },
+        PROCESSING: { label: 'En Preparación', cls: 'bg-amber-100 text-amber-800' },
+        AWAITING_PAYMENT: { label: 'Esperando pago', cls: 'bg-stone-200 text-stone-600' }
+      };
+
       tbody.innerHTML = allOrders.map(o => {
         const amt = parseFloat(o.total_amount) || 0;
-        totalRev += amt;
-        if (o.shipping_status === 'IN_PREPARATION') pendingCount++;
+        const isCancelled = o.shipping_status === 'CANCELLED';
+        const isDelivered = o.shipping_status === 'DELIVERED';
+
+        // Ventas reales = ni canceladas ni todavía sin pagar/confirmar.
+        if (!isCancelled && o.shipping_status !== 'AWAITING_PAYMENT') totalRev += amt;
+        if (o.shipping_status === 'IN_PREPARATION' || o.shipping_status === 'CONFIRMED' || o.shipping_status === 'PROCESSING') pendingCount++;
 
         // Anti-Fraud Risk Check
         const isMadridZip = o.customer_zip && (o.customer_zip.startsWith('28') || o.customer_zip.length === 5);
-        const riskBadge = isMadridZip 
+        const riskBadge = isMadridZip
           ? '<span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-bold">🟢 Seguro</span>'
           : '<span class="px-2 py-0.5 rounded-md bg-amber-100 text-amber-800 text-[10px] font-bold">🟡 Revisar CP</span>';
 
-        const isDelivered = o.shipping_status === 'DELIVERED' || o.payment_status === 'PAID';
         const paymentBadge = o.payment_status === 'PAID' || o.payment_status === 'COMPLETED'
           ? '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[10px] font-bold">✅ Pagado</span>'
-          : '<span class="px-2 py-0.5 rounded bg-stone-100 text-stone-600 text-[10px] font-bold">💶 Cobro pendiente (COD)</span>';
+          : isCancelled
+            ? '<span class="px-2 py-0.5 rounded bg-stone-100 text-stone-500 text-[10px] font-bold">— Cancelado</span>'
+            : '<span class="px-2 py-0.5 rounded bg-stone-100 text-stone-600 text-[10px] font-bold">💶 Cobro pendiente (COD)</span>';
+
+        const status = STATUS_MAP[o.shipping_status] || { label: o.shipping_status || 'Desconocido', cls: 'bg-stone-100 text-stone-600' };
 
         return `
-          <tr class="hover:bg-[#FAF7F2] transition">
+          <tr class="hover:bg-[#FAF7F2] transition ${isCancelled ? 'opacity-60' : ''}">
             <td class="p-4 font-mono font-bold text-[#181514]">
               ${o.order_number}
               <div class="mt-1">${paymentBadge}</div>
@@ -1358,14 +1398,17 @@
             <td class="p-4 font-bold text-[#D48B80]">${amt.toFixed(2)} €</td>
             <td class="p-4">${riskBadge}</td>
             <td class="p-4 space-y-1">
-              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold inline-block ${o.shipping_status === 'IN_PREPARATION' ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">
-                ${o.shipping_status === 'IN_PREPARATION' ? 'En Preparación' : 'Entregado'}
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold inline-block ${status.cls}">
+                ${status.label}
               </span>
-              ${!isDelivered ? `
+              ${!isDelivered && !isCancelled ? `
                 <button onclick="confirmDropeaDeliveryManually('${o.order_number}')" class="block text-[10px] font-bold text-emerald-700 hover:underline">
                   ⚡ Marcar Entregado
                 </button>
               ` : ''}
+              <button onclick="handleDeleteOrder('${o.order_number}')" class="block text-[10px] font-bold text-stone-400 hover:text-rose-600 hover:underline">
+                🗑️ Eliminar (prueba/error)
+              </button>
             </td>
           </tr>
         `;
@@ -1416,7 +1459,7 @@
           <td class="p-4 text-stone-600">${c.discount_type === 'PERCENTAGE' ? 'Porcentaje' : 'Fijo'}</td>
           <td class="p-4 font-bold text-[#181514]">${c.discount_type === 'PERCENTAGE' ? c.discount_value + ' %' : c.discount_value + ' €'}</td>
           <td class="p-4 text-stone-600 font-mono">${c.uses_count || 0}</td>
-          <td class="p-4 text-stone-500">${c.landing_id || 'Global'}</td>
+          <td class="p-4 text-stone-500 max-w-[200px]">${c.description || '<span class="text-amber-600 font-semibold">Sin descripción — edítalo</span>'}</td>
           <td class="p-4">
             <span class="px-2 py-0.5 rounded text-[10px] font-bold ${c.is_active ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-200 text-stone-600'}">
               ${c.is_active ? 'Activo' : 'Inactivo'}
@@ -1520,18 +1563,27 @@
       const type = document.getElementById('newCouponType').value;
       const val = parseFloat(document.getElementById('newCouponValue').value);
       const min = parseFloat(document.getElementById('newCouponMin').value) || 0;
+      const description = document.getElementById('newCouponDescription').value.trim();
 
-      await adminFetch('/api/admin-actions', {
-        method: 'POST',
-        body: JSON.stringify({
-          action: 'create_coupon',
-          code: code,
-          discount_type: type,
-          discount_value: val,
-          min_order_amount: min,
-          landing_id: currentActiveLandingId
-        })
-      });
+      try {
+        const res = await adminFetch('/api/admin-actions', {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'create_coupon',
+            code: code,
+            discount_type: type,
+            discount_value: val,
+            min_order_amount: min,
+            description: description,
+            landing_id: currentActiveLandingId
+          })
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Error al guardar el cupón');
+      } catch (err) {
+        alert('Error al guardar el cupón: ' + err.message);
+        return;
+      }
 
       closeCreateCouponModal();
       loadAdminData();
@@ -1546,11 +1598,38 @@
       loadAdminData();
     }
 
+    // Construye la lista real de destinatarias según la audiencia elegida — antes este
+    // selector no hacía nada, siempre se enviaba a todas las clientas sin importar la opción.
+    function resolveBroadcastAudience(audience) {
+      if (audience === 'PENDING_ORDERS') {
+        // Pedidos con tarjeta iniciados pero nunca completados — el único "carrito
+        // pendiente" real que el sistema puede detectar hoy (un COD solo se guarda si
+        // llegó a confirmarse, no hay estado intermedio para él).
+        const seen = new Set();
+        return allOrders
+          .filter(o => o.payment_status === 'PENDING_STRIPE' && o.customer_email && !seen.has(o.customer_email) && seen.add(o.customer_email))
+          .map(o => ({ email: o.customer_email, name: o.customer_name }));
+      }
+      if (audience === 'REFERRERS') {
+        const seen = new Set();
+        return allReferralOptins
+          .filter(l => l.email && !seen.has(l.email) && seen.add(l.email))
+          .map(l => ({ email: l.email, name: l.name }));
+      }
+      return allCustomers.map(c => ({ email: c.email, name: c.name }));
+    }
+
     async function handleBroadcastSubmit(e) {
       e.preventDefault();
       const tSlug = document.getElementById('broadcastTemplate').value;
       const coupon = document.getElementById('broadcastCoupon').value.trim().toUpperCase();
-      const recipients = allCustomers.map(c => ({ email: c.email, name: c.name }));
+      const audience = document.getElementById('broadcastAudience').value;
+      const recipients = resolveBroadcastAudience(audience);
+
+      if (!recipients.length) {
+        alert('No hay destinatarias reales todavía para esa audiencia.');
+        return;
+      }
 
       try {
         const res = await adminFetch('/api/admin-actions', {
@@ -1572,9 +1651,16 @@
     function previewTemplate(slug) {
       const t = allTemplates.find(x => x.slug === slug);
       if (!t) return;
-      const win = window.open('', '_blank');
-      win.document.write(t.html_body);
-      win.document.close();
+      document.getElementById('templatePreviewTitle').textContent = t.name;
+      document.getElementById('templatePreviewFrame').srcdoc = t.html_body;
+      document.getElementById('modalTemplatePreview').classList.remove('hidden');
+      document.getElementById('modalTemplatePreview').classList.add('flex');
+    }
+
+    function closeTemplatePreview() {
+      document.getElementById('modalTemplatePreview').classList.add('hidden');
+      document.getElementById('modalTemplatePreview').classList.remove('flex');
+      document.getElementById('templatePreviewFrame').srcdoc = '';
     }
 
     function exportDropeaCSV() {
@@ -1602,6 +1688,21 @@
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+    }
+
+    async function handleDeleteOrder(orderNumber) {
+      if (!confirm(`¿Eliminar definitivamente el pedido ${orderNumber}? Úsalo solo para pedidos de prueba o creados por error — no afecta a Dropea, solo borra el registro de aquí.`)) return;
+      try {
+        const res = await adminFetch('/api/admin-actions', {
+          method: 'POST',
+          body: JSON.stringify({ action: 'delete_order', order_number: orderNumber })
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Error al eliminar');
+        loadAdminData();
+      } catch (err) {
+        alert('Error al eliminar el pedido: ' + err.message);
+      }
     }
 
     async function confirmDropeaDeliveryManually(orderNumber) {
