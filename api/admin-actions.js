@@ -32,6 +32,12 @@ module.exports = async (req, res) => {
       const [coupon] = await sql`
         INSERT INTO discount_coupons (code, discount_type, discount_value, min_order_amount, landing_id, is_active)
         VALUES (${code.toUpperCase()}, ${discount_type}, ${discount_value}, ${min_order_amount || 0}, ${landing_id || null}, true)
+        ON CONFLICT (code) DO UPDATE SET
+          discount_type = excluded.discount_type,
+          discount_value = excluded.discount_value,
+          min_order_amount = excluded.min_order_amount,
+          landing_id = excluded.landing_id,
+          is_active = true
         RETURNING *
       `;
       return res.status(200).json({ success: true, coupon });
