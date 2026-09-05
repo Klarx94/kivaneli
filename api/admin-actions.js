@@ -15,7 +15,7 @@ const LOW_STOCK_THRESHOLD = 15;
 // inflates the raw file by ~33% on top of that — these caps are sized to stay safely under
 // that ceiling with the request as a whole, not just the file itself.
 const UPLOAD_MAX_BYTES = { image: 3 * 1024 * 1024, video: 3 * 1024 * 1024 };
-const BLOB_TOKEN = process.env.BLOBK_READ_WRITE_TOKEN;
+const BLOB_TOKEN = process.env.BLOBKIVANELI_READ_WRITE_TOKEN;
 
 // Dropea has no stock-change webhook — this is the only way to catch a product silently
 // running out before a customer orders it. Triggered daily by the Vercel Cron entry in
@@ -212,7 +212,7 @@ module.exports = async (req, res) => {
         return res.status(400).json({ success: false, error: 'filename, content_type y data_base64 son requeridos' });
       }
       if (!BLOB_TOKEN) {
-        return res.status(500).json({ success: false, error: 'Almacén de archivos no configurado (falta BLOBK_READ_WRITE_TOKEN)' });
+        return res.status(500).json({ success: false, error: 'Almacén de archivos no configurado (falta BLOBKIVANELI_READ_WRITE_TOKEN)' });
       }
 
       const kind = media_type === 'video' ? 'video' : 'image';
