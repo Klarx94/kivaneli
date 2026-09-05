@@ -209,6 +209,16 @@
 
     </div>
 
+    <!-- Alerta visible en cualquier pestaña: productos importados de Dropea que siguen sin
+         revisar y publicar — así nunca pasa desapercibido que algo quedó a medio configurar. -->
+    <div id="pendingReviewAlert" class="hidden glass-card p-4 rounded-2xl border-2 border-amber-300 bg-amber-50/60 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-2.5 text-amber-900 text-xs font-bold">
+        <i data-lucide="alert-triangle" class="w-4 h-4 shrink-0"></i>
+        <span id="pendingReviewAlertText"></span>
+      </div>
+      <button onclick="switchTab('tabCatalog')" class="text-xs font-bold bg-amber-600 text-white px-3.5 py-2 rounded-xl hover:bg-amber-700 transition">Ir a revisarlos</button>
+    </div>
+
     <!-- 📦 TAB 1: ORDERS & DROPEA LOGISTICS -->
     <div id="tabOrders" class="space-y-6">
 
@@ -633,6 +643,12 @@
 
       <form onsubmit="handleSaveProduct(event)" class="space-y-4 text-xs">
         <input type="hidden" id="prodId">
+        <input type="hidden" id="prodNeedsReview" value="false">
+
+        <div id="pendingReviewBanner" class="hidden p-3.5 rounded-xl bg-amber-50 border-2 border-amber-300 text-amber-900 text-[11.5px] leading-relaxed space-y-1">
+          <div class="font-bold flex items-center gap-1.5"><i data-lucide="alert-triangle" class="w-4 h-4"></i> Importado de Dropea — pendiente de revisar</div>
+          <p>Este producto NO se publicará al guardar. Revisa precio, imagen, descripción y en qué secciones debe verse. Cuando esté listo, pulsa "Revisar y Publicar" en la tabla del catálogo (no basta con guardar aquí).</p>
+        </div>
 
         <div class="p-3 rounded-xl bg-[#FAF7F2] border border-[#D48B80]/30 space-y-2">
           <label class="font-bold text-stone-700">Buscar en catálogo Dropea (evita copiar IDs a mano)</label>
@@ -725,7 +741,11 @@
 
         <div>
           <label class="font-bold text-stone-700">URL Imagen Principal (HD)</label>
-          <input type="text" id="prodImageUrl" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
+          <input type="text" id="prodImageUrl" oninput="checkImagePreview()" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
+          <div id="imagePreviewBox" class="hidden mt-2 flex items-center gap-3 p-2 rounded-xl bg-stone-50 border border-stone-200">
+            <img id="imagePreviewImg" class="w-16 h-16 object-contain bg-white rounded-lg border border-stone-200">
+            <p id="imagePreviewNote" class="text-[10.5px] text-stone-500 leading-relaxed"></p>
+          </div>
         </div>
 
         <div>
@@ -735,7 +755,8 @@
 
         <div>
           <label class="font-bold text-stone-700">Descripción & Beneficios (admite HTML)</label>
-          <textarea id="prodDescription" rows="4" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-xs"></textarea>
+          <textarea id="prodDescription" oninput="checkDescriptionQuality()" rows="4" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-xs"></textarea>
+          <p id="descriptionQualityNote" class="hidden mt-1 text-[10.5px] text-amber-700 font-semibold leading-relaxed">⚠️ Esta descripción parece ser el texto original del proveedor (habla de "dropshippers" o "tu tienda") — reescríbela en tono de clienta antes de publicar.</p>
         </div>
 
         <div>
@@ -1101,17 +1122,30 @@
             ${p.regular_price ? `<div class="text-[10px] text-stone-400 line-through">${parseFloat(p.regular_price).toFixed(2)} €</div>` : ''}
           </td>
           <td class="p-4">
-            ${p.is_active === false
-              ? '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-stone-200 text-stone-600">⚪ Oculto</span>'
-              : (p.in_stock === false
-                ? '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800">🟡 Agotado</span>'
-                : '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800">🟢 Disponible</span>')}
+            ${p.needs_review
+              ? '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800 animate-pulse">⏳ Pendiente de revisión</span>'
+              : (p.is_active === false
+                ? '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-stone-200 text-stone-600">⚪ Oculto</span>'
+                : (p.in_stock === false
+                  ? '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800">🟡 Agotado</span>'
+                  : '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800">🟢 Disponible</span>'))}
           </td>
-          <td class="p-4 text-right space-x-2">
+          <td class="p-4 text-right space-x-2 whitespace-nowrap">
             <button onclick="editProduct('${p.id}')" class="text-xs bg-white text-stone-700 border border-stone-200 px-2.5 py-1.5 rounded-lg hover:border-[#D48B80] font-bold transition">Editar</button>
+            ${p.needs_review ? `<button onclick="reviewAndPublish('${p.id}')" class="text-xs bg-emerald-600 text-white px-2.5 py-1.5 rounded-lg hover:bg-emerald-700 font-bold transition">Revisar y Publicar</button>` : ''}
           </td>
         </tr>
       `; }).join('');
+
+      const pending = storeProducts.filter(p => p.needs_review);
+      const alertBox = document.getElementById('pendingReviewAlert');
+      if (pending.length) {
+        document.getElementById('pendingReviewAlertText').textContent =
+          `${pending.length} producto${pending.length > 1 ? 's' : ''} importado${pending.length > 1 ? 's' : ''} de Dropea pendiente${pending.length > 1 ? 's' : ''} de revisar: ${pending.map(p => p.name).join(', ')}. No se ven en la web hasta que los publiques.`;
+        alertBox.classList.remove('hidden');
+      } else {
+        alertBox.classList.add('hidden');
+      }
 
       if (window.lucide) lucide.createIcons();
     }
@@ -1137,6 +1171,10 @@
       document.getElementById('prodIsBundle').checked = false;
       document.getElementById('bundleRows').innerHTML = '';
       toggleBundleComposer();
+      document.getElementById('prodNeedsReview').value = 'false';
+      document.getElementById('pendingReviewBanner').classList.add('hidden');
+      document.getElementById('imagePreviewBox').classList.add('hidden');
+      document.getElementById('descriptionQualityNote').classList.add('hidden');
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
     }
@@ -1177,6 +1215,44 @@
       if (window.lucide) lucide.createIcons();
     }
 
+    // Vista previa + advertencia de proporción — no bloquea nada (Dropea no siempre da
+    // URLs con extensión reconocible), solo avisa cuando la imagen no es apaisada, ya que
+    // esas se recortan peor en las tarjetas rectangulares del sitio.
+    function checkImagePreview() {
+      const url = document.getElementById('prodImageUrl').value.trim();
+      const box = document.getElementById('imagePreviewBox');
+      const img = document.getElementById('imagePreviewImg');
+      const note = document.getElementById('imagePreviewNote');
+      if (!url) { box.classList.add('hidden'); return; }
+
+      const probe = new Image();
+      probe.onload = () => {
+        img.src = url;
+        box.classList.remove('hidden');
+        const ratio = probe.naturalWidth / probe.naturalHeight;
+        if (ratio < 1.15) {
+          note.innerHTML = `✅ Imagen válida (${probe.naturalWidth}×${probe.naturalHeight}px). <strong class="text-amber-700">Es cuadrada o vertical</strong> — el sitio la mostrará completa sin recortar, no llenará la tarjeta de borde a borde. Si quieres que la llene, usa una foto apaisada (más ancha que alta).`;
+        } else {
+          note.innerHTML = `✅ Imagen válida (${probe.naturalWidth}×${probe.naturalHeight}px), proporción apaisada — se mostrará bien.`;
+        }
+      };
+      probe.onerror = () => {
+        box.classList.remove('hidden');
+        img.removeAttribute('src');
+        note.innerHTML = '❌ Esta URL no carga como imagen válida — revísala antes de publicar.';
+      };
+      probe.src = url;
+    }
+
+    // Aviso simple si la descripción todavía suena a copy de proveedor dirigido a
+    // dropshippers, en vez de a la clienta final que la va a leer en la web.
+    function checkDescriptionQuality() {
+      const text = document.getElementById('prodDescription').value.toLowerCase();
+      const supplierTells = ['dropshipper', 'tu tienda', 'tu catálogo', 'márgenes de ganancia', 'añade a tu catálogo', 'ideal para dropshipping'];
+      const looksUnedited = supplierTells.some(tell => text.includes(tell));
+      document.getElementById('descriptionQualityNote').classList.toggle('hidden', !looksUnedited);
+    }
+
     function collectBundleItems() {
       return Array.from(document.querySelectorAll('#bundleRows .bundle-row')).map(row => ({
         dropea_variant_id: parseInt(row.querySelector('.bundle-row-product').value),
@@ -1199,6 +1275,15 @@
         const suggested = Math.ceil((variant.price + 1) * 2.4 * 20) / 20; // rough markup starting point, editable
         document.getElementById('prodPrice').value = suggested.toFixed(2);
       }
+
+      // Un producto importado nunca sale visible solo por guardarse — el admin tiene que
+      // revisar precio/imagen/descripción/secciones y publicarlo explícitamente después.
+      document.getElementById('prodNeedsReview').value = 'true';
+      document.getElementById('prodAvailability').value = 'HIDDEN';
+      document.getElementById('pendingReviewBanner').classList.remove('hidden');
+      checkImagePreview();
+      checkDescriptionQuality();
+      if (window.lucide) lucide.createIcons();
     }
 
     // Lets the admin find a Dropea product by name instead of having to know its numeric
@@ -1275,8 +1360,34 @@
       (p.bundle_items || []).forEach(comp => addBundleRow(comp));
       toggleBundleComposer();
 
+      document.getElementById('prodNeedsReview').value = p.needs_review ? 'true' : 'false';
+      document.getElementById('pendingReviewBanner').classList.toggle('hidden', !p.needs_review);
+      checkImagePreview();
+      checkDescriptionQuality();
+
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
+    }
+
+    // Acción explícita para sacar un producto importado del estado "pendiente" — separada
+    // de guardar cambios normales, para que publicar sea siempre una decisión consciente.
+    async function reviewAndPublish(id) {
+      const p = storeProducts.find(x => x.id === id);
+      if (!p) return;
+      if (!confirm(`¿Confirmas que "${p.name}" está listo (precio, imagen, descripción y disponibilidad revisados) y quieres publicarlo ya?`)) return;
+
+      try {
+        const res = await adminFetch('/api/admin-products', {
+          method: 'PATCH',
+          body: JSON.stringify({ id, needs_review: false, is_active: true })
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Error al publicar');
+        await loadDropeaProductsLive();
+        if (window.confetti) confetti({ particleCount: 60 });
+      } catch (err) {
+        alert('Error al publicar el producto: ' + err.message);
+      }
     }
 
     async function deleteCurrentProduct() {
@@ -1314,6 +1425,7 @@
 
       const payload = {
         bundle_items: bundleItems,
+        needs_review: document.getElementById('prodNeedsReview').value === 'true',
         dropea_product_id: parseInt(document.getElementById('prodDropeaId').value) || null,
         dropea_variant_id: parseInt(document.getElementById('prodDropeaVariantId').value) || null,
         dropea_sku: document.getElementById('prodDropeaSku').value.trim(),
@@ -1361,7 +1473,9 @@
 
         closeEditProductModal();
         await loadDropeaProductsLive();
-        alert(`✅ Producto "${payload.name}" guardado y publicado en la tienda.`);
+        alert(payload.needs_review
+          ? `⏳ "${payload.name}" guardado como PENDIENTE — no se ve en la web todavía. Revísalo y pulsa "Revisar y Publicar" en la tabla cuando esté listo.`
+          : `✅ Producto "${payload.name}" guardado y publicado en la tienda.`);
         if (window.confetti) confetti({ particleCount: 60 });
       } catch (err) {
         alert('Error al guardar el producto: ' + err.message);

@@ -42,11 +42,17 @@ module.exports = async (req, res) => {
       const existing = await sql`SELECT 1 FROM products WHERE slug = ${slug}`;
       if (existing.length > 0) slug = `${slug}-${Date.now().toString().slice(-5)}`;
 
+      // Un producto importado de Dropea sin revisar NUNCA puede quedar activo, aunque el
+      // formulario diga lo contrario — se fuerza aquí, no solo en el frontend, para que no
+      // haya forma de saltárselo con una llamada directa a la API.
+      const needsReview = !!b.needs_review;
+      const isActive = needsReview ? false : b.is_active !== false;
+
       const [product] = await sql`
         INSERT INTO products (
           dropea_product_id, dropea_variant_id, dropea_sku, slug, name, short_name,
           description_html, category, section, badge, price, regular_price, impulse_price,
-          image_url, extra_images, bundle_items, is_active, in_stock, sort_order
+          image_url, extra_images, bundle_items, is_active, in_stock, needs_review, sort_order
         ) VALUES (
           ${b.dropea_product_id || null}, ${b.dropea_variant_id || null}, ${b.dropea_sku || null},
           ${slug}, ${b.name}, ${b.short_name || b.name}, ${b.description_html || ''},
@@ -54,7 +60,7 @@ module.exports = async (req, res) => {
           ${b.price}, ${b.regular_price || null}, ${b.impulse_price || null},
           ${b.image_url || null}, ${JSON.stringify(b.extra_images || [])}::jsonb,
           ${b.bundle_items ? JSON.stringify(b.bundle_items) : null}::jsonb,
-          ${b.is_active !== false}, ${b.in_stock !== false}, ${b.sort_order || 0}
+          ${isActive}, ${b.in_stock !== false}, ${needsReview}, ${b.sort_order || 0}
         )
         RETURNING *
       `;
@@ -65,16 +71,15 @@ module.exports = async (req, res) => {
       const { id, ...fields } = req.body || {};
       if (!id) return res.status(400).json({ success: false, error: 'id es requerido' });
 
-      const allowed = [
-        'name', 'short_name', 'description_html', 'category', 'section', 'badge',
-        'price', 'regular_price', 'impulse_price', 'image_url', 'extra_images',
-        'bundle_items', 'is_active', 'sort_order', 'dropea_product_id', 'dropea_variant_id', 'dropea_sku'
-      ];
-
       const [current] = await sql`SELECT * FROM products WHERE id = ${id}`;
       if (!current) return res.status(404).json({ success: false, error: 'Producto no encontrado' });
 
       const merged = { ...current, ...fields };
+      // Igual que en la creación: mientras needs_review sea true, is_active se fuerza a
+      // false pase lo que pase — la única forma de publicar es la acción explícita que
+      // manda needs_review: false (ver handleReviewAndPublish en el admin).
+      const isActive = merged.needs_review ? false : merged.is_active;
+
       const [product] = await sql`
         UPDATE products SET
           name = ${merged.name},
@@ -89,8 +94,9 @@ module.exports = async (req, res) => {
           image_url = ${merged.image_url},
           extra_images = ${JSON.stringify(merged.extra_images || [])}::jsonb,
           bundle_items = ${merged.bundle_items ? JSON.stringify(merged.bundle_items) : null}::jsonb,
-          is_active = ${merged.is_active},
+          is_active = ${isActive},
           in_stock = ${merged.in_stock},
+          needs_review = ${!!merged.needs_review},
           sort_order = ${merged.sort_order},
           dropea_product_id = ${merged.dropea_product_id},
           dropea_variant_id = ${merged.dropea_variant_id},
