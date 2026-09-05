@@ -176,6 +176,22 @@ module.exports = async (req, res) => {
     await sql`ALTER TABLE customers ADD COLUMN IF NOT EXISTS referral_code TEXT`;
     steps.push('referrals');
 
+    // Separate leads list: only people who explicitly confirmed they want to be a brand
+    // ambassador land here — distinct from `customers` (every buyer/subscriber), so it's
+    // an actually-qualified list for a future referral-focused campaign.
+    await sql`
+      CREATE TABLE IF NOT EXISTS referral_optins (
+        id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        email           TEXT NOT NULL,
+        name            TEXT,
+        referral_code   TEXT,
+        source          TEXT,
+        order_number    TEXT,
+        created_at      TIMESTAMPTZ NOT NULL DEFAULT now()
+      )
+    `;
+    steps.push('referral_optins');
+
     await sql`
       CREATE TABLE IF NOT EXISTS email_campaign_logs (
         id                  SERIAL PRIMARY KEY,

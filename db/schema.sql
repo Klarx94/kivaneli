@@ -126,6 +126,16 @@ CREATE TABLE IF NOT EXISTS referrals (
   created_at          TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+CREATE TABLE IF NOT EXISTS referral_optins (
+  id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email           TEXT NOT NULL,
+  name            TEXT,
+  referral_code   TEXT,
+  source          TEXT,
+  order_number    TEXT,
+  created_at      TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 CREATE TABLE IF NOT EXISTS email_campaign_logs (
   id                  SERIAL PRIMARY KEY,
   recipient_email     TEXT,

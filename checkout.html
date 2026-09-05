@@ -86,7 +86,10 @@
   <!-- Main Checkout Container -->
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12 flex-1 w-full">
     
-    <div class="text-center space-y-2 mb-8">
+    <!-- Header for the active checkout form — hidden entirely once the order succeeds,
+         it was previously shown above the success screen too ("confirma tu pedido" after
+         it was already placed). -->
+    <div id="checkoutFormHeader" class="text-center space-y-2 mb-8">
       <h1 class="font-serif-luxury text-2xl sm:text-3xl md:text-4xl font-black text-[#181514]">
         Completa tu Pedido
       </h1>
@@ -103,39 +106,48 @@
       <div class="space-y-2">
         <h2 class="font-serif-luxury text-3xl font-black text-[#181514]">¡Pedido Confirmado con Éxito!</h2>
         <p class="text-xs sm:text-sm text-stone-600 max-w-md mx-auto leading-relaxed">
-          Hemos transmitido tu orden a <strong>Dropea Logistics</strong> y el repartidor te llamará antes de la entrega en 24/48h.
+          Hemos recibido tu pedido y ya está en preparación en nuestro almacén. El repartidor te llamará antes de la entrega en 24/48h.
         </p>
       </div>
 
-      <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-left max-w-md mx-auto space-y-2 text-xs">
-        <div class="flex items-center justify-between font-bold text-emerald-900">
-          <span>📦 Código de Seguimiento GLS:</span>
+      <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 text-left max-w-md mx-auto space-y-3 text-xs">
+        <div class="flex items-center justify-between font-bold text-emerald-900 flex-wrap gap-1">
+          <span>📦 Número de Pedido:</span>
           <span id="orderSuccessCodeDisplay" class="font-mono text-emerald-800 font-black">KIV-849201-ES</span>
         </div>
         <div class="border-t border-emerald-200/60 pt-2 text-[11px] text-stone-600">
-          🔒 Despachado desde nuestro centro logístico central en Madrid.
+          🔒 Preparado en nuestro centro logístico central en Madrid.
         </div>
+        <a id="orderSuccessTrackingLink" href="seguimiento.html" target="_blank" class="block text-center bg-emerald-600 text-white py-2.5 rounded-xl font-bold text-[11px] uppercase tracking-wider hover:bg-emerald-700 transition">
+          Ver Estado de mi Pedido
+        </a>
       </div>
 
-      <!-- Club Amigas — real, unique referral link generated automatically for this order -->
-      <div id="successReferralBox" class="hidden p-5 bg-purple-50 rounded-2xl border-2 border-purple-200 text-left max-w-md mx-auto space-y-3">
+      <!-- Club Amigas — an explicit opt-in, not an automatically-issued code. The link only
+           gets generated (and the lead recorded) once the customer actively confirms. -->
+      <div id="successReferralOptIn" class="p-5 bg-purple-50 rounded-2xl border-2 border-purple-200 text-left max-w-md mx-auto space-y-3">
         <div class="font-serif-luxury font-bold text-sm text-purple-900 flex items-center gap-1.5">
-          <i data-lucide="gift" class="w-4 h-4"></i>
-          <span>Invita a una amiga y gana 15€</span>
+          <i data-lucide="gift" class="w-4 h-4 flex-shrink-0"></i>
+          <span>¿Quieres invitar a una amiga y ganar 15€?</span>
         </div>
         <p class="text-[11px] text-purple-800 leading-relaxed">
-          Comparte tu enlace personal. En cuanto tu amiga complete su primer pedido, te enviamos un vale de 15€ para tu próxima compra.
+          Confirma para generar tu enlace personal. En cuanto tu amiga complete su primer pedido, te enviamos un vale de 15€ para tu próxima compra.
         </p>
-        <div class="flex gap-2">
-          <input id="successReferralLink" readonly class="flex-1 px-3 py-2 rounded-lg border border-purple-300 bg-white text-[10.5px] font-mono text-purple-900" value="">
-          <button type="button" onclick="copySuccessReferralLink()" class="bg-purple-700 text-white px-3.5 py-2 rounded-lg text-[10.5px] font-bold hover:bg-purple-800 transition whitespace-nowrap">Copiar</button>
-        </div>
-        <p id="successReferralCopied" class="hidden text-[10.5px] font-bold text-purple-700">✨ ¡Enlace copiado!</p>
+        <button type="button" id="btnConfirmReferralOptIn" onclick="confirmReferralOptIn()" class="w-full bg-purple-700 text-white py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-purple-800 transition">
+          Sí, quiero mi enlace de embajadora
+        </button>
       </div>
 
-      <!-- VIP welcome coupon reminder for the customer's next purchase -->
-      <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-left max-w-md mx-auto text-xs text-amber-900">
-        🎁 <strong>Regalo para tu próxima compra:</strong> usa el código <span class="font-mono font-black">SEDA10</span> y llévate un 10% de descuento cuando quieras repetir.
+      <div id="successReferralBox" class="hidden p-5 bg-purple-50 rounded-2xl border-2 border-purple-200 text-left max-w-md mx-auto space-y-3">
+        <div class="font-serif-luxury font-bold text-sm text-purple-900 flex items-center gap-1.5">
+          <i data-lucide="check-circle" class="w-4 h-4 flex-shrink-0"></i>
+          <span>¡Tu enlace ya está listo!</span>
+        </div>
+        <div class="flex gap-2">
+          <input id="successReferralLink" readonly class="flex-1 min-w-0 px-3 py-2 rounded-lg border border-purple-300 bg-white text-[10.5px] font-mono text-purple-900" value="">
+          <button type="button" onclick="copySuccessReferralLink()" class="bg-purple-700 text-white px-3.5 py-2 rounded-lg text-[10.5px] font-bold hover:bg-purple-800 transition whitespace-nowrap flex-shrink-0">Copiar</button>
+        </div>
+        <p id="successReferralCopied" class="hidden text-[10.5px] font-bold text-purple-700">✨ ¡Enlace copiado!</p>
       </div>
 
       <div class="pt-4">
@@ -311,7 +323,7 @@
             </span>
           </div>
           <p class="text-stone-500 leading-relaxed text-[11px]">
-            Maison Botanique de Cuidado Personal & Belleza de Alta Gama. Despacho logístico directo Dropea España.
+            Maison Botanique de Cuidado Personal & Belleza de Alta Gama. Despacho logístico urgente en toda España.
           </p>
         </div>
 
@@ -342,6 +354,7 @@
             <div><strong class="text-stone-400">Email:</strong> beauty@kivaneli.es</div>
             <div><strong class="text-stone-400">Horario:</strong> Lunes a Viernes 09:00 - 19:00h</div>
           </div>
+            <a href="seguimiento.html" class="inline-block mt-2 text-[11px] font-bold text-[#D48B80] hover:underline">📦 Seguimiento de Pedido</a>
         </div>
 
       </div>
@@ -530,7 +543,7 @@
 
       const btn = document.getElementById('btnConfirmCheckout');
       btn.disabled = true;
-      btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Despachando a Dropea Logistics...</span>';
+      btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Preparando tu pedido...</span>';
       if (window.lucide) lucide.createIcons();
 
       const name = document.getElementById('shipName').value.trim();
@@ -604,32 +617,62 @@
       }
 
       // Show success
-      showCheckoutSuccess(orderNumber, email);
+      showCheckoutSuccess(orderNumber, email, name);
 
       // Clear Cart
       window.kivaneliCart.items = [];
       window.kivaneliCart.saveCart();
     }
 
+    // Holds the just-completed order's identity so the referral opt-in button (a separate,
+    // explicit action — see confirmReferralOptIn) knows who to register.
+    let lastCompletedOrder = { orderNumber: null, email: null, name: null };
+
     // Shared success-state renderer for both the COD path (immediate) and the Stripe
-    // return trip — fetches the customer's own (real, auto-generated) referral link so
-    // "invite a friend" always shows a working, unique link, not a static placeholder.
-    async function showCheckoutSuccess(orderNumber, email) {
+    // return trip. Does NOT auto-generate or reveal any referral link — that only happens
+    // if the customer explicitly opts in (confirmReferralOptIn), so it's a real registered
+    // lead rather than a code nobody asked for.
+    function showCheckoutSuccess(orderNumber, email, name) {
+      lastCompletedOrder = { orderNumber, email, name };
+
+      document.getElementById('checkoutFormHeader').classList.add('hidden');
       document.getElementById('orderSuccessCodeDisplay').innerText = orderNumber;
       document.getElementById('checkoutActiveState').classList.add('hidden');
       document.getElementById('checkoutSuccessState').classList.remove('hidden');
-      if (window.confetti) confetti({ particleCount: 100, spread: 70 });
 
-      if (!email) return;
+      const trackingLink = document.getElementById('orderSuccessTrackingLink');
+      trackingLink.href = 'seguimiento.html?order=' + encodeURIComponent(orderNumber) + (email ? '&email=' + encodeURIComponent(email) : '');
+
+      if (window.confetti) confetti({ particleCount: 100, spread: 70 });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function confirmReferralOptIn() {
+      if (!lastCompletedOrder.email) return;
+      const btn = document.getElementById('btnConfirmReferralOptIn');
+      btn.disabled = true;
+
       try {
-        const res = await fetch('/api/customer-actions?action=referral_info&email=' + encodeURIComponent(email));
+        const res = await fetch('/api/customer-actions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            action: 'confirm_referral_optin',
+            email: lastCompletedOrder.email,
+            name: lastCompletedOrder.name,
+            order_number: lastCompletedOrder.orderNumber
+          })
+        });
         const data = await res.json();
-        if (data.success && data.referral_link) {
-          document.getElementById('successReferralLink').value = data.referral_link;
-          document.getElementById('successReferralBox').classList.remove('hidden');
-        }
-      } catch (e) {
-        console.log('Referral info note:', e.message);
+        if (!data.success) throw new Error(data.error || 'No se pudo generar tu enlace');
+
+        document.getElementById('successReferralLink').value = data.referral_link;
+        document.getElementById('successReferralOptIn').classList.add('hidden');
+        document.getElementById('successReferralBox').classList.remove('hidden');
+        if (window.confetti) confetti({ particleCount: 50 });
+      } catch (err) {
+        alert('No se pudo generar tu enlace: ' + err.message);
+        btn.disabled = false;
       }
     }
 

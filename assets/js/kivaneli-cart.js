@@ -331,7 +331,7 @@ class KivaneliCart {
             <div class="w-8 h-8 rounded-full bg-rose-gradient text-white flex items-center justify-center font-serif-luxury font-bold text-xs shadow-xs">K</div>
             <div>
               <h3 class="font-serif-luxury font-black text-base text-[#181514]">Tu Cesta de Belleza</h3>
-              <p class="text-[10px] text-stone-500 font-semibold uppercase tracking-wider">Despacho Logístico Dropea España</p>
+              <p class="text-[10px] text-stone-500 font-semibold uppercase tracking-wider">Despacho Logístico Urgente España</p>
             </div>
           </div>
           <button onclick="window.kivaneliCart.closeDrawer()" aria-label="Cerrar Cesta" class="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center transition">

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seguimiento de Pedido — KIVANELI</title>
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --color-ivory: #FAF7F2;
+      --color-obsidian: #181514;
+      --color-rose-silk: #D48B80;
+      --color-rose-deep: #B86B60;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--color-ivory);
+      color: var(--color-obsidian);
+      margin: 0;
+    }
+    .font-serif-luxury { font-family: 'Cinzel', Georgia, serif; }
+    .bg-rose-gradient { background: linear-gradient(135deg, #d48b80 0%, #b86b60 100%); }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(212, 139, 128, 0.22);
+      box-shadow: 0 10px 30px -5px rgba(24, 21, 20, 0.04);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <header class="bg-white/90 backdrop-blur-md border-b border-[#D48B80]/20 sticky top-0 z-30">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-sm sm:text-base shadow-md">K</div>
+        <span class="font-serif-luxury text-lg sm:text-xl font-black tracking-[0.22em] text-[#181514]">
+          KIVANELI<span class="text-[#D48B80]">.</span>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-2xl mx-auto px-4 sm:px-6 py-12 flex-1 w-full">
+    <div class="text-center space-y-2 mb-8">
+      <h1 class="font-serif-luxury text-2xl sm:text-3xl font-black text-[#181514]">Seguimiento de tu Pedido</h1>
+      <p class="text-xs sm:text-sm text-stone-600">Introduce tu número de pedido para ver su estado actual.</p>
+    </div>
+
+    <form id="trackingForm" onsubmit="handleTrackOrder(event)" class="glass-card rounded-3xl p-6 sm:p-8 space-y-4 border-2 border-[#D48B80]/30">
+      <div class="space-y-1.5">
+        <label class="text-xs font-bold text-stone-700">Número de Pedido *</label>
+        <input type="text" id="trackOrderNumber" required placeholder="Ej. KIV-491237-ES" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] outline-none text-sm font-mono bg-stone-50">
+      </div>
+      <div class="space-y-1.5">
+        <label class="text-xs font-bold text-stone-700">Correo Electrónico usado en el pedido *</label>
+        <input type="email" id="trackEmail" required placeholder="tu-email@ejemplo.com" class="w-full px-4 py-3 rounded-xl border border-stone-300 focus:border-[#D48B80] outline-none text-sm bg-stone-50">
+      </div>
+      <button type="submit" id="btnTrackOrder" class="w-full bg-[#181514] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#D48B80] transition">
+        Consultar Estado
+      </button>
+    </form>
+
+    <div id="trackingResult" class="hidden mt-6 glass-card rounded-3xl p-6 sm:p-8 space-y-4 border-2 border-emerald-300"></div>
+    <div id="trackingError" class="hidden mt-6 p-4 bg-rose-50 border border-rose-200 rounded-2xl text-xs text-rose-700 font-semibold text-center"></div>
+
+    <div class="text-center mt-8">
+      <a href="https://wa.me/34623550119" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-[#B86B60] hover:underline">¿Dudas con tu pedido? Escríbenos por WhatsApp</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-[10px] text-stone-400 py-6">© 2026 KIVANELI COSMETICS</footer>
+
+  <script>
+    const STATUS_LABELS = {
+      AWAITING_PAYMENT: { label: 'Esperando confirmación de pago', color: 'amber' },
+      PENDING_STRIPE: { label: 'Esperando confirmación de pago', color: 'amber' },
+      PROCESSING: { label: 'En preparación en nuestro almacén', color: 'amber' },
+      CONFIRMED: { label: 'Confirmado y en preparación', color: 'amber' },
+      IN_TRANSIT: { label: 'En camino hacia tu dirección', color: 'blue' },
+      DELIVERED: { label: 'Entregado', color: 'emerald' },
+      CANCELLED: { label: 'Cancelado', color: 'stone' },
+      INCIDENT: { label: 'Incidencia en el envío — te contactaremos', color: 'rose' }
+    };
+
+    async function handleTrackOrder(e) {
+      e.preventDefault();
+      const orderNumber = document.getElementById('trackOrderNumber').value.trim().toUpperCase();
+      const email = document.getElementById('trackEmail').value.trim().toLowerCase();
+      const btn = document.getElementById('btnTrackOrder');
+      const resultBox = document.getElementById('trackingResult');
+      const errorBox = document.getElementById('trackingError');
+      resultBox.classList.add('hidden');
+      errorBox.classList.add('hidden');
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('/api/customer-actions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'track_order', order_number: orderNumber, email })
+        });
+        const data = await res.json();
+
+        if (!data.success) {
+          errorBox.textContent = data.error || 'No se pudo consultar el pedido.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+
+        const statusInfo = STATUS_LABELS[data.shipping_status] || { label: data.shipping_status || 'Procesando', color: 'stone' };
+        resultBox.innerHTML = `
+          <div class="flex items-center justify-between">
+            <div class="font-mono font-black text-lg text-[#181514]">${data.order_number}</div>
+            <span class="px-3 py-1 rounded-full text-[11px] font-bold bg-${statusInfo.color}-100 text-${statusInfo.color}-800">${statusInfo.label}</span>
+          </div>
+          <p class="text-xs text-stone-500">Pedido realizado el ${new Date(data.created_at).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}.</p>
+          ${data.tracking_url
+            ? `<a href="${data.tracking_url}" target="_blank" rel="noopener noreferrer" class="block text-center bg-emerald-600 text-white py-3 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-emerald-700 transition">Ver Seguimiento del Transportista</a>`
+            : `<p class="text-xs text-stone-600 bg-stone-50 border border-stone-200 rounded-xl p-3">Aún no se ha asignado un código de transportista — te avisaremos en cuanto tu pedido salga de nuestro almacén.</p>`
+          }
+        `;
+        resultBox.classList.remove('hidden');
+      } catch (err) {
+        errorBox.textContent = 'Error al consultar el pedido, inténtalo de nuevo.';
+        errorBox.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const order = params.get('order');
+      const email = params.get('email');
+      if (order) document.getElementById('trackOrderNumber').value = order;
+      if (email) document.getElementById('trackEmail').value = email;
+      if (order && email) handleTrackOrder(new Event('submit'));
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

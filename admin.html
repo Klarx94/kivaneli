@@ -440,6 +440,30 @@
         </div>
       </div>
 
+      <div class="glass-card rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+        <div class="p-4 bg-purple-50 border-b border-purple-200 flex items-center justify-between">
+          <div class="font-serif-luxury font-bold text-sm text-purple-800">Leads de Embajadoras (Opt-in confirmado)</div>
+          <span class="text-[10px] text-stone-500">Lista comercial — solo quien confirmó explícitamente que quiere su enlace</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-stone-50 text-stone-600 font-bold uppercase tracking-wider text-[10.5px] border-b border-stone-200">
+              <tr>
+                <th class="p-4">Nombre</th>
+                <th class="p-4">Email</th>
+                <th class="p-4">Código</th>
+                <th class="p-4">Origen</th>
+                <th class="p-4">Pedido</th>
+                <th class="p-4">Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="referralOptinsTableBody" class="divide-y divide-stone-200/70">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
 
     <!-- ⚙️ TAB 5: SERVERS, SMTP & EDITORIAL PDF GUIDES -->
@@ -824,6 +848,7 @@
     let allTemplates = [];
     let allCustomers = [];
     let allReferrals = [];
+    let allReferralOptins = [];
     let currentActiveLandingId = 'kivaneli-piel-de-seda';
 
     // Authentication Guard — credentials are verified server-side in /api/admin-login,
@@ -1166,6 +1191,9 @@
         document.getElementById('statReferralsCount').innerText = allReferrals.length;
         renderReferrals();
 
+        allReferralOptins = data.referralOptins || [];
+        renderReferralOptins();
+
         renderEmailLogs(data.logs || []);
 
       } catch (err) {
@@ -1335,6 +1363,25 @@
               ${r.reward_status === 'REWARDED' ? '✅ Recompensado' : '⏳ Pendiente'}
             </span>
           </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderReferralOptins() {
+      const tbody = document.getElementById('referralOptinsTableBody');
+      if (!tbody) return;
+      if (!allReferralOptins.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-stone-400">Nadie ha confirmado todavía que quiere ser embajadora.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = allReferralOptins.map(l => `
+        <tr class="hover:bg-[#FAF7F2] transition">
+          <td class="p-4 font-bold text-[#181514]">${l.name || '-'}</td>
+          <td class="p-4 text-stone-600">${l.email}</td>
+          <td class="p-4 font-mono text-purple-700 font-bold">${l.referral_code}</td>
+          <td class="p-4 text-stone-500">${l.source === 'post_purchase' ? 'Post-compra' : 'Formulario Club Amigas'}</td>
+          <td class="p-4 font-mono text-stone-600">${l.order_number || '-'}</td>
+          <td class="p-4 text-stone-500">${new Date(l.created_at).toLocaleDateString('es-ES')}</td>
         </tr>
       `).join('');
     }

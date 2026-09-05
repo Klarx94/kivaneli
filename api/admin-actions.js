@@ -4,6 +4,7 @@
 
 const { sql } = require('../lib/_db');
 const { requireAdmin } = require('../lib/_auth');
+const { cancelDropeaOrder } = require('../lib/_dropea');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -95,6 +96,15 @@ module.exports = async (req, res) => {
       `;
 
       return res.status(200).json({ success: true, order_number });
+    }
+
+    if (action === 'cancel_order') {
+      const { order_number } = body;
+      if (!order_number) {
+        return res.status(400).json({ success: false, error: 'order_number es requerido' });
+      }
+      const dropeaCancelResult = await cancelDropeaOrder(order_number);
+      return res.status(200).json({ success: true, order_number, dropea_cancel_result: dropeaCancelResult });
     }
 
     return res.status(400).json({ success: false, error: `Unknown action: ${action}` });
