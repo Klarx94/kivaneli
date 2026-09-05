@@ -90,6 +90,7 @@ async function loadKivaneliProducts() {
           slug: p.slug,
           descriptionHtml: p.description_html || '',
           extraImages: p.extra_images || [],
+          videoUrl: p.video_url || null,
           inStock: p.in_stock !== false
         };
       });

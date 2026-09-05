@@ -52,13 +52,13 @@ module.exports = async (req, res) => {
         INSERT INTO products (
           dropea_product_id, dropea_variant_id, dropea_sku, slug, name, short_name,
           description_html, category, section, badge, price, regular_price, impulse_price,
-          image_url, extra_images, bundle_items, is_active, in_stock, needs_review, sort_order
+          image_url, extra_images, video_url, bundle_items, is_active, in_stock, needs_review, sort_order
         ) VALUES (
           ${b.dropea_product_id || null}, ${b.dropea_variant_id || null}, ${b.dropea_sku || null},
           ${slug}, ${b.name}, ${b.short_name || b.name}, ${b.description_html || ''},
           ${b.category || null}, ${b.section || 'CATALOG'}, ${b.badge || null},
           ${b.price}, ${b.regular_price || null}, ${b.impulse_price || null},
-          ${b.image_url || null}, ${JSON.stringify(b.extra_images || [])}::jsonb,
+          ${b.image_url || null}, ${JSON.stringify(b.extra_images || [])}::jsonb, ${b.video_url || null},
           ${b.bundle_items ? JSON.stringify(b.bundle_items) : null}::jsonb,
           ${isActive}, ${b.in_stock !== false}, ${needsReview}, ${b.sort_order || 0}
         )
@@ -93,6 +93,7 @@ module.exports = async (req, res) => {
           impulse_price = ${merged.impulse_price},
           image_url = ${merged.image_url},
           extra_images = ${JSON.stringify(merged.extra_images || [])}::jsonb,
+          video_url = ${merged.video_url || null},
           bundle_items = ${merged.bundle_items ? JSON.stringify(merged.bundle_items) : null}::jsonb,
           is_active = ${isActive},
           in_stock = ${merged.in_stock},

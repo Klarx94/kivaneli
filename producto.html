@@ -157,6 +157,11 @@
           <!-- Gallery Thumbnails -->
           <div id="galleryThumbnails" class="grid grid-cols-4 gap-2.5"></div>
 
+          <!-- Vídeo corto opcional (9:16) — solo se muestra si el producto tiene uno configurado -->
+          <div id="productVideoBox" class="hidden justify-center">
+            <video id="productVideoEl" class="w-40 sm:w-48 rounded-2xl border border-[#D48B80]/30 shadow-lg" muted loop autoplay playsinline></video>
+          </div>
+
           <!-- Trust Badges Row -->
           <div class="grid grid-cols-3 gap-2.5 pt-2">
             <div class="p-3 bg-white rounded-2xl border border-stone-200 text-center space-y-1">
@@ -459,6 +464,16 @@
       document.getElementById('productDiscountPill').innerHTML = 'Ahorras ' + (p.regularPrice - p.price).toFixed(2).replace('.', ',') + '&nbsp;€';
       const liveProduct = KIVANELI_PRODUCTS[currentSlug];
       const outOfStock = liveProduct && liveProduct.inStock === false;
+
+      const videoBox = document.getElementById('productVideoBox');
+      if (liveProduct && liveProduct.videoUrl) {
+        document.getElementById('productVideoEl').src = liveProduct.videoUrl;
+        videoBox.classList.remove('hidden');
+        videoBox.classList.add('flex');
+      } else {
+        videoBox.classList.add('hidden');
+        videoBox.classList.remove('flex');
+      }
       document.getElementById('productBadge').innerHTML = outOfStock
         ? `<i data-lucide="alert-circle" class="w-3 h-3"></i><span>AGOTADO TEMPORALMENTE</span>`
         : `<i data-lucide="check-circle" class="w-3 h-3"></i><span>${p.badge}</span>`;

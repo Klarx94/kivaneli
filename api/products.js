@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
   try {
     const products = await sql`
       SELECT id, slug, name, short_name, description_html, category, section, badge,
-             price, regular_price, impulse_price, image_url, extra_images,
+             price, regular_price, impulse_price, image_url, extra_images, video_url,
              dropea_variant_id, dropea_sku, bundle_items, in_stock
       FROM products
       WHERE is_active = true

@@ -145,6 +145,7 @@ module.exports = async (req, res) => {
     `;
     await sql`ALTER TABLE products ADD COLUMN IF NOT EXISTS in_stock BOOLEAN DEFAULT true`;
     await sql`ALTER TABLE products ADD COLUMN IF NOT EXISTS needs_review BOOLEAN DEFAULT false`;
+    await sql`ALTER TABLE products ADD COLUMN IF NOT EXISTS video_url TEXT`;
     steps.push('products');
 
     await sql`

@@ -559,6 +559,10 @@
               <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-400"></i>
               <span>Conectar Producto de Dropea</span>
             </button>
+            <button onclick="openCreatePackModal()" class="bg-purple-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-purple-800 transition flex items-center gap-1.5 shadow-md">
+              <i data-lucide="package-plus" class="w-4 h-4"></i>
+              <span>Crear Pack Nuevo</span>
+            </button>
             <button onclick="loadDropeaProductsLive()" class="bg-white text-stone-700 px-4 py-2.5 rounded-xl text-xs font-bold border border-stone-200 hover:bg-stone-50 transition flex items-center gap-1.5 shadow-sm">
               <i data-lucide="refresh-cw" class="w-4 h-4"></i>
               <span>Sincronizar con Dropea</span>
@@ -632,7 +636,7 @@
     <div class="bg-white rounded-3xl p-6 md:p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto space-y-4 shadow-2xl border border-stone-200">
       <div class="flex items-center justify-between pb-3 border-b border-stone-100">
         <div>
-          <h3 class="font-serif-luxury font-bold text-lg text-[#181514]">Configurar & Publicar Producto de Dropea</h3>
+          <h3 id="modalEditProductTitle" class="font-serif-luxury font-bold text-lg text-[#181514]">Configurar & Publicar Producto de Dropea</h3>
           <p class="text-xs text-stone-500">Pasa la verificación editorial para publicar en la tienda o micro-landing</p>
         </div>
         <button onclick="closeEditProductModal()" class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200">✕</button>
@@ -717,11 +721,12 @@
           </div>
         </div>
 
-        <div class="p-3.5 rounded-xl border border-purple-200 bg-purple-50/50 space-y-3">
+        <div id="bundleToggleBox" class="p-3.5 rounded-xl border border-purple-200 bg-purple-50/50 space-y-3">
           <label class="flex items-center gap-2 font-bold text-stone-700 cursor-pointer">
             <input type="checkbox" id="prodIsBundle" onchange="toggleBundleComposer()" class="rounded border-stone-300 text-purple-700 focus:ring-purple-500">
             <span>Este producto es un Pack (combina varios productos ya existentes)</span>
           </label>
+          <p id="bundleLockedNote" class="hidden text-[10.5px] text-stone-500">Un producto sencillo ya publicado no se puede convertir en pack desde aquí — usa "Crear Pack Nuevo" en el catálogo para montar uno independiente sin tocar este producto.</p>
           <div id="bundleComposerBox" class="hidden space-y-2">
             <div id="bundleRows" class="space-y-2"></div>
             <button type="button" onclick="addBundleRow()" class="text-xs font-bold text-purple-700 hover:underline flex items-center gap-1">
@@ -737,8 +742,15 @@
         </div>
 
         <div>
-          <label class="font-bold text-stone-700">URL Imagen Principal (HD)</label>
-          <input type="text" id="prodImageUrl" oninput="checkImagePreview()" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
+          <label class="font-bold text-stone-700">Imagen Principal (HD)</label>
+          <div class="flex gap-2">
+            <input type="text" id="prodImageUrl" oninput="checkImagePreview()" placeholder="Pega una URL o sube un archivo →" class="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
+            <label class="shrink-0 bg-[#181514] text-white px-3.5 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition cursor-pointer flex items-center gap-1.5">
+              <i data-lucide="upload" class="w-3.5 h-3.5"></i><span>Subir</span>
+              <input type="file" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleImageFileSelect(event)">
+            </label>
+          </div>
+          <p class="text-[10px] text-stone-400 mt-1">JPG, PNG o WEBP — máx. 3MB.</p>
           <div id="imagePreviewBox" class="hidden mt-2 flex items-center gap-3 p-2 rounded-xl bg-stone-50 border border-stone-200">
             <img id="imagePreviewImg" class="w-16 h-16 object-contain bg-white rounded-lg border border-stone-200">
             <p id="imagePreviewNote" class="text-[10.5px] text-stone-500 leading-relaxed"></p>
@@ -748,6 +760,22 @@
         <div>
           <label class="font-bold text-stone-700">Más imágenes (una URL por línea)</label>
           <textarea id="prodExtraImages" rows="2" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-[11px] font-mono"></textarea>
+        </div>
+
+        <div>
+          <label class="font-bold text-stone-700">Vídeo corto (opcional)</label>
+          <div class="flex gap-2">
+            <input type="text" id="prodVideoUrl" oninput="checkVideoPreview()" placeholder="Pega una URL o sube un archivo →" class="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
+            <label class="shrink-0 bg-[#181514] text-white px-3.5 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition cursor-pointer flex items-center gap-1.5">
+              <i data-lucide="upload" class="w-3.5 h-3.5"></i><span>Subir</span>
+              <input type="file" accept="video/mp4,video/webm" class="hidden" onchange="handleVideoFileSelect(event)">
+            </label>
+          </div>
+          <p class="text-[10px] text-stone-400 mt-1">MP4 o WEBM, formato vertical 9:16 (el que generan Google Flow / Gemini), máx. 3MB — unos pocos segundos, no un anuncio completo. <button type="button" onclick="clearVideoUrl()" class="text-rose-500 hover:underline font-bold">Quitar vídeo</button></p>
+          <div id="videoPreviewBox" class="hidden mt-2 flex items-center gap-3 p-2 rounded-xl bg-stone-50 border border-stone-200">
+            <video id="videoPreviewEl" class="w-16 h-28 object-contain bg-black rounded-lg border border-stone-200" muted loop autoplay playsinline></video>
+            <p id="videoPreviewNote" class="text-[10.5px] text-stone-500 leading-relaxed"></p>
+          </div>
         </div>
 
         <div>
@@ -1162,10 +1190,15 @@
       document.getElementById('prodBadge').value = '';
       document.getElementById('prodImageUrl').value = '';
       document.getElementById('prodExtraImages').value = '';
+      document.getElementById('prodVideoUrl').value = '';
+      document.getElementById('videoPreviewBox').classList.add('hidden');
       document.getElementById('prodDescription').value = '';
       document.getElementById('prodAvailability').value = 'AVAILABLE';
       document.getElementById('btnDeleteProduct').classList.add('hidden');
+      document.getElementById('modalEditProductTitle').textContent = 'Configurar & Publicar Producto de Dropea';
       document.getElementById('prodIsBundle').checked = false;
+      document.getElementById('prodIsBundle').disabled = false;
+      document.getElementById('bundleLockedNote').classList.add('hidden');
       document.getElementById('bundleRows').innerHTML = '';
       toggleBundleComposer();
       document.getElementById('prodNeedsReview').value = 'false';
@@ -1174,6 +1207,16 @@
       document.getElementById('descriptionQualityNote').classList.add('hidden');
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
+    }
+
+    // Punto de entrada dedicado para montar un pack — abre el mismo formulario pero como
+    // producto NUEVO e independiente, con la casilla de pack ya marcada. Nunca reutiliza ni
+    // convierte un producto sencillo existente.
+    function openCreatePackModal() {
+      openConnectDropeaModal();
+      document.getElementById('modalEditProductTitle').textContent = 'Crear Pack Nuevo';
+      document.getElementById('prodIsBundle').checked = true;
+      toggleBundleComposer();
     }
 
     // Compositor de packs — antes crear un pack combinado (varios productos reales
@@ -1248,6 +1291,95 @@
       const supplierTells = ['dropshipper', 'tu tienda', 'tu catálogo', 'márgenes de ganancia', 'añade a tu catálogo', 'ideal para dropshipping'];
       const looksUnedited = supplierTells.some(tell => text.includes(tell));
       document.getElementById('descriptionQualityNote').classList.toggle('hidden', !looksUnedited);
+    }
+
+    const UPLOAD_MAX_BYTES = { image: 3 * 1024 * 1024, video: 3 * 1024 * 1024 };
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(String(reader.result).split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // Sube un archivo real del ordenador a Vercel Blob vía admin-actions y devuelve la URL
+    // pública resultante — reemplaza tener que colgar la imagen en otro sitio y pegar la URL.
+    async function uploadMediaFile(file, mediaType, statusEl) {
+      const max = UPLOAD_MAX_BYTES[mediaType];
+      if (file.size > max) {
+        alert(`El archivo pesa ${(file.size / (1024 * 1024)).toFixed(1)}MB — el máximo permitido es ${(max / (1024 * 1024)).toFixed(1)}MB. Comprímelo o recórtalo antes de subirlo.`);
+        return null;
+      }
+      if (statusEl) statusEl.textContent = 'Subiendo...';
+      try {
+        const data_base64 = await fileToBase64(file);
+        const res = await adminFetch('/api/admin-actions', {
+          method: 'POST',
+          body: JSON.stringify({ action: 'upload_media', filename: file.name, content_type: file.type, data_base64, media_type: mediaType })
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Error al subir el archivo');
+        if (statusEl) statusEl.textContent = '';
+        return data.url;
+      } catch (err) {
+        if (statusEl) statusEl.textContent = '';
+        alert('Error al subir: ' + err.message);
+        return null;
+      }
+    }
+
+    async function handleImageFileSelect(event) {
+      const file = event.target.files[0];
+      event.target.value = '';
+      if (!file) return;
+      const url = await uploadMediaFile(file, 'image');
+      if (url) {
+        document.getElementById('prodImageUrl').value = url;
+        checkImagePreview();
+      }
+    }
+
+    async function handleVideoFileSelect(event) {
+      const file = event.target.files[0];
+      event.target.value = '';
+      if (!file) return;
+      const url = await uploadMediaFile(file, 'video');
+      if (url) {
+        document.getElementById('prodVideoUrl').value = url;
+        checkVideoPreview();
+      }
+    }
+
+    function clearVideoUrl() {
+      document.getElementById('prodVideoUrl').value = '';
+      checkVideoPreview();
+    }
+
+    // Aviso de proporción para el vídeo — igual que con la imagen, informativo, no bloquea:
+    // los vídeos generados con Google Flow / Gemini deberían salir ya en 9:16 de fábrica.
+    function checkVideoPreview() {
+      const url = document.getElementById('prodVideoUrl').value.trim();
+      const box = document.getElementById('videoPreviewBox');
+      const vid = document.getElementById('videoPreviewEl');
+      const note = document.getElementById('videoPreviewNote');
+      if (!url) { box.classList.add('hidden'); vid.removeAttribute('src'); return; }
+
+      vid.onloadedmetadata = () => {
+        box.classList.remove('hidden');
+        const ratio = vid.videoWidth / vid.videoHeight;
+        if (ratio > 0.8) {
+          note.innerHTML = `⚠️ Este vídeo no es vertical (${vid.videoWidth}×${vid.videoHeight}px) — se verá con bandas o recortado en las zonas donde se muestre. Usa un vídeo 9:16.`;
+        } else {
+          note.innerHTML = `✅ Vídeo válido, formato vertical (${vid.videoWidth}×${vid.videoHeight}px).`;
+        }
+      };
+      vid.onerror = () => {
+        box.classList.remove('hidden');
+        note.innerHTML = '❌ Esta URL no carga como vídeo válido.';
+      };
+      vid.src = url;
     }
 
     function collectBundleItems() {
@@ -1347,12 +1479,21 @@
       document.getElementById('prodBadge').value = p.badge || '';
       document.getElementById('prodImageUrl').value = p.image_url || '';
       document.getElementById('prodExtraImages').value = (p.extra_images || []).join('\n');
+      document.getElementById('prodVideoUrl').value = p.video_url || '';
+      checkVideoPreview();
       document.getElementById('prodDescription').value = p.description_html || '';
       document.getElementById('prodAvailability').value =
         p.is_active === false ? 'HIDDEN' : (p.in_stock === false ? 'OUT_OF_STOCK' : 'AVAILABLE');
       document.getElementById('btnDeleteProduct').classList.remove('hidden');
 
-      document.getElementById('prodIsBundle').checked = !!(p.bundle_items && p.bundle_items.length);
+      const isAlreadyBundle = !!(p.bundle_items && p.bundle_items.length);
+      document.getElementById('modalEditProductTitle').textContent = isAlreadyBundle ? 'Editar Pack' : 'Configurar & Publicar Producto de Dropea';
+      document.getElementById('prodIsBundle').checked = isAlreadyBundle;
+      // Un producto sencillo ya existente no se deja convertir en pack desde su propia
+      // edición — evita mutar por error un producto real en curso. Montar un pack se hace
+      // siempre desde "Crear Pack Nuevo", como un producto propio e independiente.
+      document.getElementById('prodIsBundle').disabled = !isAlreadyBundle;
+      document.getElementById('bundleLockedNote').classList.toggle('hidden', isAlreadyBundle);
       document.getElementById('bundleRows').innerHTML = '';
       (p.bundle_items || []).forEach(comp => addBundleRow(comp));
       toggleBundleComposer();
@@ -1436,6 +1577,7 @@
         badge: document.getElementById('prodBadge').value.trim() || null,
         image_url: document.getElementById('prodImageUrl').value.trim(),
         extra_images: document.getElementById('prodExtraImages').value.split('\n').map(s => s.trim()).filter(Boolean),
+        video_url: document.getElementById('prodVideoUrl').value.trim() || null,
         description_html: document.getElementById('prodDescription').value,
         ...(() => {
           const availability = document.getElementById('prodAvailability').value;

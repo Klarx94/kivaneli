@@ -6,9 +6,16 @@ const { sql } = require('../lib/_db');
 const { requireAdmin } = require('../lib/_auth');
 const { cancelDropeaOrder, getShopStockLevels } = require('../lib/_dropea');
 const { sendEmail } = require('../lib/_email');
+const { put } = require('@vercel/blob');
 
 const ADMIN_ALERT_EMAIL = process.env.ADMIN_ALERT_EMAIL || 'beauty@kivaneli.es';
 const LOW_STOCK_THRESHOLD = 15;
+
+// Vercel serverless functions cap the whole JSON request body around ~4.5MB, and base64
+// inflates the raw file by ~33% on top of that — these caps are sized to stay safely under
+// that ceiling with the request as a whole, not just the file itself.
+const UPLOAD_MAX_BYTES = { image: 3 * 1024 * 1024, video: 3 * 1024 * 1024 };
+const BLOB_TOKEN = process.env.BLOBK_READ_WRITE_TOKEN;
 
 // Dropea has no stock-change webhook — this is the only way to catch a product silently
 // running out before a customer orders it. Triggered daily by the Vercel Cron entry in
@@ -197,6 +204,37 @@ module.exports = async (req, res) => {
       `;
 
       return res.status(200).json({ success: true, order_number });
+    }
+
+    if (action === 'upload_media') {
+      const { filename, content_type, data_base64, media_type } = body;
+      if (!filename || !content_type || !data_base64) {
+        return res.status(400).json({ success: false, error: 'filename, content_type y data_base64 son requeridos' });
+      }
+      if (!BLOB_TOKEN) {
+        return res.status(500).json({ success: false, error: 'Almacén de archivos no configurado (falta BLOBK_READ_WRITE_TOKEN)' });
+      }
+
+      const kind = media_type === 'video' ? 'video' : 'image';
+      const validPrefix = kind === 'video' ? 'video/' : 'image/';
+      if (!content_type.startsWith(validPrefix)) {
+        return res.status(400).json({ success: false, error: `El archivo debe ser de tipo ${validPrefix}*` });
+      }
+
+      const buffer = Buffer.from(data_base64, 'base64');
+      if (buffer.length > UPLOAD_MAX_BYTES[kind]) {
+        return res.status(400).json({ success: false, error: `Archivo demasiado grande (máx ${(UPLOAD_MAX_BYTES[kind] / (1024 * 1024)).toFixed(1)}MB)` });
+      }
+
+      const safeName = filename.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const blob = await put(`products/${kind}s/${Date.now()}-${safeName}`, buffer, {
+        access: 'public',
+        contentType: content_type,
+        token: BLOB_TOKEN,
+        addRandomSuffix: true
+      });
+
+      return res.status(200).json({ success: true, url: blob.url });
     }
 
     if (action === 'delete_order') {
