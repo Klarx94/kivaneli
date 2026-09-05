@@ -297,7 +297,7 @@
           ${outOfStock
             ? `<span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-stone-700 text-white px-3 py-1 rounded-full shadow-md">AGOTADO</span>`
             : (p.badge ? `<span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-[#B86B60] text-white px-3 py-1 rounded-full shadow-md">${p.badge}</span>` : '')}
-          <img src="${p.image_url || ''}" alt="${p.name}" class="w-full h-60 object-cover hover:scale-105 transition duration-500 ${outOfStock ? 'grayscale opacity-60' : ''}" loading="lazy" decoding="async">
+          <img src="${p.image_url || ''}" alt="${p.name}" class="w-full h-60 object-contain p-4 bg-white hover:scale-105 transition duration-500 ${outOfStock ? 'grayscale opacity-60' : ''}" loading="lazy" decoding="async">
         </div>
         <div class="p-5 sm:p-6 space-y-4 flex-1 flex flex-col justify-between">
           <div class="space-y-1.5">

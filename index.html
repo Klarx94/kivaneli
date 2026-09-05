@@ -469,6 +469,23 @@
     </div>
   </section>
 
+  <!-- 🆕 NUEVAS INCORPORACIONES — sección 100% dinámica desde /api/products, justo debajo
+       de las 4 fichas fijas (que la clienta no puede editar) para que un producto nuevo se
+       vea desde el principio de la home, no al final de la página. Cualquier producto que
+       se añada en el admin aparece aquí automáticamente, sin tocar este archivo. -->
+  <section id="nuevasIncorporaciones" class="hidden py-16 sm:py-20 bg-[#FAF7F2] border-t border-b border-[#D48B80]/15">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+      <div class="text-center space-y-2">
+        <span class="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#B86B60]">Recién Llegados</span>
+        <h2 class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514]">Nuevas Incorporaciones</h2>
+      </div>
+      <div id="nuevasIncorporacionesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div class="text-center">
+        <a href="catalogo.html" class="inline-block text-xs font-bold text-[#B86B60] hover:underline">Ver catálogo completo →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- 🔍 2. ANTES Y DESPUÉS (LA TRANSFORMACIÓN EN TU PIEL) -->
   <section id="transformacion" class="py-20 bg-white border-y border-[#D48B80]/15 relative reveal-on-scroll">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
@@ -1144,23 +1161,6 @@
     </div>
   </section>
 
-  <!-- 🆕 NUEVAS INCORPORACIONES — sección 100% dinámica desde /api/products. Cualquier
-       producto que se añada en el admin aparece aquí automáticamente, sin tocar este
-       archivo. Los productos "hero" de arriba siguen siendo contenido editorial a mano;
-       esta franja es la red de seguridad para que nada dado de alta quede invisible. -->
-  <section id="nuevasIncorporaciones" class="hidden py-16 sm:py-20 bg-[#FAF7F2] border-t border-[#D48B80]/15">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
-      <div class="text-center space-y-2">
-        <span class="text-[10px] font-extrabold uppercase tracking-[0.3em] text-[#B86B60]">Recién Llegados</span>
-        <h2 class="font-serif-luxury font-black text-2xl sm:text-3xl text-[#181514]">Nuevas Incorporaciones</h2>
-      </div>
-      <div id="nuevasIncorporacionesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-      <div class="text-center">
-        <a href="catalogo.html" class="inline-block text-xs font-bold text-[#B86B60] hover:underline">Ver catálogo completo →</a>
-      </div>
-    </div>
-  </section>
-
   <!-- 🏛️ 9. COMPREHENSIVE LUXURY FOOTER -->
   <footer class="w-full bg-[#181514] text-stone-400 pt-16 pb-12 text-xs border-t border-[#D48B80]/20 relative z-10 block">
     <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
@@ -1372,7 +1372,7 @@
                 ${outOfStock
                   ? `<span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-stone-700 text-white px-3 py-1 rounded-full shadow-md">AGOTADO</span>`
                   : (p.badge ? `<span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-[#B86B60] text-white px-3 py-1 rounded-full shadow-md">${p.badge}</span>` : `<span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-emerald-600 text-white px-3 py-1 rounded-full shadow-md">NUEVO</span>`)}
-                <img src="${p.image_url || ''}" alt="${p.name}" class="w-full h-56 object-cover hover:scale-105 transition duration-500 ${outOfStock ? 'grayscale opacity-60' : ''}" loading="lazy" decoding="async">
+                <img src="${p.image_url || ''}" alt="${p.name}" class="w-full h-56 object-contain p-4 bg-white hover:scale-105 transition duration-500 ${outOfStock ? 'grayscale opacity-60' : ''}" loading="lazy" decoding="async">
               </div>
               <div class="p-5 space-y-3 flex-1 flex flex-col justify-between">
                 <div class="space-y-1">

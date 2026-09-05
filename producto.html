@@ -475,7 +475,15 @@
           btn.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
         }
       });
-      document.getElementById('mainProductImage').src = p.images[0];
+      const mainImg = document.getElementById('mainProductImage');
+      mainImg.src = p.images[0];
+      // Las 4 fichas curadas a mano tienen fotos ya compuestas para llenar el marco
+      // (object-cover); cualquier producto nuevo trae fotos del proveedor con proporciones
+      // arbitrarias (a menudo cuadradas) — mostrarlas enteras evita que salgan recortadas.
+      const isCurated = !!PDP_DETAILS[currentSlug];
+      mainImg.classList.toggle('object-cover', isCurated);
+      mainImg.classList.toggle('object-contain', !isCurated);
+      mainImg.classList.toggle('p-6', !isCurated);
 
       document.getElementById('specPoint1').innerText = p.spec1;
       document.getElementById('specPoint2').innerText = p.spec2;
@@ -530,7 +538,7 @@
             <div class="glass-card rounded-2xl p-4 border border-stone-200 hover:border-[#D48B80] transition flex flex-col justify-between space-y-3 bg-white shadow-xs group">
               <div class="space-y-2">
                 <a href="producto.html?slug=${slug}" class="block relative rounded-xl overflow-hidden aspect-video bg-stone-100">
-                  <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+                  <img src="${item.image}" alt="${item.name}" class="w-full h-full object-contain p-3 bg-white group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
                   <span class="absolute top-2 left-2 text-[9px] font-extrabold uppercase tracking-wider bg-[#181514]/80 text-white px-2 py-0.5 rounded-full backdrop-blur-xs">
                     ${item.category || 'KIVANELI'}
                   </span>
