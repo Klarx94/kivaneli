@@ -52,7 +52,8 @@ module.exports = async (req, res) => {
         INSERT INTO products (
           dropea_product_id, dropea_variant_id, dropea_sku, slug, name, short_name,
           description_html, category, section, badge, price, regular_price, impulse_price,
-          image_url, extra_images, video_url, bundle_items, is_active, in_stock, needs_review, sort_order
+          image_url, extra_images, video_url, bundle_items, is_active, in_stock, needs_review, sort_order,
+          show_in_home, show_in_upsell, show_in_recommended
         ) VALUES (
           ${b.dropea_product_id || null}, ${b.dropea_variant_id || null}, ${b.dropea_sku || null},
           ${slug}, ${b.name}, ${b.short_name || b.name}, ${b.description_html || ''},
@@ -60,7 +61,8 @@ module.exports = async (req, res) => {
           ${b.price}, ${b.regular_price || null}, ${b.impulse_price || null},
           ${b.image_url || null}, ${JSON.stringify(b.extra_images || [])}::jsonb, ${b.video_url || null},
           ${b.bundle_items ? JSON.stringify(b.bundle_items) : null}::jsonb,
-          ${isActive}, ${b.in_stock !== false}, ${needsReview}, ${b.sort_order || 0}
+          ${isActive}, ${b.in_stock !== false}, ${needsReview}, ${b.sort_order || 0},
+          ${b.show_in_home !== false}, ${b.show_in_upsell !== false}, ${b.show_in_recommended !== false}
         )
         RETURNING *
       `;
@@ -99,6 +101,9 @@ module.exports = async (req, res) => {
           in_stock = ${merged.in_stock},
           needs_review = ${!!merged.needs_review},
           sort_order = ${merged.sort_order},
+          show_in_home = ${merged.show_in_home !== false},
+          show_in_upsell = ${merged.show_in_upsell !== false},
+          show_in_recommended = ${merged.show_in_recommended !== false},
           dropea_product_id = ${merged.dropea_product_id},
           dropea_variant_id = ${merged.dropea_variant_id},
           dropea_sku = ${merged.dropea_sku},

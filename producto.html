@@ -515,7 +515,7 @@
       // Cross-sells (Show other products except the pack)
       const crossSellsBox = document.getElementById('pdpCrossSellsBox');
       const crossSellsList = document.getElementById('pdpCrossSellsList');
-      const otherProducts = Object.values(KIVANELI_PRODUCTS).filter(item => item.id !== 'pack-ritual-completo' && item.inStock !== false && item.id !== currentSlug);
+      const otherProducts = Object.values(KIVANELI_PRODUCTS).filter(item => !item.bundleItems && item.inStock !== false && item.showInRecommended !== false && item.id !== currentSlug);
 
       if (currentSlug === 'pack-ritual-completo' || otherProducts.length === 0) {
         crossSellsBox.classList.add('hidden');
@@ -541,8 +541,9 @@
       // así que uno nuevo dado de alta en el admin aparece aquí también, no solo en su propia ficha.
       const quickSwitchGrid = document.getElementById('quickSwitchGrid');
       const otherSlugs = Object.keys(KIVANELI_PRODUCTS).filter(s => {
-        if (s === currentSlug || s === 'pack-ritual-completo') return false;
-        return KIVANELI_PRODUCTS[s].inStock !== false;
+        const item = KIVANELI_PRODUCTS[s];
+        if (s === currentSlug || item.bundleItems) return false;
+        return item.inStock !== false && item.showInRecommended !== false;
       });
 
       if (quickSwitchGrid) {
@@ -552,8 +553,8 @@
           return `
             <div class="glass-card rounded-2xl p-4 border border-stone-200 hover:border-[#D48B80] transition flex flex-col justify-between space-y-3 bg-white shadow-xs group">
               <div class="space-y-2">
-                <a href="producto.html?slug=${slug}" class="block relative rounded-xl overflow-hidden aspect-video bg-stone-100">
-                  <img src="${item.image}" alt="${item.name}" class="w-full h-full object-contain p-3 bg-white group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+                <a href="producto.html?slug=${slug}" class="block relative rounded-xl overflow-hidden aspect-square bg-stone-100">
+                  <img src="${item.image}" alt="${item.name}" class="w-full h-full object-contain bg-white group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
                   <span class="absolute top-2 left-2 text-[9px] font-extrabold uppercase tracking-wider bg-[#181514]/80 text-white px-2 py-0.5 rounded-full backdrop-blur-xs">
                     ${item.category || 'KIVANELI'}
                   </span>

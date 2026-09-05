@@ -91,6 +91,10 @@ async function loadKivaneliProducts() {
           descriptionHtml: p.description_html || '',
           extraImages: p.extra_images || [],
           videoUrl: p.video_url || null,
+          bundleItems: p.bundle_items || null,
+          showInHome: p.show_in_home !== false,
+          showInUpsell: p.show_in_upsell !== false,
+          showInRecommended: p.show_in_recommended !== false,
           inStock: p.in_stock !== false
         };
       });

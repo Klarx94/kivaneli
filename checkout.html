@@ -432,7 +432,7 @@
 
       // Cross sells
       const cartIds = items.map(i => i.id);
-      const availableUpsells = Object.values(KIVANELI_PRODUCTS).filter(p => p.id !== 'pack-ritual-completo' && p.inStock !== false && !cartIds.includes(p.id));
+      const availableUpsells = Object.values(KIVANELI_PRODUCTS).filter(p => !p.bundleItems && p.inStock !== false && p.showInUpsell !== false && !cartIds.includes(p.id));
 
       if (availableUpsells.length === 0) {
         if (crossSellsBox) crossSellsBox.classList.add('hidden');

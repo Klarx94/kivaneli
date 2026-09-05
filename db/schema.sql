@@ -102,6 +102,9 @@ CREATE TABLE IF NOT EXISTS products (
   in_stock            BOOLEAN DEFAULT true,
   needs_review        BOOLEAN DEFAULT false, -- true = importado de Dropea, aún sin revisar/publicar a propósito
   video_url           TEXT, -- vídeo corto opcional (9:16, generado con IA), subido a Vercel Blob
+  show_in_home        BOOLEAN DEFAULT true, -- aparece en "Nuevas Incorporaciones" / "Packs Especiales"
+  show_in_upsell      BOOLEAN DEFAULT true, -- se ofrece como upsell en el checkout
+  show_in_recommended BOOLEAN DEFAULT true, -- aparece como "recomendado" en fichas de otros productos
   sort_order          INTEGER DEFAULT 0,
   created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at          TIMESTAMPTZ NOT NULL DEFAULT now()

@@ -585,7 +585,7 @@
                 <th class="p-4">Producto / Imagen</th>
                 <th class="p-4">SKU / ID Dropea</th>
                 <th class="p-4">Categoría Web</th>
-                <th class="p-4">Sección Portada</th>
+                <th class="p-4">Visibilidad</th>
                 <th class="p-4">Stock Dropea</th>
                 <th class="p-4">Coste / PVP Venta</th>
                 <th class="p-4">Estado Tienda</th>
@@ -696,14 +696,27 @@
             </datalist>
           </div>
           <div>
-            <label class="font-bold text-stone-700">Sección en la Portada *</label>
-            <select id="prodSection" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
-              <option value="HERO">⭐ Producto Estrella (Hero Principal)</option>
-              <option value="BESTSELLER">🔥 Más Vendidos (Grid Portada)</option>
-              <option value="CATALOG">🌿 Colección General del Catálogo</option>
-              <option value="UPSELL">🎁 Upsell / Cross-Sell en Checkout</option>
-            </select>
+            <label class="font-bold text-stone-700">Posición de aparición</label>
+            <input type="number" id="prodSortOrder" value="0" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-bold">
+            <p class="text-[10px] text-stone-400 mt-1">Cuanto más bajo el número, más arriba/primero aparece (0 = por orden de creación).</p>
           </div>
+        </div>
+
+        <div class="p-3.5 rounded-xl border border-blue-200 bg-blue-50/50 space-y-2">
+          <label class="font-bold text-stone-700 block">¿Dónde debe verse este producto?</label>
+          <label class="flex items-center gap-2 text-xs cursor-pointer">
+            <input type="checkbox" id="prodShowInHome" checked class="rounded border-stone-300 text-blue-700 focus:ring-blue-500">
+            <span>Inicio (Home) — en "Nuevas Incorporaciones" o "Packs Especiales"</span>
+          </label>
+          <label class="flex items-center gap-2 text-xs cursor-pointer">
+            <input type="checkbox" id="prodShowInUpsell" checked class="rounded border-stone-300 text-blue-700 focus:ring-blue-500">
+            <span>Upsell de 1 clic en el checkout</span>
+          </label>
+          <label class="flex items-center gap-2 text-xs cursor-pointer">
+            <input type="checkbox" id="prodShowInRecommended" checked class="rounded border-stone-300 text-blue-700 focus:ring-blue-500">
+            <span>Recomendado en la ficha de otros productos</span>
+          </label>
+          <p class="text-[10px] text-stone-400">El catálogo (catalogo.html) siempre lo muestra si está Disponible — eso no se puede desactivar.</p>
         </div>
 
         <div class="grid grid-cols-3 gap-3">
@@ -737,8 +750,15 @@
         </div>
 
         <div>
-          <label class="font-bold text-stone-700">Badge (etiqueta corta sobre la foto)</label>
-          <input type="text" id="prodBadge" placeholder="Ej. MÁS VENDIDO · 300 G" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
+          <label class="font-bold text-stone-700">Etiqueta comercial (badge sobre la foto)</label>
+          <div class="flex flex-wrap gap-1.5 mb-1.5">
+            <button type="button" onclick="document.getElementById('prodBadge').value='RECOMENDADO'" class="text-[10px] font-bold bg-white border border-stone-300 px-2.5 py-1 rounded-full hover:border-[#D48B80]">Recomendado</button>
+            <button type="button" onclick="document.getElementById('prodBadge').value='MÁS VENDIDO'" class="text-[10px] font-bold bg-white border border-stone-300 px-2.5 py-1 rounded-full hover:border-[#D48B80]">Más Vendido</button>
+            <button type="button" onclick="document.getElementById('prodBadge').value='OFERTA ESPECIAL'" class="text-[10px] font-bold bg-white border border-stone-300 px-2.5 py-1 rounded-full hover:border-[#D48B80]">Oferta Especial</button>
+            <button type="button" onclick="document.getElementById('prodBadge').value='NUEVO'" class="text-[10px] font-bold bg-white border border-stone-300 px-2.5 py-1 rounded-full hover:border-[#D48B80]">Nuevo</button>
+            <button type="button" onclick="document.getElementById('prodBadge').value=''" class="text-[10px] font-bold text-rose-500 hover:underline px-1">Quitar</button>
+          </div>
+          <input type="text" id="prodBadge" placeholder="Ej. MÁS VENDIDO · 300 G (o escribe el tuyo)" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
         </div>
 
         <div>
@@ -1135,9 +1155,12 @@
             </span>
           </td>
           <td class="p-4">
-            <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-stone-100 text-stone-700">
-              ${p.section === 'HERO' ? '⭐ Portada Hero' : (p.section === 'UPSELL' ? '🎁 Upsell Checkout' : (p.section === 'BESTSELLER' ? '🔥 Más Vendidos' : '🌿 Catálogo'))}
-            </span>
+            <div class="flex flex-wrap gap-1">
+              <span class="px-1.5 py-0.5 rounded text-[9px] font-bold ${p.show_in_home !== false ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-100 text-stone-400'}">Home</span>
+              <span class="px-1.5 py-0.5 rounded text-[9px] font-bold ${p.show_in_upsell !== false ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-100 text-stone-400'}">Upsell</span>
+              <span class="px-1.5 py-0.5 rounded text-[9px] font-bold ${p.show_in_recommended !== false ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-100 text-stone-400'}">Recom.</span>
+            </div>
+            <div class="text-[9.5px] text-stone-400 mt-1">Orden: ${p.sort_order || 0}${p.badge ? ` · "${p.badge}"` : ''}</div>
           </td>
           <td class="p-4 font-mono font-bold ${stockClass}">
             ${p.bundle_items ? 'Combo' : stockLabel}
@@ -1183,7 +1206,10 @@
       document.getElementById('prodTitle').value = '';
       document.getElementById('prodSlug').value = '';
       document.getElementById('prodCategory').value = '';
-      document.getElementById('prodSection').value = 'CATALOG';
+      document.getElementById('prodSortOrder').value = '0';
+      document.getElementById('prodShowInHome').checked = true;
+      document.getElementById('prodShowInUpsell').checked = true;
+      document.getElementById('prodShowInRecommended').checked = true;
       document.getElementById('prodPrice').value = '';
       document.getElementById('prodRegularPrice').value = '';
       document.getElementById('prodImpulsePrice').value = '';
@@ -1472,7 +1498,10 @@
       document.getElementById('prodTitle').value = p.name;
       document.getElementById('prodSlug').value = p.slug;
       document.getElementById('prodCategory').value = p.category || '';
-      document.getElementById('prodSection').value = p.section || 'CATALOG';
+      document.getElementById('prodSortOrder').value = p.sort_order || 0;
+      document.getElementById('prodShowInHome').checked = p.show_in_home !== false;
+      document.getElementById('prodShowInUpsell').checked = p.show_in_upsell !== false;
+      document.getElementById('prodShowInRecommended').checked = p.show_in_recommended !== false;
       document.getElementById('prodPrice').value = p.price;
       document.getElementById('prodRegularPrice').value = p.regular_price || '';
       document.getElementById('prodImpulsePrice').value = p.impulse_price || '';
@@ -1570,7 +1599,10 @@
         name: document.getElementById('prodTitle').value.trim(),
         slug: document.getElementById('prodSlug').value.trim() || undefined,
         category: document.getElementById('prodCategory').value.trim(),
-        section: document.getElementById('prodSection').value,
+        sort_order: parseInt(document.getElementById('prodSortOrder').value) || 0,
+        show_in_home: document.getElementById('prodShowInHome').checked,
+        show_in_upsell: document.getElementById('prodShowInUpsell').checked,
+        show_in_recommended: document.getElementById('prodShowInRecommended').checked,
         price: parseFloat(document.getElementById('prodPrice').value),
         regular_price: parseFloat(document.getElementById('prodRegularPrice').value) || null,
         impulse_price: parseFloat(document.getElementById('prodImpulsePrice').value) || null,
