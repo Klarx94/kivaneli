@@ -765,46 +765,60 @@
         </div>
 
         <div>
-          <label class="font-bold text-stone-700">Imagen Principal (HD)</label>
-          <div class="flex gap-2">
-            <input type="text" id="prodImageUrl" oninput="checkImagePreview()" placeholder="Pega una URL o sube un archivo →" class="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
-            <label class="shrink-0 bg-[#181514] text-white px-3.5 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition cursor-pointer flex items-center gap-1.5">
-              <i data-lucide="upload" class="w-3.5 h-3.5"></i><span>Subir</span>
-              <input type="file" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleImageFileSelect(event)">
-            </label>
+          <label class="font-bold text-stone-700">Imagen Principal</label>
+          <input type="hidden" id="prodImageUrl">
+          <div class="flex items-center gap-3 p-2.5 rounded-xl bg-stone-50 border border-stone-200">
+            <img id="mainImagePreviewImg" class="w-20 h-20 object-cover bg-white rounded-lg border border-stone-200 shrink-0" src="" alt="">
+            <div class="flex-1 space-y-1.5">
+              <p id="mainImageStatusNote" class="text-[10.5px] text-stone-500 leading-relaxed">Sin imagen todavía — se mostrará el monograma de Kivaneli hasta que subas una.</p>
+              <div class="flex gap-2">
+                <label class="bg-[#181514] text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition cursor-pointer flex items-center gap-1.5">
+                  <i data-lucide="upload" class="w-3.5 h-3.5"></i><span>Subir imagen</span>
+                  <input type="file" accept="image/jpeg,image/png,image/webp" class="hidden" onchange="handleImageFileSelect(event)">
+                </label>
+                <button type="button" id="btnRemoveMainImage" onclick="removeMainImage()" class="hidden text-xs font-bold text-rose-500 hover:underline px-2">Quitar</button>
+              </div>
+            </div>
           </div>
-          <p class="text-[10px] text-stone-400 mt-1">JPG, PNG o WEBP — máx. 3MB.</p>
-          <div id="imagePreviewBox" class="hidden mt-2 flex items-center gap-3 p-2 rounded-xl bg-stone-50 border border-stone-200">
-            <img id="imagePreviewImg" class="w-16 h-16 object-contain bg-white rounded-lg border border-stone-200">
-            <p id="imagePreviewNote" class="text-[10.5px] text-stone-500 leading-relaxed"></p>
-          </div>
+          <p class="text-[10px] text-stone-400 mt-1">Solo JPG, PNG o WEBP · máx. 3MB · idealmente cuadrada (1:1). No se admiten enlaces externos — solo archivos subidos desde tu ordenador.</p>
         </div>
 
         <div>
-          <label class="font-bold text-stone-700">Más imágenes (una URL por línea)</label>
-          <textarea id="prodExtraImages" rows="2" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-[11px] font-mono"></textarea>
+          <label class="font-bold text-stone-700">Más imágenes (galería, opcional)</label>
+          <div id="extraImagesGallery" class="flex flex-wrap gap-2 mb-2"></div>
+          <label class="inline-flex bg-white text-stone-700 border border-stone-300 px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-stone-50 transition cursor-pointer items-center gap-1.5">
+            <i data-lucide="images" class="w-3.5 h-3.5"></i><span>Añadir imágenes</span>
+            <input type="file" accept="image/jpeg,image/png,image/webp" multiple class="hidden" onchange="handleExtraImagesSelect(event)">
+          </label>
+          <p class="text-[10px] text-stone-400 mt-1">Hasta 6 imágenes adicionales, mismo formato y peso máximo que la principal.</p>
         </div>
 
         <div>
           <label class="font-bold text-stone-700">Vídeo corto (opcional)</label>
-          <div class="flex gap-2">
-            <input type="text" id="prodVideoUrl" oninput="checkVideoPreview()" placeholder="Pega una URL o sube un archivo →" class="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
-            <label class="shrink-0 bg-[#181514] text-white px-3.5 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition cursor-pointer flex items-center gap-1.5">
-              <i data-lucide="upload" class="w-3.5 h-3.5"></i><span>Subir</span>
-              <input type="file" accept="video/mp4,video/webm" class="hidden" onchange="handleVideoFileSelect(event)">
-            </label>
+          <input type="hidden" id="prodVideoUrl">
+          <div id="videoPreviewBox" class="flex items-center gap-3 p-2.5 rounded-xl bg-stone-50 border border-stone-200">
+            <div id="videoPreviewEmpty" class="w-14 h-24 rounded-lg border border-dashed border-stone-300 flex items-center justify-center text-stone-300 shrink-0">
+              <i data-lucide="video-off" class="w-5 h-5"></i>
+            </div>
+            <video id="videoPreviewEl" class="hidden w-14 h-24 object-cover bg-black rounded-lg border border-stone-200 shrink-0" muted loop autoplay playsinline></video>
+            <div class="flex-1 space-y-1.5">
+              <p id="videoPreviewNote" class="text-[10.5px] text-stone-500 leading-relaxed">Sin vídeo — es opcional.</p>
+              <div class="flex gap-2">
+                <label class="bg-[#181514] text-white px-3.5 py-2 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition cursor-pointer flex items-center gap-1.5">
+                  <i data-lucide="upload" class="w-3.5 h-3.5"></i><span>Subir vídeo</span>
+                  <input type="file" accept="video/mp4,video/webm" class="hidden" onchange="handleVideoFileSelect(event)">
+                </label>
+                <button type="button" id="btnRemoveVideo" onclick="clearVideoUrl()" class="hidden text-xs font-bold text-rose-500 hover:underline px-2">Quitar vídeo</button>
+              </div>
+            </div>
           </div>
-          <p class="text-[10px] text-stone-400 mt-1">MP4 o WEBM, formato vertical 9:16 (el que generan Google Flow / Gemini), máx. 3MB — unos pocos segundos, no un anuncio completo. <button type="button" onclick="clearVideoUrl()" class="text-rose-500 hover:underline font-bold">Quitar vídeo</button></p>
-          <div id="videoPreviewBox" class="hidden mt-2 flex items-center gap-3 p-2 rounded-xl bg-stone-50 border border-stone-200">
-            <video id="videoPreviewEl" class="w-16 h-28 object-contain bg-black rounded-lg border border-stone-200" muted loop autoplay playsinline></video>
-            <p id="videoPreviewNote" class="text-[10.5px] text-stone-500 leading-relaxed"></p>
-          </div>
+          <p class="text-[10px] text-stone-400 mt-1">Obligatorio: MP4 o WEBM, vertical 9:16 (el que generan Google Flow / Gemini), máx. 3MB, unos pocos segundos — no el anuncio completo. Un vídeo que no cumpla el formato o el peso se rechaza automáticamente al subirlo.</p>
         </div>
 
         <div>
           <label class="font-bold text-stone-700">Descripción & Beneficios (admite HTML)</label>
-          <textarea id="prodDescription" oninput="checkDescriptionQuality()" rows="4" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-xs"></textarea>
-          <p id="descriptionQualityNote" class="hidden mt-1 text-[10.5px] text-amber-700 font-semibold leading-relaxed">⚠️ Esta descripción parece ser el texto original del proveedor (habla de "dropshippers" o "tu tienda") — reescríbela en tono de clienta antes de publicar.</p>
+          <textarea id="prodDescription" rows="4" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-xs"></textarea>
+          <p class="mt-1 text-[10.5px] text-stone-400 leading-relaxed">Escríbela tal como la leerá tu clienta final — evita palabras de proveedor como "dropshipping", "tu tienda" o "márgenes".</p>
         </div>
 
         <div>
@@ -1240,7 +1254,7 @@
         return `
         <tr class="hover:bg-[#FAF7F2] transition">
           <td class="p-4 flex items-center gap-3">
-            <img src="${p.image_url || ''}" class="w-12 h-12 object-cover rounded-xl border border-stone-200 shadow-sm shrink-0" onerror="this.style.visibility='hidden'">
+            <img src="${p.image_url || KIVANELI_LOGO_PLACEHOLDER}" class="w-12 h-12 object-cover rounded-xl border border-stone-200 shadow-sm shrink-0" onerror="this.src='${KIVANELI_LOGO_PLACEHOLDER}'">
             <div>
               <div class="font-bold text-[#181514] line-clamp-1">${p.name}</div>
               <a href="producto.html?slug=${p.slug}" target="_blank" class="text-[10px] text-[#B86B60] hover:underline font-semibold flex items-center gap-0.5">
@@ -1319,9 +1333,11 @@
       document.getElementById('prodImpulsePrice').value = '';
       document.getElementById('prodBadge').value = '';
       document.getElementById('prodImageUrl').value = '';
-      document.getElementById('prodExtraImages').value = '';
+      renderMainImagePreview();
+      currentExtraImages = [];
+      renderExtraImagesGallery();
       document.getElementById('prodVideoUrl').value = '';
-      document.getElementById('videoPreviewBox').classList.add('hidden');
+      renderVideoPreview();
       document.getElementById('prodDescription').value = '';
       document.getElementById('prodAvailability').value = 'AVAILABLE';
       document.getElementById('btnDeleteProduct').classList.add('hidden');
@@ -1333,8 +1349,6 @@
       toggleBundleComposer();
       document.getElementById('prodNeedsReview').value = 'false';
       document.getElementById('pendingReviewBanner').classList.add('hidden');
-      document.getElementById('imagePreviewBox').classList.add('hidden');
-      document.getElementById('descriptionQualityNote').classList.add('hidden');
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
     }
@@ -1385,45 +1399,16 @@
       if (window.lucide) lucide.createIcons();
     }
 
-    // Vista previa + advertencia de proporción — no bloquea nada (Dropea no siempre da
-    // URLs con extensión reconocible), solo avisa cuando la imagen no es apaisada, ya que
-    // esas se recortan peor en las tarjetas rectangulares del sitio.
-    function checkImagePreview() {
-      const url = document.getElementById('prodImageUrl').value.trim();
-      const box = document.getElementById('imagePreviewBox');
-      const img = document.getElementById('imagePreviewImg');
-      const note = document.getElementById('imagePreviewNote');
-      if (!url) { box.classList.add('hidden'); return; }
+    // Placeholder de marca (monograma "K") mostrado siempre que un producto no tiene
+    // imagen — nunca se deja una caja rota o vacía. Es un SVG embebido, no un archivo
+    // aparte, para que no dependa de subir ni mantener ningún asset extra.
+    const KIVANELI_LOGO_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23FAF7F2'/%3E%3Ccircle cx='100' cy='100' r='58' fill='%23B86B60'/%3E%3Ctext x='100' y='124' font-family='Georgia,serif' font-size='64' font-weight='bold' fill='white' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E";
 
-      const probe = new Image();
-      probe.onload = () => {
-        img.src = url;
-        box.classList.remove('hidden');
-        const ratio = probe.naturalWidth / probe.naturalHeight;
-        if (ratio < 1.15) {
-          note.innerHTML = `✅ Imagen válida (${probe.naturalWidth}×${probe.naturalHeight}px). <strong class="text-amber-700">Es cuadrada o vertical</strong> — el sitio la mostrará completa sin recortar, no llenará la tarjeta de borde a borde. Si quieres que la llene, usa una foto apaisada (más ancha que alta).`;
-        } else {
-          note.innerHTML = `✅ Imagen válida (${probe.naturalWidth}×${probe.naturalHeight}px), proporción apaisada — se mostrará bien.`;
-        }
-      };
-      probe.onerror = () => {
-        box.classList.remove('hidden');
-        img.removeAttribute('src');
-        note.innerHTML = '❌ Esta URL no carga como imagen válida — revísala antes de publicar.';
-      };
-      probe.src = url;
-    }
-
-    // Aviso simple si la descripción todavía suena a copy de proveedor dirigido a
-    // dropshippers, en vez de a la clienta final que la va a leer en la web.
-    function checkDescriptionQuality() {
-      const text = document.getElementById('prodDescription').value.toLowerCase();
-      const supplierTells = ['dropshipper', 'tu tienda', 'tu catálogo', 'márgenes de ganancia', 'añade a tu catálogo', 'ideal para dropshipping'];
-      const looksUnedited = supplierTells.some(tell => text.includes(tell));
-      document.getElementById('descriptionQualityNote').classList.toggle('hidden', !looksUnedited);
-    }
+    let currentExtraImages = [];
 
     const UPLOAD_MAX_BYTES = { image: 3 * 1024 * 1024, video: 3 * 1024 * 1024 };
+    const MIN_IMAGE_DIMENSION = 300; // px — por debajo de esto la foto se ve pixelada en cualquier tarjeta
+    const MAX_EXTRA_IMAGES = 6;
 
     function fileToBase64(file) {
       return new Promise((resolve, reject) => {
@@ -1434,15 +1419,66 @@
       });
     }
 
+    // Decodifica el archivo localmente ANTES de subirlo, para poder rechazar de verdad
+    // (no solo avisar) cualquier cosa que no sea una imagen real y de tamaño utilizable.
+    function readImageDimensions(file) {
+      return new Promise((resolve, reject) => {
+        const url = URL.createObjectURL(file);
+        const probe = new Image();
+        probe.onload = () => { URL.revokeObjectURL(url); resolve({ width: probe.naturalWidth, height: probe.naturalHeight }); };
+        probe.onerror = () => { URL.revokeObjectURL(url); reject(new Error('El archivo no es una imagen válida.')); };
+        probe.src = url;
+      });
+    }
+
+    function readVideoDimensions(file) {
+      return new Promise((resolve, reject) => {
+        const url = URL.createObjectURL(file);
+        const probe = document.createElement('video');
+        probe.preload = 'metadata';
+        probe.onloadedmetadata = () => { URL.revokeObjectURL(url); resolve({ width: probe.videoWidth, height: probe.videoHeight }); };
+        probe.onerror = () => { URL.revokeObjectURL(url); reject(new Error('El archivo no es un vídeo válido.')); };
+        probe.src = url;
+      });
+    }
+
     // Sube un archivo real del ordenador a Vercel Blob vía admin-actions y devuelve la URL
-    // pública resultante — reemplaza tener que colgar la imagen en otro sitio y pegar la URL.
-    async function uploadMediaFile(file, mediaType, statusEl) {
+    // pública resultante. Nada se acepta a ciegas: tipo, peso y dimensiones reales se
+    // comprueban en el navegador antes de gastar la subida.
+    async function uploadMediaFile(file, mediaType) {
       const max = UPLOAD_MAX_BYTES[mediaType];
+      const allowedTypes = mediaType === 'image'
+        ? ['image/jpeg', 'image/png', 'image/webp']
+        : ['video/mp4', 'video/webm'];
+
+      if (!allowedTypes.includes(file.type)) {
+        alert(`Formato no admitido (${file.type || 'desconocido'}). Usa ${mediaType === 'image' ? 'JPG, PNG o WEBP' : 'MP4 o WEBM'}.`);
+        return null;
+      }
       if (file.size > max) {
         alert(`El archivo pesa ${(file.size / (1024 * 1024)).toFixed(1)}MB — el máximo permitido es ${(max / (1024 * 1024)).toFixed(1)}MB. Comprímelo o recórtalo antes de subirlo.`);
         return null;
       }
-      if (statusEl) statusEl.textContent = 'Subiendo...';
+
+      try {
+        if (mediaType === 'image') {
+          const { width, height } = await readImageDimensions(file);
+          if (width < MIN_IMAGE_DIMENSION || height < MIN_IMAGE_DIMENSION) {
+            alert(`Esta imagen es demasiado pequeña (${width}×${height}px) — se vería borrosa en la tienda. Usa una foto de al menos ${MIN_IMAGE_DIMENSION}×${MIN_IMAGE_DIMENSION}px.`);
+            return null;
+          }
+        } else {
+          const { width, height } = await readVideoDimensions(file);
+          if (width && height && (width / height) > 0.8) {
+            alert(`Este vídeo no es vertical (${width}×${height}px) — se rechaza porque se vería con bandas o recortado. Sube un vídeo en formato 9:16 (el que generan Google Flow / Gemini por defecto).`);
+            return null;
+          }
+        }
+      } catch (dimErr) {
+        alert('No se pudo leer el archivo: ' + dimErr.message);
+        return null;
+      }
+
       try {
         const data_base64 = await fileToBase64(file);
         const res = await adminFetch('/api/admin-actions', {
@@ -1451,13 +1487,20 @@
         });
         const data = await res.json();
         if (!data.success) throw new Error(data.error || 'Error al subir el archivo');
-        if (statusEl) statusEl.textContent = '';
         return data.url;
       } catch (err) {
-        if (statusEl) statusEl.textContent = '';
         alert('Error al subir: ' + err.message);
         return null;
       }
+    }
+
+    function renderMainImagePreview() {
+      const url = document.getElementById('prodImageUrl').value.trim();
+      document.getElementById('mainImagePreviewImg').src = url || KIVANELI_LOGO_PLACEHOLDER;
+      document.getElementById('mainImageStatusNote').textContent = url
+        ? 'Imagen subida correctamente.'
+        : 'Sin imagen todavía — se mostrará el monograma de Kivaneli hasta que subas una.';
+      document.getElementById('btnRemoveMainImage').classList.toggle('hidden', !url);
     }
 
     async function handleImageFileSelect(event) {
@@ -1467,8 +1510,62 @@
       const url = await uploadMediaFile(file, 'image');
       if (url) {
         document.getElementById('prodImageUrl').value = url;
-        checkImagePreview();
+        renderMainImagePreview();
       }
+    }
+
+    function removeMainImage() {
+      document.getElementById('prodImageUrl').value = '';
+      renderMainImagePreview();
+    }
+
+    function renderExtraImagesGallery() {
+      const box = document.getElementById('extraImagesGallery');
+      box.innerHTML = currentExtraImages.map((url, i) => `
+        <div class="relative w-16 h-16 shrink-0">
+          <img src="${url}" class="w-16 h-16 object-cover rounded-lg border border-stone-200 bg-white" onerror="this.src='${KIVANELI_LOGO_PLACEHOLDER}'">
+          <button type="button" onclick="removeExtraImage(${i})" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-rose-500 text-white text-[10px] font-bold flex items-center justify-center shadow hover:bg-rose-600">✕</button>
+        </div>
+      `).join('');
+    }
+
+    function removeExtraImage(index) {
+      currentExtraImages.splice(index, 1);
+      renderExtraImagesGallery();
+    }
+
+    async function handleExtraImagesSelect(event) {
+      const files = Array.from(event.target.files || []);
+      event.target.value = '';
+      if (!files.length) return;
+      if (currentExtraImages.length + files.length > MAX_EXTRA_IMAGES) {
+        alert(`Máximo ${MAX_EXTRA_IMAGES} imágenes adicionales — ya tienes ${currentExtraImages.length} y quieres añadir ${files.length}. Quita alguna primero.`);
+        return;
+      }
+      for (const file of files) {
+        const url = await uploadMediaFile(file, 'image');
+        if (url) currentExtraImages.push(url);
+      }
+      renderExtraImagesGallery();
+    }
+
+    function renderVideoPreview() {
+      const url = document.getElementById('prodVideoUrl').value.trim();
+      const vid = document.getElementById('videoPreviewEl');
+      const empty = document.getElementById('videoPreviewEmpty');
+      const note = document.getElementById('videoPreviewNote');
+      document.getElementById('btnRemoveVideo').classList.toggle('hidden', !url);
+      if (!url) {
+        vid.classList.add('hidden');
+        vid.removeAttribute('src');
+        empty.classList.remove('hidden');
+        note.textContent = 'Sin vídeo — es opcional.';
+        return;
+      }
+      empty.classList.add('hidden');
+      vid.classList.remove('hidden');
+      vid.src = url;
+      note.textContent = 'Vídeo subido correctamente, formato vertical verificado.';
     }
 
     async function handleVideoFileSelect(event) {
@@ -1478,38 +1575,13 @@
       const url = await uploadMediaFile(file, 'video');
       if (url) {
         document.getElementById('prodVideoUrl').value = url;
-        checkVideoPreview();
+        renderVideoPreview();
       }
     }
 
     function clearVideoUrl() {
       document.getElementById('prodVideoUrl').value = '';
-      checkVideoPreview();
-    }
-
-    // Aviso de proporción para el vídeo — igual que con la imagen, informativo, no bloquea:
-    // los vídeos generados con Google Flow / Gemini deberían salir ya en 9:16 de fábrica.
-    function checkVideoPreview() {
-      const url = document.getElementById('prodVideoUrl').value.trim();
-      const box = document.getElementById('videoPreviewBox');
-      const vid = document.getElementById('videoPreviewEl');
-      const note = document.getElementById('videoPreviewNote');
-      if (!url) { box.classList.add('hidden'); vid.removeAttribute('src'); return; }
-
-      vid.onloadedmetadata = () => {
-        box.classList.remove('hidden');
-        const ratio = vid.videoWidth / vid.videoHeight;
-        if (ratio > 0.8) {
-          note.innerHTML = `⚠️ Este vídeo no es vertical (${vid.videoWidth}×${vid.videoHeight}px) — se verá con bandas o recortado en las zonas donde se muestre. Usa un vídeo 9:16.`;
-        } else {
-          note.innerHTML = `✅ Vídeo válido, formato vertical (${vid.videoWidth}×${vid.videoHeight}px).`;
-        }
-      };
-      vid.onerror = () => {
-        box.classList.remove('hidden');
-        note.innerHTML = '❌ Esta URL no carga como vídeo válido.';
-      };
-      vid.src = url;
+      renderVideoPreview();
     }
 
     function collectBundleItems() {
@@ -1540,8 +1612,9 @@
       document.getElementById('prodNeedsReview').value = 'true';
       document.getElementById('prodAvailability').value = 'HIDDEN';
       document.getElementById('pendingReviewBanner').classList.remove('hidden');
-      checkImagePreview();
-      checkDescriptionQuality();
+      currentExtraImages = [];
+      renderExtraImagesGallery();
+      renderMainImagePreview();
       if (window.lucide) lucide.createIcons();
     }
 
@@ -1611,9 +1684,10 @@
       document.getElementById('prodImpulsePrice').value = p.impulse_price || '';
       document.getElementById('prodBadge').value = p.badge || '';
       document.getElementById('prodImageUrl').value = p.image_url || '';
-      document.getElementById('prodExtraImages').value = (p.extra_images || []).join('\n');
+      currentExtraImages = [...(p.extra_images || [])];
+      renderExtraImagesGallery();
       document.getElementById('prodVideoUrl').value = p.video_url || '';
-      checkVideoPreview();
+      renderVideoPreview();
       document.getElementById('prodDescription').value = p.description_html || '';
       document.getElementById('prodAvailability').value =
         p.is_active === false ? 'HIDDEN' : (p.in_stock === false ? 'OUT_OF_STOCK' : 'AVAILABLE');
@@ -1633,8 +1707,7 @@
 
       document.getElementById('prodNeedsReview').value = p.needs_review ? 'true' : 'false';
       document.getElementById('pendingReviewBanner').classList.toggle('hidden', !p.needs_review);
-      checkImagePreview();
-      checkDescriptionQuality();
+      renderMainImagePreview();
 
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
@@ -1711,8 +1784,8 @@
         regular_price: parseFloat(document.getElementById('prodRegularPrice').value) || null,
         impulse_price: parseFloat(document.getElementById('prodImpulsePrice').value) || null,
         badge: document.getElementById('prodBadge').value.trim() || null,
-        image_url: document.getElementById('prodImageUrl').value.trim(),
-        extra_images: document.getElementById('prodExtraImages').value.split('\n').map(s => s.trim()).filter(Boolean),
+        image_url: document.getElementById('prodImageUrl').value.trim() || null,
+        extra_images: currentExtraImages,
         video_url: document.getElementById('prodVideoUrl').value.trim() || null,
         description_html: document.getElementById('prodDescription').value,
         ...(() => {
