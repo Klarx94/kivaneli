@@ -4,8 +4,10 @@
  * Dynamic Price Updates, and Global Floating WhatsApp Concierge.
  */
 
-// Product Master Catalog for Cart & Upsells
-const KIVANELI_PRODUCTS = {
+// Product Master Catalog for Cart & Upsells — loaded live from /api/products (Neon) so
+// products the admin adds/edits show up everywhere without touching this file. This
+// object is kept as a fallback in case that fetch fails (offline, cold start, etc.).
+const KIVANELI_PRODUCTS_FALLBACK = {
   'adeus-crema-corporal': {
     id: 'adeus-crema-corporal',
     name: 'ADEUS™ Crema Corporal Masaje & Seda (300 g)',
@@ -63,6 +65,39 @@ const KIVANELI_PRODUCTS = {
     slug: 'pack-ritual-completo'
   }
 };
+
+let KIVANELI_PRODUCTS = { ...KIVANELI_PRODUCTS_FALLBACK };
+
+async function loadKivaneliProducts() {
+  try {
+    const res = await fetch('/api/products');
+    const data = await res.json();
+    if (data.success && Array.isArray(data.products) && data.products.length) {
+      const fresh = {};
+      data.products.forEach(p => {
+        fresh[p.slug] = {
+          id: p.slug,
+          name: p.name,
+          shortName: p.short_name || p.name,
+          price: parseFloat(p.price),
+          regularPrice: p.regular_price != null ? parseFloat(p.regular_price) : null,
+          impulsePrice: p.impulse_price != null ? parseFloat(p.impulse_price) : parseFloat(p.price),
+          image: p.image_url,
+          category: p.category,
+          badge: p.badge,
+          dropeaVariantId: p.dropea_variant_id,
+          dropeaVariantSku: p.dropea_sku,
+          slug: p.slug,
+          descriptionHtml: p.description_html || '',
+          extraImages: p.extra_images || []
+        };
+      });
+      KIVANELI_PRODUCTS = fresh;
+    }
+  } catch (e) {
+    console.log('Using fallback product catalog:', e.message);
+  }
+}
 
 class KivaneliCart {
   constructor() {
@@ -374,8 +409,11 @@ class KivaneliCart {
   }
 }
 
-// Initialize Global Cart
-window.addEventListener('DOMContentLoaded', () => {
+// Initialize Global Cart — waits for the live product catalog so the cart, drawer and
+// upsells always reflect whatever is actually configured in the admin panel.
+window.addEventListener('DOMContentLoaded', async () => {
+  await loadKivaneliProducts();
   window.kivaneliCart = new KivaneliCart();
   if (window.lucide) lucide.createIcons();
+  document.dispatchEvent(new CustomEvent('kivaneli:cart-ready'));
 });

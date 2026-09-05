@@ -415,12 +415,36 @@
     let currentSlug = 'adeus-crema-corporal';
     const params = new URLSearchParams(window.location.search);
     const requestedSlug = params.get('slug');
-    if (requestedSlug && PDP_DETAILS[requestedSlug]) {
+    if (requestedSlug) {
       currentSlug = requestedSlug;
     }
 
+    // Any product the admin adds that doesn't have a hand-authored entry above still gets
+    // a real, working fiche built straight from its live catalog data (name, price, photo,
+    // description) — a new product is never a 404 or a copy of the wrong item.
+    function buildPdpFromLiveProduct(slug) {
+      const p = KIVANELI_PRODUCTS[slug];
+      if (!p) return null;
+      const plainDescription = (p.descriptionHtml || '').replace(/<[^>]*>/g, '').trim();
+      const images = [p.image, ...(p.extraImages || [])].filter(Boolean);
+      return {
+        title: p.name,
+        subtitle: plainDescription.slice(0, 160) || 'Descubre este producto de la colección KIVANELI.',
+        category: p.category || 'Colección KIVANELI',
+        categoryTag: p.category || 'KIVANELI',
+        price: p.price,
+        regularPrice: p.regularPrice || p.price,
+        badge: p.badge || 'DISPONIBLE',
+        images: images.length ? images : ['assets/images/adeus_jar_botanicals.jpg'],
+        spec1: 'Envío Prioritario 24/48h GLS Express',
+        spec2: 'Pago Contra-Reembolso o con Tarjeta',
+        spec3: plainDescription.slice(0, 90) || 'Calidad verificada Maison Botanique'
+      };
+    }
+
     function renderPDP() {
-      const p = PDP_DETAILS[currentSlug];
+      const p = PDP_DETAILS[currentSlug] || buildPdpFromLiveProduct(currentSlug);
+      if (!p) return;
       document.title = p.title + ' — KIVANELI';
       document.getElementById('breadcrumbCategory').innerText = p.category;
       document.getElementById('breadcrumbTitle').innerText = p.title;
@@ -553,8 +577,11 @@
       if (window.lucide) lucide.createIcons();
     }
 
-    // Run Immediately on load
+    // Run immediately on load (instant for the 4 hand-authored products) and again once
+    // the live catalog finishes loading — this is what makes a brand-new admin-added
+    // product's fiche actually appear instead of staying blank.
     renderPDP();
+    document.addEventListener('kivaneli:cart-ready', renderPDP);
   </script>
 </body>
 </html>

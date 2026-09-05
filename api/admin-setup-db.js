@@ -6,6 +6,7 @@
 const { sql } = require('./_db');
 const emailTemplates = require('../db/seed-email-templates.json');
 const discountCoupons = require('../db/seed-discount-coupons.json');
+const products = require('../db/seed-products.json');
 
 if (!process.env.ADMIN_JWT_SECRET) {
   throw new Error('Missing required env var ADMIN_JWT_SECRET');
@@ -43,10 +44,12 @@ module.exports = async (req, res) => {
         coupon_applied       TEXT,
         referral_code_used   TEXT,
         notes                TEXT,
+        cart_items           JSONB,
         created_at           TIMESTAMPTZ NOT NULL DEFAULT now(),
         updated_at           TIMESTAMPTZ NOT NULL DEFAULT now()
       )
     `;
+    await sql`ALTER TABLE orders ADD COLUMN IF NOT EXISTS cart_items JSONB`;
     steps.push('orders');
 
     await sql`
@@ -114,6 +117,33 @@ module.exports = async (req, res) => {
     steps.push('discount_coupons');
 
     await sql`
+      CREATE TABLE IF NOT EXISTS products (
+        id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        dropea_product_id   INTEGER,
+        dropea_variant_id   INTEGER,
+        dropea_sku          TEXT,
+        slug                TEXT UNIQUE NOT NULL,
+        name                TEXT NOT NULL,
+        short_name          TEXT,
+        description_html    TEXT,
+        category            TEXT,
+        section             TEXT DEFAULT 'CATALOG',
+        badge               TEXT,
+        price               NUMERIC(10,2) NOT NULL,
+        regular_price       NUMERIC(10,2),
+        impulse_price       NUMERIC(10,2),
+        image_url           TEXT,
+        extra_images        JSONB DEFAULT '[]'::jsonb,
+        bundle_items        JSONB,
+        is_active           BOOLEAN DEFAULT true,
+        sort_order          INTEGER DEFAULT 0,
+        created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
+        updated_at          TIMESTAMPTZ NOT NULL DEFAULT now()
+      )
+    `;
+    steps.push('products');
+
+    await sql`
       CREATE TABLE IF NOT EXISTS customers (
         id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         name            TEXT,
@@ -174,6 +204,24 @@ module.exports = async (req, res) => {
       `;
     }
     steps.push(`discount_coupons seeded (${discountCoupons.length})`);
+
+    for (const p of products) {
+      await sql`
+        INSERT INTO products (
+          dropea_product_id, dropea_variant_id, dropea_sku, slug, name, short_name,
+          description_html, category, section, badge, price, regular_price, impulse_price,
+          image_url, extra_images, bundle_items, is_active, sort_order
+        ) VALUES (
+          ${p.dropea_product_id}, ${p.dropea_variant_id}, ${p.dropea_sku}, ${p.slug}, ${p.name}, ${p.short_name},
+          ${p.description_html}, ${p.category}, ${p.section}, ${p.badge}, ${p.price}, ${p.regular_price}, ${p.impulse_price},
+          ${p.image_url}, ${JSON.stringify(p.extra_images)}::jsonb,
+          ${p.bundle_items ? JSON.stringify(p.bundle_items) : null}::jsonb,
+          ${p.is_active}, ${p.sort_order}
+        )
+        ON CONFLICT (slug) DO NOTHING
+      `;
+    }
+    steps.push(`products seeded (${products.length})`);
 
     return res.status(200).json({ success: true, steps });
   } catch (error) {

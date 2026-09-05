@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS orders (
   coupon_applied       TEXT,
   referral_code_used   TEXT,
   notes                TEXT,
+  cart_items           JSONB,
   created_at           TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at           TIMESTAMPTZ NOT NULL DEFAULT now()
 );
@@ -76,6 +77,29 @@ CREATE TABLE IF NOT EXISTS discount_coupons (
   landing_id          TEXT,
   expires_at          TIMESTAMPTZ,
   created_at          TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE IF NOT EXISTS products (
+  id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  dropea_product_id   INTEGER,
+  dropea_variant_id   INTEGER,
+  dropea_sku          TEXT,
+  slug                TEXT UNIQUE NOT NULL,
+  name                TEXT NOT NULL,
+  short_name          TEXT,
+  description_html    TEXT,
+  category            TEXT,
+  section             TEXT DEFAULT 'CATALOG', -- HERO | BESTSELLER | CATALOG | UPSELL
+  badge               TEXT,
+  price               NUMERIC(10,2) NOT NULL,
+  regular_price       NUMERIC(10,2),
+  impulse_price       NUMERIC(10,2),
+  image_url           TEXT,
+  extra_images        JSONB DEFAULT '[]'::jsonb,
+  is_active           BOOLEAN DEFAULT true,
+  sort_order          INTEGER DEFAULT 0,
+  created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at          TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
 CREATE TABLE IF NOT EXISTS customers (

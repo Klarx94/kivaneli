@@ -155,7 +155,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="productsGrid">
       
       <!-- Product Card 1: ADEUS -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="CORPORAL">
+      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="CORPORAL" data-slug="adeus-crema-corporal">
         <div class="relative overflow-hidden bg-white">
           <span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-[#B86B60] text-white px-3 py-1 rounded-full shadow-md">
             MÁS VENDIDO · 300 G
@@ -192,7 +192,7 @@
       </div>
 
       <!-- Product Card 2: Parches Körmesic -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="OJOS">
+      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="OJOS" data-slug="kormesic-parches-colageno">
         <div class="relative overflow-hidden bg-purple-50">
           <span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-purple-800 text-white px-3 py-1 rounded-full shadow-md">
             60 UDS (30 PARES) · HIDROGEL
@@ -229,7 +229,7 @@
       </div>
 
       <!-- Product Card 3: Jabón Kójico -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="JABONES">
+      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="JABONES" data-slug="jabon-acido-kojico">
         <div class="relative overflow-hidden bg-amber-50">
           <span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-amber-700 text-white px-3 py-1 rounded-full shadow-md">
             100 G · CLARIFICANTE
@@ -266,7 +266,7 @@
       </div>
 
       <!-- Product Card 4: Pack Ritual Completo 3-en-1 con Collage -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border-2 border-[#B86B60] shadow-md flex flex-col justify-between relative bg-gradient-to-b from-[#FDF9F8] to-white md:col-span-2 lg:col-span-3" data-cat="PACKS">
+      <div class="product-item glass-card rounded-[2rem] overflow-hidden border-2 border-[#B86B60] shadow-md flex flex-col justify-between relative bg-gradient-to-b from-[#FDF9F8] to-white md:col-span-2 lg:col-span-3" data-cat="PACKS" data-slug="pack-ritual-completo">
         <span class="absolute top-4 right-4 z-10 text-[10px] font-black uppercase tracking-wider bg-rose-gradient text-white px-3.5 py-1 rounded-full shadow-md">
           OFERTA RITUAL COMPLETO · AHORRAS 35€
         </span>
@@ -400,6 +400,89 @@
       }
       if (window.lucide) lucide.createIcons();
     }
+
+    // Sync the catalog with the live product data (price/badge/description/active-state
+    // edited from the admin panel) and render any product beyond the original 4 that the
+    // admin adds later — no HTML edits needed for new products to appear here.
+    function money(n) {
+      return parseFloat(n).toFixed(2).replace('.', ',') + '&nbsp;€';
+    }
+
+    function renderDynamicProductCard(p) {
+      const card = document.createElement('div');
+      card.className = 'product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between';
+      card.dataset.cat = p.category || 'CATALOG';
+      card.dataset.slug = p.slug;
+      card.innerHTML = `
+        <div class="relative overflow-hidden bg-stone-50">
+          ${p.badge ? `<span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-[#B86B60] text-white px-3 py-1 rounded-full shadow-md">${p.badge}</span>` : ''}
+          <img src="${p.image_url || ''}" alt="${p.name}" class="w-full h-60 object-cover hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+        </div>
+        <div class="p-5 sm:p-6 space-y-4 flex-1 flex flex-col justify-between">
+          <div class="space-y-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-[#B86B60]">${p.category || ''}</span>
+            <h3 class="font-serif-luxury font-bold text-base sm:text-lg text-[#181514]">${p.name}</h3>
+            <p class="text-xs text-stone-600 line-clamp-3 leading-relaxed">${(p.description_html || '').replace(/<[^>]*>/g, '').slice(0, 160)}</p>
+          </div>
+          <div class="pt-4 border-t border-stone-100 flex items-center justify-between gap-2">
+            <div>
+              ${p.regular_price ? `<span class="text-[10px] text-stone-400 line-through whitespace-nowrap">${money(p.regular_price)}</span>` : ''}
+              <div class="font-serif-luxury font-black text-xl text-[#181514] whitespace-nowrap">${money(p.price)}</div>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <a href="producto.html?slug=${p.slug}" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl font-bold text-xs hover:bg-stone-200 transition">Ficha</a>
+              <button onclick="window.kivaneliCart.addItem('${p.slug}', 1)" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i><span>Añadir</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    async function syncCatalogWithLiveProducts() {
+      try {
+        const res = await fetch('/api/products');
+        const data = await res.json();
+        if (!data.success) return;
+
+        const products = data.products || [];
+        const known = new Set();
+
+        document.querySelectorAll('#productsGrid [data-slug]').forEach(card => {
+          const slug = card.dataset.slug;
+          known.add(slug);
+          const p = products.find(x => x.slug === slug);
+
+          if (!p || p.is_active === false) {
+            card.classList.add('hidden');
+            card.dataset.discontinued = 'true';
+            return;
+          }
+
+          const badge = card.querySelector('.absolute.top-4');
+          if (badge && p.badge) badge.textContent = p.badge;
+
+          const priceEl = card.querySelector('.font-serif-luxury.font-black');
+          if (priceEl) priceEl.innerHTML = money(p.price);
+
+          const regularEl = card.querySelector('.line-through');
+          if (regularEl) regularEl.innerHTML = p.regular_price ? money(p.regular_price) : '';
+        });
+
+        const grid = document.getElementById('productsGrid');
+        products
+          .filter(p => !known.has(p.slug))
+          .forEach(p => grid.appendChild(renderDynamicProductCard(p)));
+
+        if (window.lucide) lucide.createIcons();
+      } catch (e) {
+        console.log('Catalog sync note:', e.message);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', syncCatalogWithLiveProducts);
   </script>
 </body>
 </html>

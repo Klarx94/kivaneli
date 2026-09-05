@@ -65,9 +65,19 @@ module.exports = async (req, res) => {
     }
 
     // 3. Link a Dropea Product to Shop
+    // Dropea's real API requires a variant_mapping array (product_id alone 400s) —
+    // action:'LINK' plus an external_variant_id (our own catalog's reference for the variant).
     if (action === 'link_product' && req.method === 'POST') {
-      const { product_id } = req.body || {};
-      const resp = await requestDropea('POST', `/dropshipper/shops/${DROPEA_STORE_ID}/products/link`, { product_id });
+      const { product_id, variant_id, sku } = req.body || {};
+      const resp = await requestDropea('POST', `/dropshipper/shops/${DROPEA_STORE_ID}/products/link`, {
+        product_id,
+        variant_mapping: [{
+          variant_id,
+          sku,
+          action: 'LINK',
+          external_variant_id: String(variant_id)
+        }]
+      });
       return res.status(200).json(resp.data || { success: false, error: resp.error });
     }
 

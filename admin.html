@@ -584,32 +584,41 @@
       </div>
 
       <form onsubmit="handleSaveProduct(event)" class="space-y-4 text-xs">
+        <input type="hidden" id="prodId">
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="font-bold text-stone-700">ID Producto Dropea *</label>
-            <input type="number" id="prodDropeaId" required value="32674" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono font-bold">
+            <input type="number" id="prodDropeaId" required class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono font-bold">
           </div>
           <div>
-            <label class="font-bold text-stone-700">SKU Dropea *</label>
-            <input type="text" id="prodDropeaSku" required value="ADEUS_16181" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono">
+            <label class="font-bold text-stone-700">Variant ID / SKU Dropea *</label>
+            <div class="flex gap-2">
+              <input type="number" id="prodDropeaVariantId" required class="w-1/2 px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono">
+              <input type="text" id="prodDropeaSku" required class="w-1/2 px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono">
+            </div>
           </div>
         </div>
 
         <div>
           <label class="font-bold text-stone-700">Título Comercial para la Web *</label>
-          <input type="text" id="prodTitle" required value="ADEUS™ Crema Corporal Tratamiento Intensivo 300 g" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-bold">
+          <input type="text" id="prodTitle" required class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-bold">
+        </div>
+
+        <div>
+          <label class="font-bold text-stone-700">Slug (URL de la ficha)</label>
+          <input type="text" id="prodSlug" placeholder="se genera solo desde el título si se deja vacío" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono text-[11px]">
         </div>
 
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="font-bold text-stone-700">Categoría en la Tienda *</label>
-            <select id="prodCategory" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
-              <option value="CORPORAL">Cuidado Corporal</option>
-              <option value="FACIAL">Cuidado Facial</option>
-              <option value="OJOS">Mirada & Contorno Ojos</option>
-              <option value="JABONES">Jabones Clarificantes</option>
-              <option value="PACKS">Packs de Tratamiento</option>
-            </select>
+            <input type="text" id="prodCategory" required placeholder="Ej. Cuidado Corporal" list="prodCategoryList" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-medium">
+            <datalist id="prodCategoryList">
+              <option value="Cuidado Corporal">
+              <option value="Mirada & Rostro">
+              <option value="Limpieza & Tono">
+              <option value="Ritual Completo">
+            </datalist>
           </div>
           <div>
             <label class="font-bold text-stone-700">Sección en la Portada *</label>
@@ -624,28 +633,43 @@
 
         <div class="grid grid-cols-3 gap-3">
           <div>
-            <label class="font-bold text-stone-700">PVP Unitario (1x) *</label>
-            <input type="number" step="0.05" id="prodPrice1" required value="29.90" class="w-full px-3 py-2 rounded-xl border border-stone-300 font-bold text-emerald-700">
+            <label class="font-bold text-stone-700">PVP Venta *</label>
+            <input type="number" step="0.05" id="prodPrice" required class="w-full px-3 py-2 rounded-xl border border-stone-300 font-bold text-emerald-700">
           </div>
           <div>
-            <label class="font-bold text-stone-700">PVP Pack Dúo (2x) *</label>
-            <input type="number" step="0.05" id="prodPrice2" required value="49.95" class="w-full px-3 py-2 rounded-xl border border-stone-300 font-bold text-emerald-700">
+            <label class="font-bold text-stone-700">PVP Tachado</label>
+            <input type="number" step="0.05" id="prodRegularPrice" class="w-full px-3 py-2 rounded-xl border border-stone-300 font-bold text-stone-500">
           </div>
           <div>
-            <label class="font-bold text-stone-700">PVP Pack Trío (3x) *</label>
-            <input type="number" step="0.05" id="prodPrice3" required value="69.90" class="w-full px-3 py-2 rounded-xl border border-stone-300 font-bold text-emerald-700">
+            <label class="font-bold text-stone-700">Precio Upsell (1 clic)</label>
+            <input type="number" step="0.05" id="prodImpulsePrice" class="w-full px-3 py-2 rounded-xl border border-stone-300 font-bold text-[#B86B60]">
           </div>
+        </div>
+
+        <div>
+          <label class="font-bold text-stone-700">Badge (etiqueta corta sobre la foto)</label>
+          <input type="text" id="prodBadge" placeholder="Ej. MÁS VENDIDO · 300 G" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
         </div>
 
         <div>
           <label class="font-bold text-stone-700">URL Imagen Principal (HD)</label>
-          <input type="text" id="prodImageUrl" value="assets/images/adeus_jar_botanicals.jpg" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
+          <input type="text" id="prodImageUrl" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
         </div>
 
         <div>
-          <label class="font-bold text-stone-700">Descripción & Beneficios Boticarios</label>
-          <textarea id="prodDescription" rows="3" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-xs">Fórmula de masaje corporal para hidratación profunda, suavidad extrema y reducción de piel de fresa. Formato generoso de 300 g con tapa de rosca.</textarea>
+          <label class="font-bold text-stone-700">Más imágenes (una URL por línea)</label>
+          <textarea id="prodExtraImages" rows="2" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-[11px] font-mono"></textarea>
         </div>
+
+        <div>
+          <label class="font-bold text-stone-700">Descripción & Beneficios (admite HTML)</label>
+          <textarea id="prodDescription" rows="4" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-xs"></textarea>
+        </div>
+
+        <label class="flex items-center gap-2 font-bold text-stone-700">
+          <input type="checkbox" id="prodIsActive" checked class="w-4 h-4">
+          <span>Publicado y visible en la tienda</span>
+        </label>
 
         <button type="submit" class="w-full bg-rose-gradient text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition shadow-md flex items-center justify-center gap-2">
           <i data-lucide="check" class="w-4 h-4"></i>
@@ -837,97 +861,57 @@
       if (window.lucide) lucide.createIcons();
     }
 
-    // Dropea Catalog State
-    let storeProducts = [
-      {
-        id: 32674,
-        sku: 'ADEUS_16181',
-        name: 'ADEUS™ Crema Corporal Tratamiento Intensivo 300 g',
-        category: 'CORPORAL',
-        section: 'HERO',
-        stock: 291,
-        cost: 5.90,
-        price1: 29.90,
-        price2: 49.95,
-        price3: 69.90,
-        image_url: 'assets/images/adeus_jar_botanicals.jpg',
-        is_active: true,
-        slug: 'adeus-crema-corporal'
-      },
-      {
-        id: 32055,
-        sku: 'EYEMASK-BOTOX',
-        name: 'Parches de Colágeno & Keratina Körmesic™ (60 uds)',
-        category: 'OJOS',
-        section: 'UPSELL',
-        stock: 150,
-        cost: 4.00,
-        price1: 14.95,
-        price2: 26.90,
-        price3: 36.90,
-        image_url: 'assets/images/kormesic_jar_purple.jpg',
-        is_active: true,
-        slug: 'kormesic-parches-colageno'
-      },
-      {
-        id: 32591,
-        sku: 'JABONHYALUKISS',
-        name: 'Jabón en Pastilla Ácido Kójico + Hialurónico (100 g)',
-        category: 'JABONES',
-        section: 'UPSELL',
-        stock: 300,
-        cost: 3.50,
-        price1: 12.95,
-        price2: 22.90,
-        price3: 29.90,
-        image_url: 'assets/images/kojic_soap_box.jpg',
-        is_active: true,
-        slug: 'jabon-acido-kojico'
-      },
-      {
-        id: 99901,
-        sku: 'PACK-RITUAL-30D',
-        name: 'Pack Ritual Boticario Completo (ADEUS + Parches + Jabón)',
-        category: 'PACKS',
-        section: 'BESTSELLER',
-        stock: 150,
-        cost: 13.40,
-        price1: 59.95,
-        price2: 99.90,
-        price3: 139.90,
-        image_url: 'assets/images/adeus_hero_frame1.jpg',
-        is_active: true,
-        slug: 'pack-ritual-completo'
-      }
-    ];
+    // Catalog state — products come from Neon (our own catalog), Dropea state is only
+    // the raw shop/stock feed used to warn about unlinked or out-of-stock products.
+    let storeProducts = [];
+    let dropeaShopItems = [];
 
     async function loadDropeaProductsLive() {
-      const tbody = document.getElementById('catalogTableBody');
-      if (!tbody) return;
+      try {
+        const res = await adminFetch('/api/admin-data');
+        const data = await res.json();
+        if (data.success) storeProducts = data.products || [];
+      } catch (e) {
+        console.log('Products load error:', e.message);
+      }
 
       try {
-        const res = await fetch('/api/dropea-catalog?action=list_shop_products');
-        const data = await res.json();
-        if (data && data.data && data.data.items && data.data.items.length) {
-          console.log('Live Dropea Items from Shop 18516:', data.data.items);
-        }
-      } catch(e) {
+        const dropeaRes = await fetch('/api/dropea-catalog?action=list_shop_products');
+        const dropeaData = await dropeaRes.json();
+        dropeaShopItems = (dropeaData && dropeaData.data && dropeaData.data.items) || [];
+      } catch (e) {
         console.log('Dropea catalog fetch note:', e.message);
       }
 
       renderCatalogTable();
     }
 
+    function dropeaStockFor(product) {
+      const match = dropeaShopItems.find(i => i.id === product.dropea_product_id);
+      if (!match) return null;
+      const variant = match.variants && match.variants[0];
+      return variant ? variant.stock : null;
+    }
+
     function renderCatalogTable() {
       const tbody = document.getElementById('catalogTableBody');
       if (!tbody) return;
 
-      document.getElementById('catalogCountBadge').innerText = `${storeProducts.length} Productos Vinculados`;
+      document.getElementById('catalogCountBadge').innerText = `${storeProducts.length} Productos en Catálogo`;
 
-      tbody.innerHTML = storeProducts.map(p => `
+      if (!storeProducts.length) {
+        tbody.innerHTML = '<tr><td colspan="8" class="p-8 text-center text-stone-400">Sin productos todavía. Pulsa "Conectar Producto de Dropea" para añadir el primero.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = storeProducts.map(p => {
+        const stock = dropeaStockFor(p);
+        const stockLabel = stock === null ? 'N/D' : `${stock} uds`;
+        const stockClass = stock === 0 ? 'text-rose-600' : (stock !== null && stock < 20 ? 'text-amber-600' : 'text-emerald-700');
+        return `
         <tr class="hover:bg-[#FAF7F2] transition">
           <td class="p-4 flex items-center gap-3">
-            <img src="${p.image_url}" class="w-12 h-12 object-cover rounded-xl border border-stone-200 shadow-sm shrink-0">
+            <img src="${p.image_url || ''}" class="w-12 h-12 object-cover rounded-xl border border-stone-200 shadow-sm shrink-0" onerror="this.style.visibility='hidden'">
             <div>
               <div class="font-bold text-[#181514] line-clamp-1">${p.name}</div>
               <a href="producto.html?slug=${p.slug}" target="_blank" class="text-[10px] text-[#B86B60] hover:underline font-semibold flex items-center gap-0.5">
@@ -937,25 +921,25 @@
             </div>
           </td>
           <td class="p-4 font-mono text-[11px] text-stone-700">
-            <div>${p.sku}</div>
-            <div class="text-[10px] text-stone-400">ID: ${p.id}</div>
+            <div>${p.dropea_sku || '—'}</div>
+            <div class="text-[10px] text-stone-400">ID: ${p.dropea_product_id || '—'}${p.bundle_items ? ' · PACK' : ''}</div>
           </td>
           <td class="p-4">
             <span class="px-2.5 py-1 rounded-md text-[10px] font-bold bg-purple-100 text-purple-800">
-              ${p.category}
+              ${p.category || '—'}
             </span>
           </td>
           <td class="p-4">
             <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-stone-100 text-stone-700">
-              ${p.section === 'HERO' ? '⭐ Portada Hero' : (p.section === 'UPSELL' ? '🎁 Upsell Checkout' : '🔥 Más Vendidos')}
+              ${p.section === 'HERO' ? '⭐ Portada Hero' : (p.section === 'UPSELL' ? '🎁 Upsell Checkout' : (p.section === 'BESTSELLER' ? '🔥 Más Vendidos' : '🌿 Catálogo'))}
             </span>
           </td>
-          <td class="p-4 font-mono font-bold ${p.stock > 50 ? 'text-emerald-700' : 'text-amber-600'}">
-            ${p.stock} uds
+          <td class="p-4 font-mono font-bold ${stockClass}">
+            ${p.bundle_items ? 'Combo' : stockLabel}
           </td>
           <td class="p-4">
-            <div class="font-bold text-[#181514]">${p.price1.toFixed(2)} €</div>
-            <div class="text-[10px] text-stone-400">Coste: ${p.cost.toFixed(2)} €</div>
+            <div class="font-bold text-[#181514]">${parseFloat(p.price).toFixed(2)} €</div>
+            ${p.regular_price ? `<div class="text-[10px] text-stone-400 line-through">${parseFloat(p.regular_price).toFixed(2)} €</div>` : ''}
           </td>
           <td class="p-4">
             <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold ${p.is_active ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-200 text-stone-600'}">
@@ -963,35 +947,72 @@
             </span>
           </td>
           <td class="p-4 text-right space-x-2">
-            <button onclick="editProduct(${p.id})" class="text-xs bg-white text-stone-700 border border-stone-200 px-2.5 py-1.5 rounded-lg hover:border-[#D48B80] font-bold transition">Editar</button>
+            <button onclick="editProduct('${p.id}')" class="text-xs bg-white text-stone-700 border border-stone-200 px-2.5 py-1.5 rounded-lg hover:border-[#D48B80] font-bold transition">Editar</button>
           </td>
         </tr>
-      `).join('');
+      `; }).join('');
 
       if (window.lucide) lucide.createIcons();
     }
 
     function openConnectDropeaModal() {
+      document.getElementById('prodId').value = '';
       document.getElementById('prodDropeaId').value = '';
+      document.getElementById('prodDropeaVariantId').value = '';
       document.getElementById('prodDropeaSku').value = '';
       document.getElementById('prodTitle').value = '';
+      document.getElementById('prodSlug').value = '';
+      document.getElementById('prodCategory').value = '';
+      document.getElementById('prodSection').value = 'CATALOG';
+      document.getElementById('prodPrice').value = '';
+      document.getElementById('prodRegularPrice').value = '';
+      document.getElementById('prodImpulsePrice').value = '';
+      document.getElementById('prodBadge').value = '';
+      document.getElementById('prodImageUrl').value = '';
+      document.getElementById('prodExtraImages').value = '';
+      document.getElementById('prodDescription').value = '';
+      document.getElementById('prodIsActive').checked = true;
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
+    }
+
+    // Pre-fill the modal with a product Claude/the admin found live in Dropea's catalog,
+    // so the client only has to write the commercial copy, not re-type Dropea's IDs.
+    function importFromDropea(dropeaProduct) {
+      const variant = dropeaProduct.variants && dropeaProduct.variants[0];
+      openConnectDropeaModal();
+      document.getElementById('prodDropeaId').value = dropeaProduct.id;
+      document.getElementById('prodDropeaVariantId').value = variant ? variant.variant_id : '';
+      document.getElementById('prodDropeaSku').value = variant ? variant.sku : '';
+      document.getElementById('prodTitle').value = dropeaProduct.name;
+      document.getElementById('prodImageUrl').value = variant ? variant.image_url : (dropeaProduct.media && dropeaProduct.media.images[0]) || '';
+      document.getElementById('prodDescription').value = dropeaProduct.description || '';
+      if (variant) {
+        const suggested = Math.ceil((variant.price + 1) * 2.4 * 20) / 20; // rough markup starting point, editable
+        document.getElementById('prodPrice').value = suggested.toFixed(2);
+      }
     }
 
     function editProduct(id) {
       const p = storeProducts.find(x => x.id === id);
       if (!p) return;
 
-      document.getElementById('prodDropeaId').value = p.id;
-      document.getElementById('prodDropeaSku').value = p.sku;
+      document.getElementById('prodId').value = p.id;
+      document.getElementById('prodDropeaId').value = p.dropea_product_id || '';
+      document.getElementById('prodDropeaVariantId').value = p.dropea_variant_id || '';
+      document.getElementById('prodDropeaSku').value = p.dropea_sku || '';
       document.getElementById('prodTitle').value = p.name;
-      document.getElementById('prodCategory').value = p.category;
-      document.getElementById('prodSection').value = p.section;
-      document.getElementById('prodPrice1').value = p.price1;
-      document.getElementById('prodPrice2').value = p.price2;
-      document.getElementById('prodPrice3').value = p.price3;
-      document.getElementById('prodImageUrl').value = p.image_url;
+      document.getElementById('prodSlug').value = p.slug;
+      document.getElementById('prodCategory').value = p.category || '';
+      document.getElementById('prodSection').value = p.section || 'CATALOG';
+      document.getElementById('prodPrice').value = p.price;
+      document.getElementById('prodRegularPrice').value = p.regular_price || '';
+      document.getElementById('prodImpulsePrice').value = p.impulse_price || '';
+      document.getElementById('prodBadge').value = p.badge || '';
+      document.getElementById('prodImageUrl').value = p.image_url || '';
+      document.getElementById('prodExtraImages').value = (p.extra_images || []).join('\n');
+      document.getElementById('prodDescription').value = p.description_html || '';
+      document.getElementById('prodIsActive').checked = !!p.is_active;
 
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
@@ -1002,39 +1023,57 @@
       document.getElementById('modalEditProduct').classList.remove('flex');
     }
 
-    function handleSaveProduct(e) {
+    async function handleSaveProduct(e) {
       e.preventDefault();
-      const id = parseInt(document.getElementById('prodDropeaId').value);
-      const sku = document.getElementById('prodDropeaSku').value.trim();
-      const title = document.getElementById('prodTitle').value.trim();
-      const cat = document.getElementById('prodCategory').value;
-      const sec = document.getElementById('prodSection').value;
-      const p1 = parseFloat(document.getElementById('prodPrice1').value);
-      const p2 = parseFloat(document.getElementById('prodPrice2').value);
-      const p3 = parseFloat(document.getElementById('prodPrice3').value);
-      const img = document.getElementById('prodImageUrl').value.trim();
+      const id = document.getElementById('prodId').value || null;
 
-      const existingIndex = storeProducts.findIndex(x => x.id === id);
-      const slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const payload = {
+        dropea_product_id: parseInt(document.getElementById('prodDropeaId').value) || null,
+        dropea_variant_id: parseInt(document.getElementById('prodDropeaVariantId').value) || null,
+        dropea_sku: document.getElementById('prodDropeaSku').value.trim(),
+        name: document.getElementById('prodTitle').value.trim(),
+        slug: document.getElementById('prodSlug').value.trim() || undefined,
+        category: document.getElementById('prodCategory').value.trim(),
+        section: document.getElementById('prodSection').value,
+        price: parseFloat(document.getElementById('prodPrice').value),
+        regular_price: parseFloat(document.getElementById('prodRegularPrice').value) || null,
+        impulse_price: parseFloat(document.getElementById('prodImpulsePrice').value) || null,
+        badge: document.getElementById('prodBadge').value.trim() || null,
+        image_url: document.getElementById('prodImageUrl').value.trim(),
+        extra_images: document.getElementById('prodExtraImages').value.split('\n').map(s => s.trim()).filter(Boolean),
+        description_html: document.getElementById('prodDescription').value,
+        is_active: document.getElementById('prodIsActive').checked
+      };
 
-      if (existingIndex >= 0) {
-        storeProducts[existingIndex] = {
-          ...storeProducts[existingIndex],
-          sku, name: title, category: cat, section: sec,
-          price1: p1, price2: p2, price3: p3, image_url: img, slug
-        };
-      } else {
-        storeProducts.push({
-          id, sku, name: title, category: cat, section: sec,
-          stock: 200, cost: 5.00, price1: p1, price2: p2, price3: p3,
-          image_url: img, is_active: true, slug
+      try {
+        // Link the product to the Dropea shop first (idempotent — Dropea just no-ops if
+        // it's already linked) so orders for it always resolve to a real, shippable variant.
+        if (payload.dropea_product_id && payload.dropea_variant_id) {
+          await fetch('/api/dropea-catalog?action=link_product', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              product_id: payload.dropea_product_id,
+              variant_id: payload.dropea_variant_id,
+              sku: payload.dropea_sku
+            })
+          });
+        }
+
+        const res = await adminFetch('/api/admin-products', {
+          method: id ? 'PATCH' : 'POST',
+          body: JSON.stringify(id ? { id, ...payload } : payload)
         });
-      }
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Error al guardar el producto');
 
-      closeEditProductModal();
-      renderCatalogTable();
-      alert(`✅ Producto "${title}" guardado y publicado en la tienda.`);
-      if (window.confetti) confetti({ particleCount: 60 });
+        closeEditProductModal();
+        await loadDropeaProductsLive();
+        alert(`✅ Producto "${payload.name}" guardado y publicado en la tienda.`);
+        if (window.confetti) confetti({ particleCount: 60 });
+      } catch (err) {
+        alert('Error al guardar el producto: ' + err.message);
+      }
     }
 
     function changeActiveLanding(landingId) {

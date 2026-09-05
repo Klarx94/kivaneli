@@ -508,9 +508,42 @@
         items_count: items.reduce((acc, i) => acc + i.quantity, 0),
         total_amount: total,
         payment_method: checkoutPaymentMethod,
-        coupon_applied: checkoutCoupon || null
+        coupon_applied: checkoutCoupon || null,
+        // Full cart detail — lets the backend ship the right Dropea variant(s) per line,
+        // including expanding bundle products (e.g. Pack Ritual) into their real components.
+        items: items.map(i => ({
+          id: i.id,
+          quantity: i.quantity,
+          price: i.price * i.quantity,
+          dropeaVariantId: i.dropeaVariantId
+        }))
       };
 
+      // Card payments go through Stripe Checkout — the order is only ever confirmed by
+      // Stripe's webhook (api/stripe-webhook.js) after real payment, never by the browser.
+      if (checkoutPaymentMethod === 'CARD') {
+        try {
+          const res = await fetch('/api/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json();
+          if (data.success && data.checkout_url) {
+            window.location.href = data.checkout_url;
+            return;
+          }
+          throw new Error(data.error || 'No se pudo iniciar el pago con tarjeta');
+        } catch (err) {
+          alert('Error al iniciar el pago con tarjeta: ' + err.message);
+          btn.disabled = false;
+          btn.innerHTML = '<i data-lucide="check-circle-2" class="w-5 h-5"></i><span id="btnConfirmText">PAGAR CON TARJETA / REVOLUT PAY</span>';
+          if (window.lucide) lucide.createIcons();
+          return;
+        }
+      }
+
+      // COD path — creates and dispatches the order immediately, no payment to wait for.
       try {
         await fetch('/api/dropea-order', {
           method: 'POST',
@@ -532,10 +565,33 @@
       window.kivaneliCart.saveCart();
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        renderCheckoutPage();
-      }, 100);
+    // Handle the return trip from Stripe Checkout (success or cancel) — runs after the
+    // cart engine has initialized (window.kivaneliCart doesn't exist until DOMContentLoaded).
+    function handleStripeRedirectReturn() {
+      const params = new URLSearchParams(window.location.search);
+      const orderNumber = params.get('order');
+
+      if (params.get('stripe_success') && orderNumber) {
+        window.kivaneliCart.items = [];
+        window.kivaneliCart.saveCart();
+        document.getElementById('orderSuccessCodeDisplay').innerText = orderNumber;
+        document.getElementById('checkoutActiveState').classList.add('hidden');
+        document.getElementById('checkoutSuccessState').classList.remove('hidden');
+        if (window.confetti) confetti({ particleCount: 100, spread: 70 });
+        return true;
+      } else if (params.get('stripe_cancelled')) {
+        const msg = document.getElementById('checkoutCouponMsg');
+        if (msg) {
+          msg.innerText = 'Pago con tarjeta cancelado. Tu cesta sigue intacta — puedes reintentar o elegir contra-reembolso.';
+          msg.className = 'text-xs font-bold text-amber-700';
+          msg.classList.remove('hidden');
+        }
+      }
+      return false;
+    }
+
+    document.addEventListener('kivaneli:cart-ready', () => {
+      if (!handleStripeRedirectReturn()) renderCheckoutPage();
     });
   </script>
 </body>
