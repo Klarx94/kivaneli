@@ -43,7 +43,8 @@ module.exports = async (req, res) => {
       pack_selected: body.pack_selected || '',
       items_count: parseInt(body.items_count || 1),
       total_amount: total,
-      coupon_applied: body.coupon_applied || null
+      coupon_applied: body.coupon_applied || null,
+      referral_code_used: body.referral_code_used || null
     };
 
     // Order row starts as PENDING — the Stripe webhook flips it to COMPLETED once payment
@@ -52,13 +53,13 @@ module.exports = async (req, res) => {
       INSERT INTO orders (
         order_number, customer_name, customer_email, customer_phone, customer_address,
         customer_zip, customer_city, pack_selected, items_count, total_amount,
-        payment_method, payment_status, shipping_status, coupon_applied, cart_items
+        payment_method, payment_status, shipping_status, coupon_applied, referral_code_used, cart_items
       ) VALUES (
         ${orderRecord.order_number}, ${orderRecord.customer_name}, ${orderRecord.customer_email},
         ${orderRecord.customer_phone}, ${orderRecord.customer_address}, ${orderRecord.customer_zip},
         ${orderRecord.customer_city}, ${orderRecord.pack_selected}, ${orderRecord.items_count},
         ${orderRecord.total_amount}, 'CARD', 'PENDING_STRIPE', 'AWAITING_PAYMENT',
-        ${orderRecord.coupon_applied}, ${JSON.stringify(body.items || [])}::jsonb
+        ${orderRecord.coupon_applied}, ${orderRecord.referral_code_used}, ${JSON.stringify(body.items || [])}::jsonb
       )
     `;
 
@@ -83,7 +84,7 @@ module.exports = async (req, res) => {
         quantity: 1
       }],
       metadata: { order_number: orderNumber },
-      success_url: `${SITE_URL}/checkout.html?stripe_success=1&order=${orderNumber}`,
+      success_url: `${SITE_URL}/checkout.html?stripe_success=1&order=${orderNumber}&email=${encodeURIComponent(orderRecord.customer_email)}`,
       cancel_url: `${SITE_URL}/checkout.html?stripe_cancelled=1&order=${orderNumber}`
     });
 

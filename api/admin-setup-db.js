@@ -166,9 +166,14 @@ module.exports = async (req, res) => {
         referred_email      TEXT,
         referral_code       TEXT,
         reward_status       TEXT DEFAULT 'PENDING',
+        reward_coupon_code  TEXT,
+        order_number        TEXT,
         created_at          TIMESTAMPTZ NOT NULL DEFAULT now()
       )
     `;
+    await sql`ALTER TABLE referrals ADD COLUMN IF NOT EXISTS reward_coupon_code TEXT`;
+    await sql`ALTER TABLE referrals ADD COLUMN IF NOT EXISTS order_number TEXT`;
+    await sql`ALTER TABLE customers ADD COLUMN IF NOT EXISTS referral_code TEXT`;
     steps.push('referrals');
 
     await sql`

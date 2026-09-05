@@ -416,6 +416,30 @@
         </div>
       </div>
 
+      <div class="glass-card rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+        <div class="p-4 bg-[#FAF0EE] border-b border-[#D48B80]/20 flex items-center justify-between">
+          <div class="font-serif-luxury font-bold text-sm text-[#B86B60]">Referidos Club Amigas</div>
+          <span class="text-[10px] text-stone-500">Recompensa: 15€ para la embajadora tras el primer pedido de su amiga</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-stone-50 text-stone-600 font-bold uppercase tracking-wider text-[10.5px] border-b border-stone-200">
+              <tr>
+                <th class="p-4">Embajadora</th>
+                <th class="p-4">Amiga Referida</th>
+                <th class="p-4">Código</th>
+                <th class="p-4">Pedido</th>
+                <th class="p-4">Cupón de Recompensa</th>
+                <th class="p-4">Estado</th>
+              </tr>
+            </thead>
+            <tbody id="referralsTableBody" class="divide-y divide-stone-200/70">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
 
     <!-- ⚙️ TAB 5: SERVERS, SMTP & EDITORIAL PDF GUIDES -->
@@ -799,6 +823,7 @@
     let allCoupons = [];
     let allTemplates = [];
     let allCustomers = [];
+    let allReferrals = [];
     let currentActiveLandingId = 'kivaneli-piel-de-seda';
 
     // Authentication Guard — credentials are verified server-side in /api/admin-login,
@@ -1137,7 +1162,9 @@
         allCustomers = data.customers || [];
         renderCustomers();
 
-        document.getElementById('statReferralsCount').innerText = (data.referrals || []).length;
+        allReferrals = data.referrals || [];
+        document.getElementById('statReferralsCount').innerText = allReferrals.length;
+        renderReferrals();
 
         renderEmailLogs(data.logs || []);
 
@@ -1285,6 +1312,29 @@
           <td class="p-4 text-stone-600">${c.city || '-'}</td>
           <td class="p-4 font-bold text-[#D48B80]">${parseFloat(c.total_spent || 0).toFixed(2)} €</td>
           <td class="p-4 font-mono text-purple-700 font-bold">${c.referral_code || '-'}</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderReferrals() {
+      const tbody = document.getElementById('referralsTableBody');
+      if (!tbody) return;
+      if (!allReferrals.length) {
+        tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-stone-400">Todavía nadie ha completado un pedido con enlace de amiga.</td></tr>';
+        return;
+      }
+      tbody.innerHTML = allReferrals.map(r => `
+        <tr class="hover:bg-[#FAF7F2] transition">
+          <td class="p-4 font-bold text-[#181514]">${r.referrer_email}</td>
+          <td class="p-4 text-stone-600">${r.referred_email}</td>
+          <td class="p-4 font-mono text-purple-700 font-bold">${r.referral_code}</td>
+          <td class="p-4 font-mono text-stone-600">${r.order_number || '-'}</td>
+          <td class="p-4 font-mono font-bold text-emerald-700">${r.reward_coupon_code || '-'}</td>
+          <td class="p-4">
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${r.reward_status === 'REWARDED' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+              ${r.reward_status === 'REWARDED' ? '✅ Recompensado' : '⏳ Pendiente'}
+            </span>
+          </td>
         </tr>
       `).join('');
     }

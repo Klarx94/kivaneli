@@ -117,6 +117,27 @@
         </div>
       </div>
 
+      <!-- Club Amigas — real, unique referral link generated automatically for this order -->
+      <div id="successReferralBox" class="hidden p-5 bg-purple-50 rounded-2xl border-2 border-purple-200 text-left max-w-md mx-auto space-y-3">
+        <div class="font-serif-luxury font-bold text-sm text-purple-900 flex items-center gap-1.5">
+          <i data-lucide="gift" class="w-4 h-4"></i>
+          <span>Invita a una amiga y gana 15€</span>
+        </div>
+        <p class="text-[11px] text-purple-800 leading-relaxed">
+          Comparte tu enlace personal. En cuanto tu amiga complete su primer pedido, te enviamos un vale de 15€ para tu próxima compra.
+        </p>
+        <div class="flex gap-2">
+          <input id="successReferralLink" readonly class="flex-1 px-3 py-2 rounded-lg border border-purple-300 bg-white text-[10.5px] font-mono text-purple-900" value="">
+          <button type="button" onclick="copySuccessReferralLink()" class="bg-purple-700 text-white px-3.5 py-2 rounded-lg text-[10.5px] font-bold hover:bg-purple-800 transition whitespace-nowrap">Copiar</button>
+        </div>
+        <p id="successReferralCopied" class="hidden text-[10.5px] font-bold text-purple-700">✨ ¡Enlace copiado!</p>
+      </div>
+
+      <!-- VIP welcome coupon reminder for the customer's next purchase -->
+      <div class="p-4 bg-amber-50 rounded-2xl border border-amber-200 text-left max-w-md mx-auto text-xs text-amber-900">
+        🎁 <strong>Regalo para tu próxima compra:</strong> usa el código <span class="font-mono font-black">SEDA10</span> y llévate un 10% de descuento cuando quieras repetir.
+      </div>
+
       <div class="pt-4">
         <a href="index.html" class="inline-block bg-[#181514] text-white px-8 py-3.5 rounded-2xl font-bold text-xs uppercase tracking-wider hover:bg-[#D48B80] transition shadow-lg">
           Volver a la Tienda Principal
@@ -466,7 +487,7 @@
 
       // Real coupons live in the admin-managed discount_coupons table.
       try {
-        const res = await fetch('/api/coupons?code=' + encodeURIComponent(code));
+        const res = await fetch('/api/customer-actions?action=validate_coupon&code=' + encodeURIComponent(code));
         const data = await res.json();
         const subtotal = window.kivaneliCart.getTotal();
 
@@ -536,6 +557,7 @@
         total_amount: total,
         payment_method: checkoutPaymentMethod,
         coupon_applied: checkoutCoupon || null,
+        referral_code_used: (typeof getActiveReferralCode === 'function' ? getActiveReferralCode() : null),
         // Full cart detail — lets the backend ship the right Dropea variant(s) per line,
         // including expanding bundle products (e.g. Pack Ritual) into their real components.
         items: items.map(i => ({
@@ -582,14 +604,41 @@
       }
 
       // Show success
+      showCheckoutSuccess(orderNumber, email);
+
+      // Clear Cart
+      window.kivaneliCart.items = [];
+      window.kivaneliCart.saveCart();
+    }
+
+    // Shared success-state renderer for both the COD path (immediate) and the Stripe
+    // return trip — fetches the customer's own (real, auto-generated) referral link so
+    // "invite a friend" always shows a working, unique link, not a static placeholder.
+    async function showCheckoutSuccess(orderNumber, email) {
       document.getElementById('orderSuccessCodeDisplay').innerText = orderNumber;
       document.getElementById('checkoutActiveState').classList.add('hidden');
       document.getElementById('checkoutSuccessState').classList.remove('hidden');
       if (window.confetti) confetti({ particleCount: 100, spread: 70 });
 
-      // Clear Cart
-      window.kivaneliCart.items = [];
-      window.kivaneliCart.saveCart();
+      if (!email) return;
+      try {
+        const res = await fetch('/api/customer-actions?action=referral_info&email=' + encodeURIComponent(email));
+        const data = await res.json();
+        if (data.success && data.referral_link) {
+          document.getElementById('successReferralLink').value = data.referral_link;
+          document.getElementById('successReferralBox').classList.remove('hidden');
+        }
+      } catch (e) {
+        console.log('Referral info note:', e.message);
+      }
+    }
+
+    function copySuccessReferralLink() {
+      const input = document.getElementById('successReferralLink');
+      input.select();
+      navigator.clipboard.writeText(input.value).then(() => {
+        document.getElementById('successReferralCopied').classList.remove('hidden');
+      }).catch(() => {});
     }
 
     // Handle the return trip from Stripe Checkout (success or cancel) — runs after the
@@ -601,10 +650,7 @@
       if (params.get('stripe_success') && orderNumber) {
         window.kivaneliCart.items = [];
         window.kivaneliCart.saveCart();
-        document.getElementById('orderSuccessCodeDisplay').innerText = orderNumber;
-        document.getElementById('checkoutActiveState').classList.add('hidden');
-        document.getElementById('checkoutSuccessState').classList.remove('hidden');
-        if (window.confetti) confetti({ particleCount: 100, spread: 70 });
+        showCheckoutSuccess(orderNumber, params.get('email'));
         return true;
       } else if (params.get('stripe_cancelled')) {
         const msg = document.getElementById('checkoutCouponMsg');

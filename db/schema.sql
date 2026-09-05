@@ -121,6 +121,8 @@ CREATE TABLE IF NOT EXISTS referrals (
   referred_email      TEXT,
   referral_code       TEXT,
   reward_status       TEXT DEFAULT 'PENDING',
+  reward_coupon_code  TEXT,
+  order_number        TEXT,
   created_at          TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 

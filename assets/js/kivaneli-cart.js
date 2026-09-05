@@ -414,9 +414,33 @@ class KivaneliCart {
   }
 }
 
+// Captures a "Club Amigas" referral code from ?ref=CODE on any page and remembers it
+// for 30 days so it's still there whenever the visitor eventually checks out.
+function captureReferralCode() {
+  try {
+    const ref = new URLSearchParams(window.location.search).get('ref');
+    if (ref) {
+      localStorage.setItem('kivaneli_referral_code', ref.toUpperCase());
+      localStorage.setItem('kivaneli_referral_captured_at', Date.now().toString());
+    }
+  } catch (e) { /* localStorage unavailable — not critical */ }
+}
+
+function getActiveReferralCode() {
+  try {
+    const capturedAt = parseInt(localStorage.getItem('kivaneli_referral_captured_at') || '0');
+    const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+    if (capturedAt && Date.now() - capturedAt < THIRTY_DAYS_MS) {
+      return localStorage.getItem('kivaneli_referral_code') || null;
+    }
+  } catch (e) { /* ignore */ }
+  return null;
+}
+
 // Initialize Global Cart — waits for the live product catalog so the cart, drawer and
 // upsells always reflect whatever is actually configured in the admin panel.
 window.addEventListener('DOMContentLoaded', async () => {
+  captureReferralCode();
   await loadKivaneliProducts();
   window.kivaneliCart = new KivaneliCart();
   if (window.lucide) lucide.createIcons();

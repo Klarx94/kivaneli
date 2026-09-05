@@ -6,6 +6,7 @@
 const Stripe = require('stripe');
 const { sql } = require('../lib/_db');
 const { dispatchOrderToDropea } = require('../lib/_dropea');
+const { upsertCustomer, creditReferralIfAny } = require('../lib/_customers');
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
@@ -63,6 +64,26 @@ module.exports = async (req, res) => {
         `;
 
         await dispatchOrderToDropea(orderNumber);
+
+        const [order] = await sql`SELECT * FROM orders WHERE order_number = ${orderNumber}`;
+        if (order) {
+          try {
+            await upsertCustomer({
+              email: order.customer_email,
+              name: order.customer_name,
+              phone: order.customer_phone,
+              city: order.customer_city,
+              orderAmount: order.total_amount
+            });
+            await creditReferralIfAny({
+              referralCodeUsed: order.referral_code_used,
+              buyerEmail: order.customer_email,
+              orderNumber
+            });
+          } catch (custErr) {
+            console.error('Customer/referral tracking error (non-fatal):', custErr.message);
+          }
+        }
       }
     }
 

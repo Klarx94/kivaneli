@@ -4,6 +4,7 @@
 const crypto = require('crypto');
 const { sql } = require('../lib/_db');
 const { resolveDropeaLineItems, sendOrderToDropeaPublicApi } = require('../lib/_dropea');
+const { upsertCustomer, creditReferralIfAny } = require('../lib/_customers');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -87,6 +88,26 @@ module.exports = async (req, res) => {
       `;
     }
 
+    // 4. Register/update the customer and credit whoever referred them, if anyone
+    let referralCode = null;
+    let referralCredit = null;
+    try {
+      referralCode = await upsertCustomer({
+        email: orderRecord.customer_email,
+        name: orderRecord.customer_name,
+        phone: orderRecord.customer_phone,
+        city: orderRecord.customer_city,
+        orderAmount: orderRecord.total_amount
+      });
+      referralCredit = await creditReferralIfAny({
+        referralCodeUsed: orderRecord.referral_code_used,
+        buyerEmail: orderRecord.customer_email,
+        orderNumber
+      });
+    } catch (custErr) {
+      console.error('Customer/referral tracking error (non-fatal):', custErr.message);
+    }
+
     return res.status(200).json({
       success: true,
       order_number: orderNumber,
@@ -95,6 +116,8 @@ module.exports = async (req, res) => {
       payment_method: 'COD',
       digital_access_unlocked: false,
       dropea_response: dropeaRes.data || dropeaRes.error,
+      referral_code: referralCode,
+      referral_credit_issued: !!referralCredit,
       message: 'Pedido contra reembolso transmitido a Dropea Logistics con éxito.'
     });
 
