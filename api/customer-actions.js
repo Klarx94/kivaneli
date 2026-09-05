@@ -41,6 +41,14 @@ module.exports = async (req, res) => {
         });
       }
 
+      // Live ad-pixel config — lets the admin paste Meta/TikTok/Google IDs from the panel
+      // and have them take effect immediately, no code deploy needed. assets/js/kivaneli-pixels.js
+      // fetches this on every page load instead of reading a hardcoded object.
+      if (action === 'get_pixel_config') {
+        const [row] = await sql`SELECT value FROM site_settings WHERE key = 'pixel_config'`;
+        return res.status(200).json({ success: true, config: (row && row.value) || {} });
+      }
+
       if (action === 'referral_info') {
         const email = String(req.query.email || '').toLowerCase().trim();
         if (!email) return res.status(400).json({ success: false, error: 'email es requerido' });

@@ -1,20 +1,24 @@
 // Ad-tracking scaffolding: Meta Pixel, TikTok Pixel, Google Ads/GA4 (gtag).
 // Nothing here loads or fires until kivaneli-consent.js reports marketing consent granted.
 //
-// TO ACTIVATE: replace the placeholder IDs below once the ad accounts exist (Meta Events
-// Manager, TikTok Ads Manager, Google Ads / GA4 Admin). Leaving a placeholder disables that
-// specific pixel only — the others still work independently.
-window.KIVANELI_PIXEL_CONFIG = window.KIVANELI_PIXEL_CONFIG || {
-  META_PIXEL_ID: 'REPLACE_WITH_META_PIXEL_ID',
-  TIKTOK_PIXEL_ID: 'REPLACE_WITH_TIKTOK_PIXEL_ID',
-  GOOGLE_ADS_ID: 'REPLACE_WITH_GOOGLE_ADS_ID',      // format AW-XXXXXXXXX
-  GA4_MEASUREMENT_ID: 'REPLACE_WITH_GA4_MEASUREMENT_ID' // format G-XXXXXXXXXX
-};
-
+// IDs are NOT hardcoded here — they're fetched live from /api/customer-actions
+// (action=get_pixel_config), which reads whatever the admin panel saved. Paste an ID and
+// hit save in Admin > Configuración Técnica > Píxeles de Publicidad, no code deploy needed.
 (function () {
-  const cfg = window.KIVANELI_PIXEL_CONFIG;
-  const isConfigured = (v) => v && !String(v).startsWith('REPLACE_WITH_');
+  const cfg = { META_PIXEL_ID: '', TIKTOK_PIXEL_ID: '', GOOGLE_ADS_ID: '', GA4_MEASUREMENT_ID: '' };
+  const isConfigured = (v) => !!v;
   let loaded = false;
+  let configFetched = false;
+
+  async function fetchPixelConfig() {
+    if (configFetched) return;
+    configFetched = true;
+    try {
+      const res = await fetch('/api/customer-actions?action=get_pixel_config');
+      const data = await res.json();
+      if (data.success && data.config) Object.assign(cfg, data.config);
+    } catch (e) { console.warn('Pixel config fetch error (non-fatal):', e); }
+  }
 
   function loadMeta() {
     if (!isConfigured(cfg.META_PIXEL_ID) || window.fbq) return;
@@ -62,9 +66,11 @@ window.KIVANELI_PIXEL_CONFIG = window.KIVANELI_PIXEL_CONFIG || {
     if (hasAds) window.gtag('config', cfg.GOOGLE_ADS_ID);
   }
 
-  function loadAllIfConsented() {
+  async function loadAllIfConsented() {
     if (loaded) return;
     if (!window.kivaneliConsent || !window.kivaneliConsent.hasMarketingConsent()) return;
+    await fetchPixelConfig();
+    if (loaded) return;
     loaded = true;
     loadMeta();
     loadTikTok();

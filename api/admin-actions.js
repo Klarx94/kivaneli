@@ -163,6 +163,22 @@ module.exports = async (req, res) => {
       return res.status(200).json({ success: true, order_number });
     }
 
+    if (action === 'save_pixel_config') {
+      const { meta_pixel_id, tiktok_pixel_id, google_ads_id, ga4_measurement_id } = body;
+      const config = {
+        META_PIXEL_ID: (meta_pixel_id || '').trim(),
+        TIKTOK_PIXEL_ID: (tiktok_pixel_id || '').trim(),
+        GOOGLE_ADS_ID: (google_ads_id || '').trim(),
+        GA4_MEASUREMENT_ID: (ga4_measurement_id || '').trim()
+      };
+      await sql`
+        INSERT INTO site_settings (key, value, updated_at)
+        VALUES ('pixel_config', ${JSON.stringify(config)}::jsonb, now())
+        ON CONFLICT (key) DO UPDATE SET value = excluded.value, updated_at = now()
+      `;
+      return res.status(200).json({ success: true, config });
+    }
+
     if (action === 'cancel_order') {
       const { order_number } = body;
       if (!order_number) {

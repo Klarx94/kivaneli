@@ -138,175 +138,19 @@
         Fórmulas botánicas unisex de alta calidad para suavizar la piel, descansar la mirada y disfrutar de una rutina diaria de bienestar.
       </p>
 
-      <!-- Category Filter Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2 pt-5">
+      <!-- Category Filter Tabs — generados en JS a partir de las categorías reales del catálogo -->
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-5" id="categoryFilters">
         <button onclick="filterCategory('ALL', this)" class="cat-filter active px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 transition shadow-xs">Todos los Productos</button>
-        <button onclick="filterCategory('CORPORAL', this)" class="cat-filter px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-xs">Cuidado Corporal</button>
-        <button onclick="filterCategory('OJOS', this)" class="cat-filter px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-xs">Mirada & Ojos</button>
-        <button onclick="filterCategory('JABONES', this)" class="cat-filter px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-xs">Limpieza & Tono</button>
-        <button onclick="filterCategory('PACKS', this)" class="cat-filter px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-xs">Ritual Completo 3-en-1</button>
       </div>
     </div>
   </section>
 
-  <!-- Product Catalog Grid -->
+  <!-- Product Catalog Grid — renderizado 100% dinámico desde /api/products. Cualquier
+       producto que se dé de alta en el admin aparece aquí automáticamente, sin tocar código. -->
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex-1 w-full">
-    
+
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="productsGrid">
-      
-      <!-- Product Card 1: ADEUS -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="CORPORAL" data-slug="adeus-crema-corporal">
-        <div class="relative overflow-hidden bg-white">
-          <span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-[#B86B60] text-white px-3 py-1 rounded-full shadow-md">
-            MÁS VENDIDO · 300 G
-          </span>
-          <img src="assets/images/adeus_jar_botanicals.jpg" alt="ADEUS Crema Corporal" class="w-full h-60 object-cover hover:scale-105 transition duration-500" loading="lazy" decoding="async">
-        </div>
-        <div class="p-5 sm:p-6 space-y-4 flex-1 flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-[#B86B60]">Cuidado Corporal & Masaje</span>
-            <h3 class="font-serif-luxury font-bold text-base sm:text-lg text-[#181514]">
-              ADEUS™ Crema Corporal Masaje & Seda (300 g)
-            </h3>
-            <p class="text-xs text-stone-600 line-clamp-3 leading-relaxed">
-              Tarro generoso de 300 g con tapa de rosca. Suavidad continua, pulido boticario suave e hidratación profunda.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-stone-100 flex items-center justify-between gap-2">
-            <div>
-              <span class="text-[10px] text-stone-400 line-through whitespace-nowrap">39,90&nbsp;€</span>
-              <div class="font-serif-luxury font-black text-xl text-[#181514] whitespace-nowrap">29,90&nbsp;€</div>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <a href="producto.html?slug=adeus-crema-corporal" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl font-bold text-xs hover:bg-stone-200 transition">
-                Ficha
-              </a>
-              <button onclick="window.kivaneliCart.addItem('adeus-crema-corporal', 1)" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs">
-                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
-                <span>Añadir</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product Card 2: Parches Körmesic -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="OJOS" data-slug="kormesic-parches-colageno">
-        <div class="relative overflow-hidden bg-purple-50">
-          <span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-purple-800 text-white px-3 py-1 rounded-full shadow-md">
-            60 UDS (30 PARES) · HIDROGEL
-          </span>
-          <img src="assets/images/kormesic_jar_purple.jpg" alt="Parches Körmesic" class="w-full h-60 object-cover hover:scale-105 transition duration-500" loading="lazy" decoding="async">
-        </div>
-        <div class="p-5 sm:p-6 space-y-4 flex-1 flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-purple-700">Mirada & Contorno de Ojos</span>
-            <h3 class="font-serif-luxury font-bold text-base sm:text-lg text-[#181514]">
-              Parches de Colágeno & Hidrogel Körmesic™
-            </h3>
-            <p class="text-xs text-stone-600 line-clamp-3 leading-relaxed">
-              30 pares de hidrogel violeta con colágeno soluble y efecto crioterapia calmante. Descongestiona y relaja en 15 minutos.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-stone-100 flex items-center justify-between gap-2">
-            <div>
-              <span class="text-[10px] text-stone-400 line-through whitespace-nowrap">29,90&nbsp;€</span>
-              <div class="font-serif-luxury font-black text-xl text-[#181514] whitespace-nowrap">19,95&nbsp;€</div>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <a href="producto.html?slug=kormesic-parches-colageno" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl font-bold text-xs hover:bg-stone-200 transition">
-                Ficha
-              </a>
-              <button onclick="window.kivaneliCart.addItem('kormesic-parches-colageno', 1)" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs">
-                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
-                <span>Añadir</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product Card 3: Jabón Kójico -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between" data-cat="JABONES" data-slug="jabon-acido-kojico">
-        <div class="relative overflow-hidden bg-amber-50">
-          <span class="absolute top-4 left-4 z-10 text-[9px] font-extrabold uppercase tracking-wider bg-amber-700 text-white px-3 py-1 rounded-full shadow-md">
-            100 G · CLARIFICANTE
-          </span>
-          <img src="assets/images/kojic_soap_box.jpg" alt="Jabón Kójico" class="w-full h-60 object-cover hover:scale-105 transition duration-500" loading="lazy" decoding="async">
-        </div>
-        <div class="p-5 sm:p-6 space-y-4 flex-1 flex flex-col justify-between">
-          <div class="space-y-1.5">
-            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-800">Limpieza & Unificación de Tono</span>
-            <h3 class="font-serif-luxury font-bold text-base sm:text-lg text-[#181514]">
-              Jabón Clarificante Ácido Kójico + Hialurónico (100 g)
-            </h3>
-            <p class="text-xs text-stone-600 line-clamp-3 leading-relaxed">
-              Pastilla sólida clarificante Kiss Beauty con Ácido Kójico puro para unificar el tono dérmico y renovar la luminosidad.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-stone-100 flex items-center justify-between gap-2">
-            <div>
-              <span class="text-[10px] text-stone-400 line-through whitespace-nowrap">24,90&nbsp;€</span>
-              <div class="font-serif-luxury font-black text-xl text-[#181514] whitespace-nowrap">16,95&nbsp;€</div>
-            </div>
-            <div class="flex items-center gap-1.5">
-              <a href="producto.html?slug=jabon-acido-kojico" class="bg-stone-100 text-stone-700 px-3 py-2 rounded-xl font-bold text-xs hover:bg-stone-200 transition">
-                Ficha
-              </a>
-              <button onclick="window.kivaneliCart.addItem('jabon-acido-kojico', 1)" class="bg-[#181514] text-white px-3.5 py-2 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-1 shadow-xs">
-                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
-                <span>Añadir</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product Card 4: Pack Ritual Completo 3-en-1 con Collage -->
-      <div class="product-item glass-card rounded-[2rem] overflow-hidden border-2 border-[#B86B60] shadow-md flex flex-col justify-between relative bg-gradient-to-b from-[#FDF9F8] to-white md:col-span-2 lg:col-span-3" data-cat="PACKS" data-slug="pack-ritual-completo">
-        <span class="absolute top-4 right-4 z-10 text-[10px] font-black uppercase tracking-wider bg-rose-gradient text-white px-3.5 py-1 rounded-full shadow-md">
-          OFERTA RITUAL COMPLETO · AHORRAS 35€
-        </span>
-        <div class="p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 sm:gap-8 justify-between">
-          
-          <div class="w-full md:w-5/12 rounded-2xl overflow-hidden shadow-xs border border-[#D48B80]/30 bg-white">
-            <img src="assets/images/pack_ritual_3in1_collage.svg" alt="Pack Ritual Completo Collage" class="w-full h-56 sm:h-64 object-contain p-2" loading="lazy" decoding="async">
-          </div>
-
-          <div class="space-y-3 max-w-lg flex-1">
-            <span class="text-xs font-bold uppercase tracking-widest text-[#B86B60]">El Ritual Definitivo de la Maison</span>
-            <h2 class="font-serif-luxury font-black text-xl sm:text-2xl text-[#181514]">
-              Pack Ritual Boticario 3-en-1 (ADEUS™ + Sérum Botox™ + Jabón Kójico)
-            </h2>
-            <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">
-              La experiencia integral de belleza: Limpieza clarificante con el Jabón Kójico, masaje y nutrición profunda con la Crema ADEUS™ (300 g), y firmeza antiedad para el rostro con el Sérum Facial de Colágeno Efecto Botox.
-            </p>
-            <div class="flex flex-wrap gap-2 pt-1">
-              <span class="text-[10.5px] bg-white border border-stone-200 px-2.5 py-1 rounded-lg font-semibold text-stone-700">🌿 1x Tarro ADEUS 300g</span>
-              <span class="text-[10.5px] bg-white border border-stone-200 px-2.5 py-1 rounded-lg font-semibold text-stone-700">💜 1x Sérum Botox 30ml</span>
-              <span class="text-[10.5px] bg-white border border-stone-200 px-2.5 py-1 rounded-lg font-semibold text-stone-700">🧼 1x Jabón Kójico 100g</span>
-              <span class="text-[10.5px] bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-lg font-bold">✨ Envío 24/48h GLS Gratis</span>
-            </div>
-          </div>
-
-          <div class="text-center md:text-right space-y-2.5 shrink-0">
-            <div class="text-xs text-stone-400 line-through whitespace-nowrap">94,70&nbsp;€</div>
-            <div class="font-serif-luxury font-black text-3xl sm:text-4xl text-[#B86B60] whitespace-nowrap">59,95&nbsp;€</div>
-            <div class="flex flex-col gap-2">
-              <button onclick="window.kivaneliCart.addItem('pack-ritual-completo', 1)" class="btn-shimmer bg-rose-gradient text-white px-6 py-3 rounded-xl font-black text-xs uppercase tracking-wider shadow-md hover:scale-105 transition">
-                Añadir Pack a la Cesta
-              </button>
-              <a href="producto.html?slug=pack-ritual-completo" class="text-xs font-bold text-stone-600 hover:text-[#B86B60] underline">
-                Ver Ficha del Pack
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <div class="col-span-full text-center text-stone-400 text-sm py-16">Cargando catálogo...</div>
     </div>
 
   </main>
@@ -404,19 +248,50 @@
       if (window.lucide) lucide.createIcons();
     }
 
-    // Sync the catalog with the live product data (price/badge/description/active-state
-    // edited from the admin panel) and render any product beyond the original 4 that the
-    // admin adds later — no HTML edits needed for new products to appear here.
+    // Catálogo 100% dinámico — se construye entero desde /api/products en cada carga.
+    // Cualquier producto que se dé de alta, edite o marque agotado en el admin aparece
+    // aquí automáticamente, sin tocar este archivo.
     function money(n) {
       return parseFloat(n).toFixed(2).replace('.', ',') + '&nbsp;€';
     }
 
-    function renderDynamicProductCard(p) {
+    function renderProductCard(p) {
       const card = document.createElement('div');
-      card.className = 'product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between';
-      card.dataset.cat = p.category || 'CATALOG';
-      card.dataset.slug = p.slug;
       const outOfStock = p.in_stock === false;
+      card.dataset.cat = p.category || 'General';
+      card.dataset.slug = p.slug;
+
+      if (p.bundle_items) {
+        // Pack/bundle: tarjeta ancha destacada, igual tratamiento visual que antes.
+        card.className = 'product-item glass-card rounded-[2rem] overflow-hidden border-2 border-[#B86B60] shadow-md flex flex-col justify-between relative bg-gradient-to-b from-[#FDF9F8] to-white md:col-span-2 lg:col-span-3';
+        const savings = p.regular_price ? (parseFloat(p.regular_price) - parseFloat(p.price)) : 0;
+        card.innerHTML = `
+          ${outOfStock ? '' : `<span class="absolute top-4 right-4 z-10 text-[10px] font-black uppercase tracking-wider bg-rose-gradient text-white px-3.5 py-1 rounded-full shadow-md">${p.badge || (savings ? `AHORRAS ${money(savings)}` : 'OFERTA PACK')}</span>`}
+          <div class="p-6 sm:p-8 flex flex-col md:flex-row items-center gap-6 sm:gap-8 justify-between">
+            <div class="w-full md:w-5/12 rounded-2xl overflow-hidden shadow-xs border border-[#D48B80]/30 bg-white">
+              <img src="${p.image_url || ''}" alt="${p.name}" class="w-full h-56 sm:h-64 object-contain p-2 ${outOfStock ? 'grayscale opacity-60' : ''}" loading="lazy" decoding="async">
+            </div>
+            <div class="space-y-3 max-w-lg flex-1">
+              <span class="text-xs font-bold uppercase tracking-widest text-[#B86B60]">${p.category || 'Pack'}</span>
+              <h2 class="font-serif-luxury font-black text-xl sm:text-2xl text-[#181514]">${p.name}</h2>
+              <p class="text-xs sm:text-sm text-stone-600 leading-relaxed">${(p.description_html || '').replace(/<[^>]*>/g, '').slice(0, 220)}</p>
+            </div>
+            <div class="text-center md:text-right space-y-2.5 shrink-0">
+              ${p.regular_price ? `<div class="text-xs text-stone-400 line-through whitespace-nowrap">${money(p.regular_price)}</div>` : ''}
+              <div class="font-serif-luxury font-black text-3xl sm:text-4xl text-[#B86B60] whitespace-nowrap">${money(p.price)}</div>
+              <div class="flex flex-col gap-2">
+                ${outOfStock
+                  ? `<button disabled class="bg-stone-200 text-stone-500 px-6 py-3 rounded-xl font-black text-xs uppercase cursor-not-allowed">Agotado Temporalmente</button>`
+                  : `<button onclick="window.kivaneliCart.addItem('${p.slug}', 1)" class="btn-shimmer bg-rose-gradient text-white px-6 py-3 rounded-xl font-black text-xs uppercase tracking-wider shadow-md hover:scale-105 transition">Añadir Pack a la Cesta</button>`}
+                <a href="producto.html?slug=${p.slug}" class="text-xs font-bold text-stone-600 hover:text-[#B86B60] underline">Ver Ficha del Pack</a>
+              </div>
+            </div>
+          </div>
+        `;
+        return card;
+      }
+
+      card.className = 'product-item glass-card rounded-[2rem] overflow-hidden border border-stone-200 hover:border-[#D48B80] transition duration-300 shadow-sm flex flex-col justify-between';
       card.innerHTML = `
         <div class="relative overflow-hidden bg-stone-50">
           ${outOfStock
@@ -449,62 +324,39 @@
       return card;
     }
 
-    async function syncCatalogWithLiveProducts() {
+    async function renderCatalog() {
+      const grid = document.getElementById('productsGrid');
+      const filtersBox = document.getElementById('categoryFilters');
       try {
         const res = await fetch('/api/products');
         const data = await res.json();
-        if (!data.success) return;
+        if (!data.success) throw new Error('API respondió sin éxito');
 
-        const products = data.products || [];
-        const known = new Set();
+        const products = (data.products || []).filter(p => p.is_active !== false);
 
-        document.querySelectorAll('#productsGrid [data-slug]').forEach(card => {
-          const slug = card.dataset.slug;
-          known.add(slug);
-          const p = products.find(x => x.slug === slug);
+        grid.innerHTML = '';
+        if (!products.length) {
+          grid.innerHTML = '<div class="col-span-full text-center text-stone-400 text-sm py-16">No hay productos publicados todavía.</div>';
+          return;
+        }
 
-          if (!p || p.is_active === false) {
-            card.classList.add('hidden');
-            card.dataset.discontinued = 'true';
-            return;
-          }
+        // Packs al final, para que las tarjetas normales llenen la rejilla primero.
+        products.sort((a, b) => (a.bundle_items ? 1 : 0) - (b.bundle_items ? 1 : 0));
+        products.forEach(p => grid.appendChild(renderProductCard(p)));
 
-          const badge = card.querySelector('.absolute.top-4');
-          if (badge) badge.textContent = p.in_stock === false ? 'AGOTADO' : (p.badge || badge.textContent);
-
-          const priceEl = card.querySelector('.font-serif-luxury.font-black');
-          if (priceEl) priceEl.innerHTML = money(p.price);
-
-          const regularEl = card.querySelector('.line-through');
-          if (regularEl) regularEl.innerHTML = p.regular_price ? money(p.regular_price) : '';
-
-          const img = card.querySelector('img');
-          const addBtn = card.querySelector('button[onclick^="window.kivaneliCart.addItem"]');
-          if (p.in_stock === false) {
-            if (img) img.classList.add('grayscale', 'opacity-60');
-            if (addBtn) {
-              addBtn.setAttribute('disabled', 'true');
-              addBtn.classList.add('!bg-stone-200', '!text-stone-500', 'cursor-not-allowed');
-              addBtn.removeAttribute('onclick');
-              addBtn.innerHTML = '<span>Agotado</span>';
-            }
-          } else if (img) {
-            img.classList.remove('grayscale', 'opacity-60');
-          }
-        });
-
-        const grid = document.getElementById('productsGrid');
-        products
-          .filter(p => !known.has(p.slug))
-          .forEach(p => grid.appendChild(renderDynamicProductCard(p)));
+        // Pestañas de categoría — una por cada categoría real presente en el catálogo.
+        const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
+        filtersBox.innerHTML = '<button onclick="filterCategory(\'ALL\', this)" class="cat-filter active px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 transition shadow-xs">Todos los Productos</button>'
+          + categories.map(cat => `<button onclick="filterCategory('${cat.replace(/'/g, "\\'")}', this)" class="cat-filter px-4 py-2 rounded-xl text-xs font-bold border border-stone-300 bg-white text-stone-700 hover:border-[#D48B80] transition shadow-xs">${cat}</button>`).join('');
 
         if (window.lucide) lucide.createIcons();
       } catch (e) {
-        console.log('Catalog sync note:', e.message);
+        grid.innerHTML = '<div class="col-span-full text-center text-stone-400 text-sm py-16">No se pudo cargar el catálogo. Recarga la página.</div>';
+        console.log('Catalog render error:', e.message);
       }
     }
 
-    document.addEventListener('DOMContentLoaded', syncCatalogWithLiveProducts);
+    document.addEventListener('DOMContentLoaded', renderCatalog);
   </script>
 </body>
 </html>

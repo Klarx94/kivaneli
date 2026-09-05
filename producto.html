@@ -515,8 +515,11 @@
 
       // Render Quick Switch Cards to other products
       const quickSwitchGrid = document.getElementById('quickSwitchGrid');
-      const otherAllProducts = Object.values(PDP_DETAILS).filter((_, idx) => Object.keys(PDP_DETAILS)[idx] !== currentSlug);
-      const otherSlugs = Object.keys(PDP_DETAILS).filter(s => s !== currentSlug);
+      const otherSlugs = Object.keys(PDP_DETAILS).filter(s => {
+        if (s === currentSlug) return false;
+        const live = KIVANELI_PRODUCTS[s];
+        return live ? live.inStock !== false : true;
+      });
 
       if (quickSwitchGrid) {
         quickSwitchGrid.innerHTML = otherSlugs.map(slug => {

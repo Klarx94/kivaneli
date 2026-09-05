@@ -146,6 +146,14 @@ CREATE TABLE IF NOT EXISTS email_campaign_logs (
   sent_at             TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- Small key/value store for settings the admin can change without a code deploy —
+-- starting with ad-pixel IDs (Meta/TikTok/Google), read live by assets/js/kivaneli-pixels.js.
+CREATE TABLE IF NOT EXISTS site_settings (
+  key         TEXT PRIMARY KEY,
+  value       JSONB NOT NULL,
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 CREATE INDEX IF NOT EXISTS idx_orders_created_at ON orders(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_customer_digital_access_order_id ON customer_digital_access(order_id);
 CREATE INDEX IF NOT EXISTS idx_email_campaign_logs_sent_at ON email_campaign_logs(sent_at DESC);

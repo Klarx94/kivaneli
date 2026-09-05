@@ -205,6 +205,15 @@ module.exports = async (req, res) => {
     `;
     steps.push('email_campaign_logs');
 
+    await sql`
+      CREATE TABLE IF NOT EXISTS site_settings (
+        key         TEXT PRIMARY KEY,
+        value       JSONB NOT NULL,
+        updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+      )
+    `;
+    steps.push('site_settings');
+
     await sql`CREATE INDEX IF NOT EXISTS idx_orders_created_at ON orders(created_at DESC)`;
     await sql`CREATE INDEX IF NOT EXISTS idx_customer_digital_access_order_id ON customer_digital_access(order_id)`;
     await sql`CREATE INDEX IF NOT EXISTS idx_email_campaign_logs_sent_at ON email_campaign_logs(sent_at DESC)`;

@@ -46,6 +46,43 @@
       box-shadow: 0 4px 12px rgba(212, 139, 128, 0.15);
       font-weight: 800;
     }
+    #adminSidebar {
+      width: 15.5rem;
+      transition: width 0.2s ease;
+    }
+    #adminSidebar.collapsed {
+      width: 4.5rem;
+    }
+    #adminSidebar.collapsed .sidebar-label {
+      display: none;
+    }
+    #adminSidebar.collapsed nav button,
+    #adminSidebar.collapsed .sidebar-footer button {
+      justify-content: center;
+    }
+    .sidebar-nav-item {
+      color: #78716c;
+    }
+    .sidebar-nav-item.active {
+      background: var(--color-rose-light);
+      color: #B86B60;
+      font-weight: 800;
+    }
+    .sidebar-nav-item:hover:not(.active) {
+      background: #f5f0eb;
+    }
+    @media (max-width: 767px) {
+      #adminSidebar {
+        position: fixed;
+        left: 0; top: 0; bottom: 0;
+        z-index: 50;
+        transform: translateX(-100%);
+      }
+      #adminSidebar.mobile-open {
+        transform: translateX(0);
+        box-shadow: 0 0 40px rgba(0,0,0,0.25);
+      }
+    }
   </style>
 </head>
 <body class="p-4 md:p-8">
@@ -67,7 +104,7 @@
 
       <form onsubmit="handleAdminLogin(event)" class="space-y-4 text-left">
         <div>
-          <label class="text-xs font-bold text-stone-700">Correo Corporativo Arsys</label>
+          <label class="text-xs font-bold text-stone-700">Correo</label>
           <input type="email" id="adminEmail" required value="beauty@kivaneli.es" class="w-full px-4 py-3 rounded-xl border border-stone-300 text-xs focus:border-[#D48B80] outline-none bg-white font-medium">
         </div>
         <div>
@@ -84,56 +121,62 @@
       </form>
 
       <div class="text-[10px] text-stone-400 border-t border-stone-100 pt-3">
-        Acceso encriptado mediante Vercel/Neon & Servidores Arsys SSL
+        Acceso protegido y encriptado
       </div>
     </div>
   </div>
 
   <!-- 🌟 2. MAIN ADMIN DASHBOARD (VISIBLE ONLY UPON AUTH) -->
-  <div id="mainDashboard" class="hidden max-w-7xl mx-auto space-y-8">
-    
-    <!-- Top Navigation Header with Multi-Landing Selector -->
-    <header class="glass-card rounded-3xl p-5 md:p-6 flex flex-wrap items-center justify-between gap-4 border border-[#D48B80]/25">
-      
-      <div class="flex items-center gap-4">
-        <div class="w-10 h-10 rounded-full bg-rose-gradient flex items-center justify-center text-white font-serif-luxury font-bold text-base shadow-md">
-          K
-        </div>
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="font-serif-luxury text-xl font-black tracking-wider text-[#181514]">KIVANELI ADMIN</span>
-            <span class="text-[10px] font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              PRODUCCIÓN LIVE
-            </span>
+  <div id="mainDashboard" class="hidden max-w-7xl mx-auto flex items-start gap-5">
+
+    <!-- Left Sidebar Navigation (collapsible) -->
+    <aside id="adminSidebar" class="glass-card rounded-3xl border border-[#D48B80]/25 shrink-0 flex flex-col justify-between sticky top-4 self-start" style="max-height: calc(100vh - 2rem);">
+      <div class="overflow-y-auto">
+        <div class="p-4 flex items-center gap-3 border-b border-stone-100">
+          <button onclick="toggleAdminSidebar()" class="w-8 h-8 rounded-xl bg-stone-100 hover:bg-stone-200 flex items-center justify-center text-stone-600 shrink-0 transition" aria-label="Abrir/cerrar menú">
+            <i data-lucide="menu" class="w-4 h-4"></i>
+          </button>
+          <div class="sidebar-label min-w-0">
+            <div class="font-serif-luxury font-black text-sm text-[#181514] tracking-wide truncate">KIVANELI</div>
+            <div class="text-[9px] font-extrabold uppercase tracking-wider text-emerald-700 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span> En producción
+            </div>
           </div>
-          <p class="text-[11px] text-stone-500">Gestión de Pedidos, Correos Transaccionales, Cupones & Retargeting</p>
         </div>
+        <nav class="p-3 space-y-1">
+          <button onclick="switchTab('tabOrders')" id="btnTabOrders" class="sidebar-nav-item active w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition">
+            <i data-lucide="shopping-bag" class="w-4 h-4 shrink-0"></i><span class="sidebar-label">Pedidos</span>
+          </button>
+          <button onclick="switchTab('tabEmails')" id="btnTabEmails" class="sidebar-nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition">
+            <i data-lucide="mail" class="w-4 h-4 shrink-0"></i><span class="sidebar-label">Emails & Retargeting</span>
+          </button>
+          <button onclick="switchTab('tabCoupons')" id="btnTabCoupons" class="sidebar-nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition">
+            <i data-lucide="tag" class="w-4 h-4 shrink-0"></i><span class="sidebar-label">Cupones & Descuentos</span>
+          </button>
+          <button onclick="switchTab('tabCustomers')" id="btnTabCustomers" class="sidebar-nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition">
+            <i data-lucide="users" class="w-4 h-4 shrink-0"></i><span class="sidebar-label">Clientas & Embajadoras</span>
+          </button>
+          <button onclick="switchTab('tabCatalog')" id="btnTabCatalog" class="sidebar-nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition">
+            <i data-lucide="package" class="w-4 h-4 shrink-0"></i><span class="sidebar-label">Catálogo & Productos</span>
+          </button>
+        </nav>
       </div>
-
-      <!-- Multi-Landing Selector Dropdown -->
-      <div class="flex flex-wrap items-center gap-3">
-        <div class="flex items-center gap-2 bg-[#FAF7F2] px-3.5 py-2 rounded-2xl border border-stone-300">
-          <i data-lucide="layers" class="w-4 h-4 text-[#B86B60]"></i>
-          <span class="text-xs font-bold text-stone-700">Micro-Landing:</span>
-          <select id="landingSelector" onchange="changeActiveLanding(this.value)" class="bg-transparent text-xs font-bold text-[#181514] outline-none cursor-pointer">
-            <option value="kivaneli-piel-de-seda">🌟 Landing 1: Ritual Piel de Seda (ADEUS™) — [Activa]</option>
-            <option value="kivaneli-mirada-kormesic">🔬 Landing 2: Mirada Radiante (Körmesic™) — [Borrador]</option>
-            <option value="kivaneli-tono-kojico">🧡 Landing 3: Aclarado Magistral (Ácido Kójico) — [Borrador]</option>
-          </select>
-        </div>
-
-        <button onclick="handleLogout()" class="text-xs font-bold bg-white text-stone-600 hover:text-rose-600 px-4 py-2 rounded-2xl border border-stone-200 hover:border-rose-300 transition flex items-center gap-1.5 shadow-sm">
-          <i data-lucide="log-out" class="w-4 h-4"></i>
-          <span>Cerrar Sesión</span>
+      <div class="sidebar-footer p-3 border-t border-stone-100 space-y-1">
+        <button onclick="switchTab('tabTechnical')" id="btnTabTechnical" class="sidebar-nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition">
+          <i data-lucide="settings" class="w-4 h-4 shrink-0"></i><span class="sidebar-label">Configuración Técnica</span>
+        </button>
+        <button onclick="handleLogout()" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-stone-500 hover:bg-rose-50 hover:text-rose-600 transition">
+          <i data-lucide="log-out" class="w-4 h-4 shrink-0"></i><span class="sidebar-label">Cerrar Sesión</span>
         </button>
       </div>
+    </aside>
 
-    </header>
+    <!-- Main Content -->
+    <div class="flex-1 min-w-0 space-y-6">
 
     <!-- Global KPI Statistics Row -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+
       <div class="glass-card p-6 rounded-3xl space-y-2 border border-[#D48B80]/20">
         <div class="flex items-center justify-between text-xs font-bold text-stone-500 uppercase tracking-wider">
           <span>Ventas Totales (COD + Online)</span>
@@ -164,103 +207,11 @@
         <div class="text-[11px] text-purple-600 font-semibold">Enlaces únicos activos</div>
       </div>
 
-      <div class="glass-card p-6 rounded-3xl space-y-2 border border-[#D48B80]/20">
-        <div class="flex items-center justify-between text-xs font-bold text-stone-500 uppercase tracking-wider">
-          <span>Servidor SMTP Arsys</span>
-          <i data-lucide="mail-check" class="w-4 h-4 text-emerald-600"></i>
-        </div>
-        <div class="font-serif-luxury text-xl font-bold text-emerald-800">beauty@kivaneli.es</div>
-        <div class="text-[11px] text-stone-500 flex items-center gap-1 font-mono">
-          <span>smtp.serviciodecorreo.es:465</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Navigation Tabs Bar -->
-    <div class="flex flex-wrap items-center gap-2 border-b border-stone-200 pb-2">
-      <button onclick="switchTab('tabOrders')" id="btnTabOrders" class="nav-tab active px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent transition flex items-center gap-2">
-        <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-        <span>1. Pedidos & Logística Dropea</span>
-      </button>
-      <button onclick="switchTab('tabEmails')" id="btnTabEmails" class="nav-tab px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent text-stone-600 hover:text-[#B86B60] transition flex items-center gap-2">
-        <i data-lucide="mail" class="w-4 h-4"></i>
-        <span>2. Centro de Emails & Retargeting</span>
-      </button>
-      <button onclick="switchTab('tabCoupons')" id="btnTabCoupons" class="nav-tab px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent text-stone-600 hover:text-[#B86B60] transition flex items-center gap-2">
-        <i data-lucide="tag" class="w-4 h-4"></i>
-        <span>3. Motor de Cupones & Descuentos</span>
-      </button>
-      <button onclick="switchTab('tabCustomers')" id="btnTabCustomers" class="nav-tab px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent text-stone-600 hover:text-[#B86B60] transition flex items-center gap-2">
-        <i data-lucide="users" class="w-4 h-4"></i>
-        <span>4. Clientas & Embajadoras</span>
-      </button>
-      <button onclick="switchTab('tabSettings')" id="btnTabSettings" class="nav-tab px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent text-stone-600 hover:text-[#B86B60] transition flex items-center gap-2">
-        <i data-lucide="settings" class="w-4 h-4"></i>
-        <span>5. Servidores & Guías PDF</span>
-      </button>
-      <button onclick="switchTab('tabCatalog')" id="btnTabCatalog" class="nav-tab px-5 py-2.5 rounded-2xl text-xs font-bold border border-transparent text-stone-600 hover:text-[#B86B60] transition flex items-center gap-2">
-        <i data-lucide="package" class="w-4 h-4 text-emerald-600"></i>
-        <span>6. Catálogo & Productos Dropea</span>
-      </button>
     </div>
 
     <!-- 📦 TAB 1: ORDERS & DROPEA LOGISTICS -->
     <div id="tabOrders" class="space-y-6">
-      
-      <!-- Dropea Logistics Real-Time Connection Banner -->
-      <div class="glass-card p-5 md:p-6 rounded-3xl border-2 border-emerald-500/30 bg-gradient-to-r from-emerald-50/40 via-white to-stone-50 space-y-4">
-        <div class="flex flex-wrap items-center justify-between gap-4">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-              <i data-lucide="truck" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Conexión Logística Dropea Express</h3>
-                <span class="text-[10px] font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-300">
-                  🟢 API & HMAC VINCULADOS
-                </span>
-              </div>
-              <p class="text-xs text-stone-500">Despacho Automatizado 24/48h Contra-Reembolso & Notificaciones de Tracking</p>
-            </div>
-          </div>
 
-          <div class="flex items-center gap-2">
-            <button onclick="testDropeaWebhookLocal()" class="text-xs bg-emerald-700 text-white px-3.5 py-2 rounded-xl font-bold hover:bg-emerald-800 transition flex items-center gap-1.5 shadow-sm">
-              <i data-lucide="activity" class="w-4 h-4"></i>
-              <span>Probar Webhook Dropea</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs pt-1">
-          <div class="p-3 bg-white rounded-2xl border border-stone-200 space-y-1">
-            <div class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Endpoint Webhook Dropea (Producción)</div>
-            <div class="flex items-center justify-between gap-2 font-mono text-[11px] text-stone-800 bg-stone-50 px-2 py-1.5 rounded-lg border border-stone-200">
-              <span class="truncate">https://kivaneli.es/api/dropea-webhook</span>
-              <button onclick="navigator.clipboard.writeText('https://kivaneli.es/api/dropea-webhook'); alert('Webhook URL copiada!');" class="text-[#B86B60] font-bold text-[10px] hover:underline">Copiar</button>
-            </div>
-          </div>
-
-          <div class="p-3 bg-white rounded-2xl border border-stone-200 space-y-1">
-            <div class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Firma de Seguridad (HMAC Secret)</div>
-            <div class="flex items-center justify-between gap-2 font-mono text-[11px] text-stone-800 bg-stone-50 px-2 py-1.5 rounded-lg border border-stone-200">
-              <span class="truncate">57ff06bd27ade0424ef6db...</span>
-              <span class="text-emerald-700 font-bold text-[10px]">SHA256 OK</span>
-            </div>
-          </div>
-
-          <div class="p-3 bg-white rounded-2xl border border-stone-200 space-y-1">
-            <div class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Token JWT Dropea Dropshipper</div>
-            <div class="flex items-center justify-between gap-2 font-mono text-[11px] text-stone-800 bg-stone-50 px-2 py-1.5 rounded-lg border border-stone-200">
-              <span class="truncate">eyJhbGciOiJIUzI1NiIsInR5c...</span>
-              <span class="text-emerald-700 font-bold text-[10px]">Válido 2026/27</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      
       <div class="flex flex-wrap items-center justify-between gap-4">
         <div class="flex items-center gap-3">
           <h2 class="font-serif-luxury font-bold text-xl text-[#181514]">Registro de Pedidos</h2>
@@ -466,20 +417,27 @@
 
     </div>
 
-    <!-- ⚙️ TAB 5: SERVERS, SMTP & EDITORIAL PDF GUIDES -->
-    <div id="tabSettings" class="hidden space-y-8">
-      
+    <!-- ⚙️ TAB TÉCNICO — Fuera del menú principal a propósito. Solo accesible desde el
+         engranaje del pie del menú lateral. Aquí vive todo lo que no debe estorbar el uso
+         diario del panel: servidores, integraciones, claves y configuración de píxeles. -->
+    <div id="tabTechnical" class="hidden space-y-8">
+
+      <div class="glass-card p-5 rounded-2xl border border-amber-300 bg-amber-50/60 flex items-center gap-3 text-xs text-amber-900">
+        <i data-lucide="shield-alert" class="w-5 h-5 shrink-0"></i>
+        <span>Zona técnica — solo para verificar conexiones e integraciones. No hace falta entrar aquí para el día a día de la tienda.</span>
+      </div>
+
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
-        <!-- Arsys SMTP Configuration Card -->
+
+        <!-- Arsys SMTP — informativo, la config real vive en Vercel -->
         <div class="glass-card p-6 md:p-8 rounded-3xl space-y-5 border border-[#D48B80]/25">
           <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
               <i data-lucide="server" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Parámetros Servidor Arsys SMTP</h3>
-              <p class="text-xs text-stone-500">Configuración corporativa activa para kivaneli.es</p>
+              <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Correo Transaccional (SMTP)</h3>
+              <p class="text-xs text-stone-500">Referencia — los valores reales se configuran en Vercel</p>
             </div>
           </div>
 
@@ -494,60 +452,74 @@
             </div>
             <div class="p-3 bg-white rounded-xl border border-stone-200 flex justify-between">
               <span class="text-stone-500 font-semibold">Puerto / Seguridad:</span>
-              <span class="font-bold font-mono">465 (SSL / TLS)</span>
-            </div>
-            <div class="p-3 bg-white rounded-xl border border-stone-200 flex justify-between">
-              <span class="text-stone-500 font-semibold">Servidor Entrante (IMAP):</span>
-              <span class="font-bold font-mono">imap.serviciodecorreo.es:993</span>
+              <span class="font-bold font-mono">587 (STARTTLS)</span>
             </div>
           </div>
         </div>
 
-        <!-- Editorial PDF Guides Manager -->
-        <div class="glass-card p-6 md:p-8 rounded-3xl space-y-5 border border-purple-200">
+        <!-- Dropea integration status + webhook test -->
+        <div class="glass-card p-6 md:p-8 rounded-3xl space-y-5 border border-emerald-200">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-800 flex items-center justify-center">
-              <i data-lucide="book-open" class="w-5 h-5"></i>
+            <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center">
+              <i data-lucide="truck" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Guías & Diarios PDF de Regalo</h3>
-              <p class="text-xs text-stone-500">Material de alto valor descargable por las clientas</p>
+              <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Integración Dropea</h3>
+              <p class="text-xs text-stone-500">Despacho automatizado de pedidos y notificaciones de tracking</p>
             </div>
           </div>
 
-          <div class="space-y-3 text-xs">
-            <div class="p-3 bg-white rounded-xl border border-purple-100 flex items-center justify-between">
-              <div>
-                <div class="font-bold text-[#181514]">1. Diario 30 Días: Ritual Piel de Seda</div>
-                <div class="text-[11px] text-stone-500">16 páginas de alta edición editorial + fotos de aplicación y tracker diario</div>
-              </div>
-              <a href="1_Guia_Diario_Ritual_30_Dias_KIVANELI.pdf" target="_blank" class="bg-purple-700 text-white px-3.5 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition flex items-center gap-1">
-                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
-                <span>Descargar PDF</span>
-              </a>
+          <div class="p-3 bg-white rounded-xl border border-stone-200 space-y-1 text-xs">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-stone-400">Endpoint Webhook (Producción)</div>
+            <div class="flex items-center justify-between gap-2 font-mono text-[11px] text-stone-800 bg-stone-50 px-2 py-1.5 rounded-lg border border-stone-200">
+              <span class="truncate">https://kivaneli.es/api/dropea-webhook</span>
+              <button onclick="navigator.clipboard.writeText('https://kivaneli.es/api/dropea-webhook'); alert('Webhook URL copiada!');" class="text-[#B86B60] font-bold text-[10px] hover:underline shrink-0">Copiar</button>
             </div>
+          </div>
 
-            <div class="p-3 bg-white rounded-xl border border-purple-100 flex items-center justify-between">
-              <div>
-                <div class="font-bold text-[#181514]">2. Secretos de Fitocosmética Boticaria</div>
-                <div class="text-[11px] text-stone-500">12 páginas de ciencia botánica, Centella Asiática y Ácido Kójico</div>
-              </div>
-              <a href="2_Guia_Secretos_Fitocosmetica_KIVANELI.pdf" target="_blank" class="bg-purple-700 text-white px-3.5 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition flex items-center gap-1">
-                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
-                <span>Descargar PDF</span>
-              </a>
-            </div>
+          <button onclick="testDropeaWebhookLocal()" class="w-full text-xs bg-emerald-700 text-white px-3.5 py-2.5 rounded-xl font-bold hover:bg-emerald-800 transition flex items-center justify-center gap-1.5 shadow-sm">
+            <i data-lucide="activity" class="w-4 h-4"></i>
+            <span>Probar Webhook Dropea</span>
+          </button>
+        </div>
 
-            <div class="p-3 bg-white rounded-xl border border-purple-100 flex items-center justify-between">
-              <div>
-                <div class="font-bold text-[#181514]">3. Protocolo Mirada Radiante 15 Min</div>
-                <div class="text-[11px] text-stone-500">8 páginas de acupresión periocular, crioterapia y colágeno Körmesic™</div>
-              </div>
-              <a href="3_Guia_Protocolo_Mirada_Radiante_KIVANELI.pdf" target="_blank" class="bg-purple-700 text-white px-3.5 py-1.5 rounded-lg font-bold hover:bg-purple-800 transition flex items-center gap-1">
-                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
-                <span>Descargar PDF</span>
-              </a>
+        <!-- Ad Pixel / Tracking configuration — the actual ask: paste an ID, hit save, it's live -->
+        <div class="glass-card p-6 md:p-8 rounded-3xl space-y-5 border border-blue-200 lg:col-span-2">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-800 flex items-center justify-center">
+              <i data-lucide="target" class="w-5 h-5"></i>
             </div>
+            <div>
+              <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Píxeles de Publicidad & Tracking</h3>
+              <p class="text-xs text-stone-500">Pega el ID de cada plataforma y pulsa Guardar — se activa al instante, sin tocar código</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="space-y-1">
+              <label class="font-bold text-stone-700">Meta Pixel ID (Facebook/Instagram)</label>
+              <input type="text" id="pixelMetaId" placeholder="Ej. 1234567890123456" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono">
+            </div>
+            <div class="space-y-1">
+              <label class="font-bold text-stone-700">TikTok Pixel ID</label>
+              <input type="text" id="pixelTiktokId" placeholder="Ej. CXXXXXXXXXXXXXXXXXXX" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono">
+            </div>
+            <div class="space-y-1">
+              <label class="font-bold text-stone-700">Google Ads ID</label>
+              <input type="text" id="pixelGoogleAdsId" placeholder="Ej. AW-123456789" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono">
+            </div>
+            <div class="space-y-1">
+              <label class="font-bold text-stone-700">GA4 Measurement ID</label>
+              <input type="text" id="pixelGa4Id" placeholder="Ej. G-XXXXXXXXXX" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-mono">
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button onclick="handleSavePixelConfig()" class="bg-[#181514] text-white px-5 py-2.5 rounded-xl font-bold text-xs hover:bg-[#D48B80] transition flex items-center gap-2">
+              <i data-lucide="zap" class="w-4 h-4"></i>
+              <span>Guardar & Activar</span>
+            </button>
+            <span id="pixelConfigStatus" class="text-xs font-semibold text-emerald-700"></span>
           </div>
         </div>
 
@@ -616,8 +588,36 @@
         </div>
       </div>
 
+      <!-- Editorial PDF Guides — material de regalo digital para clientas -->
+      <div class="glass-card p-6 rounded-3xl space-y-4 border border-purple-200">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-purple-100 text-purple-800 flex items-center justify-center">
+            <i data-lucide="book-open" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-serif-luxury font-bold text-base text-[#181514]">Guías & Diarios PDF de Regalo</h3>
+            <p class="text-xs text-stone-500">Material descargable — vista previa para revisar contenido</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+          <a href="assets/docs/1_Guia_Diario_Ritual_30_Dias_KIVANELI.pdf" target="_blank" class="p-3 bg-white rounded-xl border border-purple-100 hover:border-purple-300 transition flex items-center justify-between gap-2">
+            <span class="font-bold text-[#181514]">1. Diario 30 Días</span>
+            <i data-lucide="file-text" class="w-4 h-4 text-purple-700 shrink-0"></i>
+          </a>
+          <a href="assets/docs/2_Guia_Secretos_Fitocosmetica_KIVANELI.pdf" target="_blank" class="p-3 bg-white rounded-xl border border-purple-100 hover:border-purple-300 transition flex items-center justify-between gap-2">
+            <span class="font-bold text-[#181514]">2. Secretos Fitocosmética</span>
+            <i data-lucide="file-text" class="w-4 h-4 text-purple-700 shrink-0"></i>
+          </a>
+          <a href="assets/docs/3_Guia_Protocolo_Mirada_Radiante_KIVANELI.pdf" target="_blank" class="p-3 bg-white rounded-xl border border-purple-100 hover:border-purple-300 transition flex items-center justify-between gap-2">
+            <span class="font-bold text-[#181514]">3. Protocolo Mirada Radiante</span>
+            <i data-lucide="file-text" class="w-4 h-4 text-purple-700 shrink-0"></i>
+          </a>
+        </div>
+      </div>
+
     </div>
 
+    </div>
   </div>
 
   <!-- 🌟 MODAL: CONECTAR / EDITAR PRODUCTO DROPEA -->
@@ -906,28 +906,83 @@
 
     // Tab Navigation
     function switchTab(tabId) {
-      ['tabOrders', 'tabEmails', 'tabCoupons', 'tabCustomers', 'tabSettings', 'tabCatalog'].forEach(t => {
+      ['tabOrders', 'tabEmails', 'tabCoupons', 'tabCustomers', 'tabCatalog', 'tabTechnical'].forEach(t => {
         const el = document.getElementById(t);
         if (el) el.classList.add('hidden');
       });
-      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.sidebar-nav-item').forEach(b => b.classList.remove('active'));
 
       const targetEl = document.getElementById(tabId);
       if (targetEl) targetEl.classList.remove('hidden');
-      
+
       const tabBtnMap = {
         tabOrders: 'btnTabOrders',
         tabEmails: 'btnTabEmails',
         tabCoupons: 'btnTabCoupons',
         tabCustomers: 'btnTabCustomers',
-        tabSettings: 'btnTabSettings',
-        tabCatalog: 'btnTabCatalog'
+        tabCatalog: 'btnTabCatalog',
+        tabTechnical: 'btnTabTechnical'
       };
       if (tabBtnMap[tabId] && document.getElementById(tabBtnMap[tabId])) {
         document.getElementById(tabBtnMap[tabId]).classList.add('active');
       }
       if (tabId === 'tabCatalog') loadDropeaProductsLive();
+      if (tabId === 'tabTechnical') loadPixelConfig();
+      // Close the sidebar automatically on mobile after picking a section.
+      if (window.innerWidth < 768) {
+        document.getElementById('adminSidebar').classList.remove('mobile-open');
+      }
       if (window.lucide) lucide.createIcons();
+    }
+
+    // Collapsible hamburger sidebar — desktop collapses to icons-only, mobile slides in/out.
+    function toggleAdminSidebar() {
+      const sidebar = document.getElementById('adminSidebar');
+      if (window.innerWidth < 768) {
+        sidebar.classList.toggle('mobile-open');
+      } else {
+        sidebar.classList.toggle('collapsed');
+      }
+    }
+
+    // Live ad-pixel configuration (Configuración Técnica > Píxeles) — reads/writes
+    // site_settings via the API, no code deploy needed to activate a pixel.
+    async function loadPixelConfig() {
+      try {
+        const res = await fetch('/api/customer-actions?action=get_pixel_config');
+        const data = await res.json();
+        const cfg = (data.success && data.config) || {};
+        document.getElementById('pixelMetaId').value = cfg.META_PIXEL_ID || '';
+        document.getElementById('pixelTiktokId').value = cfg.TIKTOK_PIXEL_ID || '';
+        document.getElementById('pixelGoogleAdsId').value = cfg.GOOGLE_ADS_ID || '';
+        document.getElementById('pixelGa4Id').value = cfg.GA4_MEASUREMENT_ID || '';
+      } catch (e) {
+        console.log('Pixel config load note:', e.message);
+      }
+    }
+
+    async function handleSavePixelConfig() {
+      const statusEl = document.getElementById('pixelConfigStatus');
+      statusEl.textContent = 'Guardando...';
+      try {
+        const res = await adminFetch('/api/admin-actions', {
+          method: 'POST',
+          body: JSON.stringify({
+            action: 'save_pixel_config',
+            meta_pixel_id: document.getElementById('pixelMetaId').value,
+            tiktok_pixel_id: document.getElementById('pixelTiktokId').value,
+            google_ads_id: document.getElementById('pixelGoogleAdsId').value,
+            ga4_measurement_id: document.getElementById('pixelGa4Id').value
+          })
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Error al guardar');
+        statusEl.textContent = '✅ Guardado — activo desde la próxima visita a la web.';
+        if (window.confetti) confetti({ particleCount: 40 });
+      } catch (e) {
+        statusEl.textContent = '';
+        alert('Error al guardar la configuración de píxeles: ' + e.message);
+      }
     }
 
     // Catalog state — products come from Neon (our own catalog), Dropea state is only
@@ -1217,11 +1272,6 @@
       } catch (err) {
         alert('Error al guardar el producto: ' + err.message);
       }
-    }
-
-    function changeActiveLanding(landingId) {
-      currentActiveLandingId = landingId;
-      loadAdminData();
     }
 
     // Load All Data — one aggregated call to the Neon-backed /api/admin-data endpoint.
