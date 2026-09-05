@@ -633,6 +633,16 @@
 
       <form onsubmit="handleSaveProduct(event)" class="space-y-4 text-xs">
         <input type="hidden" id="prodId">
+
+        <div class="p-3 rounded-xl bg-[#FAF7F2] border border-[#D48B80]/30 space-y-2">
+          <label class="font-bold text-stone-700">Buscar en catálogo Dropea (evita copiar IDs a mano)</label>
+          <div class="flex gap-2">
+            <input type="text" id="dropeaSearchQuery" placeholder="Ej. sérum, jabón, parches..." class="flex-1 px-3.5 py-2.5 rounded-xl border border-stone-300">
+            <button type="button" onclick="searchDropeaCatalog()" class="px-4 py-2.5 rounded-xl bg-[#181514] text-white font-bold hover:bg-[#D48B80] transition">Buscar</button>
+          </div>
+          <div id="dropeaSearchResults" class="space-y-1.5 max-h-52 overflow-y-auto"></div>
+        </div>
+
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="font-bold text-stone-700">ID Producto Dropea *</label>
@@ -1053,6 +1063,52 @@
         const suggested = Math.ceil((variant.price + 1) * 2.4 * 20) / 20; // rough markup starting point, editable
         document.getElementById('prodPrice').value = suggested.toFixed(2);
       }
+    }
+
+    // Lets the admin find a Dropea product by name instead of having to know its numeric
+    // product/variant ID upfront — closes the "cómo inyecto un producto nuevo" manual gap.
+    async function searchDropeaCatalog() {
+      const q = document.getElementById('dropeaSearchQuery').value.trim();
+      const box = document.getElementById('dropeaSearchResults');
+      if (!q) { box.innerHTML = ''; return; }
+      box.innerHTML = '<div class="text-stone-400 text-[11px] p-2">Buscando...</div>';
+
+      try {
+        const res = await fetch('/api/dropea-catalog?action=search_catalog&q=' + encodeURIComponent(q));
+        const data = await res.json();
+        const items = (data && data.data && data.data.items) || [];
+
+        if (!items.length) {
+          box.innerHTML = '<div class="text-stone-400 text-[11px] p-2">Sin resultados en Dropea para "' + q + '".</div>';
+          return;
+        }
+
+        box.innerHTML = items.map((item, idx) => {
+          const variant = item.variants && item.variants[0];
+          const img = variant ? variant.image_url : ((item.media && item.media.images && item.media.images[0]) || '');
+          return `
+            <button type="button" onclick="selectDropeaSearchResult(${idx})" class="w-full flex items-center gap-2.5 p-2 rounded-lg bg-white border border-stone-200 hover:border-[#D48B80] transition text-left">
+              <img src="${img}" class="w-9 h-9 rounded-lg object-cover border border-stone-100 flex-shrink-0" onerror="this.style.visibility='hidden'">
+              <div class="min-w-0 flex-1">
+                <div class="font-bold text-[11px] text-[#181514] truncate">${item.name}</div>
+                <div class="text-[10px] text-stone-400 font-mono">ID ${item.id}${variant ? ' · ' + variant.sku + ' · ' + variant.price + '€ coste' : ''}</div>
+              </div>
+            </button>
+          `;
+        }).join('');
+
+        window._dropeaSearchResultsCache = items;
+      } catch (e) {
+        box.innerHTML = '<div class="text-rose-500 text-[11px] p-2">Error buscando en Dropea: ' + e.message + '</div>';
+      }
+    }
+
+    function selectDropeaSearchResult(idx) {
+      const item = (window._dropeaSearchResultsCache || [])[idx];
+      if (!item) return;
+      importFromDropea(item);
+      document.getElementById('dropeaSearchResults').innerHTML = '';
+      document.getElementById('dropeaSearchQuery').value = '';
     }
 
     function editProduct(id) {

@@ -47,5 +47,8 @@
         }
       ]
     }
+  ],
+  "crons": [
+    { "path": "/api/admin-actions?action=check_stock_alerts", "schedule": "0 8 * * *" }
   ]
 }

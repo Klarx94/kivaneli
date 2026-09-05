@@ -157,6 +157,9 @@ class KivaneliCart {
     this.saveCart();
     this.openDrawer();
     if (window.confetti) confetti({ particleCount: 35, spread: 50, origin: { y: 0.8 } });
+    if (window.kivaneliTrack) {
+      window.kivaneliTrack.addToCart({ id: product.id, name: product.name, price: unitPrice, quantity });
+    }
   }
 
   removeItem(productId) {

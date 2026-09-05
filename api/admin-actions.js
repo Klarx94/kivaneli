@@ -4,7 +4,59 @@
 
 const { sql } = require('../lib/_db');
 const { requireAdmin } = require('../lib/_auth');
-const { cancelDropeaOrder } = require('../lib/_dropea');
+const { cancelDropeaOrder, getShopStockLevels } = require('../lib/_dropea');
+const { sendViaResend } = require('../lib/_email');
+
+const ADMIN_ALERT_EMAIL = process.env.ADMIN_ALERT_EMAIL || 'beauty@kivaneli.es';
+const LOW_STOCK_THRESHOLD = 15;
+
+// Dropea has no stock-change webhook — this is the only way to catch a product silently
+// running out before a customer orders it. Triggered daily by the Vercel Cron entry in
+// vercel.json, authenticated with CRON_SECRET (Vercel sends it as a Bearer token) instead
+// of the admin JWT, since a cron job can't hold a logged-in admin session.
+async function runStockAlertCheck() {
+  const [shopItems, products] = await Promise.all([
+    getShopStockLevels(),
+    sql`SELECT slug, name, dropea_product_id, in_stock, is_active FROM products WHERE is_active = true AND bundle_items IS NULL`
+  ]);
+
+  const stockByProductId = {};
+  for (const item of shopItems) {
+    const variant = item.variants && item.variants[0];
+    if (variant) stockByProductId[item.id] = variant.stock;
+  }
+
+  const outOfStock = [];
+  const lowStock = [];
+
+  for (const p of products) {
+    if (!p.dropea_product_id || !(p.dropea_product_id in stockByProductId)) continue;
+    const stock = stockByProductId[p.dropea_product_id];
+
+    if (stock <= 0 && p.in_stock) {
+      await sql`UPDATE products SET in_stock = false, updated_at = now() WHERE slug = ${p.slug}`;
+      outOfStock.push({ name: p.name, stock });
+    } else if (stock > 0 && stock < LOW_STOCK_THRESHOLD) {
+      lowStock.push({ name: p.name, stock });
+    }
+  }
+
+  if (outOfStock.length || lowStock.length) {
+    const rows = [...outOfStock.map(p => `<li><strong>${p.name}</strong> — AGOTADO (marcado automáticamente como no disponible)</li>`),
+                  ...lowStock.map(p => `<li><strong>${p.name}</strong> — quedan ${p.stock} unidades</li>`)].join('');
+    try {
+      await sendViaResend({
+        to: ADMIN_ALERT_EMAIL,
+        subject: `⚠️ Alerta de stock KIVANELI (${outOfStock.length} agotados, ${lowStock.length} bajos)`,
+        html: `<div style="font-family:Arial,sans-serif;"><h3>Revisión diaria de stock Dropea</h3><ul>${rows}</ul></div>`
+      });
+    } catch (e) {
+      console.error('Stock alert email error (non-fatal):', e.message);
+    }
+  }
+
+  return { checked: products.length, outOfStock, lowStock };
+}
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -12,6 +64,19 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 
   if (req.method === 'OPTIONS') return res.status(200).end();
+
+  if (req.method === 'GET' && req.query.action === 'check_stock_alerts') {
+    const auth = req.headers['authorization'];
+    if (!process.env.CRON_SECRET || auth !== `Bearer ${process.env.CRON_SECRET}`) {
+      return res.status(401).json({ success: false, error: 'Unauthorized' });
+    }
+    try {
+      const result = await runStockAlertCheck();
+      return res.status(200).json({ success: true, ...result });
+    } catch (e) {
+      return res.status(500).json({ success: false, error: e.message });
+    }
+  }
 
   try {
     requireAdmin(req);

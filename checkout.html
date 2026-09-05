@@ -228,7 +228,13 @@
       <div class="lg:col-span-7">
         
         <form id="checkoutForm" onsubmit="submitCheckoutOrder(event)" class="glass-card rounded-[2.5rem] p-6 sm:p-10 space-y-6 border-2 border-[#D48B80]/30 shadow-xl bg-white">
-          
+
+          <!-- Honeypot: invisible to real customers, bots that fill every field trip it -->
+          <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+            <label for="shipWebsite">Deja este campo vacío</label>
+            <input type="text" id="shipWebsite" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
           <div class="border-b border-stone-200/80 pb-4">
             <h3 class="font-serif-luxury font-black text-xl text-[#181514]">Datos de Envío & Destinatario</h3>
             <p class="text-xs text-stone-500">Introduce la dirección exacta donde deseas recibir tu paquete.</p>
@@ -290,6 +296,16 @@
 
             </div>
           </div>
+
+          <!-- Legal Acceptance -->
+          <label class="flex items-start gap-2.5 pt-2 cursor-pointer">
+            <input type="checkbox" id="acceptLegalTerms" required class="mt-0.5 rounded border-stone-300 text-[#D48B80] focus:ring-[#D48B80]">
+            <span class="text-[10.5px] text-stone-500 leading-relaxed">
+              He leído y acepto el <a href="aviso-legal.html" target="_blank" class="text-[#B86B60] underline font-semibold">Aviso Legal</a>,
+              la <a href="politica-privacidad.html" target="_blank" class="text-[#B86B60] underline font-semibold">Política de Privacidad</a>
+              y la <a href="politica-devoluciones.html" target="_blank" class="text-[#B86B60] underline font-semibold">Política de Devoluciones</a>. *
+            </span>
+          </label>
 
           <!-- Submit Order Button -->
           <div class="pt-4 space-y-2">
@@ -360,7 +376,7 @@
       </div>
 
       <div class="pt-8 border-t border-stone-800/80 flex flex-wrap items-center justify-between gap-4 text-[10px] text-stone-500">
-        <div>© 2026 KIVANELI COSMETICS. Todos los derechos reservados.</div>
+        <div>© 2026 KIVANELI COSMETICS. Todos los derechos reservados. &nbsp;|&nbsp; <a href="aviso-legal.html" class="hover:text-[#D48B80] underline">Aviso Legal</a> &nbsp;|&nbsp; <a href="politica-privacidad.html" class="hover:text-[#D48B80] underline">Privacidad</a> &nbsp;|&nbsp; <a href="politica-devoluciones.html" class="hover:text-[#D48B80] underline">Devoluciones</a></div>
         <div class="flex items-center gap-4">
           <span class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-500"></i> Calidad Garantizada</span>
           <span class="flex items-center gap-1"><i data-lucide="lock" class="w-3.5 h-3.5 text-amber-400"></i> Despacho Seguro</span>
@@ -369,6 +385,8 @@
     </div>
   </footer>
 
+  <script src="assets/js/kivaneli-consent.js"></script>
+  <script src="assets/js/kivaneli-pixels.js"></script>
   <script src="assets/js/kivaneli-cart.js?v=2"></script>
   <script>
     let checkoutCoupon = '';
@@ -558,6 +576,7 @@
       const total = parseFloat(document.getElementById('summaryTotal').innerText.replace(' €', '').replace(',', '.'));
 
       const payload = {
+        website: (document.getElementById('shipWebsite') || {}).value || '',
         order_number: orderNumber,
         customer_name: name,
         customer_phone: phone,
@@ -573,13 +592,19 @@
         referral_code_used: (typeof getActiveReferralCode === 'function' ? getActiveReferralCode() : null),
         // Full cart detail — lets the backend ship the right Dropea variant(s) per line,
         // including expanding bundle products (e.g. Pack Ritual) into their real components.
+        // Price is NOT sent — the server always recomputes the real total from the products
+        // table and the coupon, using only id/quantity/isImpulse from here.
         items: items.map(i => ({
           id: i.id,
           quantity: i.quantity,
-          price: i.price * i.quantity,
+          isImpulse: !!i.isImpulse,
           dropeaVariantId: i.dropeaVariantId
         }))
       };
+
+      if (window.kivaneliTrack) {
+        window.kivaneliTrack.initiateCheckout({ total, itemsCount: payload.items_count });
+      }
 
       // Card payments go through Stripe Checkout — the order is only ever confirmed by
       // Stripe's webhook (api/stripe-webhook.js) after real payment, never by the browser.
@@ -617,7 +642,7 @@
       }
 
       // Show success
-      showCheckoutSuccess(orderNumber, email, name);
+      showCheckoutSuccess(orderNumber, email, name, { total, itemIds: items.map(i => i.id) });
 
       // Clear Cart
       window.kivaneliCart.items = [];
@@ -632,7 +657,7 @@
     // return trip. Does NOT auto-generate or reveal any referral link — that only happens
     // if the customer explicitly opts in (confirmReferralOptIn), so it's a real registered
     // lead rather than a code nobody asked for.
-    function showCheckoutSuccess(orderNumber, email, name) {
+    function showCheckoutSuccess(orderNumber, email, name, purchaseInfo) {
       lastCompletedOrder = { orderNumber, email, name };
 
       document.getElementById('checkoutFormHeader').classList.add('hidden');
@@ -645,6 +670,10 @@
 
       if (window.confetti) confetti({ particleCount: 100, spread: 70 });
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (window.kivaneliTrack && purchaseInfo) {
+        window.kivaneliTrack.purchase({ orderNumber, total: purchaseInfo.total, itemIds: purchaseInfo.itemIds || [] });
+      }
     }
 
     async function confirmReferralOptIn() {
@@ -691,9 +720,14 @@
       const orderNumber = params.get('order');
 
       if (params.get('stripe_success') && orderNumber) {
+        const itemsBeforeClear = (window.kivaneliCart && window.kivaneliCart.items) || [];
+        const totalBeforeClear = window.kivaneliCart ? window.kivaneliCart.getTotal() : 0;
         window.kivaneliCart.items = [];
         window.kivaneliCart.saveCart();
-        showCheckoutSuccess(orderNumber, params.get('email'));
+        showCheckoutSuccess(orderNumber, params.get('email'), null, {
+          total: totalBeforeClear,
+          itemIds: itemsBeforeClear.map(i => i.id)
+        });
         return true;
       } else if (params.get('stripe_cancelled')) {
         const msg = document.getElementById('checkoutCouponMsg');

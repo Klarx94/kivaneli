@@ -5,6 +5,7 @@
 
 const Stripe = require('stripe');
 const { sql } = require('../lib/_db');
+const { computeAuthoritativeOrder } = require('../lib/_pricing');
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 const SITE_URL = process.env.SITE_URL || 'https://kivaneli.es';
@@ -14,6 +15,9 @@ if (!STRIPE_SECRET_KEY) {
 }
 
 const stripe = new Stripe(STRIPE_SECRET_KEY);
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^[0-9+ ()-]{7,20}$/;
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,25 +29,50 @@ module.exports = async (req, res) => {
 
   try {
     const body = req.body || {};
-    const orderNumber = body.order_number || `KV-${Date.now().toString().slice(-6)}`;
-    const total = parseFloat(body.total_amount || 0);
 
-    if (!total || total <= 0) {
-      return res.status(400).json({ success: false, error: 'total_amount inválido' });
+    // Honeypot — see api/dropea-order.js for the rationale.
+    if (body.website) {
+      return res.status(200).json({ success: true, order_number: 'KV-000000', checkout_url: null });
     }
 
+    const customerName = String(body.customer_name || '').trim() || 'Clienta Kivaneli';
+    const customerEmail = String(body.customer_email || '').toLowerCase().trim();
+    const customerPhone = String(body.customer_phone || '').trim();
+    const customerAddress = String(body.customer_address || '').trim();
+    const customerZip = String(body.customer_zip || '').trim();
+    const customerCity = String(body.customer_city || '').trim();
+
+    if (!EMAIL_RE.test(customerEmail)) {
+      return res.status(400).json({ success: false, error: 'Email inválido' });
+    }
+    if (customerPhone && !PHONE_RE.test(customerPhone)) {
+      return res.status(400).json({ success: false, error: 'Teléfono inválido' });
+    }
+
+    const [recent] = await sql`
+      SELECT count(*)::int AS n FROM orders
+      WHERE customer_email = ${customerEmail} AND created_at > now() - interval '10 minutes'
+    `;
+    if (recent && recent.n >= 3) {
+      return res.status(429).json({ success: false, error: 'Demasiados pedidos en poco tiempo. Inténtalo de nuevo en unos minutos.' });
+    }
+
+    // Real price computation — body.total_amount/body.items[].price are never trusted.
+    const priced = await computeAuthoritativeOrder(body.items, body.coupon_applied);
+
+    const orderNumber = body.order_number || `KV-${Date.now().toString().slice(-6)}`;
     const orderRecord = {
       order_number: orderNumber,
-      customer_name: body.customer_name || 'Clienta Kivaneli',
-      customer_email: (body.customer_email || 'beauty@kivaneli.es').toLowerCase().trim(),
-      customer_phone: body.customer_phone || '',
-      customer_address: body.customer_address || '',
-      customer_zip: body.customer_zip || '',
-      customer_city: body.customer_city || '',
+      customer_name: customerName,
+      customer_email: customerEmail,
+      customer_phone: customerPhone,
+      customer_address: customerAddress,
+      customer_zip: customerZip,
+      customer_city: customerCity,
       pack_selected: body.pack_selected || '',
-      items_count: parseInt(body.items_count || 1),
-      total_amount: total,
-      coupon_applied: body.coupon_applied || null,
+      items_count: priced.items.reduce((acc, i) => acc + i.quantity, 0),
+      total_amount: priced.total,
+      coupon_applied: priced.appliedCoupon,
       referral_code_used: body.referral_code_used || null
     };
 
@@ -59,7 +88,7 @@ module.exports = async (req, res) => {
         ${orderRecord.customer_phone}, ${orderRecord.customer_address}, ${orderRecord.customer_zip},
         ${orderRecord.customer_city}, ${orderRecord.pack_selected}, ${orderRecord.items_count},
         ${orderRecord.total_amount}, 'CARD', 'PENDING_STRIPE', 'AWAITING_PAYMENT',
-        ${orderRecord.coupon_applied}, ${orderRecord.referral_code_used}, ${JSON.stringify(body.items || [])}::jsonb
+        ${orderRecord.coupon_applied}, ${orderRecord.referral_code_used}, ${JSON.stringify(priced.items)}::jsonb
       )
     `;
 
@@ -79,7 +108,7 @@ module.exports = async (req, res) => {
         price_data: {
           currency: 'eur',
           product_data: { name: orderRecord.pack_selected || 'Pedido KIVANELI' },
-          unit_amount: Math.round(total * 100)
+          unit_amount: Math.round(priced.total * 100)
         },
         quantity: 1
       }],

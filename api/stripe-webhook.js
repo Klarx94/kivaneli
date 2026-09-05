@@ -7,6 +7,7 @@ const Stripe = require('stripe');
 const { sql } = require('../lib/_db');
 const { dispatchOrderToDropea } = require('../lib/_dropea');
 const { upsertCustomer, creditReferralIfAny } = require('../lib/_customers');
+const { sendOrderConfirmationEmails } = require('../lib/_email');
 
 const STRIPE_SECRET_KEY = process.env.STRIPE_SECRET_KEY;
 const STRIPE_WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET;
@@ -67,6 +68,7 @@ module.exports = async (req, res) => {
 
         const [order] = await sql`SELECT * FROM orders WHERE order_number = ${orderNumber}`;
         if (order) {
+          let referralCredit = null;
           try {
             await upsertCustomer({
               email: order.customer_email,
@@ -75,13 +77,19 @@ module.exports = async (req, res) => {
               city: order.customer_city,
               orderAmount: order.total_amount
             });
-            await creditReferralIfAny({
+            referralCredit = await creditReferralIfAny({
               referralCodeUsed: order.referral_code_used,
               buyerEmail: order.customer_email,
               orderNumber
             });
           } catch (custErr) {
             console.error('Customer/referral tracking error (non-fatal):', custErr.message);
+          }
+
+          try {
+            await sendOrderConfirmationEmails({ ...order, payment_method: 'CARD', referralCredit });
+          } catch (emailErr) {
+            console.error('Order email error (non-fatal):', emailErr.message);
           }
         }
       }
