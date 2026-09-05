@@ -1,0 +1,6 @@
+[
+  {"id":"d3fe26d9-3160-43d9-a0f9-8d4be594d475","code":"SEDA10","discount_type":"PERCENTAGE","discount_value":10.00,"min_order_amount":0,"uses_count":0,"max_uses":999999,"is_active":true,"landing_id":"kivaneli-piel-de-seda","expires_at":null},
+  {"id":"16628c60-eca0-4f06-b042-2882f2708f9e","code":"BIENVENIDA5","discount_type":"FIXED","discount_value":5.00,"min_order_amount":25,"uses_count":0,"max_uses":999999,"is_active":true,"landing_id":"kivaneli-piel-de-seda","expires_at":null},
+  {"id":"b0c67431-7831-4fab-a1a4-f9010f4cc583","code":"VIP15","discount_type":"PERCENTAGE","discount_value":15.00,"min_order_amount":0,"uses_count":0,"max_uses":999999,"is_active":true,"landing_id":"kivaneli-piel-de-seda","expires_at":null},
+  {"id":"6d3b393a-527e-47c4-930d-97317a8a2f41","code":"TIKTOK10","discount_type":"PERCENTAGE","discount_value":10.00,"min_order_amount":0,"uses_count":0,"max_uses":999999,"is_active":true,"landing_id":"kivaneli-piel-de-seda","expires_at":null}
+]

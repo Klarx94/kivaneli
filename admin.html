@@ -13,7 +13,6 @@
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 
   <style>
@@ -85,7 +84,7 @@
       </form>
 
       <div class="text-[10px] text-stone-400 border-t border-stone-100 pt-3">
-        Acceso encriptado mediante Supabase Auth & Servidores Arsys SSL
+        Acceso encriptado mediante Vercel/Neon & Servidores Arsys SSL
       </div>
     </div>
   </div>
@@ -297,7 +296,7 @@
             </thead>
             <tbody id="ordersTableBody" class="divide-y divide-stone-200/70">
               <tr>
-                <td colspan="8" class="p-8 text-center text-stone-400">Cargando pedidos de Supabase...</td>
+                <td colspan="8" class="p-8 text-center text-stone-400">Cargando pedidos...</td>
               </tr>
             </tbody>
           </table>
@@ -688,7 +687,7 @@
         </div>
 
         <button type="submit" class="w-full bg-[#181514] text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-[#D48B80] transition shadow-md">
-          Guardar Cupón en Supabase
+          Guardar Cupón
         </button>
       </form>
     </div>
@@ -739,11 +738,29 @@
   </div>
 
   <script>
-    // Supabase Client
-    const supabaseClient = window.supabase.createClient(
-      'https://sntsizmdhttpilbauxuv.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNudHNpem1kaHR0cGlsYmF1eHV2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4MTQxNTIsImV4cCI6MjEwMzM5MDE1Mn0.TJl9UpYcdS9zSG6koa8SQ7zLpmn0A1MTekpHQ9DUkBw'
-    );
+    // Admin API helper — attaches the JWT issued by /api/admin-login to every admin request.
+    const ADMIN_TOKEN_KEY = 'kivaneli_admin_token';
+
+    async function adminFetch(path, options = {}) {
+      const token = sessionStorage.getItem(ADMIN_TOKEN_KEY);
+      const res = await fetch(path, {
+        ...options,
+        headers: {
+          'Content-Type': 'application/json',
+          ...(options.headers || {}),
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+        }
+      });
+
+      if (res.status === 401) {
+        sessionStorage.removeItem(ADMIN_TOKEN_KEY);
+        document.getElementById('mainDashboard').classList.add('hidden');
+        document.getElementById('authScreen').classList.remove('hidden');
+        throw new Error('Sesión expirada, vuelve a iniciar sesión.');
+      }
+
+      return res;
+    }
 
     let allOrders = [];
     let allCoupons = [];
@@ -751,35 +768,46 @@
     let allCustomers = [];
     let currentActiveLandingId = 'kivaneli-piel-de-seda';
 
-    // Authentication Guard (Exclusive Admin: beauty@kivaneli.es / Kivaneli_2026.)
-    const REQUIRED_ADMIN_EMAIL = 'beauty@kivaneli.es';
-    const REQUIRED_ADMIN_PASS = 'Kivaneli_2026.';
-
-    function handleAdminLogin(e) {
+    // Authentication Guard — credentials are verified server-side in /api/admin-login,
+    // never compared in the browser (the old version hardcoded the real password in this file).
+    async function handleAdminLogin(e) {
       e.preventDefault();
       const emailInput = document.getElementById('adminEmail').value.trim().toLowerCase();
       const passInput = document.getElementById('adminPass').value;
       const err = document.getElementById('authError');
+      const btn = e.target.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
 
-      if (emailInput === REQUIRED_ADMIN_EMAIL && passInput === REQUIRED_ADMIN_PASS) {
-        sessionStorage.setItem('kivaneli_admin_auth', 'true');
-        sessionStorage.setItem('kivaneli_admin_user', REQUIRED_ADMIN_EMAIL);
-        err.classList.add('hidden');
-        document.getElementById('authScreen').classList.add('hidden');
-        document.getElementById('mainDashboard').classList.remove('hidden');
-        loadAdminData();
-        if (window.lucide) lucide.createIcons();
-      } else {
-        err.innerText = 'Acceso Denegado: Credenciales no autorizadas. Acceso restringido exclusivamente para el usuario administrador (beauty@kivaneli.es).';
+      try {
+        const res = await fetch('/api/admin-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: emailInput, password: passInput })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success && data.token) {
+          sessionStorage.setItem(ADMIN_TOKEN_KEY, data.token);
+          err.classList.add('hidden');
+          document.getElementById('authScreen').classList.add('hidden');
+          document.getElementById('mainDashboard').classList.remove('hidden');
+          loadAdminData();
+          if (window.lucide) lucide.createIcons();
+        } else {
+          throw new Error(data.error || 'Credenciales no autorizadas');
+        }
+      } catch (loginErr) {
+        err.innerText = 'Acceso Denegado: ' + loginErr.message;
         err.classList.remove('hidden');
         document.getElementById('adminPass').value = '';
         document.getElementById('adminPass').focus();
+      } finally {
+        if (btn) btn.disabled = false;
       }
     }
 
     function handleLogout() {
-      sessionStorage.removeItem('kivaneli_admin_auth');
-      sessionStorage.removeItem('kivaneli_admin_user');
+      sessionStorage.removeItem(ADMIN_TOKEN_KEY);
       window.location.reload();
     }
 
@@ -1014,47 +1042,28 @@
       loadAdminData();
     }
 
-    // Load All Data
+    // Load All Data — one aggregated call to the Neon-backed /api/admin-data endpoint.
     async function loadAdminData() {
       try {
-        // 1. Orders
-        const { data: orders } = await supabaseClient
-          .from('orders')
-          .select('*')
-          .order('created_at', { ascending: false });
+        const res = await adminFetch('/api/admin-data');
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'No se pudieron cargar los datos');
 
-        allOrders = orders || [];
+        allOrders = data.orders || [];
         renderOrders();
 
-        // 2. Templates
-        const { data: templates } = await supabaseClient
-          .from('email_templates')
-          .select('*')
-          .order('created_at', { ascending: true });
-        
-        allTemplates = templates || [];
+        allTemplates = data.templates || [];
         renderTemplates();
 
-        // 3. Coupons
-        const { data: coupons } = await supabaseClient
-          .from('discount_coupons')
-          .select('*')
-          .order('created_at', { ascending: false });
-
-        allCoupons = coupons || [];
+        allCoupons = data.coupons || [];
         renderCoupons();
 
-        // 4. Customers & Referrals
-        const { data: customers } = await supabaseClient.from('customers').select('*');
-        allCustomers = customers || [];
+        allCustomers = data.customers || [];
         renderCustomers();
 
-        const { data: referrals } = await supabaseClient.from('referrals').select('*');
-        document.getElementById('statReferralsCount').innerText = (referrals || []).length;
+        document.getElementById('statReferralsCount').innerText = (data.referrals || []).length;
 
-        // 5. Campaign Logs
-        const { data: logs } = await supabaseClient.from('email_campaign_logs').select('*').order('sent_at', { ascending: false }).limit(20);
-        renderEmailLogs(logs || []);
+        renderEmailLogs(data.logs || []);
 
       } catch (err) {
         console.error('Error loading admin data:', err);
@@ -1219,23 +1228,6 @@
       `).join('');
     }
 
-    
-    async function confirmDropeaDeliveryManually(orderNumber) {
-      if (!confirm('¿Confirmar que el cliente ha recibido y pagado el pedido ' + orderNumber + '? Esto desbloqueará automáticamente las 3 guías y registrará el despacho del correo.')) return;
-      
-      const { data, error } = await supabaseClient.rpc('trigger_unlock_digital_guides', {
-        target_order_number: orderNumber
-      });
-
-      if (error) {
-        alert('Error al desbloquear: ' + error.message);
-      } else {
-        alert('¡Pedido marcado como ENTREGADO / PAGADO! Guías desbloqueadas con éxito.');
-        loadAdminData();
-        if (window.confetti) confetti({ particleCount: 60 });
-      }
-    }
-
     // Modals
     function openCreateCouponModal() { document.getElementById('modalCreateCoupon').classList.remove('hidden'); document.getElementById('modalCreateCoupon').classList.add('flex'); }
     function closeCreateCouponModal() { document.getElementById('modalCreateCoupon').classList.add('hidden'); document.getElementById('modalCreateCoupon').classList.remove('flex'); }
@@ -1250,13 +1242,15 @@
       const val = parseFloat(document.getElementById('newCouponValue').value);
       const min = parseFloat(document.getElementById('newCouponMin').value) || 0;
 
-      await supabaseClient.from('discount_coupons').insert({
-        code: code,
-        discount_type: type,
-        discount_value: val,
-        min_order_amount: min,
-        landing_id: currentActiveLandingId,
-        is_active: true
+      await adminFetch('/api/admin-coupons', {
+        method: 'POST',
+        body: JSON.stringify({
+          code: code,
+          discount_type: type,
+          discount_value: val,
+          min_order_amount: min,
+          landing_id: currentActiveLandingId
+        })
       });
 
       closeCreateCouponModal();
@@ -1265,7 +1259,10 @@
     }
 
     async function toggleCouponActive(id, newStatus) {
-      await supabaseClient.from('discount_coupons').update({ is_active: newStatus }).eq('id', id);
+      await adminFetch('/api/admin-coupons', {
+        method: 'PATCH',
+        body: JSON.stringify({ id, is_active: newStatus })
+      });
       loadAdminData();
     }
 
@@ -1274,26 +1271,15 @@
       const tSlug = document.getElementById('broadcastTemplate').value;
       const coupon = document.getElementById('broadcastCoupon').value.trim().toUpperCase();
       
-      // Log broadcast in Supabase
-      if (allCustomers.length) {
-        for (const c of allCustomers) {
-          await supabaseClient.from('email_campaign_logs').insert({
-            recipient_email: c.email,
-            recipient_name: c.name,
-            template_slug: tSlug,
-            coupon_included: coupon,
-            status: 'SENT'
-          });
-        }
-      } else {
-        await supabaseClient.from('email_campaign_logs').insert({
-          recipient_email: 'ejemplo.clienta@kivaneli.es',
-          recipient_name: 'Carmen García',
-          template_slug: tSlug,
-          coupon_included: coupon,
-          status: 'SENT'
-        });
-      }
+      // Log broadcast via the Neon-backed /api/admin-broadcast endpoint
+      const recipients = allCustomers.length
+        ? allCustomers.map(c => ({ email: c.email, name: c.name }))
+        : [{ email: 'ejemplo.clienta@kivaneli.es', name: 'Carmen García' }];
+
+      await adminFetch('/api/admin-broadcast', {
+        method: 'POST',
+        body: JSON.stringify({ template_slug: tSlug, coupon_included: coupon, recipients })
+      });
 
       closeBroadcastModal();
       alert('¡Campaña de Retargeting enviada con éxito mediante los servidores Arsys!');
@@ -1340,17 +1326,12 @@
       if (!confirm(`¿Confirmar entrega manual para el pedido ${orderNumber} y desbloquear de inmediato las 3 Guías PDF?`)) return;
 
       try {
-        await supabaseClient.from('orders').update({
-          shipping_status: 'DELIVERED',
-          payment_status: 'PAID',
-          updated_at: new Date().toISOString()
-        }).eq('order_number', orderNumber);
-
-        await supabaseClient.from('customer_digital_access').update({
-          is_unlocked: true,
-          unlocked_at: new Date().toISOString(),
-          payment_status: 'PAID'
-        }).eq('order_id', orderNumber);
+        const res = await adminFetch('/api/admin-mark-delivered', {
+          method: 'POST',
+          body: JSON.stringify({ order_number: orderNumber })
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.error || 'Error al actualizar pedido');
 
         alert(`✅ Pedido ${orderNumber} marcado como ENTREGADO. Guías PDF desbloqueadas para la clienta.`);
         loadAdminData();
@@ -1384,14 +1365,12 @@
       }
     }
 
-    // Auto check if already logged in session
-    if (sessionStorage.getItem('kivaneli_admin_auth') === 'true' && sessionStorage.getItem('kivaneli_admin_user') === REQUIRED_ADMIN_EMAIL) {
+    // Auto check if already logged in session — the token is verified server-side on every
+    // /api/admin-* call; adminFetch() bounces back to the login screen if it's invalid/expired.
+    if (sessionStorage.getItem(ADMIN_TOKEN_KEY)) {
       document.getElementById('authScreen').classList.add('hidden');
       document.getElementById('mainDashboard').classList.remove('hidden');
       loadAdminData();
-    } else {
-      sessionStorage.removeItem('kivaneli_admin_auth');
-      sessionStorage.removeItem('kivaneli_admin_user');
     }
 
     window.addEventListener('load', () => {

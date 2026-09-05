@@ -2,48 +2,12 @@
 // Handles HMAC Signature Verification, Real-Time Status Mapping & Gated Digital Guide Dispatch
 
 const crypto = require('crypto');
-const https = require('https');
+const { sql } = require('./_db');
 
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
 const DROPEA_HMAC_SECRET = process.env.DROPEA_HMAC_SECRET;
 
-if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY || !DROPEA_HMAC_SECRET) {
-  throw new Error('Missing required env vars: SUPABASE_URL, SUPABASE_SERVICE_KEY, DROPEA_HMAC_SECRET');
-}
-
-async function supabaseRest(path, method = 'GET', body = null) {
-  return new Promise((resolve, reject) => {
-    const postData = body ? JSON.stringify(body) : null;
-    const headers = {
-      'apikey': SUPABASE_SERVICE_KEY,
-      'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation'
-    };
-    if (postData) headers['Content-Length'] = Buffer.byteLength(postData);
-
-    const req = https.request({
-      hostname: SUPABASE_URL,
-      path: `/rest/v1/${path}`,
-      method: method,
-      headers: headers
-    }, (res) => {
-      let data = '';
-      res.on('data', c => data += c);
-      res.on('end', () => {
-        try {
-          resolve({ status: res.statusCode, data: data ? JSON.parse(data) : null });
-        } catch (e) {
-          resolve({ status: res.statusCode, raw: data });
-        }
-      });
-    });
-
-    req.on('error', reject);
-    if (postData) req.write(postData);
-    req.end();
-  });
+if (!DROPEA_HMAC_SECRET) {
+  throw new Error('Missing required env var DROPEA_HMAC_SECRET');
 }
 
 module.exports = async (req, res) => {
@@ -93,38 +57,39 @@ module.exports = async (req, res) => {
       normalizedStatus = 'INCIDENT';
     }
 
-    // 3. Log incoming webhook in Supabase
-    await supabaseRest('dropea_webhooks_log', 'POST', {
-      event_type: eventType,
-      order_number: String(orderNumber),
-      dropea_tracking_id: trackingCode,
-      shipping_status: normalizedStatus,
-      payload: payload,
-      processed: true
-    });
+    // 3. Log incoming webhook in Neon
+    await sql`
+      INSERT INTO dropea_webhooks_log (event_type, order_number, dropea_tracking_id, shipping_status, payload, processed)
+      VALUES (${eventType}, ${String(orderNumber)}, ${trackingCode}, ${normalizedStatus}, ${JSON.stringify(payload)}::jsonb, true)
+    `;
 
-    // 4. Update order record in Supabase
+    // 4. Update order record in Neon
     if (orderNumber) {
-      const updateData = { shipping_status: normalizedStatus, updated_at: new Date().toISOString() };
-      if (trackingCode) updateData.tracking_code = trackingCode;
-
-      await supabaseRest(`orders?order_number=eq.${encodeURIComponent(orderNumber)}`, 'PATCH', updateData);
+      if (trackingCode) {
+        await sql`
+          UPDATE orders SET shipping_status = ${normalizedStatus}, tracking_code = ${trackingCode}, updated_at = now()
+          WHERE order_number = ${orderNumber}
+        `;
+      } else {
+        await sql`
+          UPDATE orders SET shipping_status = ${normalizedStatus}, updated_at = now()
+          WHERE order_number = ${orderNumber}
+        `;
+      }
     }
 
     // 5. If DELIVERED: Unlock Digital Guides & Dispatch Delivery Email
     if (normalizedStatus === 'DELIVERED' && orderNumber) {
-      const { data: accessRecords } = await supabaseRest(`customer_digital_access?order_id=eq.${encodeURIComponent(orderNumber)}`);
-      
+      const accessRecords = await sql`SELECT id FROM customer_digital_access WHERE order_id = ${orderNumber}`;
+
       if (accessRecords && accessRecords.length > 0) {
-        await supabaseRest(`customer_digital_access?order_id=eq.${encodeURIComponent(orderNumber)}`, 'PATCH', {
-          is_unlocked: true,
-          unlocked_at: new Date().toISOString(),
-          guides_unlocked: [
-            '1_Guia_Diario_Ritual_30_Dias_KIVANELI.pdf',
-            '2_Guia_Secretos_Fitocosmetica_KIVANELI.pdf',
-            '3_Guia_Protocolo_Mirada_Radiante_KIVANELI.pdf'
-          ]
-        });
+        await sql`
+          UPDATE customer_digital_access
+          SET is_unlocked = true,
+              unlocked_at = now(),
+              guides_unlocked = '["1_Guia_Diario_Ritual_30_Dias_KIVANELI.pdf","2_Guia_Secretos_Fitocosmetica_KIVANELI.pdf","3_Guia_Protocolo_Mirada_Radiante_KIVANELI.pdf"]'::jsonb
+          WHERE order_id = ${orderNumber}
+        `;
       }
     }
 

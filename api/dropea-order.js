@@ -3,49 +3,13 @@
 
 const https = require('https');
 const crypto = require('crypto');
-
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_KEY;
+const { sql } = require('./_db');
 
 const DROPEA_API_TOKEN = process.env.DROPEA_API_TOKEN;
 const DROPEA_STORE_ID = process.env.DROPEA_STORE_ID || 18516; // Kivaneli Store ID in Dropea
 
-if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY || !DROPEA_API_TOKEN) {
-  throw new Error('Missing required env vars: SUPABASE_URL, SUPABASE_SERVICE_KEY, DROPEA_API_TOKEN');
-}
-
-async function supabaseRest(path, method = 'GET', body = null) {
-  return new Promise((resolve, reject) => {
-    const postData = body ? JSON.stringify(body) : null;
-    const headers = {
-      'apikey': SUPABASE_SERVICE_KEY,
-      'Authorization': `Bearer ${SUPABASE_SERVICE_KEY}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation'
-    };
-    if (postData) headers['Content-Length'] = Buffer.byteLength(postData);
-
-    const req = https.request({
-      hostname: SUPABASE_URL,
-      path: `/rest/v1/${path}`,
-      method: method,
-      headers: headers
-    }, (res) => {
-      let data = '';
-      res.on('data', c => data += c);
-      res.on('end', () => {
-        try {
-          resolve({ status: res.statusCode, data: data ? JSON.parse(data) : null });
-        } catch (e) {
-          resolve({ status: res.statusCode, raw: data });
-        }
-      });
-    });
-
-    req.on('error', reject);
-    if (postData) req.write(postData);
-    req.end();
-  });
+if (!DROPEA_API_TOKEN) {
+  throw new Error('Missing required env var DROPEA_API_TOKEN');
 }
 
 // Send Order to Dropea Spain Gateway
@@ -162,26 +126,41 @@ module.exports = async (req, res) => {
       notes: body.notes || 'Pedido desde Tienda Oficial KIVANELI'
     };
 
-    // 1. Save in Supabase
-    await supabaseRest('orders', 'POST', orderRecord);
+    // 1. Save in Neon
+    await sql`
+      INSERT INTO orders (
+        order_number, customer_name, customer_email, customer_phone, customer_address,
+        customer_zip, customer_city, pack_selected, items_count, total_amount,
+        payment_method, payment_status, shipping_status, dropea_variant_id,
+        coupon_applied, referral_code_used, notes
+      ) VALUES (
+        ${orderRecord.order_number}, ${orderRecord.customer_name}, ${orderRecord.customer_email},
+        ${orderRecord.customer_phone}, ${orderRecord.customer_address}, ${orderRecord.customer_zip},
+        ${orderRecord.customer_city}, ${orderRecord.pack_selected}, ${orderRecord.items_count},
+        ${orderRecord.total_amount}, ${orderRecord.payment_method}, ${orderRecord.payment_status},
+        ${orderRecord.shipping_status}, ${orderRecord.dropea_variant_id}, ${orderRecord.coupon_applied},
+        ${orderRecord.referral_code_used}, ${orderRecord.notes}
+      )
+    `;
 
     // 2. Digital Guides Record
     const accessToken = crypto.randomBytes(16).toString('hex');
-    await supabaseRest('customer_digital_access', 'POST', {
-      order_id: orderNumber,
-      customer_email: orderRecord.customer_email,
-      customer_name: orderRecord.customer_name,
-      access_token: accessToken,
-      payment_method: orderRecord.payment_method,
-      payment_status: orderRecord.payment_status,
-      is_unlocked: isOnlinePayment,
-      unlocked_at: isOnlinePayment ? new Date().toISOString() : null,
-      guides_unlocked: isOnlinePayment ? [
-        '1_Guia_Diario_Ritual_30_Dias_KIVANELI.pdf',
-        '2_Guia_Secretos_Fitocosmetica_KIVANELI.pdf',
-        '3_Guia_Protocolo_Mirada_Radiante_KIVANELI.pdf'
-      ] : []
-    });
+    const guidesUnlocked = isOnlinePayment ? [
+      '1_Guia_Diario_Ritual_30_Dias_KIVANELI.pdf',
+      '2_Guia_Secretos_Fitocosmetica_KIVANELI.pdf',
+      '3_Guia_Protocolo_Mirada_Radiante_KIVANELI.pdf'
+    ] : [];
+
+    await sql`
+      INSERT INTO customer_digital_access (
+        order_id, customer_email, customer_name, access_token, payment_method,
+        payment_status, is_unlocked, unlocked_at, guides_unlocked
+      ) VALUES (
+        ${orderNumber}, ${orderRecord.customer_email}, ${orderRecord.customer_name}, ${accessToken},
+        ${orderRecord.payment_method}, ${orderRecord.payment_status}, ${isOnlinePayment},
+        ${isOnlinePayment ? new Date().toISOString() : null}, ${JSON.stringify(guidesUnlocked)}::jsonb
+      )
+    `;
 
     // 3. Dispatch directly to Dropea Public API
     const dropeaRes = await sendOrderToDropeaPublicApi(orderRecord);
@@ -191,11 +170,11 @@ module.exports = async (req, res) => {
     if (dropeaRes && dropeaRes.data && dropeaRes.data.success && dropeaRes.data.data) {
       dropeaOrderId = dropeaRes.data.data.id;
       dropeaStatus = 'SYNCED_DROPEA_LIVE';
-      
-      await supabaseRest(`orders?order_number=eq.${encodeURIComponent(orderNumber)}`, 'PATCH', {
-        dropea_order_id: String(dropeaOrderId),
-        shipping_status: 'CONFIRMED'
-      });
+
+      await sql`
+        UPDATE orders SET dropea_order_id = ${String(dropeaOrderId)}, shipping_status = 'CONFIRMED', updated_at = now()
+        WHERE order_number = ${orderNumber}
+      `;
     }
 
     return res.status(200).json({
