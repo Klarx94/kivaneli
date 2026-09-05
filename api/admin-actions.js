@@ -248,6 +248,17 @@ module.exports = async (req, res) => {
       return res.status(200).json({ success: true, order_number });
     }
 
+    if (action === 'delete_coupon') {
+      const { id } = body;
+      if (!id) {
+        return res.status(400).json({ success: false, error: 'id es requerido' });
+      }
+      // Permanent removal — for test coupons that should never be usable on the live site.
+      // A real coupon that's just past its life stays as toggled-off (is_active=false) instead.
+      await sql`DELETE FROM discount_coupons WHERE id = ${id}`;
+      return res.status(200).json({ success: true, id });
+    }
+
     if (action === 'delete_customer') {
       const { email } = body;
       if (!email) {
