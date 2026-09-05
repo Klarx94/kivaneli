@@ -554,19 +554,22 @@
             </div>
           </div>
 
-          <div class="flex items-center gap-2">
-            <button onclick="openConnectDropeaModal()" class="bg-[#181514] text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1.5 shadow-md">
-              <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-400"></i>
-              <span>Conectar Producto de Dropea</span>
-            </button>
-            <button onclick="openCreatePackModal()" class="bg-purple-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-purple-800 transition flex items-center gap-1.5 shadow-md">
-              <i data-lucide="package-plus" class="w-4 h-4"></i>
-              <span>Crear Pack Nuevo</span>
-            </button>
-            <button onclick="loadDropeaProductsLive()" class="bg-white text-stone-700 px-4 py-2.5 rounded-xl text-xs font-bold border border-stone-200 hover:bg-stone-50 transition flex items-center gap-1.5 shadow-sm">
-              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
-              <span>Sincronizar con Dropea</span>
-            </button>
+          <div class="flex flex-col items-end gap-1.5">
+            <div class="flex items-center gap-2">
+              <button onclick="openConnectDropeaModal()" class="bg-[#181514] text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition flex items-center gap-1.5 shadow-md">
+                <i data-lucide="plus-circle" class="w-4 h-4 text-emerald-400"></i>
+                <span>Conectar Producto de Dropea</span>
+              </button>
+              <button onclick="openCreatePackModal()" class="bg-purple-700 text-white px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-purple-800 transition flex items-center gap-1.5 shadow-md">
+                <i data-lucide="package-plus" class="w-4 h-4"></i>
+                <span>Crear Pack Nuevo</span>
+              </button>
+              <button id="btnSyncDropea" onclick="handleSyncDropea()" class="bg-white text-stone-700 px-4 py-2.5 rounded-xl text-xs font-bold border border-stone-200 hover:bg-stone-50 transition flex items-center gap-1.5 shadow-sm">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                <span>Sincronizar con Dropea</span>
+              </button>
+            </div>
+            <span id="lastSyncLabel" class="text-[10px] text-stone-400"></span>
           </div>
         </div>
       </div>
@@ -881,6 +884,21 @@
   </div>
 
   <!-- 🌟 MODAL: LANZAR RETARGETING MASIVO -->
+  <div id="modalSyncResult" class="fixed inset-0 bg-stone-900/70 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full space-y-4 shadow-2xl border border-stone-200">
+      <div class="flex items-center justify-between pb-2 border-b border-stone-100">
+        <h3 class="font-serif-luxury font-bold text-lg text-[#181514] flex items-center gap-2">
+          <i data-lucide="refresh-cw" class="w-5 h-5 text-[#B86B60]"></i>
+          <span>Sincronización con Dropea</span>
+        </h3>
+        <button onclick="closeSyncResultModal()" class="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-stone-500 hover:bg-stone-200">✕</button>
+      </div>
+      <div id="syncResultBody" class="text-xs text-stone-700 space-y-2 leading-relaxed"></div>
+      <p id="syncResultTimestamp" class="text-[10px] text-stone-400 pt-2 border-t border-stone-100"></p>
+      <button onclick="closeSyncResultModal()" class="w-full bg-[#181514] text-white py-2.5 rounded-xl text-xs font-bold hover:bg-[#D48B80] transition">Entendido</button>
+    </div>
+  </div>
+
   <div id="modalBroadcast" class="fixed inset-0 bg-stone-900/70 backdrop-blur-md hidden items-center justify-center p-4 z-50">
     <div class="bg-white rounded-3xl p-6 md:p-8 max-w-lg w-full space-y-4 shadow-2xl border border-stone-200">
       <div class="flex items-center justify-between pb-2 border-b border-stone-100">
@@ -1109,6 +1127,92 @@
       }
 
       renderCatalogTable();
+      updateLastSyncLabel();
+    }
+
+    // The old "Sincronizar con Dropea" button ran loadDropeaProductsLive() silently in the
+    // background — it worked, but gave the admin zero visible confirmation, so it looked
+    // broken even on success. This wraps the same call with a loading state on the button
+    // and a modal reporting exactly what changed since the last sync (comparing against a
+    // snapshot kept in this browser's localStorage), or confirming there's nothing new.
+    function updateLastSyncLabel() {
+      const label = document.getElementById('lastSyncLabel');
+      if (!label) return;
+      const last = localStorage.getItem('kivaneli_dropea_last_sync');
+      label.textContent = last
+        ? 'Última sincronización: ' + new Date(last).toLocaleString('es-ES')
+        : 'Todavía no se ha sincronizado en este navegador';
+    }
+
+    async function handleSyncDropea() {
+      const btn = document.getElementById('btnSyncDropea');
+      const originalHtml = btn.innerHTML;
+      btn.disabled = true;
+      btn.classList.add('opacity-60', 'cursor-wait');
+      btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Sincronizando...</span>';
+      if (window.lucide) lucide.createIcons();
+
+      let prevSnapshot = {};
+      try { prevSnapshot = JSON.parse(localStorage.getItem('kivaneli_dropea_sync_snapshot') || '{}'); } catch (e) {}
+      const isFirstSync = Object.keys(prevSnapshot).length === 0;
+      const prevProductCount = Object.keys(prevSnapshot).length;
+
+      let syncError = null;
+      try {
+        await loadDropeaProductsLive();
+      } catch (e) {
+        syncError = e.message;
+      }
+
+      const changes = [];
+      const newSnapshot = {};
+      storeProducts.forEach(p => {
+        const stock = dropeaStockFor(p);
+        newSnapshot[p.slug] = { stock, name: p.name };
+        const prev = prevSnapshot[p.slug];
+        if (!prev || stock === null || prev.stock === stock) return;
+        if (stock === 0 && prev.stock !== 0) {
+          changes.push(`⚠️ <strong>${p.name}</strong> se quedó SIN STOCK`);
+        } else if (prev.stock === 0 && stock > 0) {
+          changes.push(`✅ <strong>${p.name}</strong> volvió a tener stock (${stock} uds.)`);
+        } else {
+          changes.push(`📦 <strong>${p.name}</strong>: stock actualizado de ${prev.stock} a ${stock} uds.`);
+        }
+      });
+
+      if (!isFirstSync && storeProducts.length !== prevProductCount) {
+        changes.unshift(`🆕 El catálogo pasó de ${prevProductCount} a ${storeProducts.length} productos.`);
+      }
+
+      localStorage.setItem('kivaneli_dropea_sync_snapshot', JSON.stringify(newSnapshot));
+      const now = new Date();
+      localStorage.setItem('kivaneli_dropea_last_sync', now.toISOString());
+
+      btn.disabled = false;
+      btn.classList.remove('opacity-60', 'cursor-wait');
+      btn.innerHTML = originalHtml;
+      if (window.lucide) lucide.createIcons();
+      updateLastSyncLabel();
+
+      const body = document.getElementById('syncResultBody');
+      if (syncError) {
+        body.innerHTML = `<p class="text-rose-600">❌ La sincronización falló: ${syncError}. Vuelve a intentarlo en unos segundos.</p>`;
+      } else if (isFirstSync) {
+        body.innerHTML = `<p>📋 Primera sincronización registrada en este navegador — ${storeProducts.length} productos cargados con su stock actual de Dropea.</p>`;
+      } else if (changes.length) {
+        body.innerHTML = '<ul class="space-y-1.5 list-none pl-0">' + changes.map(c => `<li>${c}</li>`).join('') + '</ul>';
+      } else {
+        body.innerHTML = `<p>✅ Todo al día — ${storeProducts.length} productos revisados, sin cambios de stock desde la última sincronización.</p>`;
+      }
+      document.getElementById('syncResultTimestamp').textContent = 'Sincronizado ahora · ' + now.toLocaleString('es-ES');
+
+      document.getElementById('modalSyncResult').classList.remove('hidden');
+      document.getElementById('modalSyncResult').classList.add('flex');
+    }
+
+    function closeSyncResultModal() {
+      document.getElementById('modalSyncResult').classList.add('hidden');
+      document.getElementById('modalSyncResult').classList.remove('flex');
     }
 
     function dropeaStockFor(product) {
