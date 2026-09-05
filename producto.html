@@ -489,7 +489,7 @@
       // Cross-sells (Show other products except the pack)
       const crossSellsBox = document.getElementById('pdpCrossSellsBox');
       const crossSellsList = document.getElementById('pdpCrossSellsList');
-      const otherProducts = Object.values(KIVANELI_PRODUCTS).filter(item => item.id !== 'pack-ritual-completo' && item.id !== currentSlug);
+      const otherProducts = Object.values(KIVANELI_PRODUCTS).filter(item => item.id !== 'pack-ritual-completo' && item.inStock !== false && item.id !== currentSlug);
 
       if (currentSlug === 'pack-ritual-completo' || otherProducts.length === 0) {
         crossSellsBox.classList.add('hidden');

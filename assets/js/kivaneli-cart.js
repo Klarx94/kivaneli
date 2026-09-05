@@ -246,7 +246,7 @@ class KivaneliCart {
     // Render Impulse Cross-sells (Only individual items not in cart)
     if (crossSellsContainer) {
       const cartItemIds = this.items.map(i => i.id);
-      const availableUpsells = Object.values(KIVANELI_PRODUCTS).filter(p => p.id !== 'pack-ritual-completo' && !cartItemIds.includes(p.id));
+      const availableUpsells = Object.values(KIVANELI_PRODUCTS).filter(p => p.id !== 'pack-ritual-completo' && p.inStock !== false && !cartItemIds.includes(p.id));
 
       if (availableUpsells.length === 0 || this.items.length === 0) {
         crossSellsContainer.innerHTML = '';

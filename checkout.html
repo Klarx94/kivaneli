@@ -237,20 +237,21 @@
           <div class="space-y-3 pt-2">
             <label class="text-xs font-bold text-stone-700">Selecciona Método de Pago:</label>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              
-              <label class="flex items-center gap-3 p-4 rounded-2xl border-2 border-[#D48B80] bg-[#F6EAE7]/60 cursor-pointer transition" id="chkLabelCOD">
-                <input type="radio" name="checkoutPayment" value="COD" checked onchange="handlePaymentModeChange('COD')" class="text-[#D48B80] focus:ring-[#D48B80]">
+
+              <label class="relative flex items-center gap-3 p-4 rounded-2xl border-2 border-emerald-500 bg-emerald-50/60 cursor-pointer transition" id="chkLabelCard">
+                <span class="absolute -top-2.5 right-3 bg-emerald-600 text-white text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">Recomendado</span>
+                <input type="radio" name="checkoutPayment" value="CARD" checked onchange="handlePaymentModeChange('CARD')" class="text-emerald-600 focus:ring-emerald-500">
                 <div>
-                  <div class="text-xs font-bold text-[#181514]">Pago Contra-reembolso</div>
-                  <div class="text-[10.5px] text-stone-500">Pagas en efectivo en tu puerta</div>
+                  <div class="text-xs font-bold text-emerald-700">Tarjeta de Crédito/Débito</div>
+                  <div class="text-[10.5px] text-emerald-600 font-semibold">✨ 5% dto. + confirmación y envío inmediatos</div>
                 </div>
               </label>
 
-              <label class="flex items-center gap-3 p-4 rounded-2xl border border-stone-300 bg-white hover:border-emerald-500 cursor-pointer transition" id="chkLabelCard">
-                <input type="radio" name="checkoutPayment" value="CARD" onchange="handlePaymentModeChange('CARD')" class="text-emerald-600 focus:ring-emerald-500">
+              <label class="flex items-center gap-3 p-4 rounded-2xl border border-stone-300 bg-white hover:border-[#D48B80] cursor-pointer transition" id="chkLabelCOD">
+                <input type="radio" name="checkoutPayment" value="COD" onchange="handlePaymentModeChange('COD')" class="text-[#D48B80] focus:ring-[#D48B80]">
                 <div>
-                  <div class="text-xs font-bold text-emerald-700">Tarjeta / Revolut Pay</div>
-                  <div class="text-[10.5px] text-emerald-600 font-semibold">✨ 5% dto. extra automático</div>
+                  <div class="text-xs font-bold text-[#181514]">Pago Contra-reembolso</div>
+                  <div class="text-[10.5px] text-stone-500">Pagas en efectivo en tu puerta</div>
                 </div>
               </label>
 
@@ -338,7 +339,7 @@
   <script>
     let checkoutCoupon = '';
     let checkoutCouponDiscount = 0;
-    let checkoutPaymentMethod = 'COD';
+    let checkoutPaymentMethod = 'CARD';
 
     function renderCheckoutPage() {
       const itemsList = document.getElementById('checkoutItemsList');
@@ -379,7 +380,7 @@
 
       // Cross sells
       const cartIds = items.map(i => i.id);
-      const availableUpsells = Object.values(KIVANELI_PRODUCTS).filter(p => p.id !== 'pack-ritual-completo' && !cartIds.includes(p.id));
+      const availableUpsells = Object.values(KIVANELI_PRODUCTS).filter(p => p.id !== 'pack-ritual-completo' && p.inStock !== false && !cartIds.includes(p.id));
 
       if (availableUpsells.length === 0) {
         if (crossSellsBox) crossSellsBox.classList.add('hidden');
@@ -424,7 +425,7 @@
         discountRow.classList.add('hidden');
       }
 
-      document.getElementById('btnConfirmText').innerText = checkoutPaymentMethod === 'CARD' ? 'PAGAR CON TARJETA / REVOLUT PAY' : 'CONFIRMAR PEDIDO CONTRA-REEMBOLSO';
+      document.getElementById('btnConfirmText').innerText = checkoutPaymentMethod === 'CARD' ? 'PAGAR CON TARJETA (5% DTO)' : 'CONFIRMAR PEDIDO CONTRA-REEMBOLSO';
     }
 
     function handlePaymentModeChange(mode) {
@@ -563,7 +564,7 @@
         } catch (err) {
           alert('Error al iniciar el pago con tarjeta: ' + err.message);
           btn.disabled = false;
-          btn.innerHTML = '<i data-lucide="check-circle-2" class="w-5 h-5"></i><span id="btnConfirmText">PAGAR CON TARJETA / REVOLUT PAY</span>';
+          btn.innerHTML = '<i data-lucide="check-circle-2" class="w-5 h-5"></i><span id="btnConfirmText">PAGAR CON TARJETA (5% DTO)</span>';
           if (window.lucide) lucide.createIcons();
           return;
         }
