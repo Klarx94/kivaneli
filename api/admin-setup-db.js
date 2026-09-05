@@ -136,11 +136,13 @@ module.exports = async (req, res) => {
         extra_images        JSONB DEFAULT '[]'::jsonb,
         bundle_items        JSONB,
         is_active           BOOLEAN DEFAULT true,
+        in_stock            BOOLEAN DEFAULT true,
         sort_order          INTEGER DEFAULT 0,
         created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
         updated_at          TIMESTAMPTZ NOT NULL DEFAULT now()
       )
     `;
+    await sql`ALTER TABLE products ADD COLUMN IF NOT EXISTS in_stock BOOLEAN DEFAULT true`;
     steps.push('products');
 
     await sql`

@@ -454,7 +454,24 @@
       document.getElementById('productPriceDisplay').innerHTML = p.price.toFixed(2).replace('.', ',') + '&nbsp;€';
       document.getElementById('productRegularPriceDisplay').innerHTML = p.regularPrice.toFixed(2).replace('.', ',') + '&nbsp;€';
       document.getElementById('productDiscountPill').innerHTML = 'Ahorras ' + (p.regularPrice - p.price).toFixed(2).replace('.', ',') + '&nbsp;€';
-      document.getElementById('productBadge').innerHTML = `<i data-lucide="check-circle" class="w-3 h-3"></i><span>${p.badge}</span>`;
+      const liveProduct = KIVANELI_PRODUCTS[currentSlug];
+      const outOfStock = liveProduct && liveProduct.inStock === false;
+      document.getElementById('productBadge').innerHTML = outOfStock
+        ? `<i data-lucide="alert-circle" class="w-3 h-3"></i><span>AGOTADO TEMPORALMENTE</span>`
+        : `<i data-lucide="check-circle" class="w-3 h-3"></i><span>${p.badge}</span>`;
+
+      const addBtn = document.getElementById('btnAddToCart');
+      const buyBtn = document.getElementById('btnBuyNow');
+      [addBtn, buyBtn].forEach(btn => {
+        if (!btn) return;
+        if (outOfStock) {
+          btn.setAttribute('disabled', 'true');
+          btn.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+        } else {
+          btn.removeAttribute('disabled');
+          btn.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+        }
+      });
       document.getElementById('mainProductImage').src = p.images[0];
 
       document.getElementById('specPoint1').innerText = p.spec1;

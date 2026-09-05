@@ -666,15 +666,24 @@
           <textarea id="prodDescription" rows="4" class="w-full p-3 rounded-xl border border-stone-300 leading-relaxed text-xs"></textarea>
         </div>
 
-        <label class="flex items-center gap-2 font-bold text-stone-700">
-          <input type="checkbox" id="prodIsActive" checked class="w-4 h-4">
-          <span>Publicado y visible en la tienda</span>
-        </label>
+        <div>
+          <label class="font-bold text-stone-700">Estado del Producto *</label>
+          <select id="prodAvailability" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 font-bold">
+            <option value="AVAILABLE">🟢 Disponible — visible y comprable</option>
+            <option value="OUT_OF_STOCK">🟡 Agotado — visible en la tienda, no se puede comprar</option>
+            <option value="HIDDEN">⚪ Oculto — no aparece en ningún sitio</option>
+          </select>
+        </div>
 
-        <button type="submit" class="w-full bg-rose-gradient text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition shadow-md flex items-center justify-center gap-2">
-          <i data-lucide="check" class="w-4 h-4"></i>
-          <span>GUARDAR & PUBLICAR EN LA TIENDA</span>
-        </button>
+        <div class="flex gap-2">
+          <button type="submit" class="flex-1 bg-rose-gradient text-white py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition shadow-md flex items-center justify-center gap-2">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>GUARDAR & PUBLICAR EN LA TIENDA</span>
+          </button>
+          <button type="button" id="btnDeleteProduct" onclick="deleteCurrentProduct()" class="hidden px-4 py-3.5 rounded-xl border-2 border-rose-300 text-rose-600 font-bold text-xs hover:bg-rose-50 transition">
+            <i data-lucide="trash-2" class="w-4 h-4"></i>
+          </button>
+        </div>
       </form>
     </div>
   </div>
@@ -942,9 +951,11 @@
             ${p.regular_price ? `<div class="text-[10px] text-stone-400 line-through">${parseFloat(p.regular_price).toFixed(2)} €</div>` : ''}
           </td>
           <td class="p-4">
-            <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold ${p.is_active ? 'bg-emerald-100 text-emerald-800' : 'bg-stone-200 text-stone-600'}">
-              ${p.is_active ? '🟢 Activo en Tienda' : '⚪ Oculto'}
-            </span>
+            ${p.is_active === false
+              ? '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-stone-200 text-stone-600">⚪ Oculto</span>'
+              : (p.in_stock === false
+                ? '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-amber-100 text-amber-800">🟡 Agotado</span>'
+                : '<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-100 text-emerald-800">🟢 Disponible</span>')}
           </td>
           <td class="p-4 text-right space-x-2">
             <button onclick="editProduct('${p.id}')" class="text-xs bg-white text-stone-700 border border-stone-200 px-2.5 py-1.5 rounded-lg hover:border-[#D48B80] font-bold transition">Editar</button>
@@ -971,7 +982,8 @@
       document.getElementById('prodImageUrl').value = '';
       document.getElementById('prodExtraImages').value = '';
       document.getElementById('prodDescription').value = '';
-      document.getElementById('prodIsActive').checked = true;
+      document.getElementById('prodAvailability').value = 'AVAILABLE';
+      document.getElementById('btnDeleteProduct').classList.add('hidden');
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
     }
@@ -1012,10 +1024,29 @@
       document.getElementById('prodImageUrl').value = p.image_url || '';
       document.getElementById('prodExtraImages').value = (p.extra_images || []).join('\n');
       document.getElementById('prodDescription').value = p.description_html || '';
-      document.getElementById('prodIsActive').checked = !!p.is_active;
+      document.getElementById('prodAvailability').value =
+        p.is_active === false ? 'HIDDEN' : (p.in_stock === false ? 'OUT_OF_STOCK' : 'AVAILABLE');
+      document.getElementById('btnDeleteProduct').classList.remove('hidden');
 
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
+    }
+
+    async function deleteCurrentProduct() {
+      const id = document.getElementById('prodId').value;
+      if (!id) return;
+      if (!confirm('¿Eliminar este producto de la tienda? Dejará de aparecer en todas partes.')) return;
+
+      try {
+        await adminFetch('/api/admin-products', {
+          method: 'DELETE',
+          body: JSON.stringify({ id })
+        });
+        closeEditProductModal();
+        await loadDropeaProductsLive();
+      } catch (err) {
+        alert('Error al eliminar el producto: ' + err.message);
+      }
     }
 
     function closeEditProductModal() {
@@ -1042,7 +1073,13 @@
         image_url: document.getElementById('prodImageUrl').value.trim(),
         extra_images: document.getElementById('prodExtraImages').value.split('\n').map(s => s.trim()).filter(Boolean),
         description_html: document.getElementById('prodDescription').value,
-        is_active: document.getElementById('prodIsActive').checked
+        ...(() => {
+          const availability = document.getElementById('prodAvailability').value;
+          return {
+            is_active: availability !== 'HIDDEN',
+            in_stock: availability !== 'OUT_OF_STOCK'
+          };
+        })()
       };
 
       try {

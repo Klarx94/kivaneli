@@ -89,7 +89,8 @@ async function loadKivaneliProducts() {
           dropeaVariantSku: p.dropea_sku,
           slug: p.slug,
           descriptionHtml: p.description_html || '',
-          extraImages: p.extra_images || []
+          extraImages: p.extra_images || [],
+          inStock: p.in_stock !== false
         };
       });
       KIVANELI_PRODUCTS = fresh;
@@ -128,6 +129,10 @@ class KivaneliCart {
   addItem(productId, quantity = 1, isImpulse = false) {
     const product = KIVANELI_PRODUCTS[productId];
     if (!product) return;
+    if (product.inStock === false) {
+      alert(`Lo sentimos, "${product.shortName || product.name}" está agotado temporalmente.`);
+      return;
+    }
 
     const unitPrice = isImpulse ? product.impulsePrice : product.price;
     const existing = this.items.find(item => item.id === productId);

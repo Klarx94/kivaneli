@@ -96,7 +96,9 @@ CREATE TABLE IF NOT EXISTS products (
   impulse_price       NUMERIC(10,2),
   image_url           TEXT,
   extra_images        JSONB DEFAULT '[]'::jsonb,
+  bundle_items        JSONB,
   is_active           BOOLEAN DEFAULT true,
+  in_stock            BOOLEAN DEFAULT true,
   sort_order          INTEGER DEFAULT 0,
   created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at          TIMESTAMPTZ NOT NULL DEFAULT now()

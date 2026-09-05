@@ -46,7 +46,7 @@ module.exports = async (req, res) => {
         INSERT INTO products (
           dropea_product_id, dropea_variant_id, dropea_sku, slug, name, short_name,
           description_html, category, section, badge, price, regular_price, impulse_price,
-          image_url, extra_images, bundle_items, is_active, sort_order
+          image_url, extra_images, bundle_items, is_active, in_stock, sort_order
         ) VALUES (
           ${b.dropea_product_id || null}, ${b.dropea_variant_id || null}, ${b.dropea_sku || null},
           ${slug}, ${b.name}, ${b.short_name || b.name}, ${b.description_html || ''},
@@ -54,7 +54,7 @@ module.exports = async (req, res) => {
           ${b.price}, ${b.regular_price || null}, ${b.impulse_price || null},
           ${b.image_url || null}, ${JSON.stringify(b.extra_images || [])}::jsonb,
           ${b.bundle_items ? JSON.stringify(b.bundle_items) : null}::jsonb,
-          ${b.is_active !== false}, ${b.sort_order || 0}
+          ${b.is_active !== false}, ${b.in_stock !== false}, ${b.sort_order || 0}
         )
         RETURNING *
       `;
@@ -90,6 +90,7 @@ module.exports = async (req, res) => {
           extra_images = ${JSON.stringify(merged.extra_images || [])}::jsonb,
           bundle_items = ${merged.bundle_items ? JSON.stringify(merged.bundle_items) : null}::jsonb,
           is_active = ${merged.is_active},
+          in_stock = ${merged.in_stock},
           sort_order = ${merged.sort_order},
           dropea_product_id = ${merged.dropea_product_id},
           dropea_variant_id = ${merged.dropea_variant_id},
