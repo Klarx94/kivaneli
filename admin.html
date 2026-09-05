@@ -704,6 +704,20 @@
           </div>
         </div>
 
+        <div class="p-3.5 rounded-xl border border-purple-200 bg-purple-50/50 space-y-3">
+          <label class="flex items-center gap-2 font-bold text-stone-700 cursor-pointer">
+            <input type="checkbox" id="prodIsBundle" onchange="toggleBundleComposer()" class="rounded border-stone-300 text-purple-700 focus:ring-purple-500">
+            <span>Este producto es un Pack (combina varios productos ya existentes)</span>
+          </label>
+          <div id="bundleComposerBox" class="hidden space-y-2">
+            <div id="bundleRows" class="space-y-2"></div>
+            <button type="button" onclick="addBundleRow()" class="text-xs font-bold text-purple-700 hover:underline flex items-center gap-1">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i><span>Añadir componente al pack</span>
+            </button>
+            <p class="text-[10.5px] text-stone-500">El precio del pack (arriba) lo decides tú libremente — no tiene que ser la suma de los componentes. Al venderse, cada componente se envía por separado al proveedor.</p>
+          </div>
+        </div>
+
         <div>
           <label class="font-bold text-stone-700">Badge (etiqueta corta sobre la foto)</label>
           <input type="text" id="prodBadge" placeholder="Ej. MÁS VENDIDO · 300 G" class="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs">
@@ -1120,8 +1134,54 @@
       document.getElementById('prodDescription').value = '';
       document.getElementById('prodAvailability').value = 'AVAILABLE';
       document.getElementById('btnDeleteProduct').classList.add('hidden');
+      document.getElementById('prodIsBundle').checked = false;
+      document.getElementById('bundleRows').innerHTML = '';
+      toggleBundleComposer();
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
+    }
+
+    // Compositor de packs — antes crear un pack combinado (varios productos reales
+    // enviados por separado al proveedor) solo era posible por API directa, nunca desde
+    // el admin. Marcar la casilla libera los campos de ID de Dropea (un pack no tiene
+    // uno propio) y permite elegir N productos ya existentes + cantidad de cada uno.
+    function toggleBundleComposer() {
+      const isBundle = document.getElementById('prodIsBundle').checked;
+      document.getElementById('bundleComposerBox').classList.toggle('hidden', !isBundle);
+      ['prodDropeaId', 'prodDropeaVariantId', 'prodDropeaSku'].forEach(fieldId => {
+        document.getElementById(fieldId).required = !isBundle;
+      });
+      if (isBundle && !document.getElementById('bundleRows').children.length) {
+        addBundleRow();
+      }
+    }
+
+    function bundleComponentOptions(selectedVariantId) {
+      return storeProducts
+        .filter(p => !p.bundle_items && p.dropea_variant_id)
+        .map(p => `<option value="${p.dropea_variant_id}" ${String(p.dropea_variant_id) === String(selectedVariantId) ? 'selected' : ''}>${p.name}</option>`)
+        .join('');
+    }
+
+    function addBundleRow(preset) {
+      const row = document.createElement('div');
+      row.className = 'flex items-center gap-2 bundle-row';
+      row.innerHTML = `
+        <select class="flex-1 px-2.5 py-2 rounded-lg border border-stone-300 text-xs bundle-row-product">
+          ${bundleComponentOptions(preset && preset.dropea_variant_id)}
+        </select>
+        <input type="number" min="1" value="${(preset && preset.quantity) || 1}" class="w-16 px-2 py-2 rounded-lg border border-stone-300 text-xs bundle-row-qty">
+        <button type="button" onclick="this.closest('.bundle-row').remove()" class="text-rose-500 hover:text-rose-700 p-1"><i data-lucide="x" class="w-4 h-4"></i></button>
+      `;
+      document.getElementById('bundleRows').appendChild(row);
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function collectBundleItems() {
+      return Array.from(document.querySelectorAll('#bundleRows .bundle-row')).map(row => ({
+        dropea_variant_id: parseInt(row.querySelector('.bundle-row-product').value),
+        quantity: parseInt(row.querySelector('.bundle-row-qty').value) || 1
+      })).filter(item => item.dropea_variant_id);
     }
 
     // Pre-fill the modal with a product Claude/the admin found live in Dropea's catalog,
@@ -1210,6 +1270,11 @@
         p.is_active === false ? 'HIDDEN' : (p.in_stock === false ? 'OUT_OF_STOCK' : 'AVAILABLE');
       document.getElementById('btnDeleteProduct').classList.remove('hidden');
 
+      document.getElementById('prodIsBundle').checked = !!(p.bundle_items && p.bundle_items.length);
+      document.getElementById('bundleRows').innerHTML = '';
+      (p.bundle_items || []).forEach(comp => addBundleRow(comp));
+      toggleBundleComposer();
+
       document.getElementById('modalEditProduct').classList.remove('hidden');
       document.getElementById('modalEditProduct').classList.add('flex');
     }
@@ -1240,7 +1305,15 @@
       e.preventDefault();
       const id = document.getElementById('prodId').value || null;
 
+      const isBundle = document.getElementById('prodIsBundle').checked;
+      const bundleItems = isBundle ? collectBundleItems() : null;
+      if (isBundle && bundleItems.length < 2) {
+        alert('Un pack necesita al menos 2 componentes. Añade otro producto o desmarca la casilla de Pack.');
+        return;
+      }
+
       const payload = {
+        bundle_items: bundleItems,
         dropea_product_id: parseInt(document.getElementById('prodDropeaId').value) || null,
         dropea_variant_id: parseInt(document.getElementById('prodDropeaVariantId').value) || null,
         dropea_sku: document.getElementById('prodDropeaSku').value.trim(),

@@ -513,33 +513,35 @@
         `).join('');
       }
 
-      // Render Quick Switch Cards to other products
+      // Render Quick Switch Cards — antes solo mostraba los 4 productos con ficha escrita a
+      // mano (PDP_DETAILS); ahora sale cualquier producto activo y en stock del catálogo real,
+      // así que uno nuevo dado de alta en el admin aparece aquí también, no solo en su propia ficha.
       const quickSwitchGrid = document.getElementById('quickSwitchGrid');
-      const otherSlugs = Object.keys(PDP_DETAILS).filter(s => {
-        if (s === currentSlug) return false;
-        const live = KIVANELI_PRODUCTS[s];
-        return live ? live.inStock !== false : true;
+      const otherSlugs = Object.keys(KIVANELI_PRODUCTS).filter(s => {
+        if (s === currentSlug || s === 'pack-ritual-completo') return false;
+        return KIVANELI_PRODUCTS[s].inStock !== false;
       });
 
       if (quickSwitchGrid) {
         quickSwitchGrid.innerHTML = otherSlugs.map(slug => {
-          const item = PDP_DETAILS[slug];
+          const item = KIVANELI_PRODUCTS[slug];
+          const regularPrice = item.regularPrice || item.price;
           return `
             <div class="glass-card rounded-2xl p-4 border border-stone-200 hover:border-[#D48B80] transition flex flex-col justify-between space-y-3 bg-white shadow-xs group">
               <div class="space-y-2">
                 <a href="producto.html?slug=${slug}" class="block relative rounded-xl overflow-hidden aspect-video bg-stone-100">
-                  <img src="${item.images[0]}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
+                  <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" decoding="async">
                   <span class="absolute top-2 left-2 text-[9px] font-extrabold uppercase tracking-wider bg-[#181514]/80 text-white px-2 py-0.5 rounded-full backdrop-blur-xs">
-                    ${item.category}
+                    ${item.category || 'KIVANELI'}
                   </span>
                 </a>
                 <div>
                   <h4 class="font-serif-luxury font-bold text-xs sm:text-sm text-[#181514] line-clamp-1 group-hover:text-[#B86B60] transition">
-                    <a href="producto.html?slug=${slug}">${item.title}</a>
+                    <a href="producto.html?slug=${slug}">${item.shortName || item.name}</a>
                   </h4>
                   <div class="flex items-baseline gap-2 mt-1">
                     <span class="font-serif-luxury font-black text-sm text-[#181514] whitespace-nowrap">${item.price.toFixed(2).replace('.', ',')}&nbsp;€</span>
-                    <span class="text-[10px] text-stone-400 line-through whitespace-nowrap">${item.regularPrice.toFixed(2).replace('.', ',')}&nbsp;€</span>
+                    ${regularPrice > item.price ? `<span class="text-[10px] text-stone-400 line-through whitespace-nowrap">${regularPrice.toFixed(2).replace('.', ',')}&nbsp;€</span>` : ''}
                   </div>
                 </div>
               </div>
